@@ -1,0 +1,34 @@
+{
+  "license": "All rights reserved",
+  "suggestions": {
+  },
+  "dependencies": {
+  },
+  "conflicting": {
+  },
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "description": "Installs/Configures vsftpd",
+  "providing": {
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "version": "0.0.1",
+  "maintainer": "Ryan J. Geyer",
+  "recipes": {
+    "vsftpd::default": "Runs vsftpd::install",
+    "vsftpd::install": "Installs and configures vsftpd"
+  },
+  "replacing": {
+  },
+  "maintainer_email": "me@ryangeyer.com",
+  "name": "vsftpd",
+  "groupings": {
+  },
+  "attributes": {
+  },
+  "recommendations": {
+  }
+}

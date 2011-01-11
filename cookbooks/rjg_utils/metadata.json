@@ -1,0 +1,102 @@
+{
+  "license": "All rights reserved",
+  "suggestions": {
+  },
+  "dependencies": {
+    "cron": [
+
+    ],
+    "web_apache": [
+
+    ],
+    "app_wordpress": [
+
+    ],
+    "aws": [
+
+    ]
+  },
+  "conflicting": {
+  },
+  "long_description": "= DESCRIPTION:\nA collection of utilities that don't fit into any better defined buckets.\n\n= REQUIREMENTS:\n\n== Platform:\nBuilt for, and tested against Ubuntu 10.10.  Many of the recipes also depend upon RightScale and Amazon EC2 and S3\n\n== Cookbooks:\nRequires the following cookbooks from my own repo:\n* aws[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/aws]\n* cron[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/cron]\n* web_apache[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/web_apache]\n* app_wordpress[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/app_wordpress]\n\n= ATTRIBUTES:\n\n= USAGE:\n\n== Defines:\n* rjg_utils_schedule_recipe: Schedules one or many recipes to be run through the RightScale management dashboard using rs_run_recipe\n\nTo schedule one recipe named \"my_app::backup\" to run daily:\n\n  rjg_utils_schedule_recipe \"my_app::backup\"\n\nTo schedule many recipes to run daily:\n\n  rjg_utils_schedule_recipe \"app1::backup,app2::backup,app3::backup\"\n\nTo schedule one recipe named \"my_app::logrotate\" to run weekly:\n\n  rjg_utils_schedule_recipe \"my_app::logrotate\" do\n    frequency \"weekly\"\n  end\n\nTo remove a recipe named \"my_app::backup\" from the daily schedule:\n\n  rjg_utils_schedule_recipe \"my_app::backup\" do\n    action \"delete\"\n  end",
+  "description": "Installs/Configures rjg_utils",
+  "providing": {
+    "rjg_utils_schedule_recipe(name, frequency, action)": [
+
+    ]
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "version": "0.0.1",
+  "maintainer": "Ryan J. Geyer",
+  "recipes": {
+    "rjg_utils::vhost_aio_backup_all_vhosts": "Does what it says it'll do",
+    "rjg_utils::vhost_aio_boot": "Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server",
+    "rjg_utils::schedule_recipes": "Schedules recipes to run hourly,daily,weekly, or monthly using cron"
+  },
+  "replacing": {
+  },
+  "maintainer_email": "me@ryangeyer.com",
+  "name": "rjg_utils",
+  "groupings": {
+  },
+  "attributes": {
+    "rjg_utils/yaml_bucket": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::vhost_aio_boot"
+      ],
+      "display_name": "Configuration YAML file S3 bucket",
+      "description": "The S3 bucket containing the YAML file used to configure a server instance"
+    },
+    "aws/secret_access_key": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::vhost_aio_boot"
+      ],
+      "display_name": "Secret Access Key",
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
+    },
+    "aws/access_key_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::vhost_aio_boot"
+      ],
+      "display_name": "Access Key Id",
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
+    },
+    "rjg_utils/yaml_file": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::vhost_aio_boot"
+      ],
+      "display_name": "Configuration YAML file",
+      "description": "The filename of a YAML file stored in an S3 bucket used to configure a server instance"
+    }
+  },
+  "recommendations": {
+  }
+}

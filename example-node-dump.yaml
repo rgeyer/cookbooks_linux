@@ -1,0 +1,1989 @@
+[I] 04:45:45: --- &id177 !ruby/object:Chef::Node
+attribute: !map:Mash
+  gem_server: !map:Mash
+    rf_virtual_host_alias: rubyforge
+    directory: /srv/gems
+    virtual_host_name: gems.compute-1.internal
+    rf_directory: /srv/rubyforge
+    virtual_host_alias: gems
+    rf_virtual_host_name: rubyforge.compute-1.internal
+  languages: &id112 !map:Mash
+    java: !map:Mash
+      hotspot: !map:Mash
+        name: Java HotSpot(TM) Client VM
+        build: 17.1-b03, mixed mode
+      runtime: !map:Mash
+        name: Java(TM) SE Runtime Environment
+        build: 1.6.0_22-b04
+      version: 1.6.0_22
+    perl: !map:Mash
+      version: 5.10.1
+      archname: i686-linux-gnu-thread-multi
+    python: !map:Mash
+      version: 2.6.6
+      builddate: Sep 15 2010, 15:52:39
+    ruby: !map:Mash
+      target_os: linux
+      bin_dir: /usr/bin
+      host_vendor: pc
+      target_vendor: pc
+      target_cpu: i686
+      ruby_bin: /usr/bin/ruby1.8
+      version: 1.8.7
+      host_os: linux-gnu
+      release_date: "2010-06-23"
+      host: i686-pc-linux-gnu
+      target: i686-pc-linux-gnu
+      host_cpu: i686
+      gems_dir: /usr/lib/ruby/gems/1.8
+      platform: i686-linux
+  filesystem: &id113 !map:Mash
+    /dev/sda1: !map:Mash
+      kb_size: "10321208"
+      kb_available: "8464524"
+      mount_options:
+      - rw
+      fs_type: ext3
+      mount: /
+      percent_used: 14%
+      kb_used: "1332396"
+    none: !map:Mash
+      kb_size: "10321208"
+      kb_available: "8464524"
+      mount_options:
+      - rw
+      - relatime
+      fs_type: debugfs
+      mount: /var/lib/ureadahead/debugfs
+      percent_used: 14%
+      kb_used: "1332396"
+    fusectl: !map:Mash
+      mount_options:
+      - rw
+      fs_type: fusectl
+      mount: /sys/fs/fuse/connections
+  dynomite: !map:Mash
+    data_dir: /var/db/dynomite
+    num_nodes: 1
+    web_port: 1180
+    master: false
+    join_node: node
+    node_name: domU-12-31-39-14-C4-4E
+    ascii_port: 11221
+    cluster_name: dynomite
+    thrift_port: 11222
+  openldap: !map:Mash
+    rootpw:
+    auth_binddn: ou=people,dc=compute-1,dc=internal
+    dir: /etc/ldap
+    run_dir: /var/run/slapd
+    module_dir: /usr/lib/ldap
+    cafile: /etc/ldap/ssl/ca.crt
+    server: ldap.compute-1.internal
+    ssl_dir: /etc/ldap/ssl
+    auth_type: openldap
+    auth_url: ldap://ldap.compute-1.internal/ou=people,dc=compute-1,dc=internal?uid?sub?(objecctClass=*)
+    basedn: dc=compute-1,dc=internal
+    slapd_type:
+    auth_bindpw:
+  bootstrap: !map:Mash
+    chef: !map:Mash
+      client_splay: "20"
+      webui_enabled: false
+      umask: 18
+      cache_path: /srv/chef/cache
+      client_interval: "1800"
+      serve_path: /srv/chef
+      url_type: http
+      server_ssl_req: /C=US/ST=Several/L=Locality/O=Example/OU=Operations/CN=chef.compute-1.internal/emailAddress=ops@compute-1.internal
+      webui_admin_password: Tnv_NwDiczrW_PAeYnou
+      init_style: runit
+      validation_client_name: chef-validator
+      client_version: 0.8.16.1
+      webui_port: "4040"
+      run_path: /var/run/chef
+      path: /srv/chef
+      server_fqdn: chef.compute-1.internal
+      indexer_log: STDOUT
+      server_version: 0.8.16.1
+      client_log: STDOUT
+      log_dir: /var/log/chef
+      server_port: "4000"
+      server_log: STDOUT
+  nagios: !map:Mash
+    cache_dir: /var/cache/nagios3
+    interval_length: 1
+    dir: /etc/nagios3
+    sysadmin_email: root@localhost
+    checks: !map:Mash
+      memory: !map:Mash
+        critical: 150
+        warning: 250
+      smtp_host: ""
+      load: !map:Mash
+        critical: "30,20,10"
+        warning: "15,10,5"
+    default_host: !map:Mash
+      max_check_attempts: 1
+      notification_interval: 300
+      retry_interval: 15
+      check_interval: 15
+    templates: !map:Mash {}
+
+    default_service: !map:Mash
+      max_check_attempts: 3
+      notification_interval: 1200
+      retry_interval: 15
+      check_interval: 60
+    docroot: /usr/share/nagios3/htdocs
+    sysadmin_sms_email: root@localhost
+    default_contact_groups:
+    - admins
+    log_dir: /var/log/nagios3
+    state_dir: /var/lib/nagios3
+    check_external_commands: true
+    config_subdir: conf.d
+    notifications_enabled: 0
+  glassfish: !map:Mash
+    PASSWORD: ""
+    ACCEPT_LICENSE: "0"
+    USERNAME: ""
+    COUNTRY_DROP_DOWN: ""
+    REENTERPASSWORD: ""
+    ADMIN_PASSWORD: adminadmin
+    SKIP_REGISTRATION: SKIP_REGISTRATION
+    LASTNAME: ""
+    LOGIN_MODE: "true"
+    PROXY_HOST: ""
+    USE_EXISTINGACCT: USE_EXISTINGACCT
+    COUNTRY: ""
+    DUMMY_PROP: ""
+    ANONYMOUS: ANONYMOUS
+    HTTP_PORT: "8081"
+    INSTALL_HOME: /opt/glassfishv3-prelude
+    FIRSTNAME: ""
+    NON_ANONYMOUS: NON_ANONYMOUS
+    BOOTSTRAP_UPDATETOOL: "false"
+    systemuser: glassfish
+    USERPASSWORD: ""
+    COMPANYNAME: ""
+    EMAIL: ""
+    systemgroup: glassfish
+    CREATE_NEWACCT: CREATE_NEWACCT
+    ADMIN_USER: admin
+    PROXY_PORT: ""
+    fetch_url: http://download.java.net/glassfish/v3-prelude/promoted/glassfish-v3-prelude-b28f-unix.sh
+    ADMIN_PORT: "4848"
+    ALLOW_UPDATE_CHECK: "false"
+  network: &id119 !map:Mash
+    default_interface: eth0
+    interfaces: !map:Mash
+      lo: !map:Mash
+        flags:
+        - UP
+        - LOOPBACK
+        - RUNNING
+        addresses: !map:Mash
+          "::1": !map:Mash
+            scope: Node
+            prefixlen: "128"
+            family: inet6
+          127.0.0.1: !map:Mash
+            netmask: 255.0.0.0
+            family: inet
+        mtu: "16436"
+        encapsulation: Loopback
+      eth0: !map:Mash
+        flags:
+        - UP
+        - BROADCAST
+        - RUNNING
+        - MULTICAST
+        number: "0"
+        addresses: !map:Mash
+          12:31:39:14:c4:4e: !map:Mash
+            family: lladdr
+          fe80::1031:39ff:fe14:c44e: !map:Mash
+            scope: Link
+            prefixlen: "64"
+            family: inet6
+          10.206.199.188: !map:Mash
+            netmask: 255.255.254.0
+            broadcast: 10.206.199.255
+            family: inet
+        mtu: "1500"
+        type: eth
+        arp: !map:Mash
+          10.206.198.1: fe:ff:ff:ff:ff:ff
+        encapsulation: Ethernet
+  erlang: !map:Mash
+    gui_tools: false
+  tags: []
+
+  nginx: !map:Mash
+    gzip_types:
+    - text/plain
+    - text/html
+    - text/css
+    - application/x-javascript
+    - text/xml
+    - application/xml
+    - application/xml+rss
+    - text/javascript
+    worker_connections: 2048
+    dir: /etc/nginx
+    binary: /usr/sbin/nginx
+    configure_flags:
+    - --prefix=/opt/nginx-0.7.67
+    - --conf-path=/etc/nginx/nginx.conf
+    - --with-http_ssl_module
+    - --with-http_gzip_static_module
+    server_names_hash_bucket_size: 64
+    gzip_comp_level: "2"
+    version: 0.7.67
+    gzip_proxied: any
+    src_binary: /opt/nginx-0.7.67/sbin/nginx
+    gzip: "on"
+    gzip_http_version: "1.0"
+    worker_processes: 1
+    install_path: /opt/nginx-0.7.67
+    log_dir: /var/log/nginx
+    user: www-data
+    keepalive: "on"
+    keepalive_timeout: 65
+  mysql: !map:Mash
+    ebs_vol_dev: /dev/sdi
+    ebs_vol_size: 50
+    server_debian_password: GVBZxg8uM1di1xPreVwp
+    datadir: /var/lib/mysql
+    ec2_path: /mnt/mysql
+    server_repl_password: icek8NZ6AAMhGy4Jujd9
+    tunable: !map:Mash
+      key_buffer: 250M
+      back_log: "128"
+      net_write_timeout: "30"
+      max_connections: "800"
+      table_cache: "128"
+      net_read_timeout: "30"
+      wait_timeout: "180"
+      max_heap_table_size: 32M
+    bind_address: 10.206.199.188
+    server_root_password: nHI8pM49I8vhP1PJCe3K
+  tomcat6: !map:Mash
+    temp: /var/tmp/tomcat6
+    ssl_port: 8433
+    java_opts: ""
+    stop: /etc/init.d/tomcat6 stop
+    dir: /etc/tomcat6
+    port: 8080
+    conf: /etc/tomcat6
+    manager_password: manager
+    start: /etc/init.d/tomcat6 start
+    webapps: /srv/tomcat6/webapps
+    version: 6.0.18
+    with_native: false
+    restart: /etc/init.d/tomcat6 restart
+    logs: /var/log/tomcat6
+    webapp_base_dir: /srv/tomcat6/
+    java_home: /usr/lib/jvm/java
+    permgen_min_free_in_mb: 24
+    home: /usr/share/tomcat6
+    user: tomcat
+    manager_dir: /usr/share/tomcat6/webapps/manager
+    manager_user: manager
+  activemq: !map:Mash
+    version: 5.3.2
+    mirror: http://mirrors.ibiblio.org/pub/mirrors
+  hostname: domU-12-31-39-14-C4-4E
+  ohai_time: 1290487541.08999
+  chef: !map:Mash
+    doc_root: /usr/lib/ruby/gems/1.8/gems/chef-server-webui-0.8.16.1/public
+    umask: "0022"
+    client_splay: "20"
+    webui_enabled: false
+    server_url: http://chef.compute-1.internal:4000
+    cache_path: /srv/chef/cache
+    url_type: http
+    serve_path: /srv/chef
+    client_interval: "1800"
+    solr_heap_size: 256M
+    init_style: runit
+    backup_path: /srv/chef/backup
+    server_ssl_req: /C=US/ST=Several/L=Locality/O=Example/OU=Operations/CN=chef.compute-1.internal/emailAddress=ops@chef.compute-1.internal
+    validation_client_name: chef-validator
+    client_version: 0.8.16.1
+    webui_port: "4040"
+    path: /srv/chef
+    run_path: /srv/chef/run
+    server_proxy: !map:Mash
+      css_expire_hours: "120"
+      js_expire_hours: "24"
+    server_version: 0.8.16.1
+    server_fqdn: chef.compute-1.internal
+    log_dir: /var/log/chef
+    server_port: "4000"
+  jira: !map:Mash
+    run_user: www-data
+    virtual_host_name: jira.compute-1.internal
+    database_host: localhost
+    virtual_host_alias: jira.compute-1.internal
+    version: enterprise-3.13.1
+    database: mysql
+    database_user: jira
+    install_path: /srv/jira
+    database_password: change_me
+  idletime_seconds: 21612
+  runit: !map:Mash
+    sv_bin: /usr/bin/sv
+    service_dir: /etc/service
+    sv_dir: /etc/sv
+  php: !map:Mash
+    db_app_passwd: ""
+    server_name: myserver
+    modules_list: []
+
+    code: !map:Mash
+      destination: /home/webapp/myapp
+      branch: master
+      url: ""
+      credentials: ""
+    app_user: www-data
+    db_dns_name: ""
+    package_dependencies:
+    - php5
+    - php5-mysql
+    - php-pear
+    - libapache2-mod-php5
+    db_adapter: mysql
+    application_port: "8000"
+    application_name: myapp
+    db_app_user: ""
+    db_schema_name: ""
+    db_dumpfile_path: ""
+    module_dependencies:
+    - proxy_http
+    - php5
+  wordpress: !map:Mash
+    keys: !map:Mash
+      auth: Nr2l6EmqZPA_DFbLSbAC
+      logged_in: K0J515N_cnWgreRLE0gq
+      nonce: NkJlRmUy4GFUqqbMYw33
+      secure_auth: ERRp4RHvoKOHRZxp9E28
+    dir: /var/www/wordpress
+    checksum: 7342627f4a3dca44886c5aca6834cc88671dbd3aa2760182d2fcb9a330807ce1
+    version: 2.9.2
+    db: !map:Mash
+      database: wordpressdb
+      password: tBtTuoLQmsdTqIVCkQ92
+      user: wordpressuser
+  kernel: &id130 !map:Mash
+    modules: !map:Mash {}
+
+    machine: i686
+    name: Linux
+    os: GNU/Linux
+    version: "#35-Ubuntu SMP Sat Oct 16 23:57:40 UTC 2010"
+    release: 2.6.35-22-virtual
+  ec2opts: !map:Mash
+    lvm: !map:Mash
+      ephemeral_mountpoint: /mnt
+      ephemeral_logical_volume: store
+      use_ephemeral: true
+      ephemeral_devices: !map:Mash
+        m1.small:
+        - /dev/sda2
+        m1.xlarge:
+        - /dev/sdb
+        - /dev/sdc
+        - /dev/sdd
+        - /dev/sde
+        m1.large:
+        - /dev/sdb
+        - /dev/sdc
+      ephemeral_volume_group: ephemeral
+  radiant: !map:Mash
+    migrate: false
+    branch: HEAD
+    action: nothing
+    migrate_command: rake db:migrate
+    revision: HEAD
+    environment: production
+    edge: false
+  uptime_seconds: 10958
+  djbdns: !map:Mash
+    public_dnscache_ipaddress: 10.206.199.188
+    tinydns_internal_resolved_domain: compute-1.internal
+    dnscache_uid: 9997
+    dnslog_uid: 9998
+    bin_dir: /usr/local/bin
+    tinydns_ipaddress: 127.0.0.1
+    public_dnscache_allowed_networks:
+    - "10.206"
+    tinydns_uid: 9999
+    tinydns_internal_ipaddress: 127.0.0.1
+    axfrdns_uid: 9996
+    axfrdns_ipaddress: 127.0.0.1
+  passenger_enterprise: !map:Mash
+    root_path: /opt/ruby-enterprise/lib/ruby/gems/1.8/gems/passenger-2.2.15
+    module_path: /opt/ruby-enterprise/lib/ruby/gems/1.8/gems/passenger-2.2.15/ext/apache2/mod_passenger.so
+    version: 2.2.15
+  idletime: 6 hours 00 minutes 12 seconds
+  command: &id135 !map:Mash
+    ps: ps -ef
+  db_mysql: !map:Mash
+    init_timeout: "1200"
+    admin_password:
+    tmpdir: /tmp
+    server_id: 1290477999
+    log_bin: /mnt/mysql-binlogs/mysql-bin
+    log: log = /var/log/mysql.log
+    admin_user:
+    datadir_relocate: /mnt/mysql
+    datadir: /var/lib/mysql
+    log_error: log_error = /var/log/mysql.err
+    tunable: !map:Mash
+      innodb_buffer_pool_size: 10M
+      sort_buffer_size: 128K
+      key_buffer: 16M
+      query_cache_size: 1M
+      read_buffer_size: 128K
+      back_log: "128"
+      thread_cache_size: "50"
+      myisamchk: !map:Mash
+        sort_buffer_size: 16M
+        key_buffer: 16M
+      net_write_timeout: "30"
+      read_rnd_buffer_size: 256K
+      max_connections: "800"
+      net_buffer_length: 2K
+      table_cache: "16"
+      net_read_timeout: "30"
+      isamchk: !map:Mash
+        sort_buffer_size: 16M
+        key_buffer: 16M
+      log_slow_queries: ""
+      innodb_additional_mem_pool_size: 1M
+      wait_timeout: "28800"
+      myisam_sort_buffer_size: 2M
+      long_query_time: ""
+      expire_logs_days: "10"
+      max_heap_table_size: 32M
+    server_usage: dedicated
+    log_bin_enabled: true
+    packages_uninstall: apparmor
+    kill_bug_mysqld_safe: true
+    basedir: /usr
+    bind_address: 10.206.199.188
+    packages_install:
+    - mysql-server-5.1
+    - tofrodos
+    socket: /var/run/mysqld/mysqld.sock
+  ts3: !map:Mash
+    arch: x86
+    url: http://ftp.4players.de/pub/hosted/ts3/releases/beta-25/teamspeak3-server_linux-x86-.tar.gz
+    version: 3.0.0-beta25
+  os_version: 2.6.35-22-virtual
+  passenger: !map:Mash
+    root_path: /usr/lib/ruby/gems/1.8/gems/passenger-2.2.15
+    module_path: /usr/lib/ruby/gems/1.8/gems/passenger-2.2.15/ext/apache2/mod_passenger.so
+    version: 2.2.15
+  virtualization: &id139 !map:Mash {}
+
+  packages: !map:Mash
+    dist_only: false
+  keys: &id141 !map:Mash
+    ssh: !map:Mash
+      host_dsa_public: AAAAB3NzaC1kc3MAAACBAL336iIT7yR/T42kaXHlCF1qx02tL/q/d4CPiVTpo1GEGBvdaklEj8iNsHzCnvCNEqzQ2WWXSOAIuOYvjx4bn4kjMbqI6TZwGSZzR0CQ+BzZE3G1nLkHuR5Js4LZZaHy+6JENBWCjarWvaSE6H+6OFuQb9HT/WAlZaoiZVc0H8TFAAAAFQCjZxme2Uf8YQIdJ46NAYBUnPC5NwAAAIB7dRDiO9XuC3I1WhEvLmDTXzCvap4+p0SNcaTvRNl5bOziua0oLWLIu+KwOhwMpCNPzO+IqVBRFs+MwZEi7uAqFzwT2HeP2jYfGSju2SdYn2aq9CdUWYOnXv34x9SOdhoEyt4RzTfSm2OqZfnKAzdawHVWCUrIXDj/n1SYYzBR8gAAAIA8BPZEV8zVscc5UboP/JshGsNwQtiTbOMGKzQdwe6gYmztzHq1/NmTwbSxZnUWKtsO1XBx+u+fv+KXzK2hnfF49/c+u7gpx/ofJC+KMvmBGmYIHZRz8qIb4anU7gpVVdbKpCMfKdJ7vVxio6LdDUZ/UmgtQfgLdgJ2tvZUg0EOAg==
+      host_rsa_public: AAAAB3NzaC1yc2EAAAADAQABAAABAQCncDANgurZjZEygcyNvcLpV9QhyyLgotq9gMz6C053NwJaUosOTTiBGWvx6JAt+I93NVn3alvvCE/pGhY0uwLCf4WR+L+aEIzg4AiO8S39NSiBOQomCzxLVumte7eGOux2gdBj9ELGRYccy1EtcWEnxFy++fihyFltkvGQu1F4w2wx9QnyvayXXmB4xnLbmW0sK8onplD6rdalyH+GV1D2ENar4SnsQlFADwL0EcugeZOjOGYmCU1PT8CyEe0OOutuF1zVNPtbyuQOCjFUO1OPEVrB5JTtTz0RC5Tn2rfVHHo5GKpLg0dTxnHFQgZDM6MGb0Axz0QFZeq4pKeBFUOb
+  rs_utils: !map:Mash
+    collectd_config: /etc/collectd/collectd.conf
+    process_list: ""
+    collectd_lib: /usr/lib/collectd
+    private_ssh_key: ""
+    mysql_binary_backup_file: /var/run/mysql-binary-backup
+    timezone: UTC
+    logrotate_config: /etc/logrotate.d/syslog-ng
+    hostname: ""
+    collectd_plugin_dir: /etc/collectd/conf
+  macaddress: 12:31:39:14:c4:4e
+  uptime: 3 hours 02 minutes 38 seconds
+  couch_db: !map:Mash
+    src_mirror: http://archive.apache.org/dist/couchdb/0.9.1/apache-couchdb-0.9.1.tar.gz
+    src_version: 0.9.1
+    src_checksum: b16f3a10b406d01552893d356cdbf7f429209f938ae7d3aa589ee704df8cb4d2
+  authorization: !map:Mash
+    sudo: !map:Mash
+      groups: []
+
+      users: []
+
+  lsb: &id145 !map:Mash
+    codename: maverick
+    id: Ubuntu
+    description: "\"Ubuntu 10.10\""
+    release: "10.10"
+  openvpn: !map:Mash
+    local: 10.206.199.188
+    netmask: 255.255.0.0
+    type: server
+    subnet: 10.8.0.0
+    proto: udp
+  cloud: &id148 !map:Mash
+    public_ips:
+    - 50.16.7.24
+    private_ips:
+    - 10.206.199.188
+    provider: ec2
+  kickstart: !map:Mash
+    rootpw:
+    virtual_host_name: build.compute-1.internal
+  postgresql: !map:Mash
+    dir: /etc/postgresql/8.4/main
+    version: "8.4"
+  ruby_enterprise: !map:Mash
+    ruby_bin: /opt/ruby-enterprise/bin/ruby
+    url: http://rubyforge.org/frs/download.php/71096/ruby-enterprise-1.8.7-2010.02
+    version: 1.8.7-2010.02
+    install_path: /opt/ruby-enterprise
+    gems_dir: /opt/ruby-enterprise/lib/ruby/gems/1.8
+  apache: !map:Mash
+    traceenable: "On"
+    allowed_openids: []
+
+    dir: /etc/apache2
+    binary: /usr/sbin/apache2
+    timeout: 300
+    keepaliverequests: 100
+    contact: ops@example.com
+    servertokens: Prod
+    prefork: !map:Mash
+      maxspareservers: 32
+      minspareservers: 16
+      serverlimit: 400
+      startservers: 16
+      maxclients: 400
+      maxrequestsperchild: 10000
+    listen_ports:
+    - "80"
+    - "443"
+    extended_status: "On"
+    keepalivetimeout: 5
+    serversignature: "On"
+    log_dir: /var/log/apache2
+    user: www-data
+    icondir: /usr/share/apache2/icons
+    keepalive: "On"
+    worker: !map:Mash
+      maxsparethreads: 192
+      startservers: 4
+      minsparethreads: 64
+      maxclients: 1024
+      maxrequestsperchild: 0
+      threadsperchild: 64
+    mpm: prefork
+  fqdn: domU-12-31-39-14-C4-4E.compute-1.internal
+  platform: ubuntu
+  sbuild: !map:Mash
+    pgp_options: -us -uc
+    lv_size: 5G
+    key_id: ""
+    snapshot_size: 4G
+    mailto: root
+    maintainer_name: ""
+  etc: &id153 !map:Mash
+    group: !map:Mash
+      utmp: !map:Mash
+        gid: 43
+        members: []
+
+      dip: !map:Mash
+        gid: 30
+        members: []
+
+      audio: !map:Mash
+        gid: 29
+        members: []
+
+      uucp: !map:Mash
+        gid: 10
+        members: []
+
+      syslog: !map:Mash
+        gid: 103
+        members: []
+
+      nogroup: !map:Mash
+        gid: 65534
+        members: []
+
+      games: !map:Mash
+        gid: 60
+        members: []
+
+      list: !map:Mash
+        gid: 38
+        members: []
+
+      kmem: !map:Mash
+        gid: 15
+        members: []
+
+      mysql: !map:Mash
+        gid: 111
+        members: []
+
+      shadow: !map:Mash
+        gid: 42
+        members: []
+
+      sudo: !map:Mash
+        gid: 27
+        members: []
+
+      sys: !map:Mash
+        gid: 3
+        members: []
+
+      tty: !map:Mash
+        gid: 5
+        members: []
+
+      admin: !map:Mash
+        gid: 110
+        members: []
+
+      libuuid: !map:Mash
+        gid: 101
+        members: []
+
+      staff: !map:Mash
+        gid: 50
+        members: []
+
+      src: !map:Mash
+        gid: 40
+        members: []
+
+      irc: !map:Mash
+        gid: 39
+        members: []
+
+      backup: !map:Mash
+        gid: 34
+        members: []
+
+      www-data: !map:Mash
+        gid: 33
+        members: []
+
+      tape: !map:Mash
+        gid: 26
+        members: []
+
+      man: !map:Mash
+        gid: 12
+        members: []
+
+      lp: !map:Mash
+        gid: 7
+        members: []
+
+      fuse: !map:Mash
+        gid: 104
+        members: []
+
+      proxy: !map:Mash
+        gid: 13
+        members: []
+
+      mail: !map:Mash
+        gid: 8
+        members: []
+
+      postdrop: !map:Mash
+        gid: 109
+        members: []
+
+      operator: !map:Mash
+        gid: 37
+        members: []
+
+      cdrom: !map:Mash
+        gid: 24
+        members: []
+
+      root: !map:Mash
+        gid: 0
+        members: []
+
+      plugdev: !map:Mash
+        gid: 46
+        members: []
+
+      sasl: !map:Mash
+        gid: 45
+        members: []
+
+      video: !map:Mash
+        gid: 44
+        members: []
+
+      fax: !map:Mash
+        gid: 21
+        members: []
+
+      bin: !map:Mash
+        gid: 2
+        members: []
+
+      ssh: !map:Mash
+        gid: 106
+        members: []
+
+      users: !map:Mash
+        gid: 100
+        members: []
+
+      news: !map:Mash
+        gid: 9
+        members: []
+
+      daemon: !map:Mash
+        gid: 1
+        members: []
+
+      ssl-cert: !map:Mash
+        gid: 107
+        members: []
+
+      mlocate: !map:Mash
+        gid: 105
+        members: []
+
+      crontab: !map:Mash
+        gid: 102
+        members: []
+
+      gnats: !map:Mash
+        gid: 41
+        members: []
+
+      floppy: !map:Mash
+        gid: 25
+        members: []
+
+      voice: !map:Mash
+        gid: 22
+        members: []
+
+      disk: !map:Mash
+        gid: 6
+        members: []
+
+      postfix: !map:Mash
+        gid: 108
+        members: []
+
+      dialout: !map:Mash
+        gid: 20
+        members: []
+
+      adm: !map:Mash
+        gid: 4
+        members: []
+
+    passwd: !map:Mash
+      uucp: !map:Mash
+        gecos: uucp
+        gid: 10
+        dir: /var/spool/uucp
+        uid: 10
+        shell: /bin/sh
+      syslog: !map:Mash
+        gecos: ""
+        gid: 103
+        dir: /home/syslog
+        uid: 101
+        shell: /bin/false
+      list: !map:Mash
+        gecos: Mailing List Manager
+        gid: 38
+        dir: /var/list
+        uid: 38
+        shell: /bin/sh
+      games: !map:Mash
+        gecos: games
+        gid: 60
+        dir: /usr/games
+        uid: 5
+        shell: /bin/sh
+      mysql: !map:Mash
+        gecos: MySQL Server,,,
+        gid: 111
+        dir: /nonexistent
+        uid: 105
+        shell: /bin/false
+      sys: !map:Mash
+        gecos: sys
+        gid: 3
+        dir: /dev
+        uid: 3
+        shell: /bin/sh
+      nobody: !map:Mash
+        gecos: nobody
+        gid: 65534
+        dir: /nonexistent
+        uid: 65534
+        shell: /bin/sh
+      libuuid: !map:Mash
+        gecos: ""
+        gid: 101
+        dir: /var/lib/libuuid
+        uid: 100
+        shell: /bin/sh
+      irc: !map:Mash
+        gecos: ircd
+        gid: 39
+        dir: /var/run/ircd
+        uid: 39
+        shell: /bin/sh
+      backup: !map:Mash
+        gecos: backup
+        gid: 34
+        dir: /var/backups
+        uid: 34
+        shell: /bin/sh
+      www-data: !map:Mash
+        gecos: www-data
+        gid: 33
+        dir: /var/www
+        uid: 33
+        shell: /bin/sh
+      lp: !map:Mash
+        gecos: lp
+        gid: 7
+        dir: /var/spool/lpd
+        uid: 7
+        shell: /bin/sh
+      man: !map:Mash
+        gecos: man
+        gid: 12
+        dir: /var/cache/man
+        uid: 6
+        shell: /bin/sh
+      proxy: !map:Mash
+        gecos: proxy
+        gid: 13
+        dir: /bin
+        uid: 13
+        shell: /bin/sh
+      mail: !map:Mash
+        gecos: mail
+        gid: 8
+        dir: /var/mail
+        uid: 8
+        shell: /bin/sh
+      sync: !map:Mash
+        gecos: sync
+        gid: 65534
+        dir: /bin
+        uid: 4
+        shell: /bin/sync
+      sshd: !map:Mash
+        gecos: ""
+        gid: 65534
+        dir: /var/run/sshd
+        uid: 103
+        shell: /usr/sbin/nologin
+      root: !map:Mash
+        gecos: root
+        gid: 0
+        dir: /root
+        uid: 0
+        shell: /bin/bash
+      rightscale: !map:Mash
+        gecos: ""
+        gid: 65534
+        dir: /home/rightscale
+        uid: 104
+        shell: /bin/false
+      bin: !map:Mash
+        gecos: bin
+        gid: 2
+        dir: /bin
+        uid: 2
+        shell: /bin/sh
+      news: !map:Mash
+        gecos: news
+        gid: 9
+        dir: /var/spool/news
+        uid: 9
+        shell: /bin/sh
+      daemon: !map:Mash
+        gecos: daemon
+        gid: 1
+        dir: /usr/sbin
+        uid: 1
+        shell: /bin/sh
+      gnats: !map:Mash
+        gecos: Gnats Bug-Reporting System (admin)
+        gid: 41
+        dir: /var/lib/gnats
+        uid: 41
+        shell: /bin/sh
+      postfix: !map:Mash
+        gecos: ""
+        gid: 108
+        dir: /var/spool/postfix
+        uid: 102
+        shell: /bin/false
+  cpu: &id154 !map:Mash
+    real: 0
+    total: 1
+    "0": !map:Mash
+      flags:
+      - fpu
+      - tsc
+      - msr
+      - pae
+      - cx8
+      - cmov
+      - pat
+      - pse36
+      - clflush
+      - dts
+      - mmx
+      - fxsr
+      - sse
+      - sse2
+      - ss
+      - ht
+      - pbe
+      - nx
+      - lm
+      - constant_tsc
+      - up
+      - arch_perfmon
+      - pebs
+      - bts
+      - aperfmperf
+      - pni
+      - dtes64
+      - monitor
+      - ds_cpl
+      - vmx
+      - est
+      - tm2
+      - ssse3
+      - cx16
+      - xtpr
+      - pdcm
+      - dca
+      - sse4_1
+      - lahf_lm
+      - tpr_shadow
+      - vnmi
+      - flexpriority
+      model: "23"
+
+
+***** RECORD TRUNCATED ****
+
+          calculated: false
+          default: server
+          choice: []
+
+          type: string
+          recipes: []
+
+          display_name: OpenVPN Type
+          description: Server or server-bridge
+        openvpn/proto:
+          required: optional
+          calculated: false
+          default: udp
+          choice: []
+
+          type: string
+          recipes: []
+
+          display_name: OpenVPN Protocol
+          description: UDP or TCP
+        openvpn/subnet:
+          required: optional
+          calculated: false
+          default: 10.8.0.0
+          choice: []
+
+          type: string
+          recipes: []
+
+          display_name: OpenVPN Subnet
+          description: Subnet to hand out to clients
+        openvpn/netmask:
+          required: optional
+          calculated: false
+          default: 255.255.0.0
+          choice: []
+
+          type: string
+          recipes: []
+
+          display_name: OpenVPN Netmask
+          description: Netmask for clients
+        openvpn/local:
+          required: optional
+          calculated: false
+          default: ipaddress
+          choice: []
+
+          type: string
+          recipes: []
+
+          display_name: OpenVPN Local
+          description: Local interface (ip) to listen on
+      conflicting: {}
+
+      cookbook: *id103
+      dependencies: {}
+
+      description: Installs and configures openvpn and includes rake tasks for managing certs
+      groupings: {}
+
+      license: Apache 2.0
+      long_description: |
+        = DESCRIPTION:
+
+        Installs OpenVPN and sets up a fairly basic configuration. Since OpenVPN is very complex, we provide a baseline, but your site will need probably need to customize.
+
+        = REQUIREMENTS:
+
+        == Platform:
+
+        Tested on Ubuntu 8.10, but should work anywhere that has a package for OpenVPN.
+
+        == Cookbooks:
+
+        No other cookbooks are required.
+
+        = ATTRIBUTES:
+
+        These attributes are set by the cookbook by default.
+
+        * openvpn[:local] - IP to listen on, defaults to node[:ipaddress]
+        * openvpn[:proto] - Valid values are 'udp' or 'tcp', defaults to 'udp'.
+        * openvpn[:type] - Valid values are 'server' or 'server-bridge'. Default is 'server' and it will create a routed IP tunnel, and use the 'tun' device. 'server-bridge' will create an ethernet bridge and requires a tap0 device bridged with the ethernet interface, and is beyond the scope of the cookbook at this time.
+        * openvpn[:subnet] - Used for server mode to configure a VPN subnet to draw client addresses. Default is 10.8.0.0, which is what the sample OpenVPN config package uses.
+        * openvpn[:netmask] - Netmask for the subnet, default is 255.255.0.0.
+
+        = USAGE:
+
+        OpenVPN uses SSL certificates for authentication. We provide a Rakefile to make it easier to set everything up. The rake tasks need to be run before deploying the cookbook so the configured server has the proper certificate files. These tasks wrap around the easy-rsa scripts provided with OpenVPN.
+
+        Be sure to edit the 'vars' file, files/default/easy-rsa/vars, to set site-specific SSL certificate parameters.
+
+        This cookbook also provides an 'up' script that runs when OpenVPN is started. This script is for setting up firewall rules and kernel networking parameters as needed for your environment. For example, you'll probably want to enable IP forwarding (sample Linux setting is commented out).
+
+        == Server:
+
+        Use the rake task from the easy-rsa directory in this cookbook.
+
+          cd files/default/easy-rsa
+          . vars
+          rake server
+
+        This will create the certificates in files/default/keys.
+
+        == Client:
+
+        For security reasons, certificates should be generated on a per-user basis. The client task requires two variables, the username and the VPN gateway hostname.
+
+          cd files/default/easy-rsa
+          . vars
+          rake client name="username" gateway="vpn_gateway.example.com"
+
+        This will create a ZIP file, /tmp/"username".zip. This file should be sent to the user and removed from the server where generated.
+
+        = LICENSE and AUTHOR:
+
+        Author:: Joshua Timberman (<joshua@opscode.com>)
+
+        Copyright:: 2009, Opscode, Inc
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+      maintainer: Opscode, Inc.
+      maintainer_email: cookbooks@opscode.com
+      name: openvpn
+      platforms:
+        debian: []
+
+        centos: []
+
+        fedora: []
+
+        ubuntu: []
+
+        redhat: []
+
+      providing: {}
+
+      recipes:
+        openvpn: Installs and configures openvpn
+      recommendations: {}
+
+      replacing: {}
+
+      suggestions: {}
+
+      version: 0.8.2
+    :gems: !ruby/object:Chef::Cookbook::Metadata
+      attributes:
+        gem_server/virtual_host_alias:
+          required: optional
+          calculated: false
+          default: gems
+          choice: []
+
+          type: array
+          recipes: []
+
+          display_name: Gem Server Virtual Host Aliases
+          description: Array of Apache ServerAlias'es
+        gem_server/virtual_host_name:
+          required: optional
+          calculated: false
+          default: gems.domain
+          choice: []
+
+          type: string
+          recipes: []
+
+          display_name: Gem Server Virtual Hostname
+          description: Apache ServerName for the virtual host
+        gem_server:
+          required: optional
+          calculated: false
+          choice: []
+
+          type: hash
+          recipes: []
+
+          display_name: Gem Server
+          description: Hash of Gem Server attributes
+        gem_server/directory:
+          required: optional
+          calculated: false
+          default: /srv/gems
+          choice: []
+
+          type: string
+          recipes: []
+
+          display_name: Gem Server Directory
+          description: Filesystem location of where the gems repository is served from
+      conflicting: {}
+
+      cookbook: *id104
+      dependencies:
+        rsync: []
+
+        apache2: []
+
+      description: Sets up a local gem server repository or mirror
+      groupings: {}
+
+      license: Apache 2.0
+      long_description: |-
+        = DESCRIPTION:
+
+        Sets up a local gem server repository.
+
+        = REQUIREMENTS:
+
+        == Platform:
+
+        Tested on Ubuntu 8.10 and 9.04.
+
+        == Cookbooks:
+
+        Opscode cookbooks, http://github.com/opscode/cookbooks/tree/master
+
+        * apache2
+
+        = ATTRIBUTES:
+
+        * gem_server[:virtual_host_name] - ServerName for Apache vhost. Default 'gems.domain'.
+        * gem_server[:virtual_host_alias] - ServerAlias(es) for Apache vhost. Default 'gems'.
+        * gem_server[:directory] - Filesystem location for the repository, default is /srv/gems.
+
+        = USAGE:
+
+        Create files/default/packages, and copy gems to that directory.
+
+        Specify the gem source on clients via the command line, for example:
+
+          sudo gem source -a http://gems
+          sudo gem install rails --source http://gems
+
+        Or use the source with gem_package resources in your chef recipes.
+
+          gem_package "rails" do
+            source "http://gems"
+          end
+
+        Use the gems::mirror recipe to mirror RubyForge. This will take a long time because the repository is 28k+ gems and over 5.5G. It will also override the remote_directory resource to not notify gem generate_index, and instead handle that in the cron job that does the rsync.
+
+        = LICENSE and AUTHOR:
+
+        Author:: Joshua Timberman (<joshua@opscode.com>)
+
+        Copyright:: 2009, Opscode, Inc
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+      maintainer: Opscode, Inc.
+      maintainer_email: cookbooks@opscode.com
+      name: gems
+      platforms:
+        debian: []
+
+        ubuntu: []
+
+      providing: {}
+
+      recipes:
+        gems::mirror: Crons an rsync of rubyforge
+        gems: Empty, use one of the other recipes
+        gems::server: Sets up a local gem server repository
+      recommendations: {}
+
+      replacing: {}
+
+      suggestions:
+        ruby: []
+
+      version: 0.8.3
+    :rjg_utils: !ruby/object:Chef::Cookbook::Metadata
+      attributes: {}
+
+      conflicting: !map:Mash {}
+
+      cookbook: *id105
+      dependencies: !map:Mash {}
+
+      description: Random crap
+      groupings: !map:Mash {}
+
+      license: Apache v2.0
+      long_description: Random Crap
+      maintainer: Ryan J. Geyer
+      maintainer_email: me@ryangeyer.com
+      name: rjg_utils
+      platforms: !map:Mash {}
+
+      providing: !map:Mash
+        rjg_utils::is_this_thing_on: []
+
+      recipes:
+        rjg_utils::is_this_thing_on: Smoketest
+      recommendations: !map:Mash {}
+
+      replacing: !map:Mash {}
+
+      suggestions: !map:Mash {}
+
+      version: 0.0.1
+    :activemq: !ruby/object:Chef::Cookbook::Metadata
+      attributes: {}
+
+      conflicting: {}
+
+      cookbook: *id106
+      dependencies:
+        runit: []
+
+        java: []
+
+      description: Installs activemq and sets it up as a runit service
+      groupings: {}
+
+      license: Apache 2.0
+      long_description: |
+        = DESCRIPTION:
+
+        Installs activemq and sets up a runit service.
+
+        = REQUIREMENTS:
+
+        Tested on Ubuntu 9.04.
+
+        Opscode cookbooks:
+
+        * java
+        * runit
+
+        = ATTRIBUTES:
+
+        * activemq[:mirror] - download URL up to the apache/activemq/apache-activemq directory.
+        * activemq[:version] - version to install.
+
+        = USAGE:
+
+        Include the default recipe on systems where you want to run activemq. At this time the cookbook doesn't use any custom configuration for activemq.
+
+        = LICENSE AND AUTHOR:
+
+        Author:: Joshua Timberman (<joshua@opscode.com>)
+
+        Copyright:: 2009, Opscode, Inc
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+      maintainer: Opscode, Inc.
+      maintainer_email: cookbooks@opscode.com
+      name: activemq
+      platforms:
+        debian: []
+
+        ubuntu: []
+
+      providing: {}
+
+      recipes:
+        activemq: Installs ActiveMQ from source and sets it up as a runit service
+      recommendations: {}
+
+      replacing: {}
+
+      suggestions: {}
+
+      version: 0.3.2
+    :instiki: !ruby/object:Chef::Cookbook::Metadata
+      attributes: {}
+
+      conflicting: {}
+
+      cookbook: *id107
+      dependencies:
+        rails: []
+
+        passenger_apache2: []
+
+        sqlite: []
+
+        apache2: []
+
+      description: Installs instiki, a Ruby on Rails wiki server under passenger+Apache2.
+      groupings: {}
+
+      license: Apache 2.0
+      long_description: |
+        = DESCRIPTION:
+
+        Installs instiki, a Ruby on Rails wiki server under passenger+Apache2.
+
+        = REQUIREMENTS:
+
+        Opscode cookbooks:
+
+        * apache2
+        * passenger_apache2
+        * sqlite
+        * rails
+
+        = USAGE:
+
+        Simply apply the 'instiki' recipe. This installs version 0.17 in /srv/instiki/instiki-0.17. A later version of this cookbook might support setting the version and a different installation path, but for now these are hardcoded.
+
+        = LICENSE and AUTHOR:
+
+        Author:: Joshua Timberman <joshua@opscode.com>
+
+        Copyright 2009, Opscode, Inc
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+
+      maintainer: Opscode
+      maintainer_email: joshua@opscode.com
+      name: instiki
+      platforms: {}
+
+      providing: {}
+
+      recipes:
+        instiki: Installs instiki and sets up an apache vhost under passenger.
+      recommendations: {}
+
+      replacing: {}
+
+      suggestions: {}
+
+      version: 0.2.0
+    :apparmor: !ruby/object:Chef::Cookbook::Metadata
+      attributes: {}
+
+      conflicting: {}
+
+      cookbook: *id108
+      dependencies: {}
+
+      description: Disables apparmor service on Ubuntu
+      groupings: {}
+
+      license: Apache 2.0
+      long_description: ""
+      maintainer: Opscode, Inc.
+      maintainer_email: cookbooks@opscode.com
+      name: apparmor
+      platforms:
+        ubuntu: []
+
+      providing: {}
+
+      recipes:
+        default: Disables apparmor service on Ubuntu
+      recommendations: {}
+
+      replacing: {}
+
+      suggestions: {}
+
+      version: 0.8.2
+    :reprepro: !ruby/object:Chef::Cookbook::Metadata
+      attributes: {}
+
+      conflicting: {}
+
+      cookbook: *id109
+      dependencies:
+        build-essential: []
+
+        apache2: []
+
+      description: Installs/Configures reprepro for an apt repository
+      groupings: {}
+
+      license: Apache 2.0
+      long_description: |
+        DESCRIPTION
+        ===========
+
+        Sets up an APT repository suitable for using the reprepro tool to manage distributions and components.
+
+        REQUIREMENTS
+        ============
+
+        Platform: Debian or Ubuntu.
+
+        Requires Chef 0.8.x+, client/server. Does not work with Chef Solo due to data bag use.
+
+        You'll need to generate the PGP key separately and provide the data in the databag.
+
+        USAGE
+        =====
+
+        Attributes
+        ----------
+
+        Attributes in this cookbook are set via the default recipe with data from the data bag. The following attributes are used, in the `reprepro` namespace.
+
+        * `fqdn` - the fqdn that would go in sources.list
+        * `description` - a description of the repository
+        * `pgp_email` - the email address of the pgp key
+        * `pgp_fingerprint` - the finger print of the pgp key
+
+        Data Bag
+        --------
+
+        Create a data bag to store the repository information.
+
+            {
+              "id": "main",
+              "fqdn": "apt.example.com",
+              "repo_dir": "/srv/apt",
+              "incoming": "/srv/apt_incoming",
+              "description": "APT Repository for our packages.",
+              "codenames": [
+                "lucid", "karmic", "jaunty", "intrepid", "hardy", "sid", "squeeze", "lenny"
+              ],
+              "pgp": {
+                "email": "packages@example.com",
+                "fingerprint": "PGP Fingerprint for the key",
+                "public": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n-----END PGP PUBLIC KEY BLOCK-----\n",
+                "private": "-----BEGIN PGP PRIVATE KEY BLOCK-----\n-----END PGP PRIVATE KEY BLOCK-----\n"
+              },
+              "pulls": {
+                "name": "sid",
+                "from": "sid",
+                "component": "main"
+              },
+              "architectures": [
+                "amd64","i386","all","source"
+              ]
+            }
+
+        LICENSE AND AUTHOR
+        ==================
+
+        Author: Joshua Timberman (<joshua@opscode.com>)
+
+        Copyright 2010, Opscode, Inc.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+      maintainer: Opscode
+      maintainer_email: joshua@opscode.com
+      name: reprepro
+      platforms: {}
+
+      providing: {}
+
+      recipes:
+        reprepro: Installs and configures reprepro for an apt repository
+      recommendations: {}
+
+      replacing: {}
+
+      suggestions: {}
+
+      version: 0.2.1
+    :unicorn: !ruby/object:Chef::Cookbook::Metadata
+      attributes: {}
+
+      conflicting: {}
+
+      cookbook: *id110
+      dependencies:
+        ruby: []
+
+        rubygems: []
+
+      description: Installs/Configures unicorn
+      groupings: {}
+
+      license: Apache 2.0
+      long_description: |
+        = LICENSE AND AUTHOR:
+
+        Author:: Adam Jacob <adam@opscode.com>
+
+        Copyright 2009-2010, Opscode, Inc.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+      maintainer: Opscode, Inc
+      maintainer_email: ops@opscode.com
+      name: unicorn
+      platforms: {}
+
+      providing: {}
+
+      recipes:
+        unicorn: Installs unicorn rubygem
+      recommendations: {}
+
+      replacing: {}
+
+      suggestions: {}
+
+      version: 0.1.2
+couchdb: !ruby/object:Chef::CouchDB
+  db: chef
+  rest: !ruby/object:Chef::REST
+    auth_credentials: !ruby/object:Chef::REST::AuthCredentials
+      client_name:
+      key_file:
+    cookies: !map:Chef::REST::CookieJar {}
+
+    default_headers: {}
+
+    redirect_limit: 10
+    redirects_followed: 0
+    sign_on_redirect: true
+    sign_request: true
+    url: http://localhost:5984
+couchdb_id:
+couchdb_rev:
+default_attrs: !map:Mash
+  tomcat6: &id120 !map:Mash
+    ssl_port: 8433
+    temp: /var/tmp/tomcat6
+    dir: /etc/tomcat6
+    stop: /etc/init.d/tomcat6 stop
+    port: 8080
+    conf: /etc/tomcat6
+    webapps: /srv/tomcat6/webapps
+    start: /etc/init.d/tomcat6 start
+    webapp_base_dir: /srv/tomcat6/
+    logs: /var/log/tomcat6
+    restart: /etc/init.d/tomcat6 restart
+    manager_dir: /usr/share/tomcat6/webapps/manager
+    user: tomcat
+    home: /usr/share/tomcat6
+  rsyslog: &id166 !map:Mash {}
+
+  ec2opts: &id131 !map:Mash
+    lvm: !map:Mash {}
+
+  wordpress: &id124 !map:Mash
+    keys: !map:Mash {}
+
+    db: !map:Mash {}
+
+  openvpn: &id146 !map:Mash {}
+
+  db_mysql: &id136 !map:Mash
+    admin_password:
+    admin_user:
+    tunable: !map:Mash
+      myisamchk: !map:Mash {}
+
+      isamchk: !map:Mash {}
+
+  rails: &id176 !map:Mash
+    code: !map:Mash
+      destination: /home/webapp/myapp
+  solr: &id162 !map:Mash {}
+
+  runit: &id125 !map:Mash
+    sv_bin: /usr/bin/sv
+    service_dir: /etc/service
+    sv_dir: /etc/sv
+  mysql: &id123 !map:Mash
+    tunable: !map:Mash {}
+
+  php: &id129 !map:Mash
+    code: !map:Mash
+      destination: /home/webapp/myapp
+    package_dependencies:
+    - php5
+    - php5-mysql
+    - php-pear
+    - libapache2-mod-php5
+    module_dependencies:
+    - proxy_http
+    - php5
+  varnish: &id173 !map:Mash
+    dir: /etc/varnish
+    default: /etc/default/varnish
+  nagios: &id117 !map:Mash
+    cache_dir: /var/cache/nagios3
+    checks: !map:Mash
+      memory: !map:Mash {}
+
+      load: !map:Mash {}
+
+    dir: /etc/nagios3
+    default_host: !map:Mash {}
+
+    default_service: !map:Mash {}
+
+    docroot: /usr/share/nagios3/htdocs
+    state_dir: /var/lib/nagios3
+    log_dir: /var/log/nagios3
+    config_subdir: conf.d
+  bootstrap: &id116 !map:Mash
+    chef: !map:Mash {}
+
+  packages: &id140 !map:Mash {}
+
+  nginx: &id122 !map:Mash
+    dir: /etc/nginx
+    binary: /usr/sbin/nginx
+    user: www-data
+    log_dir: /var/log/nginx
+  authorization: &id142 !map:Mash
+    sudo: !map:Mash {}
+
+  riak: !map:Mash
+    kernel: &id167 !map:Mash {}
+
+    kv: !map:Mash
+      storage_backend_options: !map:Mash
+        max_file_size: 2147483648
+        small_file_threshold: 10485760
+        open_timeout: 4
+        sync_strategy: :none
+        dead_bytes_merge_trigger: 536870912
+        data_root: /var/lib/riak/bitcask
+        frag_merge_trigger: 60
+        expiry_secs: -1
+        dead_bytes_threshold: 134217728
+        frag_threshold: 40
+      storage_backend: :riak_kv_bitcask_backend
+    package: &id168 !map:Mash
+      version: !map:Mash {}
+
+    sasl: &id169 !map:Mash
+      sasl_error_logger: !map:Mash {}
+
+      errlog_type: :error
+    erlang: &id170 !map:Mash {}
+
+    core: &id171 !map:Mash {}
+
+  memcached: &id175 !map:Mash {}
+
+  jira: &id128 !map:Mash {}
+
+  redmine: &id158 !map:Mash
+    dir: /srv/redmine-0.8.4
+    db: !map:Mash {}
+
+  passenger_enterprise: &id134 !map:Mash {}
+
+  passenger: &id138 !map:Mash
+    module_path: /usr/lib/ruby/gems/1.8/gems/passenger-2.2.15/ext/apache2/mod_passenger.so
+    root_path: /usr/lib/ruby/gems/1.8/gems/passenger-2.2.15
+  openldap: &id115 !map:Mash
+    rootpw:
+    dir: /etc/ldap
+    run_dir: /var/run/slapd
+    cafile: /etc/ldap/ssl/ca.crt
+    module_dir: /usr/lib/ldap
+    ssl_dir: /etc/ldap/ssl
+    auth_bindpw:
+    slapd_type:
+  djbdns: &id133 !map:Mash
+    bin_dir: /usr/local/bin
+  couch_db: &id144 !map:Mash
+    src_mirror: http://archive.apache.org/dist/couchdb/0.9.1/apache-couchdb-0.9.1.tar.gz
+    src_version: 0.9.1
+    src_checksum: b16f3a10b406d01552893d356cdbf7f429209f938ae7d3aa589ee704df8cb4d2
+  chef: &id127 !map:Mash
+    server_proxy: !map:Mash {}
+
+  sbuild: &id152 !map:Mash {}
+
+  dynomite: &id114 !map:Mash {}
+
+  django: &id164 !map:Mash {}
+
+  apache: &id151 !map:Mash
+    dir: /etc/apache2
+    binary: /usr/sbin/apache2
+    prefork: !map:Mash {}
+
+    icondir: /usr/share/apache2/icons
+    user: www-data
+    log_dir: /var/log/apache2
+    worker: !map:Mash {}
+
+  ruby_enterprise: &id147 !map:Mash {}
+
+  resolver: &id174 !map:Mash {}
+
+  maradns: &id161 !map:Mash {}
+
+  ts3: &id137 !map:Mash
+    version: 3.0.0-beta25
+  postgresql: &id150 !map:Mash
+    dir: /etc/postgresql/8.4/main
+  glassfish: &id118 !map:Mash {}
+
+  erlang: &id121 !map:Mash {}
+
+  rs_utils: &id143 !map:Mash
+    collectd_config: /etc/collectd/collectd.conf
+    collectd_lib: /usr/lib/collectd
+    logrotate_config: /etc/logrotate.d/syslog-ng
+    collectd_plugin_dir: /etc/collectd/conf
+  radiant: &id132 !map:Mash {}
+
+  rabbitmq: &id160 !map:Mash {}
+
+  postfix: &id159 !map:Mash {}
+
+  ntp: &id163 !map:Mash {}
+
+  kickstart: &id149 !map:Mash
+    rootpw:
+  gem_server: &id111 !map:Mash {}
+
+  activemq: &id126 !map:Mash {}
+
+name: domU-12-31-39-14-C4-4E.compute-1.internal
+node: *id177
+override_attrs: !map:Mash
+  gem_server: *id111
+  languages: *id112
+  filesystem: *id113
+  dynomite: *id114
+  openldap: *id115
+  bootstrap: *id116
+  nagios: *id117
+  glassfish: *id118
+  network: *id119
+  tomcat6: *id120
+  erlang: *id121
+  nginx: *id122
+  mysql: *id123
+  wordpress: *id124
+  runit: *id125
+  activemq: *id126
+  hostname: domU-12-31-39-14-C4-4E
+  ohai_time: 1290487541.08999
+  chef: *id127
+  jira: *id128
+  idletime_seconds: 21612
+  php: *id129
+  kernel: *id130
+  ec2opts: *id131
+  uptime_seconds: 10958
+  radiant: *id132
+  djbdns: *id133
+  passenger_enterprise: *id134
+  idletime: 6 hours 00 minutes 12 seconds
+  command: *id135
+  db_mysql: *id136
+  ts3: *id137
+  os_version: 2.6.35-22-virtual
+  passenger: *id138
+  virtualization: *id139
+  packages: *id140
+  keys: *id141
+  authorization: *id142
+  rs_utils: *id143
+  macaddress: 12:31:39:14:c4:4e
+  uptime: 3 hours 02 minutes 38 seconds
+  couch_db: *id144
+  lsb: *id145
+  openvpn: *id146
+  ruby_enterprise: *id147
+  cloud: *id148
+  kickstart: *id149
+  postgresql: *id150
+  apache: *id151
+  fqdn: domU-12-31-39-14-C4-4E.compute-1.internal
+  sbuild: *id152
+  platform: ubuntu
+  etc: *id153
+  cpu: *id154
+  chef_packages: *id155
+  memory: *id156
+  platform_version: "10.10"
+  dmi: *id157
+  os: linux
+  ipaddress: 10.206.199.188
+  redmine: *id158
+  postfix: *id159
+  rabbitmq: *id160
+  maradns: *id161
+  solr: *id162
+  ntp: *id163
+  django: *id164
+  counters: *id165
+  rsyslog: *id166
+  riak: !map:Mash
+    kernel: *id167
+    kv: !map:Mash
+      storage_backend_options: !map:Mash
+        max_file_size: 2147483648
+        small_file_threshold: 10485760
+        open_timeout: 4
+        sync_strategy: :none
+        dead_bytes_merge_trigger: 536870912
+        data_root: /var/lib/riak/bitcask
+        frag_merge_trigger: 60
+        expiry_secs: -1
+        dead_bytes_threshold: 134217728
+        frag_threshold: 40
+      storage_backend: :riak_kv_bitcask_backend
+    package: *id168
+    sasl: *id169
+    erlang: *id170
+    core: *id171
+  search:
+  - :node
+  - dynomite_master:true
+  - fqdn
+  ec2: *id172
+  domain: compute-1.internal
+  varnish: *id173
+  resolver: *id174
+  deep_thought: If a tree falls in the forest...
+  current_user:
+  memcached: *id175
+  rails: *id176
+run_list: !ruby/object:Chef::RunList
+  recipes:
+  - rjg_utils::is_this_thing_on
+  roles: []
+
+  run_list:
+  - recipe[rjg_utils::is_this_thing_on]
+  seen_roles: []
+
+run_state:
+  :template_cache: {}
+
+  :seen_recipes:
+    rjg_utils::is_this_thing_on: true
+  :seen_attributes:
+    riak::kernel: true
+    riak::core: true
+    riak::kv: true
+    riak::package: true
+    chef::default: true
+    apache2::default: true
+    riak::erlang: true
+    riak::sasl: true

@@ -1,0 +1,41 @@
+= DESCRIPTION:
+A collection of utilities that don't fit into any better defined buckets.
+
+= REQUIREMENTS:
+
+== Platform:
+Built for, and tested against Ubuntu 10.10.  Many of the recipes also depend upon RightScale and Amazon EC2 and S3
+
+== Cookbooks:
+Requires the following cookbooks from my own repo:
+* aws[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/aws]
+* cron[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/cron]
+* web_apache[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/web_apache]
+* app_wordpress[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/app_wordpress]
+
+= ATTRIBUTES:
+
+= USAGE:
+
+== Defines:
+* rjg_utils_schedule_recipe: Schedules one or many recipes to be run through the RightScale management dashboard using rs_run_recipe
+
+To schedule one recipe named "my_app::backup" to run daily:
+
+  rjg_utils_schedule_recipe "my_app::backup"
+
+To schedule many recipes to run daily:
+
+  rjg_utils_schedule_recipe "app1::backup,app2::backup,app3::backup"
+
+To schedule one recipe named "my_app::logrotate" to run weekly:
+
+  rjg_utils_schedule_recipe "my_app::logrotate" do
+    frequency "weekly"
+  end
+
+To remove a recipe named "my_app::backup" from the daily schedule:
+
+  rjg_utils_schedule_recipe "my_app::backup" do
+    action "delete"
+  end

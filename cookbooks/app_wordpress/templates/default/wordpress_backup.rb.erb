@@ -1,0 +1,10 @@
+#!/usr/bin/ruby
+require 'rubygems'
+require 'rest_connection'
+require 'socket'
+
+instances_w_tag = Tag.search('ec2_instance', ["ipv4:private=#{IPSocket.getaddress(Socket.gethostname)}"])
+me = Server.find(instances_w_tag.first["href"])
+st = ServerTemplate.find(me.server_template_href)
+s3_backup_recipe = st.executables.detect { |ex| ex.name == "app_wordpress::s3_backup" }
+me.run_executable(s3_backup_recipe, {"app_wordpress/s3_bucket" => "text:<%= node[:app_wordpress][:s3_bucket] %>", "web_apache/vhost_fqdn" => "text:<%= node[:web_apache][:vhost_fqdn] %>" })

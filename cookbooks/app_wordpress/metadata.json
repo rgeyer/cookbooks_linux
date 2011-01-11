@@ -1,0 +1,168 @@
+{
+  "license": "All rights reserved",
+  "suggestions": {
+  },
+  "dependencies": {
+    "db_mysql": [
+
+    ],
+    "rjg_utils": [
+
+    ],
+    "web_apache": [
+
+    ],
+    "aws": [
+
+    ]
+  },
+  "conflicting": {
+  },
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "description": "Installs/Configures app_wordpress",
+  "providing": {
+    "app_wordpress[site]": [
+
+    ]
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "version": "0.0.1",
+  "maintainer": "Ryan J. Geyer",
+  "recipes": {
+    "app_wordpress::s3_restore": "Installs (if necessary) and restores wordpress for the specified vhost",
+    "app_wordpress::deploy": "Installs an instance of wordpress for the specified vhost",
+    "app_wordpress::update": "Updates the instance of wordpress for the specified vhost to the latest version from wordpress.org",
+    "app_wordpress::enable_continuous_backup": "Creates a cron job which will run app_wordpress::s3_backup daily",
+    "app_wordpress::s3_backup": "Backs up the content of the wp-content directory for the specified vhost.",
+    "app_wordpress::default": "Don't do nuthin'"
+  },
+  "replacing": {
+  },
+  "maintainer_email": "me@ryangeyer.com  ",
+  "name": "app_wordpress",
+  "groupings": {
+  },
+  "attributes": {
+    "app_wordpress/s3_bucket": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "app_wordpress::s3_backup",
+        "app_wordpress::s3_restore",
+        "app_wordpress::enable_continuous_backup"
+      ],
+      "display_name": "Vhost Backup S3 Bucket",
+      "description": "The namne of the S3 bucket for backups."
+    },
+    "web_apache/vhost_fqdn": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "app_wordpress::deploy",
+        "app_wordpress::s3_backup",
+        "app_wordpress::s3_restore",
+        "app_wordpress::update",
+        "app_wordpress::enable_continuous_backup"
+      ],
+      "display_name": "VHOST FQDN",
+      "description": "The fully qualified domain name (FQDN) of the new vhost to create.  Example www.apache.org"
+    },
+    "aws/secret_access_key": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "app_wordpress::s3_backup",
+        "app_wordpress::s3_restore"
+      ],
+      "display_name": "Secret Access Key",
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
+    },
+    "aws/access_key_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "app_wordpress::s3_backup",
+        "app_wordpress::s3_restore"
+      ],
+      "display_name": "Access Key Id",
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
+    },
+    "app_wordpress": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "hash",
+      "recipes": [
+
+      ],
+      "display_name": "app_wordpress"
+    },
+    "web_apache/vhost_aliases": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "",
+      "type": "string",
+      "recipes": [
+        "app_wordpress::deploy",
+        "app_wordpress::s3_restore"
+      ],
+      "display_name": "VHOST Aliases",
+      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces"
+    },
+    "app_wordpress/backup_history_to_keep": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "7",
+      "type": "string",
+      "recipes": [
+        "app_wordpress::s3_backup"
+      ],
+      "display_name": "Vhost Backups to keep",
+      "description": "The number of S3 backups to keep as history."
+    },
+    "app_wordpress/db_pass": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "app_wordpress::deploy",
+        "app_wordpress::s3_restore"
+      ],
+      "display_name": "MySQL Database Password for this Wordpress instance",
+      "description": "The password to access the MySQL database for this Wordpress instance"
+    }
+  },
+  "recommendations": {
+  }
+}

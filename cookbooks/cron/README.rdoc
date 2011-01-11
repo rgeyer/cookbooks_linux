@@ -1,0 +1,54 @@
+= DESCRIPTION:
+Makes a cron_job resource available for scheduling or deleting cron jobs.  This assumes a Debian/Ubuntu OS running anacron and the /etc/cron.(hourly|daily|weekly|monthly) directories
+
+= REQUIREMENTS:
+== Platform:
+Debian/Ubuntu OS.  Built for, and tested on Ubuntu 10.10
+
+= RESOURCES AND PROVIDERS
+Just one LWRP[http://wiki.opscode.com/display/chef/Lightweight+Resources+and+Providers+(LWRP)] named +cron_job+ which is used to schedule or delete cron jobs.  The resource supports two actions.
+* +schedule+ - Schedules the job for the specified frequency using the specified template
+* +delete+ - Removes the job from the specified frequency
+
+The applicable parameters for the resource are (Required parameters are in bold):
+* <b><tt>name</tt></b> - The name of the cron job.  Can not contain spaces or periods. Defaults to the resource name.
+* <b><tt>template</tt></b> - The *.erb template that will be merged into a script which will be executed by cron.  This parameter is only required for the +schedule+ action.
+* <b><tt>frequency</tt></b> - How frequently the job will be run, one of ["hourly","daily","weekly","monthly"]
+* +params+ - A hash of parameters to be passed to the template for merge
+
+For examples, see the USAGE section below.
+
+= ATTRIBUTES:
+N/A
+
+= USAGE:
+
+To schedule a job named "foo" to run daily:
+
+  cron_job "foo" do
+    template "foo.erb"
+    frequency "daily"
+    action :schedule
+  end
+
+To delete the "foo" job from running daily:
+
+  cron_job "foo" do
+    frequency "daily"
+    action :delete
+  end
+
+To schedule a job named "bar" weekly, with a script that requires some custom parameters:
+
+  cron_job "bar" do
+    template "bar.erb"
+    frequency "weekly"
+    params "param1" => "value1", "param2" => "value2"
+    action :schedule
+  end
+
+Where bar.erb looks like:
+
+  #!/bin/sh
+  echo "First parameter is set to: <%= @params["param1"] %>"
+  echo "Second parameter is set to: <%= @params["param2"] %>"

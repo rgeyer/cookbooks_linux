@@ -1,0 +1,20 @@
+= Description
+A collection of Chef cookbooks for linux (mostly Ubuntu).  Used to configure EC2 server instances through RightScale
+
+= TODO
+
+== Web & Email Vhost AIO
+* Require a default vhost
+* Wordpress backup & restore
+* Apache & MySQL collect.d monitoring
+* When creating a new vhost/sites-available for apache2, create a <vhostname>.d folder and include it's contents, allowing that vhost to be extended.
+* Alerts for high apache/mysql load or low/non-existent postfix activity, etc.
+* Ability to deploy Zend Framework apps/sites from SCM (SVN, Git, other?)
+* ZF Backup & restore
+* Setup of SSL vhost with some default service(s) like phpmyadmin and a self management tool (vhost manager)
+* Enable gitweb & assign it to the default vhost
+* More info/monitoring/logging from postfix.  I wanna know things like number of emails routed/delivered/dropped per address and domain
+* Ability to deploy Drupal sites
+* Look into ngnix support
+* Enable local delivery for emails (expose an IMAP and POP3 server)
+* KeePass or similar?

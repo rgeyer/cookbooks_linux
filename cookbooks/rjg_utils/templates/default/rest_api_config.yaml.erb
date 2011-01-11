@@ -1,0 +1,10 @@
+---
+:ssh_keys:
+- ~/.ssh/my_server_key
+- ~/.ssh/my_server_key-eu
+- ~/.ssh/my_server_key-west
+:pass: <%= @rest_pass %>
+:user: <%= @rest_user %>
+:api_url: https://my.rightscale.com/api/acct/<%= @rest_acct_num %>
+:common_headers:
+  X_API_VERSION: "1.0"

@@ -1,0 +1,18 @@
+<VirtualHost *:443>
+  ServerName <%= @params[:accept_fqdn] %>
+
+  <Proxy *>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+
+  SSLEngine on
+  SSLProxyEngine On
+  SSLCertificateFile /etc/apache2/ssl/<%= @params[:accept_fqdn] %>.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/<%= @params[:accept_fqdn] %>.key
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+  ProxyPass / https://<%= @params[:dest_fqdn] %>:<%= @params[:dest_port] %>/
+  ProxyPassReverse / https://<%= @params[:dest_fqdn] %>:<%= @params[:dest_port] %>/
+</VirtualHost>

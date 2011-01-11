@@ -1,0 +1,210 @@
+{
+  "license": "Copyright (c) 2010 RightScale, Inc.\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+  "suggestions": {
+  },
+  "dependencies": {
+    "aws": [
+
+    ],
+    "apache2": [
+
+    ],
+    "rs_utils": [
+
+    ]
+  },
+  "conflicting": {
+  },
+  "long_description": "",
+  "description": "Installs/configures the apache2 webserver",
+  "providing": {
+    "web_apache_enable_vhost(fqdn)": [
+
+    ]
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "version": "0.0.1",
+  "maintainer": "RightScale, Inc.",
+  "recipes": {
+    "web_apache::enable_site_vhost": "Creates and enables a new virtual host for the supplied fully qualified domain name (FQDN)",
+    "web_apache::default": "Runs web_apache::install_apache.",
+    "web_apache::install_apache": "Install and configure Apache2 webserver.",
+    "web_apache::configure_ssl_reverse_proxy": "Sets Apache up as a reverse proxy for ssl"
+  },
+  "replacing": {
+  },
+  "maintainer_email": "support@rightscale.com",
+  "name": "web_apache",
+  "groupings": {
+  },
+  "attributes": {
+    "web_apache/mpm": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+        "worker",
+        "prefork"
+      ],
+      "default": "worker",
+      "type": "string",
+      "recipes": [
+        "web_apache::install_apache",
+        "web_apache::default"
+      ],
+      "display_name": "Multi-Processing Module",
+      "description": "Can be set to 'worker' or 'prefork' and defines the setting in httpd.conf.  Use 'worker' for Rails/Tomcat/Standalone frontends and 'prefork' for PHP."
+    },
+    "web_apache/dest_port": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "web_apache::configure_ssl_reverse_proxy"
+      ],
+      "display_name": "Proxy Port",
+      "description": "The the proxy port to forward to"
+    },
+    "web_apache/contact": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "root@localhost",
+      "type": "string",
+      "recipes": [
+        "web_apache::install_apache",
+        "web_apache::default"
+      ],
+      "display_name": "Contact Email",
+      "description": "The email address that Apache uses to send administrative mail (set in /etc/httpd/conf/httpd.conf).  By setting it to root@localhost.com emails are saved on the server.  You can use your own email address, but your spam filters might block them because reverse DNS lookup will show a mismatch between EC2 and your domain."
+    },
+    "web_apache/vhost_fqdn": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "web_apache::enable_site_vhost"
+      ],
+      "display_name": "VHOST FQDN",
+      "description": "The fully qualified domain name (FQDN) of the new vhost to create.  Example www.apache.org"
+    },
+    "aws/secret_access_key": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "web_apache::configure_ssl_reverse_proxy"
+      ],
+      "display_name": "Secret Access Key",
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
+    },
+    "aws/access_key_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "web_apache::configure_ssl_reverse_proxy"
+      ],
+      "display_name": "Access Key Id",
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
+    },
+    "web_apache/pkcs12_pass": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "web_apache::configure_ssl_reverse_proxy"
+      ],
+      "display_name": "PKCS12 Cert Password",
+      "description": "The password used to protect the PKCS12 file.  This password is specified when the certificate is exported from windows"
+    },
+    "web_apache": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "hash",
+      "recipes": [
+
+      ],
+      "display_name": "apache hash",
+      "description": "Apache Web Server"
+    },
+    "web_apache/dest_fqdn": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "web_apache::configure_ssl_reverse_proxy"
+      ],
+      "display_name": "Proxy Destination FQDN",
+      "description": "The FQDN the server that will back the proxy, the actual source of the responses for HTTP requests."
+    },
+    "web_apache/accept_fqdn": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "web_apache::configure_ssl_reverse_proxy"
+      ],
+      "display_name": "Proxy for FQDN",
+      "description": "The FQDN of a domain name which will be proxied to another server and port"
+    },
+    "web_apache/s3_cert_bucket": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "web_apache::configure_ssl_reverse_proxy"
+      ],
+      "display_name": "S3 Bucket",
+      "description": "The S3 bucket containing site certificate and key pairs in the pkcs12 format."
+    },
+    "web_apache/vhost_aliases": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "",
+      "type": "string",
+      "recipes": [
+        "web_apache::enable_site_vhost"
+      ],
+      "display_name": "VHOST Aliases",
+      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces"
+    }
+  },
+  "recommendations": {
+  }
+}

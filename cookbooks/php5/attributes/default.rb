@@ -1,0 +1,1 @@
+default[:php5][:module_list] = ""

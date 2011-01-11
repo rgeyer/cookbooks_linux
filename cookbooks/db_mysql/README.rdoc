@@ -1,0 +1,22 @@
+= DESCRIPTION:
+
+Configures MySQL database servers that act as a Master-DB. Specifically designed for RightScale's Manager for MySQL-EBS. Storage of MySQL data will be done using EBS Volumes. EBS Snapshots are used for database backups.
+
+= REQUIREMENTS:
+
+* The Opscode's public cookbooks must be in your cookbook path -- the 'mysql' cookbook is used for client install.
+
+= ATTRIBUTES: 
+
+See metadata.rb 
+
+= USAGE:
+
+Designed to be run within a RightScale ServerTemplate with the following run order:
+
+Boot Scripts
+  * install_mysql - Performs base server install and configuration.
+
+Definitions
+  * db_mysql_restore - Restores database from MySQL dump retrieved from a remote location.
+  * db_mysql_set_privileges - Configures a user's privileges.  Currently only 'administrator' and 'user' settings are supported.

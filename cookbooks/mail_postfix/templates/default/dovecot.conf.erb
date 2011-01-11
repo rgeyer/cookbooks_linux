@@ -1,0 +1,62 @@
+protocols = imaps pop3s
+disable_plaintext_auth = no
+mail_location = maildir:/home/vmail/%d/%n/Maildir
+log_timestamp = "%Y-%m-%d %H:%M:%S "
+mail_privileged_group = mail
+protocol imap {
+}
+
+
+protocol pop3 {
+  pop3_uidl_format = %08Xu%08Xv
+}
+
+
+protocol managesieve {
+}
+
+protocol lda {
+  log_path = /var/log/dovecot-deliver.log
+  auth_socket_path = /var/run/dovecot/auth-master
+  postmaster_address = <%= node[:mail_postfix][:postmaster_email] %>
+  mail_plugins = cmusieve
+}
+
+auth default {
+  mechanisms = plain login
+
+  passdb sql {
+    args = /etc/dovecot/dovecot-sql.conf
+  }
+
+  userdb static {
+    args = uid=1000 gid=1000 home=/home/vmail/%d/%n allow_all_users=yes
+  }
+
+  user = root
+  
+  socket listen {
+    master {
+      path = /var/run/dovecot/auth-master
+      mode = 0600
+      user = vmail
+    }
+
+    client {
+      path = /var/spool/postfix/private/auth
+      mode = 0660
+      user = postfix
+      group = postfix
+    }
+  }
+
+  !include_try /etc/dovecot/auth.d/*.auth
+}
+
+dict {
+}
+
+plugin {
+}
+
+!include_try /etc/dovecot/conf.d/*.conf

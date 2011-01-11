@@ -1,0 +1,4 @@
+#!/bin/bash
+<% @params["recipes"].each do |recipe| -%>
+rs_run_recipe -n <%= recipe["recipe"] %> <%= if recipe["json_file"] != "" then "-j #{recipe["json_file"]}" end %>
+<% end -%>

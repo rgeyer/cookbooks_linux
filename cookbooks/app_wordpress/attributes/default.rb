@@ -1,0 +1,1 @@
+default[:app_wordpress][:version_store_path] = "/mnt/wordpress-home/versions"

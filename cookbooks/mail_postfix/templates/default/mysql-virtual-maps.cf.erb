@@ -1,0 +1,8 @@
+user                    = <%= node[:mail_postfix][:db_user] %>
+password                = <%= node[:mail_postfix][:db_pass] %>
+dbname                  = <%= node[:mail_postfix][:db_name] %>
+table                   = users
+select_field            = maildir
+where_field             = email
+additional_conditions   = and postfix= 'y'
+hosts                   = <%= node[:mail_postfix][:db_host] %>
