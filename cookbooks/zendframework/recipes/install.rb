@@ -2,6 +2,8 @@
 
 include_recipe "php5::default"
 
+Chef::Log.info("About to install Zend Framework, requested version is #{node[:zendframework][:version]}")
+
 gzipfile="/tmp/zf.tar.gz"
 
 file gzipfile do

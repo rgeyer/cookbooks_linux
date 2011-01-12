@@ -28,6 +28,18 @@
   "groupings": {
   },
   "attributes": {
+    "zendframework/version": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "1.11.1",
+      "type": "string",
+      "recipes": [
+
+      ]
+    }
   },
   "recommendations": {
   }

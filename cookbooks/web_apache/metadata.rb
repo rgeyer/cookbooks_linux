@@ -33,6 +33,13 @@ attribute "aws/secret_access_key",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"],
   :required => true
+
+attribute "rs_utils/process_list",
+  :display_name => "Process List",
+  :description => "A optional list of additional processes to monitor in the RightScale Dashboard.  Ex: sshd crond",
+  :required => "optional",
+  :default => "",
+  :recipes => [ "web_apache::install_apache" ]
   
 attribute "web_apache/contact",
   :display_name => "Contact Email",

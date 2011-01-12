@@ -99,6 +99,20 @@
       "display_name": "VHOST FQDN",
       "description": "The fully qualified domain name (FQDN) of the new vhost to create.  Example www.apache.org"
     },
+    "rs_utils/process_list": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "",
+      "type": "string",
+      "recipes": [
+        "web_apache::install_apache"
+      ],
+      "display_name": "Process List",
+      "description": "A optional list of additional processes to monitor in the RightScale Dashboard.  Ex: sshd crond"
+    },
     "aws/secret_access_key": {
       "required": "required",
       "calculated": false,

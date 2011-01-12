@@ -9,3 +9,6 @@ supports "ubuntu"
 
 recipe "zendframework::default", "Runs zendframework::install"
 recipe "zendframework::install", "Installs the Zend Framework"
+
+attribute "zendframework/version",
+  :default => '1.11.1'
