@@ -2,7 +2,8 @@
 
 include_recipe "php5::default"
 
-Chef::Log.info("About to install Zend Framework, requested version is #{node[:zendframework][:version]}")
+zend_dl_uri="http://framework.zend.com/releases/ZendFramework-#{node[:zendframework][:version]}/ZendFramework-#{node[:zendframework][:version]}-minimal.tar.gz"
+Chef::Log.info("About to install Zend Framework, requested version is #{node[:zendframework][:version]}, resulting in a URL request of #{zend_dl_uri}")
 
 gzipfile="/tmp/zf.tar.gz"
 
@@ -16,7 +17,9 @@ directory node[:zendframework][:library_path] do
 end
 
 remote_file gzipfile do
-  source "http://framework.zend.com/releases/ZendFramework-#{node[:zendframework][:version]}/ZendFramework-#{node[:zendframework][:version]}-minimal.tar.gz"
+  source zend_dl_uri
+  backup nil
+  action :create
 end
 
 bash "Unzip zf to it's home" do
