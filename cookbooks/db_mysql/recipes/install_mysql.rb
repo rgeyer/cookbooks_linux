@@ -97,7 +97,7 @@ end
 
 # Before we get carried away here, we need to stop the running upstart job if were on >= Ubuntu 10.04
 bash "Killing the running upstart job in Ubuntu 10.x" do
-  code "/etc/init.d/mysql stop"
+  code "service mysql stop"
 end if node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] == "10.04")
 
 service "mysql" do
