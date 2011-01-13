@@ -44,7 +44,7 @@ when "debian","ubuntu"
   end
 
   preseed_to_use = "mysql-server.seed.erb"
-  preseed_to_use = "mysql-server-5.1.seed.erb" if node[:platform_version] == "10.10"
+  preseed_to_use = "mysql-server-5.1.seed.erb" if node[:platform_version] == "10.10" || node[:platform_version] == "10.04"
 
   template "/var/cache/local/preseeding/mysql-server.seed" do
     source preseed_to_use
@@ -72,8 +72,8 @@ end unless @node[:db_mysql][:packages_install] == ""
    end
 end unless @node[:db_mysql][:packages_uninstall] == ""
 
-# The new init file seems to destroy the whole deal when we're running 5.1 on Ubuntu 10.10, so let's just skip it
-unless node[:platform] == "ubuntu" && node[:platform_version] == "10.10"
+# The new init file seems to destroy the whole deal when we're running 5.1 on >= Ubuntu 10.04, so let's just skip it
+unless node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04")
   # Drop in best practice replacement for mysqld startup.  Timeouts enabled.
   template value_for_platform([ "centos", "redhat", "suse" ] => {"default" => "/etc/init.d/mysqld"}, "default" => "/etc/init.d/mysql") do
     source "init-mysql.erb"
@@ -98,7 +98,7 @@ file "/var/log/mysqlslow.log" do
   group "mysql"
 end
 
-if node[:platform] == "ubuntu" && node[:platform_version] == "10.10"
+if node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04")
   bash "Start MySQL" do
     not_if "service mysql status | grep -q \"start/running\""
     code "service mysql start"
@@ -159,7 +159,7 @@ ruby_block "fix buggy mysqld_safe" do
   end
 end
 
-if node[:platform] == "ubuntu" && node[:platform_version] == "10.10"
+if node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04")
   bash "Start MySQL" do
     not_if "service mysql status | grep -q \"stop/waiting\""
     code "service mysql stop"
@@ -193,7 +193,7 @@ ruby_block "chown mysql datadir" do
   end
 end
 
-if node[:platform] == "ubuntu" && node[:platform_version] == "10.10"
+if node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04")
   bash "Start MySQL" do
     not_if "service mysql status | grep -q \"start/running\""
     code "service mysql start"

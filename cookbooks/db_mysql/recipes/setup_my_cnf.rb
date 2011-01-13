@@ -27,7 +27,7 @@
 #
 
 template_to_source = "my.cnf.erb"
-template_to_source = "my.cnf-5.1-t1.micro.erb" if (node[:platform] == "ubuntu" && node[:platform_version] == "10.10")
+template_to_source = "my.cnf-5.1-t1.micro.erb" if (node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04"))
 
 template value_for_platform([ "centos", "redhat", "suse" ] => {"default" => "/etc/my.cnf"}, "default" => "/etc/mysql/my.cnf") do
   source template_to_source
