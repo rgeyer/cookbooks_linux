@@ -3,6 +3,9 @@
   "suggestions": {
   },
   "dependencies": {
+    "db_mysql": [
+
+    ],
     "aws": [
 
     ],
@@ -12,7 +15,7 @@
   },
   "conflicting": {
   },
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n= EC2 Considerations\nSet it up with an EIP, and let Amazon know that you'll be using this as an email relay.\n\nhttp://aws.amazon.com/contact-us/ec2-email-limit-request/\n\nMake sure your MX record points to an A record, and supply your A record hostname as the reverse lookup when submitting the above form to make sure everything goes smoothly and you don't get blacklisted!",
   "description": "Installs/Configures postfix",
   "providing": {
   },

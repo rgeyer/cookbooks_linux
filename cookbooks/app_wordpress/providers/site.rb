@@ -60,8 +60,11 @@ action :install do
     aliases aliases
   end
 
-  db_mysql_create_database "Create database for this wordpress instance" do
-    db_name underscored_fqdn
+  mysql_database "Create database for this wordpress instance" do
+    host "localhost"
+    username "root"
+    database underscored_fqdn
+    action :create_db
   end
 
   # Grant permissions to the mysql database for this wordpress instance

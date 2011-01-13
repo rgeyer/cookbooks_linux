@@ -18,8 +18,11 @@ service "postfix" do
 end
 
 # Create the mysql database
-db_mysql_create_database "Create postfix configuration database" do
-  db_name node[:mail_postfix][:db_name]
+mysql_database "Create postfix configuration database" do
+  host "localhost"
+  username "root"
+  database node[:mail_postfix][:db_name]
+  action :create_db
 end
 
 attachments_path = File.expand_path(File.join(File.dirname(__FILE__), '..', 'files', 'default'))

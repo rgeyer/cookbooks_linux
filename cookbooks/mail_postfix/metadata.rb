@@ -7,6 +7,7 @@ version          "0.0.1"
 
 depends "aws"
 depends "rs_utils"
+depends "db_mysql"
 
 recipe "mail_postfix::default", "Installs postfix with mysql backend configuration"
 recipe "mail_postfix::s3_backup", "Backs up the configuration database to s3"
