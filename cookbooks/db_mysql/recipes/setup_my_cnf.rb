@@ -27,7 +27,7 @@
 #
 
 template_to_source = "my.cnf.erb"
-template_to_source = "my.cnf-5.1-t1.micro.erb" if attribute?("ec2") && ec2[:instance_type] == "t1.micro"
+template_to_source = "my.cnf-5.1-t1.micro.erb" if node[:ec2] && node[:ec2][:instance_type] == "t1.micro"
 
 template value_for_platform([ "centos", "redhat", "suse" ] => {"default" => "/etc/my.cnf"}, "default" => "/etc/mysql/my.cnf") do
   source template_to_source
