@@ -72,13 +72,10 @@ end unless @node[:db_mysql][:packages_install] == ""
    end
 end unless @node[:db_mysql][:packages_uninstall] == ""
 
-# The new init file seems to destroy the whole deal when we're running 5.1 on >= Ubuntu 10.04, so let's just skip it
-unless node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04")
-  # Drop in best practice replacement for mysqld startup.  Timeouts enabled.
-  template value_for_platform([ "centos", "redhat", "suse" ] => {"default" => "/etc/init.d/mysqld"}, "default" => "/etc/init.d/mysql") do
-    source "init-mysql.erb"
-    mode "0755"
-  end
+# Drop in best practice replacement for mysqld startup.  Timeouts enabled.
+template value_for_platform([ "centos", "redhat", "suse" ] => {"default" => "/etc/init.d/mysqld"}, "default" => "/etc/init.d/mysql") do
+  source "init-mysql.erb"
+  mode "0755"  
 end
 
 # Setup my.cnf 
@@ -98,17 +95,10 @@ file "/var/log/mysqlslow.log" do
   group "mysql"
 end
 
-if node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04")
-  bash "Start MySQL" do
-    not_if "service mysql status | grep -q \"start/running\""
-    code "service mysql start"
-  end
-else
-  service "mysql" do
-    service_name value_for_platform([ "centos", "redhat", "suse" ] => {"default" => "mysqld"}, "default" => "mysql")
-    supports :status => true, :restart => true, :reload => true
-    action [:enable, :start]
-  end
+service "mysql" do
+  service_name value_for_platform([ "centos", "redhat", "suse" ] => {"default" => "mysqld"}, "default" => "mysql")  
+  supports :status => true, :restart => true, :reload => true
+  action [:enable, :start]
 end
 
 # Disable the "check_for_crashed_tables" for ubuntu
@@ -159,17 +149,10 @@ ruby_block "fix buggy mysqld_safe" do
   end
 end
 
-if node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04")
-  bash "Start MySQL" do
-    not_if "service mysql status | grep -q \"stop/waiting\""
-    code "service mysql stop"
-  end
-else
-  service "mysql" do
-    only_if do true end # http://tickets.opscode.com/browse/CHEF-894
-    not_if do ::File.symlink?(node[:db_mysql][:datadir]) end
-    action :stop
-  end
+service "mysql" do
+  only_if do true end # http://tickets.opscode.com/browse/CHEF-894
+  not_if do ::File.symlink?(node[:db_mysql][:datadir]) end
+  action :stop
 end
 
 # moves mysql default db to storage location, removes ib_logfiles for re-config of innodb_log_file_size
@@ -193,17 +176,10 @@ ruby_block "chown mysql datadir" do
   end
 end
 
-if node[:platform] == "ubuntu" && (node[:platform_version] == "10.10" || node[:platform_version] =="10.04")
-  bash "Start MySQL" do
-    not_if "service mysql status | grep -q \"start/running\""
-    code "service mysql start"
-  end
-else
-  service "mysql" do
-    not_if do false end # http://tickets.opscode.com/browse/CHEF-894
-    Chef::Log.info "Attempting to start mysql service"
-    action :start
-  end
+service "mysql" do
+  not_if do false end # http://tickets.opscode.com/browse/CHEF-894
+  Chef::Log.info "Attempting to start mysql service"
+  action :start
 end
  
 ## Fix Privileges 4.0+
