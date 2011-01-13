@@ -8,6 +8,7 @@ Chef::Log.info("About to install Zend Framework, requested version is #{node[:ze
 gzipfile="/tmp/zf.tar.gz"
 
 file gzipfile do
+  backup nil
   action :nothing
 end
 
