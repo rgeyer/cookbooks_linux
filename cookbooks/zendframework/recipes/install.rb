@@ -16,10 +16,15 @@ directory node[:zendframework][:library_path] do
   action :create
 end
 
-remote_file gzipfile do
-  source zend_dl_uri
-  backup nil
-  action :create
+# Using remote file is just not doing the trick, gonna go old school
+#remote_file gzipfile do
+#  source zend_dl_uri
+#  backup nil
+#  action :create
+#end
+
+bash "Downloading Zend Framework #{node[:zendframework][:version]}" do
+  code "wget -o #{gzipfile} #{zend_dl_uri}"
 end
 
 bash "Unzip zf to it's home" do
