@@ -25,7 +25,7 @@ end
 
 bash "Unzip zf to it's home" do
   code <<-EOF
-tar --strip-components 1 -zxf #{gzipfile} -C #{node[:zendframework][:library_path]}"
+tar --strip-components 1 -zxf #{gzipfile} -C #{node[:zendframework][:library_path]}
 rm -rf #{gzipfile}
   EOF
 end
