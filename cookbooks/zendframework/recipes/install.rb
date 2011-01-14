@@ -7,11 +7,6 @@ Chef::Log.info("About to install Zend Framework, requested version is #{node[:ze
 
 gzipfile="/tmp/zf.tar.gz"
 
-file gzipfile do
-  backup nil
-  action :nothing
-end
-
 directory node[:zendframework][:library_path] do
   recursive true
   action :create
@@ -29,8 +24,11 @@ bash "Downloading Zend Framework #{node[:zendframework][:version]}" do
 end
 
 bash "Unzip zf to it's home" do
-  code "tar --strip-components 1 -zxf #{gzipfile} -C #{node[:zendframework][:library_path]}"
-  notifies :delete, resources(:file => gzipfile), :immediately
+  code <<-EOF
+tar --strip-components 1 -zxf #{gzipfile} -C #{node[:zendframework][:library_path]}"
+rm -rf #{gzipfile}
+EOF
+#  notifies :delete, resources(:file => gzipfile), :immediately
 end
 
 template "/etc/php5/conf.d/zendframework.ini" do
