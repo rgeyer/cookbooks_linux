@@ -9,6 +9,7 @@ version          "0.0.1"
 depends "aws"
 depends "web_apache"
 depends "db_mysql"
+depends "mysql", ">> 0.24.0"
 depends "rjg_utils"
 
 provides "app_wordpress[site]"

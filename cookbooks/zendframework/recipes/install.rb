@@ -20,7 +20,7 @@ end
 #end
 
 bash "Downloading Zend Framework #{node[:zendframework][:version]}" do
-  code "wget -O #{gzipfile} #{zend_dl_uri}"
+  code "wget -q -O #{gzipfile} #{zend_dl_uri}"
 end
 
 bash "Unzip zf to it's home" do
