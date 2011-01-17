@@ -156,6 +156,20 @@
       "display_name": "Access Key Id",
       "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
     },
+    "web_apache/force_https": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+        "true",
+        "false"
+      ],
+      "type": "string",
+      "recipes": [
+
+      ],
+      "display_name": "Force HTTPS?",
+      "description": "A boolean indicating if the proxy should redirect all requests to the destination using HTTPS.  This setting requires web_apache/proxy_http to be true."
+    },
     "web_apache/pkcs12_pass": {
       "required": "required",
       "calculated": false,
@@ -181,6 +195,20 @@
       ],
       "display_name": "apache hash",
       "description": "Apache Web Server"
+    },
+    "web_apache/proxy_http": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+        "true",
+        "false"
+      ],
+      "type": "string",
+      "recipes": [
+
+      ],
+      "display_name": "Proxy for HTTP?",
+      "description": "A boolean indicating if the proxy should listen and forward traffic on port 80 (HTTP)"
     },
     "web_apache/dest_fqdn": {
       "required": "required",

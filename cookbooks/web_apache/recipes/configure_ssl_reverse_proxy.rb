@@ -81,7 +81,24 @@ web_app "#{accept_fqdn}-proxy" do
   server_aliases node[:web_apache][:aliases]
   dest_fqdn node[:web_apache][:dest_fqdn]
   dest_port node[:web_apache][:dest_port]
+  listen_on_http node[:web_apache][:proxy_http] == "true"
+  force_https node[:web_apache][:force_https] == "true"
 end
 
-right_link_tag "reverse_proxy:for=https://#{accept_fqdn}"
+namelist=accept_fqdn
+
+if node[:web_apache][:aliases]
+  namelist="(#{accept_fqdn}"
+  node[:web_apache][:aliases].each do |a|
+    namelist += "|#{a}"
+  end
+  namelist += ")"
+end
+
+right_link_tag "reverse_proxy:for=https://#{namelist}"
 right_link_tag "reverse_proxy:target=https://#{node[:web_apache][:dest_fqdn]}:#{node[:web_apache][:dest_port]}"
+
+if node[:web_apache][:proxy_http] == "true"
+  right_link_tag "reverse_proxy:for=http://#{namelist}"
+  right_link_tag "reverse_proxy:target=http://#{node[:web_apache][:dest_fqdn]}" unless node[:web_apache][:force_https] == "true"
+end

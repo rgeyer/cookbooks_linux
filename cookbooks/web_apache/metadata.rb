@@ -97,3 +97,15 @@ attribute "web_apache/pkcs12_pass",
   :description => "The password used to protect the PKCS12 file.  This password is specified when the certificate is exported from windows",
   :required => "required",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"]
+
+attribute "web_apache/proxy_http",
+  :display_name => "Proxy for HTTP?",
+  :description => "A boolean indicating if the proxy should listen and forward traffic on port 80 (HTTP)",
+  :required => "required",
+  :choice => ["true", "false"]
+
+attribute "web_apache/force_https",
+  :display_name => "Force HTTPS?",
+  :description => "A boolean indicating if the proxy should redirect all requests to the destination using HTTPS.  This setting requires web_apache/proxy_http to be true.",
+  :required => "required",
+  :choice => ["true", "false"]
