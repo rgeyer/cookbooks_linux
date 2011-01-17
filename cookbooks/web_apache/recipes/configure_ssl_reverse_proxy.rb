@@ -70,7 +70,9 @@ apache_module "ssl"
 apache_module "proxy_http"
 
 # Disable the default site
-apache_site "000-default", false
+apache_site "000-default" do
+  enable false
+end
 
 # Enable the proxy site
 web_app "#{accept_fqdn}-proxy" do
