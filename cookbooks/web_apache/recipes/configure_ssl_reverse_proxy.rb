@@ -69,9 +69,14 @@ end
 apache_module "ssl"
 apache_module "proxy_http"
 
+# Disable the default site
+apache_site "default", false
+
+# Enable the proxy site
 web_app "#{accept_fqdn}-proxy" do
   template "ssl-vhost-proxy.conf.erb"
   accept_fqdn accept_fqdn
+  aliases node[:web_apache][:aliases]
   dest_fqdn node[:web_apache][:dest_fqdn]
   dest_port node[:web_apache][:dest_port]
 end
