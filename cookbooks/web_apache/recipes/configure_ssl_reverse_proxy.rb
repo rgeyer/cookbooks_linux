@@ -82,3 +82,6 @@ web_app "#{accept_fqdn}-proxy" do
   dest_fqdn node[:web_apache][:dest_fqdn]
   dest_port node[:web_apache][:dest_port]
 end
+
+right_link_tag "reverse_proxy:for=https://#{accept_fqdn}"
+right_link_tag "reverse_proxy:target=https://#{node[:web_apache][:dest_fqdn]}:#{node[:web_apache][:dest_port]}"
