@@ -4,6 +4,15 @@
   ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
 <% end %>
 
+  RewriteEngine On
+  RewriteLog <%= node[:apache][:log_dir] %>/<%= @accept_fqdn %>-rewrite.log
+  RewriteLogLevel 0
+
+  # Canonical host, <%= @params[:accept_fqdn] %>
+  RewriteCond %{HTTP_HOST}   !^<%= @params[:accept_fqdn] %> [NC]
+  RewriteCond %{HTTP_HOST}   !^$
+  RewriteRule ^/(.*)$        http://<%= @params[:accept_fqdn] %>/$1 [L,R=301]
+
   <Proxy *>
     Order deny,allow
     Allow from all
