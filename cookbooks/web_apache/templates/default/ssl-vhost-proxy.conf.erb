@@ -1,5 +1,8 @@
 <VirtualHost *:443>
   ServerName <%= @params[:accept_fqdn] %>
+<% if @params[:server_aliases] -%>
+  ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
+<% end %>
 
   <Proxy *>
     Order deny,allow

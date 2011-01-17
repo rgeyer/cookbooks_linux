@@ -26,13 +26,13 @@ attribute "aws/access_key_id",
   :display_name => "Access Key Id",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"],
-  :required => true
+  :required => "required"
 
 attribute "aws/secret_access_key",
   :display_name => "Secret Access Key",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"],
-  :required => true
+  :required => "required"
 
 attribute "rs_utils/process_list",
   :display_name => "Process List",
@@ -57,41 +57,43 @@ attribute "web_apache/mpm",
 attribute "web_apache/vhost_fqdn",
   :display_name => "VHOST FQDN",
   :description => "The fully qualified domain name (FQDN) of the new vhost to create.  Example www.apache.org",
-  :required => true,
+  :required => "required",
   :recipes => ["web_apache::enable_site_vhost"]
 
-attribute "web_apache/vhost_aliases",
-  :display_name => "VHOST Aliases",
+attribute "web_apache/aliases",
+  :display_name => "Apache Site Aliases",
   :description => "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces",
-  :default => "",
-  :recipes => ["web_apache::enable_site_vhost"]
+  :type => "array",
+  :default => [],
+  :required => "recommended",
+  :recipes => ["web_apache::enable_site_vhost", "web_apache::configure_ssl_reverse_proxy"]
 
 attribute "web_apache/accept_fqdn",
   :display_name => "Proxy for FQDN",
   :description => "The FQDN of a domain name which will be proxied to another server and port",
-  :required => true,
+  :required => "required",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"]
 
 attribute "web_apache/dest_fqdn",
   :display_name => "Proxy Destination FQDN",
   :description => "The FQDN the server that will back the proxy, the actual source of the responses for HTTP requests.",
-  :required => true,
+  :required => "required",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"]
 
 attribute "web_apache/dest_port",
   :display_name => "Proxy Port",
   :description => "The the proxy port to forward to",
-  :required => true,
+  :required => "required",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"]
 
 attribute "web_apache/s3_cert_bucket",
   :display_name => "S3 Bucket",
   :description => "The S3 bucket containing site certificate and key pairs in the pkcs12 format.",
-  :required => true,
+  :required => "required",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"]
 
 attribute "web_apache/pkcs12_pass",
   :display_name => "PKCS12 Cert Password",
   :description => "The password used to protect the PKCS12 file.  This password is specified when the certificate is exported from windows",
-  :required => true,
+  :required => "required",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"]

@@ -3,11 +3,14 @@
   "suggestions": {
   },
   "dependencies": {
+    "execute[mysql_database]": [
+
+    ],
     "db_mysql": [
 
     ],
     "mysql": [
-      ">> 0.24.0"
+
     ],
     "rjg_utils": [
 

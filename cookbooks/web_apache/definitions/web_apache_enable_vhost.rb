@@ -26,7 +26,7 @@ define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil do
 
   web_app fqdn do
     cookbook "web_apache"
-    server_aliases aliases.split(" ")
+    server_aliases aliases
     docroot docroot
   end
 

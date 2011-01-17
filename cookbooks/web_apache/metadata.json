@@ -71,6 +71,23 @@
       "display_name": "Proxy Port",
       "description": "The the proxy port to forward to"
     },
+    "web_apache/aliases": {
+      "required": "recommended",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": [
+
+      ],
+      "type": "array",
+      "recipes": [
+        "web_apache::enable_site_vhost",
+        "web_apache::configure_ssl_reverse_proxy"
+      ],
+      "display_name": "Apache Site Aliases",
+      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces"
+    },
     "web_apache/contact": {
       "required": "optional",
       "calculated": false,
@@ -203,20 +220,6 @@
       ],
       "display_name": "S3 Bucket",
       "description": "The S3 bucket containing site certificate and key pairs in the pkcs12 format."
-    },
-    "web_apache/vhost_aliases": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "",
-      "type": "string",
-      "recipes": [
-        "web_apache::enable_site_vhost"
-      ],
-      "display_name": "VHOST Aliases",
-      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces"
     }
   },
   "recommendations": {
