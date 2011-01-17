@@ -1,8 +1,18 @@
-<VirtualHost *:443>
+<% if @params[:listen_on_http] -%>
+<VirtualHost *:80>
   ServerName <%= @params[:accept_fqdn] %>
 <% if @params[:server_aliases] -%>
   ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
 <% end %>
+
+  DocumentRoot <% @params[:docroot] %>
+
+  <Directory <% @params[:docroot] %>>
+    Options FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
 
   RewriteEngine On
   RewriteLog <%= node[:apache][:log_dir] %>/<%= @accept_fqdn %>-rewrite.log
@@ -12,6 +22,56 @@
   RewriteCond %{HTTP_HOST}   !^<%= @params[:accept_fqdn] %> [NC]
   RewriteCond %{HTTP_HOST}   !^$
   RewriteRule ^/(.*)$        http://<%= @params[:accept_fqdn] %>/$1 [L,R=301]
+
+<% if @params[:force_https] -%>
+  # Force SSL
+  RewriteCond %{HTTPS} off
+  RewriteRule ^/(.*)$        https://<% @params[:accept_fqdn] %>/$1 [L,R=301]
+<% end %>
+
+  RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
+  RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+  RewriteRule ^.*$ /system/maintenance.html [L]
+
+  <Proxy *>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+  ProxyPass / http://<%= @params[:dest_fqdn] %>/
+  ProxyPassReverse / http://<%= @params[:dest_fqdn] %>/
+</VirtualHost>
+<% end %>
+
+<VirtualHost *:443>
+  ServerName <%= @params[:accept_fqdn] %>
+<% if @params[:server_aliases] -%>
+  ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
+<% end %>
+
+  DocumentRoot <% @params[:docroot] %>
+
+  <Directory <% @params[:docroot] %>>
+    Options FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  RewriteEngine On
+  RewriteLog <%= node[:apache][:log_dir] %>/<%= @accept_fqdn %>-rewrite.log
+  RewriteLogLevel 0
+
+  # Canonical host, <%= @params[:accept_fqdn] %>
+  RewriteCond %{HTTP_HOST}   !^<%= @params[:accept_fqdn] %> [NC]
+  RewriteCond %{HTTP_HOST}   !^$
+  RewriteRule ^/(.*)$        https://<%= @params[:accept_fqdn] %>/$1 [L,R=301]
+
+  RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
+  RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+  RewriteRule ^.*$ /system/maintenance.html [L]
 
   <Proxy *>
     Order deny,allow
