@@ -74,6 +74,17 @@ apache_site "000-default" do
   enable false
 end
 
+docroot=File.join(node[:web_apache][:content_dir], "#{accept_fqdn}-proxy", "htdocs", "system")
+
+# Create the docroot, used for maintenance
+directory docroot do
+  mode 0775
+  owner "www-data"
+  group "www-data"
+  recursive true
+  action :create
+end
+
 # Enable the proxy site
 web_app "#{accept_fqdn}-proxy" do
   template "ssl-vhost-proxy.conf.erb"
@@ -83,6 +94,7 @@ web_app "#{accept_fqdn}-proxy" do
   dest_port node[:web_apache][:dest_port]
   listen_on_http node[:web_apache][:proxy_http] == "true"
   force_https node[:web_apache][:force_https] == "true"
+  docroot docroot
 end
 
 namelist=accept_fqdn
