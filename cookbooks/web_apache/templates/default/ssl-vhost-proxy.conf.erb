@@ -5,9 +5,9 @@
   ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
 <% end %>
 
-  DocumentRoot <% @params[:docroot] %>
+  DocumentRoot <%= @params[:docroot] %>
 
-  <Directory <% @params[:docroot] %>>
+  <Directory <%= @params[:docroot] %>>
     Options FollowSymLinks
     AllowOverride None
     Order allow,deny
@@ -51,9 +51,9 @@
   ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
 <% end %>
 
-  DocumentRoot <% @params[:docroot] %>
+  DocumentRoot <%= @params[:docroot] %>
 
-  <Directory <% @params[:docroot] %>>
+  <Directory <%= @params[:docroot] %>>
     Options FollowSymLinks
     AllowOverride None
     Order allow,deny
