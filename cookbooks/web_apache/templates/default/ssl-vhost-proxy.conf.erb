@@ -26,7 +26,7 @@
 <% if @params[:force_https] -%>
   # Force SSL
   RewriteCond %{HTTPS} off
-  RewriteRule ^/(.*)$        https://<% @params[:accept_fqdn] %>/$1 [L,R=301]
+  RewriteRule ^/(.*)$        https://<%= @params[:accept_fqdn] %>/$1 [L,R=301]
 <% end %>
 
   RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
