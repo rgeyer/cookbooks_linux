@@ -75,7 +75,7 @@ apache_site "000-default" do
 end
 
 docroot=::File.join(node[:web_apache][:content_dir], "#{accept_fqdn}-proxy", "htdocs", "system")
-Chef::Log.info ("Docroot is #{docroot}")
+Chef::Log.info("Docroot is #{docroot}")
 
 # Create the docroot, used for maintenance
 directory docroot do
