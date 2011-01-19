@@ -1,0 +1,5 @@
+dn: olcDatabase={-1}frontend,cn=config
+changetype: modify
+add: olcAccess
+olcAccess: to dn.base="" by * read
+olcAccess: to dn.base="cn=subschema" by * read

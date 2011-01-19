@@ -1,0 +1,87 @@
+{
+  "license": "All rights reserved",
+  "suggestions": {
+  },
+  "dependencies": {
+  },
+  "conflicting": {
+  },
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "description": "Installs/Configures openldap",
+  "providing": {
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "version": "0.0.1",
+  "maintainer": "Ryan J. Geyer",
+  "recipes": {
+    "openldap::install": "Installs a basic, working OpenLDAP server daemon"
+  },
+  "replacing": {
+  },
+  "maintainer_email": "me@ryangeyer.com",
+  "name": "openldap",
+  "groupings": {
+  },
+  "attributes": {
+    "openldap/allow_remote": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+        "true",
+        "false"
+      ],
+      "type": "string",
+      "recipes": [
+        "openldap::install"
+      ],
+      "display_name": "OpenLDAP Allow Remote?",
+      "description": "A boolean indicating if the OpenLDAP server should accept remote connections or not"
+    },
+    "openldap/config_admin_cn": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "openldap::install"
+      ],
+      "display_name": "OpenLDAP Config Admin CN",
+      "description": "The desired \"Common Name\" for the slapd configuration (cn=config) administrator"
+    },
+    "openldap/listen_port": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "389",
+      "type": "string",
+      "recipes": [
+        "openldap::install"
+      ],
+      "display_name": "OpenLDAP listen port",
+      "description": "The TCP/IP port the OpenLDAP server should listen on"
+    },
+    "openldap/config_admin_password": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "openldap::install"
+      ],
+      "display_name": "OpenLDAP Config Admin password",
+      "description": "The desired password for the slapd configuration (cn=config) administrator"
+    }
+  },
+  "recommendations": {
+  }
+}
