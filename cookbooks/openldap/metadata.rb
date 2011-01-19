@@ -33,3 +33,10 @@ attribute "openldap/config_admin_password",
   :description => "The desired password for the slapd configuration (cn=config) administrator",
   :required => "required",
   :recipes => ["openldap::install"]
+
+attribute "openldap/schemas",
+  :display_name => "OpenLDAP Schemas",
+  :description => "A list (in the form of an array) of schemas to install",
+  :type => "array",
+  :default => ["core","cosine","inetorgperson"],
+  :recipes => ["openldap::install"]

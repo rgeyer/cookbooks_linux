@@ -27,6 +27,24 @@
   "groupings": {
   },
   "attributes": {
+    "openldap/schemas": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": [
+        "core",
+        "cosine",
+        "inetorgperson"
+      ],
+      "type": "array",
+      "recipes": [
+        "openldap::install"
+      ],
+      "display_name": "OpenLDAP Schemas",
+      "description": "A list (in the form of an array) of schemas to install"
+    },
     "openldap/allow_remote": {
       "required": "required",
       "calculated": false,

@@ -36,3 +36,7 @@ end
     action :enable
   end
 end
+
+openldap_schema "Enable schema list" do
+
+end
