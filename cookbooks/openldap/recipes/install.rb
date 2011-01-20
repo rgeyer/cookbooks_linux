@@ -3,8 +3,18 @@ listen_host = "127.0.0.1" unless node[:openldap][:allow_remote] == "true"
 
 listen_port = node[:openldap][:listen_port]
 
-%w{slapd ldap-utils db4.2-util}.each do |p|
+%w{slapd ldap-utils}.each do |p|
   package p
+end
+
+package "Berkley DB Utils" do
+  case node[:platform_version]
+    when "9.10"
+      package_name = "db4.2utils"
+    when "10.04"
+      package_name = "db4.7utils"
+  end
+  action :install
 end
 
 service "slapd" do
