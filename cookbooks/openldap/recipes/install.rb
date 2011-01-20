@@ -37,10 +37,7 @@ if node[:platform] == "ubuntu" && node[:platform_version] == "9.10"
   end
 end
 
-openldap_set_config_admin_creds do
-  cn node[:openldap][:config_admin_cn]
-  password node[:openldap][:config_admin_password]
-end
+include_recipe "openldap::set_config_admin_creds"
 
 %w{back_bdb back_hdb}.each do |mod|
   openldap_module mod do

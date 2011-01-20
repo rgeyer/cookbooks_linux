@@ -26,13 +26,13 @@ attribute "openldap/config_admin_cn",
   :display_name => "OpenLDAP Config Admin CN",
   :description => "The desired \"Common Name\" for the slapd configuration (cn=config) administrator",
   :required => "required",
-  :recipes => ["openldap::install"]
+  :recipes => ["openldap::install", "openldap::set_config_admin_creds"]
 
 attribute "openldap/config_admin_password",
   :display_name => "OpenLDAP Config Admin password",
   :description => "The desired password for the slapd configuration (cn=config) administrator",
   :required => "required",
-  :recipes => ["openldap::install"]
+  :recipes => ["openldap::install", "openldap::set_config_admin_creds"]
 
 attribute "openldap/schemas",
   :display_name => "OpenLDAP Schemas",

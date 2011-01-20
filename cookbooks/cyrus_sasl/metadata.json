@@ -7,7 +7,7 @@
   "conflicting": {
   },
   "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "description": "Installs/Configures cyrus-sasl",
+  "description": "Installs/Configures cyrus_sasl",
   "providing": {
   },
   "platforms": {
@@ -22,7 +22,7 @@
   "replacing": {
   },
   "maintainer_email": "me@ryangeyer.com",
-  "name": "cyrus-sasl",
+  "name": "cyrus_sasl",
   "groupings": {
   },
   "attributes": {

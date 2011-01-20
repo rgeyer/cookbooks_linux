@@ -67,7 +67,8 @@
       ],
       "type": "string",
       "recipes": [
-        "openldap::install"
+        "openldap::install",
+        "openldap::set_config_admin_creds"
       ],
       "display_name": "OpenLDAP Config Admin CN",
       "description": "The desired \"Common Name\" for the slapd configuration (cn=config) administrator"
@@ -94,7 +95,8 @@
       ],
       "type": "string",
       "recipes": [
-        "openldap::install"
+        "openldap::install",
+        "openldap::set_config_admin_creds"
       ],
       "display_name": "OpenLDAP Config Admin password",
       "description": "The desired password for the slapd configuration (cn=config) administrator"
