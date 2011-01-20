@@ -42,7 +42,7 @@ action :enable do
       openldap_execute_ldif do
         executable "ldapadd"
         source schema_ldif
-        type :file
+        type "file"
       end
 
       idx = idx + 1

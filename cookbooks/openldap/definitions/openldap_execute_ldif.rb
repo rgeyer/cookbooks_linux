@@ -4,18 +4,18 @@ define :openldap_execute_ldif, :source => nil, :type => nil, :executable => "lda
   dest_file = "/tmp/#{params[:source]}"
 
   case params[:type]
-    when :template
+    when "template"
       template dest_file do
         source params[:source]
         variables params
         backup nil
       end
-    when :remote_file
+    when "remote_file"
       remote_file dest_file do
         source params[:source]
         backup nil
       end
-    when :file
+    when "file"
       dest_file = params[:source]
       file dest_file do
         action :nothing

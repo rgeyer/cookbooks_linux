@@ -3,14 +3,14 @@ define :openldap_set_config_admin_creds, :cn => nil, :password => nil do
     openldap_execute_ldif do
       executable "ldapadd"
       source "deleteConfigAdminPassword.ldif"
-      type :remote_file
+      type "remote_file"
     end
   end
 
   openldap_execute_ldif do
     executable "ldapadd"
     source "setConfigAdminCreds.ldif.erb"
-    type :template
+    type "template"
     config_admin_cn params[:cn]
     config_admin_password params[:password]
   end
