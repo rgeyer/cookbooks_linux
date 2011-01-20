@@ -32,7 +32,7 @@ end
 if node[:platform] == "ubuntu" && node[:platform_version] == "9.10"
   openldap_execute_ldif do
     source "ubuntu-karmic-9.10-fixRootDSE.ldif"
-    type "remote_file"
+    source_type :remote_file
   end
 end
 

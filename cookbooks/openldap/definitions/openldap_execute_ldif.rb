@@ -1,21 +1,21 @@
-define :openldap_execute_ldif, :source => nil, :type => nil, :executable => "ldapmodify" do
+define :openldap_execute_ldif, :source => nil, :source_type => nil, :executable => "ldapmodify" do
 
-  type_to_delete = params[:type]
+  type_to_delete = params[:source_type]
   dest_file = "/tmp/#{params[:source]}"
 
-  case params[:type]
-    when "template"
+  case params[:source_type]
+    when :template
       template dest_file do
         source params[:source]
         variables params
         backup nil
       end
-    when "remote_file"
+    when :remote_file
       remote_file dest_file do
         source params[:source]
         backup nil
       end
-    when "file"
+    when :file
       dest_file = params[:source]
       file dest_file do
         action :nothing
