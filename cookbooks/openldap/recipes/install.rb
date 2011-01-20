@@ -10,9 +10,9 @@ end
 package "Berkley DB Utils" do
   case node[:platform_version]
     when "9.10"
-      package_name = "db4.2-util"
+      package_name "db4.2-util"
     when "10.04"
-      package_name = "db4.7-util"
+      package_name "db4.7-util"
   end
   action :install
 end
@@ -24,6 +24,7 @@ end
 template "/etc/default/slapd" do
   source "slapd.defaults.erb"
   variables( :listen_host => listen_host, :listen_port => listen_port)
+  backup nil
   notifies :restart, resources(:service => "slapd"), :immediately
 end
 
