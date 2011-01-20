@@ -6,6 +6,14 @@ if `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b "cn=config" "(olcRootPw=*)"` =~ /n
   end
 end
 
+if `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b "cn=config" "(olcRootDn=*)"` =~ /numEntries/
+  openldap_execute_ldif do
+    executable "ldapadd"
+    source "deleteConfigAdminDn.ldif"
+    source_type :remote_file
+  end
+end
+
 openldap_execute_ldif do
   executable "ldapadd"
   source "setConfigAdminCreds.ldif.erb"
