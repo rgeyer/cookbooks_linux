@@ -1,4 +1,4 @@
-dn: cn=module{<%= @index %>},cn=config
+dn: cn=module{<%= @idx %>},cn=config
 objectClass: olcModuleList
 olcModulepath: /usr/lib/ldap
-olcModuleload: {<%= @index %>}<%= @module_name %>
+olcModuleload: {<%= @idx %>}<%= @module_name %>
