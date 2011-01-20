@@ -7,7 +7,7 @@ action :enable do
     openldap_execute_ldif do
       executable "ldapadd"
       source "addModule.ldif.erb"
-      type :template
+      source_type :template
       index idx
       module_name new_resource.name
     end
