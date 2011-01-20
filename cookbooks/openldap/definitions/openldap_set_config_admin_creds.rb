@@ -7,11 +7,6 @@ define :openldap_set_config_admin_creds, :cn => nil, :password => nil do
     end
   end
 
-  template ldif_filepath do
-    source "setConfigAdminCreds.ldif.erb"
-    variables(:config_admin_cn => params[:cn], :config_admin_password => params[:password])
-  end
-
   openldap_execute_ldif do
     executable "ldapadd"
     source "setConfigAdminCreds.ldif.erb"
