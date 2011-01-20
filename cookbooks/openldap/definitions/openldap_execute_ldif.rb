@@ -22,8 +22,12 @@ define :openldap_execute_ldif, :source => nil, :source_type => nil, :executable 
       end
   end
 
-  Chef::Log.info("Running the following LDIF file...")
-  Chef::Log.info(::File.read(dest_file))
+  ruby_block "Some feedback" do
+    block do
+      Chef::Log.info("Running the following LDIF file...")
+      Chef::Log.info(::File.read(dest_file))
+    end
+  end
   execute params[:executable] do
     command "#{params[:executable]} -Q -Y EXTERNAL -H ldapi:/// -f #{dest_file}"
     notifies :delete, resources(type_to_delete => dest_file), :immediately

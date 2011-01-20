@@ -10,9 +10,9 @@ end
 package "Berkley DB Utils" do
   case node[:platform_version]
     when "9.10"
-      package_name = "db4.2utils"
+      package_name = "db4.2-util"
     when "10.04"
-      package_name = "db4.7utils"
+      package_name = "db4.7-util"
   end
   action :install
 end
