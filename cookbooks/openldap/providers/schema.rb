@@ -16,7 +16,7 @@ action :enable do
   end
 
   execute "slapcat" do
-    command 'slapcat -f #{slapd_conf} -F #{schema_dir} -n0 -s "cn=foo,cn=bar"'
+    command "slapcat -f #{slapd_conf} -F #{schema_dir} -n0 -s \"cn=foo,cn=bar\""
   end
 
   idx = `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=schema,cn=config "(&(objectClass=olcSchemaConfig))" | grep numEntries | cut -d' ' -f3`
