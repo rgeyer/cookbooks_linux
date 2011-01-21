@@ -1,3 +1,9 @@
-default[:openldap][:listen_port] = "389"
-default[:openldap][:schemas] = ["core","cosine","inetorgperson"]
-default[:openldap][:db_dir] = "/mnt/slapd"
+default[:openldap][:listen_port]  = "389"
+default[:openldap][:schemas]      = ["core","cosine","inetorgperson"]
+default[:openldap][:db_dir]       = "/mnt/slapd"
+default[:openldap][:cache_size]   = "0 2097152 0"
+default[:openldap][:max_objects]  = "1500"
+default[:openldap][:max_locks]    = "1500"
+default[:openldap][:max_lockers]  = "1500"
+default[:openldap][:checkpoint]   = "512 30"
+default[:openldap][:base_dn]      = nil

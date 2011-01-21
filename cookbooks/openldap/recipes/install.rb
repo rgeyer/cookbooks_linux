@@ -54,3 +54,5 @@ directory node[:openldap][:db_dir] do
   recursive true
   action :create
 end
+
+include_recipe "openldap::create_database"
