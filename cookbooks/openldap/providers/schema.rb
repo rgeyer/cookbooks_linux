@@ -3,9 +3,11 @@ action :enable do
   schema_dir = "/tmp/slapd.schema"
   schema_ldif = "/tmp/slapd.schema.ldif"
 
+  schema_ary = new_resource.schemas
+
   template slapd_conf do
     source "slapdSchemas.conf.erb"
-    variables( :schemas => params[:schemas] )
+    variables( :schemas => schema_ary )
   end
 
   d = directory schema_dir do
@@ -18,10 +20,11 @@ action :enable do
   end
 
   idx = `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=schema,cn=config "(&(objectClass=olcSchemaConfig))" | grep numEntries | cut -d' ' -f3`
-  idx = 1 unless idx
+  idx = 1 if idx == ""
+  idx = idx.to_i
   idx = idx - 1
 
-  params[:schemas].each do |schema|
+  schema_ary.each do |schema|
     unless `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=schema,cn=config "(cn=*#{schema})"` =~ /numEntries/
       ldif_filepath = ::File.join(schema_dir, "cn\=config", "cn\=schema", "cn\=\{*\}#{schema}.ldif")
 
