@@ -1,5 +1,3 @@
-directory
-
 openldap_database node[:openldap][:base_dn] do
   base_dn node[:openldap][:base_dn]
   db_type node[:openldap][:db_type]
