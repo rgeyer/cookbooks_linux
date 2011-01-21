@@ -100,7 +100,7 @@
       "choice": [
 
       ],
-      "default": null,
+      "default": "blank",
       "type": "string",
       "recipes": [
         "openldap::install",
