@@ -3,6 +3,9 @@
   "suggestions": {
   },
   "dependencies": {
+    "rs_utils": [
+
+    ]
   },
   "conflicting": {
   },

@@ -5,6 +5,8 @@ description      "Installs/Configures openldap"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
+depends "rs_utils"
+
 supports "ubuntu"
 
 recipe "openldap::install", "Installs a basic, working OpenLDAP server daemon"
