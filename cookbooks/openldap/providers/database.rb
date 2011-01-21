@@ -17,7 +17,7 @@ action :create do
     executable "ldapadd"
     source_type :template
     source "addDatabaseToConfig.ldif.erb"
-    db_type new_resource.type
+    db_type new_resource.db_type
     olc_suffix base_dn
     admin_dn admin_dn
     admin_password admin_pwd
