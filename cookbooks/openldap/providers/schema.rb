@@ -38,8 +38,8 @@ action :enable do
 
           ::File.open(schema_ldif, "w") do |f|
             lines.each { |line|
-              line += ",cn=schema,cn=config" if line =~ /^dn:/
               line.gsub!(/\{[0-9]*\}#{schema}/, "{#{idx}}#{schema}")
+              line += ",cn=schema,cn=config" if line =~ /^dn:/
               f.puts(line)
             }
           end
