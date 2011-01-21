@@ -17,5 +17,6 @@ log { source(s_sys); filter(f_ldap); destination(d_ldap); };
     EOF
     ::File.open("/etc/syslog-ng/syslog-ng.conf", "a") {|f| f.write(openldap_config)}
   end
+  only_if `grep d_ldap /etc/syslog-ng/syslog-ng.conf` == ""
   notifies :restart, resources(:service => "syslog-ng")
 end
