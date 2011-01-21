@@ -26,9 +26,9 @@ action :enable do
   idx = idx.to_i
   idx = idx - 1
 
-  schema_ary.each do |schema|
+  schema_ary.each_with_index do |schema,schema_idx|
     unless `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=schema,cn=config "(cn=*#{schema})"` =~ /numEntries/
-      ldif_filepath = ::File.join(schema_dir, "cn\=config", "cn\=schema", "cn\=\{*\}#{schema}.ldif")
+      ldif_filepath = ::File.join(schema_dir, "cn\=config", "cn\=schema", "cn\=\{#{schema_idx}\}#{schema}.ldif")
 
       # Nuke the last 7 lines of the ldif file, cause it's got attributes that won't go over well
       lines = ::File.readlines(ldif_filepath)
