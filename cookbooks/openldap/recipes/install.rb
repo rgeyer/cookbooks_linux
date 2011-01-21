@@ -52,6 +52,8 @@ end
 
 directory node[:openldap][:db_dir] do
   recursive true
+  owner "openldap"
+  group "openldap"
   action :create
 end
 

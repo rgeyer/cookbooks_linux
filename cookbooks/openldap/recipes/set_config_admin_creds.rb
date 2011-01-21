@@ -1,3 +1,5 @@
+admin_pwd = `slappasswd -s #{node[:openldap][:config_admin_password]}`
+
 if `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b "cn=config" "(olcRootPw=*)"` =~ /numEntries/
   openldap_execute_ldif do
     executable "ldapadd"
@@ -19,5 +21,5 @@ openldap_execute_ldif do
   source "setConfigAdminCreds.ldif.erb"
   source_type :template
   config_admin_cn node[:openldap][:config_admin_cn]
-  config_admin_password node[:openldap][:config_admin_password]
+  config_admin_password admin_pwd
 end
