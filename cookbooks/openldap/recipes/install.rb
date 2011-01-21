@@ -57,4 +57,4 @@ directory node[:openldap][:db_dir] do
   action :create
 end
 
-include_recipe "openldap::create_database"
+#include_recipe "openldap::create_database"
