@@ -4,7 +4,7 @@ action :enable do
     idx = `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=config "(objectClass=olcModuleList)" | grep numEntries | cut -d' ' -f3`
     idx = 0 if idx == ""
 
-    idx.strip!
+    idx = idx.to_i
 
     Chef::Log.info("Enabling OpenLDAP module ({#{idx}}#{module_name})")
 
