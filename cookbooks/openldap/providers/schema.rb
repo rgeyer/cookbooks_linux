@@ -32,14 +32,14 @@ action :enable do
 
           # Nuke the last 7 lines of the ldif file, cause it's got attributes that won't go over well
           lines = ::File.readlines(ldif_filepath)
-          ((lines.count-7)..lines.count).each do |line_idx|
+          (0..(lines.count-7)).each do |line_idx|
             lines.delete_at(line_idx)
           end
 
           ::File.open(schema_ldif, "w") do |f|
             lines.each { |line|
               line.gsub!(/\{[0-9]*\}#{schema}/, "{#{idx}}#{schema}")
-              line += ",cn=schema,cn=config" if line =~ /^dn:/
+              line = "#{line.strip},cn=schema,cn=config" if line =~ /^dn:/
               f.puts(line)
             }
           end
