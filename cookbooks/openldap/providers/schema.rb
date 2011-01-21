@@ -32,12 +32,8 @@ action :enable do
 
           # Nuke the last 7 lines of the ldif file, cause it's got attributes that won't go over well
           lines = ::File.readlines(ldif_filepath)
-          ((lines.count-8)..lines.count).each do |line_idx|
-            lines.delete_at(line_idx)
-          end
-
           ::File.open(schema_ldif, "w") do |f|
-            lines.each { |line|
+            lines.first(lines.count-7).each { |line|
               line.gsub!(/\{[0-9]*\}#{schema}/, "{#{idx}}#{schema}")
               line = "#{line.strip},cn=schema,cn=config" if line =~ /^dn:/
               f.puts(line)
@@ -52,9 +48,6 @@ action :enable do
           #        source schema_ldif
           #        source_type :file
           #      end
-          Chef::Log.info("Running the following LDIF file...")
-          Chef::Log.info(::File.read(schema_ldif))
-
           `ldapadd -Q -Y EXTERNAL -H ldapi:/// -f #{schema_ldif}`
 
           idx = idx + 1
