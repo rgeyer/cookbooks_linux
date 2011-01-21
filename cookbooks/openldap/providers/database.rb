@@ -1,5 +1,11 @@
 action :create do
-  base_dn=new_resource.base_dn
+  base_dn     = new_resource.base_dn
+  db_type     = new_resource.db_type
+  cache_size  = new_resource.cache_size
+  max_objects = new_resource.max_objects
+  max_locks   = new_resource.max_locks
+  max_lockers = new_resource.max_lockers
+  checkpoint  = new_resource.checkpoint
 
   admin_pwd = `slappasswd -s #{new_resource.admin_password}`
   admin_dn = "cn=#{new_resource.admin_cn}"
@@ -17,14 +23,14 @@ action :create do
     executable "ldapadd"
     source_type :template
     source "addDatabaseToConfig.ldif.erb"
-    db_type new_resource.db_type
+    db_type db_type
     olc_suffix base_dn
     admin_dn admin_dn
     admin_password admin_pwd
-    cache_size new_resource.cache_size
-    max_objects new_resource.max_objects
-    max_locks new_resource.max_locks
-    max_lockers new_resource.max_lockers
-    checkpoint new_resource.checkpoint
+    cache_size cache_size
+    max_objects max_objects
+    max_locks max_locks
+    max_lockers max_lockers
+    checkpoint checkpoint
   end
 end
