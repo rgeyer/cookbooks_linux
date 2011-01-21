@@ -53,7 +53,7 @@ action :enable do
           #        source_type :file
           #      end
           Chef::Log.info("Running the following LDIF file...")
-          Chef::Log.info(::File.read(dest_file))
+          Chef::Log.info(::File.read(schema_ldif))
 
           `ldapadd -Q -Y EXTERNAL -H ldapi:/// -f #{schema_ldif}`
 
