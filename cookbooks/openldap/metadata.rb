@@ -8,6 +8,8 @@ version          "0.0.1"
 supports "ubuntu"
 
 recipe "openldap::install", "Installs a basic, working OpenLDAP server daemon"
+recipe "openldap::enable_rightscale_syslog", "Appends configuration for OpenLDAP to the RightScale syslog configuration."
+recipe "openldap::set_config_admin_creds", "Sets the CN (Common Name) and password for the configuration admin"
 
 attribute "openldap/allow_remote",
   :display_name => "OpenLDAP Allow Remote?",

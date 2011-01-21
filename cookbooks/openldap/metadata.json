@@ -18,6 +18,8 @@
   "version": "0.0.1",
   "maintainer": "Ryan J. Geyer",
   "recipes": {
+    "openldap::set_config_admin_creds": "Sets the CN (Common Name) and password for the configuration admin",
+    "openldap::enable_rightscale_syslog": "Appends configuration for OpenLDAP to the RightScale syslog configuration.",
     "openldap::install": "Installs a basic, working OpenLDAP server daemon"
   },
   "replacing": {
