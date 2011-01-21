@@ -1,6 +1,6 @@
 actions :create
 
-attribute :base_dn, :kind_of => [ String ], :required => true
+attribute :base_dn, :kind_of => [ String ]
 attribute :type, :kind_of => [ String ], :equal_to => ["hdb","bdb"], :required => true
 attribute :admin_cn, :kind_of => [ String ], :required => true
 attribute :admin_password, :kind_of => [ String ], :required => true
