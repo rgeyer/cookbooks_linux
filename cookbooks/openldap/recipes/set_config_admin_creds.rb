@@ -1,4 +1,8 @@
-node[:openldap][:config_admin_password] = `slappasswd -s #{node[:openldap][:config_admin_password]}`
+ruby_block "Hash the config admin password" do
+  block do
+    node[:openldap][:config_admin_password] = `slappasswd -s #{node[:openldap][:config_admin_password]}`
+  end
+end
 
 if `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b "cn=config" "(olcRootPw=*)"` =~ /numEntries/
   openldap_execute_ldif do
