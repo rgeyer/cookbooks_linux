@@ -19,6 +19,8 @@ action :enable do
     command "slapcat -f #{slapd_conf} -F #{schema_dir} -n0 -s \"cn=foo,cn=bar\""
   end
 
+  ruby_block "The hard part" do
+  block do
   idx = `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=schema,cn=config "(&(objectClass=olcSchemaConfig))" | grep numEntries | cut -d' ' -f3`
   idx = 1 if idx == ""
   idx = idx.to_i
@@ -50,6 +52,8 @@ action :enable do
 
       idx = idx + 1
     end
+  end
+  end
   end
 
   d.run_action(:delete)
