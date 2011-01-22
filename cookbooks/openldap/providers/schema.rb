@@ -10,7 +10,7 @@ action :enable do
     variables(:schemas => schema_ary)
   end
 
-  d = directory schema_dir do
+  directory schema_dir do
     recursive true
     action :create
   end
@@ -54,7 +54,8 @@ action :enable do
         end
       end
     end
+    notifies :delete, resources(:directory => schema_dir), :immediately
   end
 
-  d.run_action(:delete)
+
 end

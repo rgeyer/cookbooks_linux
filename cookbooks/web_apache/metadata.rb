@@ -102,10 +102,12 @@ attribute "web_apache/proxy_http",
   :display_name => "Proxy for HTTP?",
   :description => "A boolean indicating if the proxy should listen and forward traffic on port 80 (HTTP)",
   :required => "required",
-  :choice => ["true", "false"]
+  :choice => ["true", "false"],
+  :recipes => ["web_apache::configure_ssl_reverse_proxy"]
 
 attribute "web_apache/force_https",
   :display_name => "Force HTTPS?",
   :description => "A boolean indicating if the proxy should redirect all requests to the destination using HTTPS.  This setting requires web_apache/proxy_http to be true.",
   :required => "required",
-  :choice => ["true", "false"]
+  :choice => ["true", "false"],
+  :recipes => ["web_apache::configure_ssl_reverse_proxy"]

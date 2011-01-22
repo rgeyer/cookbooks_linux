@@ -165,7 +165,7 @@
       ],
       "type": "string",
       "recipes": [
-
+        "web_apache::configure_ssl_reverse_proxy"
       ],
       "display_name": "Force HTTPS?",
       "description": "A boolean indicating if the proxy should redirect all requests to the destination using HTTPS.  This setting requires web_apache/proxy_http to be true."
@@ -205,7 +205,7 @@
       ],
       "type": "string",
       "recipes": [
-
+        "web_apache::configure_ssl_reverse_proxy"
       ],
       "display_name": "Proxy for HTTP?",
       "description": "A boolean indicating if the proxy should listen and forward traffic on port 80 (HTTP)"
