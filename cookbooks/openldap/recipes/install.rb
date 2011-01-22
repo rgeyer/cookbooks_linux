@@ -45,10 +45,7 @@ include_recipe "openldap::set_config_admin_creds"
   end
 end
 
-openldap_schema "Enable schema list" do
-  schemas node[:openldap][:schemas]
-  action :enable
-end
+include_recipe "openldap::enable_schemas"
 
 directory node[:openldap][:db_dir] do
   recursive true

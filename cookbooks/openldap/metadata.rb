@@ -13,6 +13,7 @@ recipe "openldap::install", "Installs a basic, working OpenLDAP server daemon"
 recipe "openldap::enable_rightscale_syslog", "Appends configuration for OpenLDAP to the RightScale syslog configuration."
 recipe "openldap::set_config_admin_creds", "Sets the CN (Common Name) and password for the configuration admin"
 recipe "openldap::create_database", "Creates a new database to contain records for the specified base_dn"
+recipe "openldap::enable_schemas", "Enables the OpenLDAP schemas listed"
 
 attribute "openldap/allow_remote",
   :display_name => "OpenLDAP Allow Remote?",
@@ -44,7 +45,7 @@ attribute "openldap/schemas",
   :description => "A list (in the form of an array) of schemas to install",
   :type => "array",
   :default => ["core","cosine","inetorgperson"],
-  :recipes => ["openldap::install"]
+  :recipes => ["openldap::install", "openldap::enable_schemas"]
 
 attribute "openldap/database_admin_cn",
   :display_name => "OpenLDAP Database Admin CN",

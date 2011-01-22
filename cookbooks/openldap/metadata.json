@@ -23,6 +23,7 @@
   "recipes": {
     "openldap::create_database": "Creates a new database to contain records for the specified base_dn",
     "openldap::set_config_admin_creds": "Sets the CN (Common Name) and password for the configuration admin",
+    "openldap::enable_schemas": "Enables the OpenLDAP schemas listed",
     "openldap::enable_rightscale_syslog": "Appends configuration for OpenLDAP to the RightScale syslog configuration.",
     "openldap::install": "Installs a basic, working OpenLDAP server daemon"
   },
@@ -60,7 +61,8 @@
       ],
       "type": "array",
       "recipes": [
-        "openldap::install"
+        "openldap::install",
+        "openldap::enable_schemas"
       ],
       "display_name": "OpenLDAP Schemas",
       "description": "A list (in the form of an array) of schemas to install"
