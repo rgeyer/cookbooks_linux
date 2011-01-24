@@ -18,6 +18,7 @@ define :openldap_execute_ldif, :source => nil, :source_type => nil, :executable 
     when :file
       dest_file = params[:source]
       file dest_file do
+        backup nil
         action :nothing
       end
   end

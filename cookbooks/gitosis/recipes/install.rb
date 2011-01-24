@@ -52,7 +52,7 @@ end
 directory "#{node[:gitosis][:gitosis_home]}/.ssh" do
   group node[:gitosis][:gid]
   owner node[:gitosis][:uid]
-  mode 0700
+  mode "0700"
   recursive true
   action :create
 end
@@ -66,7 +66,7 @@ end
 if (node[:gitosis][:gitosis_key])
   file "#{node[:gitosis][:gitosis_home]}/.ssh/id_rsa" do
     content node[:gitosis][:gitosis_key]
-    mode 00600
+    mode "00600"
     group node[:gitosis][:gid]
     owner node[:gitosis][:uid]
     backup false
