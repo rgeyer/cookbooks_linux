@@ -18,6 +18,8 @@
   "version": "0.0.1",
   "maintainer": "Ryan J. Geyer",
   "recipes": {
+    "cyrus_sasl::install": "Installs the cyrus-sasl package",
+    "cyrus_sasl::mod_ldap": "Installs the cyrus-sasl ldap package"
   },
   "replacing": {
   },
