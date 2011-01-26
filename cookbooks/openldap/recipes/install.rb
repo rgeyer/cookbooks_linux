@@ -24,7 +24,7 @@ end
 template "/etc/default/slapd" do
   source "slapd.defaults.erb"
   variables( :listen_host => listen_host, :listen_port => listen_port)
-  backup nil
+  backup false
   notifies :restart, resources(:service => "slapd"), :immediately
 end
 

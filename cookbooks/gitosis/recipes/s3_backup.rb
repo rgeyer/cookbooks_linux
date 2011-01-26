@@ -21,6 +21,6 @@ aws_s3 "Upload gitosis backup to S3" do
 end
 
 file gzipfile do
-  backup nil
+  backup false
   action :delete
 end

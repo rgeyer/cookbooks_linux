@@ -9,12 +9,12 @@ rsa_cert="/etc/apache2/ssl/#{node[:web_apache][:accept_fqdn]}.crt"
 rsa_key="/etc/apache2/ssl/#{node[:web_apache][:accept_fqdn]}.key"
 
 file pkcs12_cert do
-  backup nil
+  backup false
   action :nothing
 end
 
 file rsa_pair do
-  backup nil
+  backup false
   action :nothing
 end
 

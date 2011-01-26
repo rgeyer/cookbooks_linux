@@ -14,15 +14,7 @@ db_mysql_gzipfile_restore "Postfix DB restore" do
   file_path gzipfile
 end
 
-#bash "(Over)Write the postfix config db with data from the backup" do
-#  code <<-EOF
-#mysqladmin -uroot -f drop #{node[:mail_postfix][:db_name]}
-#mysqladmin -uroot create #{node[:mail_postfix][:db_name]}
-#gunzip < #{gzipfile} | mysql -u root #{node[:mail_postfix][:db_name]}
-#  EOF
-#end
-
 file gzipfile do
-  backup nil
+  backup false
   action :delete
 end

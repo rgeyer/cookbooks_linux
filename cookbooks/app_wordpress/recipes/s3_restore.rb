@@ -28,6 +28,6 @@ app_wordpress_site node[:web_apache][:vhost_fqdn] do
 end
 
 file tarfile do
-  backup nil
+  backup false
   action :delete
 end

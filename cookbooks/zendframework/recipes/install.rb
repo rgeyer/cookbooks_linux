@@ -15,7 +15,7 @@ end
 # Using remote file is just not doing the trick, gonna go old school
 #remote_file gzipfile do
 #  source zend_dl_uri
-#  backup nil
+#  backup false
 #  action :create
 #end
 

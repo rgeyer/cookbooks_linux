@@ -6,19 +6,19 @@ define :openldap_execute_ldif, :source => nil, :source_type => nil, :executable 
   case params[:source_type]
     when :template
       template dest_file do
-        backup nil
+        backup false
         source params[:source]
         variables params
       end
     when :remote_file
       remote_file dest_file do
         source params[:source]
-        backup nil
+        backup false
       end
     when :file
       dest_file = params[:source]
       file dest_file do
-        backup nil
+        backup false
         action :nothing
       end
   end
