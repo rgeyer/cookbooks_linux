@@ -17,10 +17,14 @@ def update_latest_version()
       action :create
     end
 
-    remote_file "#{latest_version_dir}/wordpress.tar.gz" do
-      source "http://wordpress.org/wordpress-#{latest_version_num}.tar.gz"
-      backup false
+    bash "Downloading Wordpress #{latest_version_num}" do
+      code "wget -q -O #{latest_version_dir}/wordpress.tar.gz http://wordpress.org/wordpress-#{latest_version_num}.tar.gz"
     end
+
+#    remote_file "#{latest_version_dir}/wordpress.tar.gz" do
+#      source "http://wordpress.org/wordpress-#{latest_version_num}.tar.gz"
+#      backup false
+#    end
 
     link "#{node[:app_wordpress][:version_store_path]}/latest" do
       to latest_version_dir
@@ -79,27 +83,10 @@ action :install do
 
     update_latest_version()
 
-#    tempDir = "/tmp/wordpress"
-#
-#    directory tempDir do
-#      recursive true
-#      action :create
-#    end
-
-#    remote_file "#{tempDir}/latest.tar.gz" do
-#      source "http://wordpress.org/latest.tar.gz"
-#      backup false
-#    end
-
     execute "untar wordpress" do
       cwd "#{node[:app_wordpress][:version_store_path]}/latest"
       command "tar --strip-components 1 -zxf wordpress.tar.gz -C #{install_dir}"
     end
-
-#    directory tempDir do
-#      recursive true
-#      action :delete
-#    end
 
     url = URI.parse('http://api.wordpress.org/secret-key/1.1/')
     req = Net::HTTP::Get.new(url.path)
@@ -121,8 +108,9 @@ action :install do
       )
     end
 
-    right_link_tag "wordpress:vhost=#{fqdn}"
   end
+
+  right_link_tag "wordpress:vhost=#{fqdn}"
 end
 
 action :update do
