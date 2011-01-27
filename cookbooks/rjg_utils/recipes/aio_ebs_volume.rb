@@ -19,7 +19,7 @@ bash "Format the AIO EBS volume" do
 grep -q xfs /proc/filesystems || modprobe xfs
 mkfs.xfs /dev/sdi
   EOF
-  #not_if "mount --fake /dev/sdi /dev/null"
+  not_if "mount --fake /dev/sdi /dev/null"
 end
 
 mount node[:rjg_utils][:aio_ebs_mountpoint] do
