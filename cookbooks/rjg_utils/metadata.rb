@@ -13,6 +13,7 @@ depends "app_wordpress"
 recipe "rjg_utils::vhost_aio_boot","Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server"
 recipe "rjg_utils::vhost_aio_backup_all_vhosts","Does what it says it'll do"
 recipe "rjg_utils::schedule_recipes", "Schedules recipes to run hourly,daily,weekly, or monthly using cron"
+recipe "rjg_utils::aio_ebs_volume", "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server."
 
 provides "rjg_utils_schedule_recipe(name, frequency, action)"
 
@@ -43,3 +44,22 @@ attribute "rjg_utils/yaml_bucket",
   :description => "The S3 bucket containing the YAML file used to configure a server instance",
   :recipes => ["rjg_utils::vhost_aio_boot"],
   :required => true
+
+attribute "rjg_utils/aio_ebs_size_in_gb",
+  :display_name => "EBS Volume Size in GB",
+  :recipes => ["rjg_utils::aio_ebs_volume"],
+  :required => "required"
+
+attribute "rjg_utils/aio_ebs_snapshot_id",
+  :display_name => "EBS Volume Snapshot Id",
+  :description => "The full AWS id of a snapshot which will be used to create the volume.  This is used to launch a new server instance with the state stored in the specified snapshot.  If left blank a new EBS volume is created.",
+  :recipes => ["rjg_utils::aio_ebs_volume"],
+  :default => "blank",
+  :required => "optional"
+
+attribute "rjg_utils/aio_ebs_mountpoint",
+  :display_name => "EBS Volume Mountpoint",
+  :description => "The path where the new EBS volume will be mounted.",
+  :recipes => ["rjg_utils::aio_ebs_volume"],
+  :default => "/mnt",
+  :required => "optional"

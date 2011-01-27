@@ -35,6 +35,7 @@
   "recipes": {
     "rjg_utils::vhost_aio_backup_all_vhosts": "Does what it says it'll do",
     "rjg_utils::vhost_aio_boot": "Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server",
+    "rjg_utils::aio_ebs_volume": "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server.",
     "rjg_utils::schedule_recipes": "Schedules recipes to run hourly,daily,weekly, or monthly using cron"
   },
   "replacing": {
@@ -44,6 +45,20 @@
   "groupings": {
   },
   "attributes": {
+    "rjg_utils/aio_ebs_snapshot_id": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "blank",
+      "type": "string",
+      "recipes": [
+        "rjg_utils::aio_ebs_volume"
+      ],
+      "display_name": "EBS Volume Snapshot Id",
+      "description": "The full AWS id of a snapshot which will be used to create the volume.  This is used to launch a new server instance with the state stored in the specified snapshot.  If left blank a new EBS volume is created."
+    },
     "rjg_utils/yaml_bucket": {
       "required": "required",
       "calculated": false,
@@ -95,6 +110,32 @@
       ],
       "display_name": "Configuration YAML file",
       "description": "The filename of a YAML file stored in an S3 bucket used to configure a server instance"
+    },
+    "rjg_utils/aio_ebs_mountpoint": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/mnt",
+      "type": "string",
+      "recipes": [
+        "rjg_utils::aio_ebs_volume"
+      ],
+      "display_name": "EBS Volume Mountpoint",
+      "description": "The path where the new EBS volume will be mounted."
+    },
+    "rjg_utils/aio_ebs_size_in_gb": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::aio_ebs_volume"
+      ],
+      "display_name": "EBS Volume Size in GB"
     }
   },
   "recommendations": {
