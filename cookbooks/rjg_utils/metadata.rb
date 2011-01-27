@@ -63,3 +63,8 @@ attribute "rjg_utils/aio_ebs_mountpoint",
   :recipes => ["rjg_utils::aio_ebs_volume"],
   :default => "/mnt",
   :required => "optional"
+
+attribute "rjg_utils/rs_instance_uuid",
+  :display_name => "env:RS_INSTANCE_UUID",
+  :recipes => ["rjg_utils::aio_ebs_volume"],
+  :required => "required"

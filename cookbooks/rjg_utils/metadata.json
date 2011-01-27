@@ -136,6 +136,18 @@
         "rjg_utils::aio_ebs_volume"
       ],
       "display_name": "EBS Volume Size in GB"
+    },
+    "rjg_utils/rs_instance_uuid": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rjg_utils::aio_ebs_volume"
+      ],
+      "display_name": "env:RS_INSTANCE_UUID"
     }
   },
   "recommendations": {
