@@ -17,5 +17,11 @@ define :rjg_utils_schedule_recipe, :json_file => nil, :frequency => 'daily', :ac
     when 'weekly' then node[:rjg_utils][:weekly_recipes] = daily_recipes.uniq
     when 'monthly' then node[:rjg_utils][:monthly_recipes] = daily_recipes.uniq
   end
-  include_recipe "rjg_utils::schedule_recipes"
+
+  cron_job "recipes_#{params[:frequency]}" do
+    template "cron_rs_run_recipes.erb"
+    frequency params[:frequency]
+    params "recipes" => node_attribute
+    action :schedule
+  end
 end

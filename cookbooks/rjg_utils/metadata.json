@@ -21,7 +21,7 @@
   "long_description": "= DESCRIPTION:\nA collection of utilities that don't fit into any better defined buckets.\n\n= REQUIREMENTS:\n\n== Platform:\nBuilt for, and tested against Ubuntu 10.10.  Many of the recipes also depend upon RightScale and Amazon EC2 and S3\n\n== Cookbooks:\nRequires the following cookbooks from my own repo:\n* aws[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/aws]\n* cron[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/cron]\n* web_apache[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/web_apache]\n* app_wordpress[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/app_wordpress]\n\n= ATTRIBUTES:\n\n= USAGE:\n\n== Defines:\n* rjg_utils_schedule_recipe: Schedules one or many recipes to be run through the RightScale management dashboard using rs_run_recipe\n\nTo schedule one recipe named \"my_app::backup\" to run daily:\n\n  rjg_utils_schedule_recipe \"my_app::backup\"\n\nTo schedule many recipes to run daily:\n\n  rjg_utils_schedule_recipe \"app1::backup,app2::backup,app3::backup\"\n\nTo schedule one recipe named \"my_app::logrotate\" to run weekly:\n\n  rjg_utils_schedule_recipe \"my_app::logrotate\" do\n    frequency \"weekly\"\n  end\n\nTo remove a recipe named \"my_app::backup\" from the daily schedule:\n\n  rjg_utils_schedule_recipe \"my_app::backup\" do\n    action \"delete\"\n  end",
   "description": "Installs/Configures rjg_utils",
   "providing": {
-    "rjg_utils_schedule_recipe(name, frequency, action)": [
+    "rjg_utils_schedule_recipe(name, json_file, frequency, action)": [
 
     ]
   },
@@ -34,9 +34,9 @@
   "maintainer": "Ryan J. Geyer",
   "recipes": {
     "rjg_utils::vhost_aio_backup_all_vhosts": "Does what it says it'll do",
+    "rjg_utils::aio_ebs_voluem_snapshot": "Creates a snapshot of the EBS volume used for persistent storage on an AIO server.",
     "rjg_utils::vhost_aio_boot": "Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server",
-    "rjg_utils::aio_ebs_volume": "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server.",
-    "rjg_utils::schedule_recipes": "Schedules recipes to run hourly,daily,weekly, or monthly using cron"
+    "rjg_utils::aio_ebs_volume": "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server."
   },
   "replacing": {
   },
@@ -81,7 +81,8 @@
       "type": "string",
       "recipes": [
         "rjg_utils::vhost_aio_boot",
-        "rjg_utils::aio_ebs_volume"
+        "rjg_utils::aio_ebs_volume",
+        "rjg_utils::aio_ebs_volume_snapshot"
       ],
       "display_name": "Secret Access Key",
       "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
@@ -95,7 +96,8 @@
       "type": "string",
       "recipes": [
         "rjg_utils::vhost_aio_boot",
-        "rjg_utils::aio_ebs_volume"
+        "rjg_utils::aio_ebs_volume",
+        "rjg_utils::aio_ebs_volume_snapshot"
       ],
       "display_name": "Access Key Id",
       "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
@@ -147,7 +149,8 @@
       ],
       "type": "string",
       "recipes": [
-        "rjg_utils::aio_ebs_volume"
+        "rjg_utils::aio_ebs_volume",
+        "rjg_utils::aio_ebs_volume_snapshot"
       ],
       "display_name": "env:RS_INSTANCE_UUID"
     }
