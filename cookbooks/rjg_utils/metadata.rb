@@ -14,6 +14,7 @@ recipe "rjg_utils::vhost_aio_boot","Does all sorts of wonderful things to config
 recipe "rjg_utils::vhost_aio_backup_all_vhosts","Does what it says it'll do"
 recipe "rjg_utils::aio_ebs_volume", "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server."
 recipe "rjg_utils::aio_ebs_volume_snapshot", "Creates a snapshot of the EBS volume used for persistent storage on an AIO server."
+recipe "rjg_utils::aio_ebs_volume_delete", "Detaches and deletes the single EBS volume."
 
 provides "rjg_utils_schedule_recipe(name, json_file, frequency, action)"
 
@@ -24,13 +25,13 @@ supports "ubuntu"
 attribute "aws/access_key_id",
   :display_name => "Access Key Id",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
-  :recipes => ["rjg_utils::vhost_aio_boot","rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot"],
+  :recipes => ["rjg_utils::vhost_aio_boot","rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot","rjg_utils::aio_ebs_volume_delete"],
   :required => true
 
 attribute "aws/secret_access_key",
   :display_name => "Secret Access Key",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
-  :recipes => ["rjg_utils::vhost_aio_boot","rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot"],
+  :recipes => ["rjg_utils::vhost_aio_boot","rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot","rjg_utils::aio_ebs_volume_delete"],
   :required => true
 
 attribute "rjg_utils/yaml_file",
@@ -66,5 +67,5 @@ attribute "rjg_utils/aio_ebs_mountpoint",
 
 attribute "rjg_utils/rs_instance_uuid",
   :display_name => "env:RS_INSTANCE_UUID",
-  :recipes => ["rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot"],
+  :recipes => ["rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot","rjg_utils::aio_ebs_volume_delete"],
   :required => "required"
