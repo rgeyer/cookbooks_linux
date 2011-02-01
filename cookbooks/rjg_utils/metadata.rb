@@ -61,7 +61,7 @@ attribute "rjg_utils/aio_ebs_snapshot_id",
 attribute "rjg_utils/aio_ebs_mountpoint",
   :display_name => "EBS Volume Mountpoint",
   :description => "The path where the new EBS volume will be mounted.",
-  :recipes => ["rjg_utils::aio_ebs_volume"],
+  :recipes => ["rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot"],
   :default => "/mnt",
   :required => "optional"
 

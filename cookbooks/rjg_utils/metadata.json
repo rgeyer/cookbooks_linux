@@ -127,7 +127,8 @@
       "default": "/mnt",
       "type": "string",
       "recipes": [
-        "rjg_utils::aio_ebs_volume"
+        "rjg_utils::aio_ebs_volume",
+        "rjg_utils::aio_ebs_volume_snapshot"
       ],
       "display_name": "EBS Volume Mountpoint",
       "description": "The path where the new EBS volume will be mounted."
