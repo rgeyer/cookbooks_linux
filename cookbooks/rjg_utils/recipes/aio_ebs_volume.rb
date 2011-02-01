@@ -19,7 +19,11 @@ bash "Format the AIO EBS volume" do
 grep -q xfs /proc/filesystems || modprobe xfs
 mkfs.xfs -q /dev/sdi
   EOF
-  not_if "mkfs.xfs -N /dev/sdi | grep mkfs.xfs"
+  # not_if and only_if run at compile time, when the device wouldn't exist.  I could add an if statement in
+  # the bash code, or make an assumption that if I'm creating a new ebs volume (always the case when no snapshot id
+  # is supplied) it needs to be formatted.
+  #not_if "mkfs.xfs -N /dev/sdi | grep mkfs.xfs"
+  only_if node[:rjg_utils][:aio_ebs_snapshot_id] == "blank"
 end
 
 mount node[:rjg_utils][:aio_ebs_mountpoint] do
