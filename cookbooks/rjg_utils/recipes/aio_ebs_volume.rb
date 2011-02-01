@@ -13,6 +13,17 @@ aws_ebs_volume "aio_ebs-#{node[:rjg_utils][:rs_instance_uuid]}" do
   action [:create, :attach]
 end
 
+# TODO: This is a total hack, but if I don't do it, the mount command below fails when I'm attaching
+# a new volume from a snapshot.  Probably a symptom of another problem but this seems to fix it.
+ruby_block "Wait for /dev/sdi" do
+  block do
+    while !::File.exist?('/dev/sdi') do
+      sleep(2)
+    end
+  end
+end
+
+
 bash "Format the AIO EBS volume" do
   user "root"
   code <<-EOF
