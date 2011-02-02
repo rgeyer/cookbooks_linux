@@ -1,5 +1,9 @@
 include_recipe "aws::default"
 
+bash "Freeze the xfs file system for #{node[:rjg_utils][:aio_ebs_mountpoint]}" do
+  code "xfs_freeze -f #{node[:rjg_utils][:aio_ebs_mountpoint]}"
+end
+
 # TODO: Is it possible to do this, even with processes running? I suspect not..
 mount node[:rjg_utils][:aio_ebs_mountpoint] do
   device "/dev/sdi"
