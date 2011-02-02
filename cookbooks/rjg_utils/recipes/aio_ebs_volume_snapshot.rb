@@ -7,7 +7,8 @@ end
 aws_ebs_volume "aio_ebs-#{node[:rjg_utils][:rs_instance_uuid]}" do
   aws_access_key node[:aws][:access_key_id]
   aws_secret_access_key node[:aws][:secret_access_key]
-  action [:snapshot]
+  snapshots_to_keep node[:rjg_utils][:aio_ebs_snapshots_to_keep]
+  action [:snapshot, :prune]
 end
 
 bash "Unfreeze the xfs file system for #{node[:rjg_utils][:aio_ebs_mountpoint]}" do

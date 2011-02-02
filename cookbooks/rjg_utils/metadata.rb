@@ -67,6 +67,13 @@ attribute "rjg_utils/aio_ebs_mountpoint",
   :default => "/mnt",
   :required => "optional"
 
+attribute "rjg_utils/aio_ebs_snapshots_to_keep",
+  :display_name => "EBS Snapshots To Keep",
+  :description => "The number of snapshots for the AIO EBS volume to keep as history",
+  :default => "7",
+  :required => "optional",
+  :recipes => ["rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot"]
+
 attribute "rjg_utils/rs_instance_uuid",
   :display_name => "env:RS_INSTANCE_UUID",
   :recipes => ["rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot","rjg_utils::aio_ebs_volume_delete"],

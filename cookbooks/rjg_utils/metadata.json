@@ -160,6 +160,21 @@
         "rjg_utils::aio_ebs_volume_delete"
       ],
       "display_name": "env:RS_INSTANCE_UUID"
+    },
+    "rjg_utils/aio_ebs_snapshots_to_keep": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "7",
+      "type": "string",
+      "recipes": [
+        "rjg_utils::aio_ebs_volume",
+        "rjg_utils::aio_ebs_volume_snapshot"
+      ],
+      "display_name": "EBS Snapshots To Keep",
+      "description": "The number of snapshots for the AIO EBS volume to keep as history"
     }
   },
   "recommendations": {
