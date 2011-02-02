@@ -15,6 +15,8 @@ recipe "rjg_utils::vhost_aio_backup_all_vhosts","Does what it says it'll do"
 recipe "rjg_utils::aio_ebs_volume", "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server."
 recipe "rjg_utils::aio_ebs_volume_snapshot", "Creates a snapshot of the EBS volume used for persistent storage on an AIO server."
 recipe "rjg_utils::aio_ebs_volume_delete", "Detaches and deletes the single EBS volume."
+recipe "rjg_utils::aio_ebs_volume_enable_continuous_backup", "Schedules the rjg_utils::aio_ebs_volume_snapshot recipe to run daily"
+recipe "rjg_utils::aio_ebs_volume_disable_continuous_backup", "Stops the scheduled daily run of the rjg_utils::aio_ebs_volume_snapshot recipe"
 
 provides "rjg_utils_schedule_recipe(name, json_file, frequency, action)"
 
