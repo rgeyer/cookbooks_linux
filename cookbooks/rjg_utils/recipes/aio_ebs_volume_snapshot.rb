@@ -7,7 +7,7 @@ end
 aws_ebs_volume "aio_ebs-#{node[:rjg_utils][:rs_instance_uuid]}" do
   aws_access_key node[:aws][:access_key_id]
   aws_secret_access_key node[:aws][:secret_access_key]
-  snapshots_to_keep node[:rjg_utils][:aio_ebs_snapshots_to_keep]
+  snapshots_to_keep node[:rjg_utils][:aio_ebs_snapshots_to_keep].to_i
   action [:snapshot, :prune]
 end
 
