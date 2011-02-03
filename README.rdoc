@@ -4,8 +4,6 @@ A collection of Chef cookbooks for linux (mostly Ubuntu).  Used to configure EC2
 = TODO
 
 == Web & Email Vhost AIO
-* Complete transition to EBS
-  * Continuous backups
 * Require a default vhost
 * Alerts for high apache/mysql load or low/non-existent postfix activity, etc.
 * Ability to deploy Zend Framework apps/sites from SCM (SVN, Git, other?)
