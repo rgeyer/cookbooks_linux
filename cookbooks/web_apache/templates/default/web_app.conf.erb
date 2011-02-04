@@ -7,7 +7,7 @@
 
   <Directory <%= @params[:docroot] %>>
     Options FollowSymLinks
-    AllowOverride <%= @params[:allow_override] %>
+    AllowOverride <% if @params[:allow_override] %><%= @params[:allow_override] %><% else %>None<% end %>
     Order allow,deny
     Allow from all
   </Directory>

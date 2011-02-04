@@ -1,4 +1,4 @@
-define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil, :allow_override => "None" do
+define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil, :allow_override => nil do
   fqdn = params[:fqdn]
   aliases = params[:aliases]
   docroot = "#{node[:web_apache][:content_dir]}/#{fqdn}/htdocs"
