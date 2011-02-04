@@ -123,8 +123,8 @@ action :update do
     update_latest_version()
     version = current_version(install_dir)
     wp_versions = ::Dir.entries(node[:app_wordpress][:version_store_path]).sort
-    if version != wp_versions.last
-      Chef::Log.info "#{fqdn} is already updated to version #{version} of wordpress, no update occurred.."
+    if version == wp_versions.last
+      Chef::Log.info "#{fqdn} is already updated to version #{wp_versions.last} of wordpress, no update occurred.."
     else
       directory tempDir do
         recursive true
