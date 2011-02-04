@@ -3,7 +3,7 @@
 directory node[:gitosis][:gitosis_home] do
   owner node[:gitosis][:uid]
   group node[:gitosis][:gid]
-  mode "0770"
+  mode "0750"
   recursive true
   action :delete
 end
@@ -11,7 +11,7 @@ end
 directory node[:gitosis][:gitosis_home] do
   owner node[:gitosis][:uid]
   group node[:gitosis][:gid]
-  mode "0770"
+  mode "0750"
   recursive true
   action :create
 end
@@ -31,6 +31,7 @@ bash "Unpack the backup" do
 tar -zxf /tmp/gitosis.tar.gz -C #{node[:gitosis][:gitosis_home]}
 chown -R #{node[:gitosis][:uid]}:#{node[:gitosis][:gid]} #{node[:gitosis][:gitosis_home]}
 rm -rf /tmp/gitosis.tar.gz
+chown 750 #{node[:gitosis][:gitosis_home]}
   EOF
 end
 
