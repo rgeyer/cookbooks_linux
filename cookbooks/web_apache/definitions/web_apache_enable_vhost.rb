@@ -1,7 +1,8 @@
-define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil do
+define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil, :allow_override => nil do
   fqdn = params[:fqdn]
   aliases = params[:aliases]
   docroot = "#{node[:web_apache][:content_dir]}/#{fqdn}/htdocs"
+  allow_override = params[:allow_override]
 
   # A workaround for a bug in RightScale's implementation of chef, where exluded optional
   # attributes cause all attributes to be nil.  This allows the user to provide a value
@@ -28,6 +29,7 @@ define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil do
     cookbook "web_apache"
     server_aliases aliases
     docroot docroot
+    allow_override allow_override
   end
 
   right_link_tag "apache2:vhost=#{fqdn}"

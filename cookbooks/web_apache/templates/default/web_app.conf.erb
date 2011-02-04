@@ -4,11 +4,10 @@
   ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
 <% end %>
   DocumentRoot <%= @params[:docroot] %>
-  RewriteEngine On
 
   <Directory <%= @params[:docroot] %>>
     Options FollowSymLinks
-    AllowOverride None
+    AllowOverride <% if @params[:allow_override] %><%= @params[:allow_override] %><% else %>None<% end %>
     Order allow,deny
     Allow from all
   </Directory>
