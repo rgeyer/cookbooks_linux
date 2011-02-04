@@ -62,6 +62,7 @@ action :install do
   web_apache_enable_vhost fqdn do
     fqdn fqdn
     aliases aliases
+    allow_override "FileInfo"
   end
 
   mysql_database "Create database for this wordpress instance" do
