@@ -74,10 +74,11 @@ apache_site "000-default" do
   enable false
 end
 
-docroot=::File.join(node[:web_apache][:content_dir], "#{accept_fqdn}-proxy", "htdocs", "system")
+docroot=::File.join(node[:web_apache][:content_dir], "#{accept_fqdn}-proxy", "htdocs")
+system_root=::File.join(docroot, "system")
 
 # Create the docroot, used for maintenance
-directory docroot do
+directory system_root do
   mode 0775
   owner "www-data"
   group "www-data"
