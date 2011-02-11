@@ -15,7 +15,7 @@
   </Directory>
 
   RewriteEngine On
-  RewriteLog <%= node[:apache][:log_dir] %>/<%= @accept_fqdn %>-rewrite.log
+  RewriteLog <%= node[:apache][:log_dir] %>/<%= @params[:accept_fqdn] %>-rewrite.log
   RewriteLogLevel 0
 
   # Canonical host, <%= @params[:accept_fqdn] %>
@@ -61,7 +61,7 @@
   </Directory>
 
   RewriteEngine On
-  RewriteLog <%= node[:apache][:log_dir] %>/<%= @accept_fqdn %>-rewrite.log
+  RewriteLog <%= node[:apache][:log_dir] %>/<%= @params[:accept_fqdn] %>-rewrite.log
   RewriteLogLevel 0
 
   # Canonical host, <%= @params[:accept_fqdn] %>
