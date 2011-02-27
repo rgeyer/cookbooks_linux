@@ -1,6 +1,6 @@
 include_recipe "php5::default"
 
-package "php-fpm"
+package "php5-fpm"
 
 # start up php-fpm
 service "php5-fpm" do
