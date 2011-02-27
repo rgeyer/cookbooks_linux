@@ -8,6 +8,7 @@ version          "0.0.1"
 depends "apache2"
 
 recipe "php5::default", "Performs the installation of php5, pear, the php5 module for apache, and the smarty template library.  Additional modules can be specified at runtime"
+recipe "php5::fpm", "Installs the PHP-FPM FastCGI manager"
 
 supports "ubuntu"
 
