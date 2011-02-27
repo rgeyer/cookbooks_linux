@@ -1,37 +1,12 @@
 {
-  "license": "All rights reserved",
-  "suggestions": {
-  },
-  "dependencies": {
-    "cron": [
-
-    ],
-    "web_apache": [
-
-    ],
-    "app_wordpress": [
-
-    ],
-    "aws": [
-
-    ]
-  },
   "conflicting": {
   },
-  "long_description": "= DESCRIPTION:\nA collection of utilities that don't fit into any better defined buckets.\n\n= REQUIREMENTS:\n\n== Platform:\nBuilt for, and tested against Ubuntu 10.10.  Many of the recipes also depend upon RightScale and Amazon EC2 and S3\n\n== Cookbooks:\nRequires the following cookbooks from my own repo:\n* aws[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/aws]\n* cron[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/cron]\n* web_apache[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/web_apache]\n* app_wordpress[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/app_wordpress]\n\n= ATTRIBUTES:\n\n= USAGE:\n\n== Defines:\n* rjg_utils_schedule_recipe: Schedules one or many recipes to be run through the RightScale management dashboard using rs_run_recipe\n\nTo schedule one recipe named \"my_app::backup\" to run daily:\n\n  rjg_utils_schedule_recipe \"my_app::backup\"\n\nTo schedule many recipes to run daily:\n\n  rjg_utils_schedule_recipe \"app1::backup,app2::backup,app3::backup\"\n\nTo schedule one recipe named \"my_app::logrotate\" to run weekly:\n\n  rjg_utils_schedule_recipe \"my_app::logrotate\" do\n    frequency \"weekly\"\n  end\n\nTo remove a recipe named \"my_app::backup\" from the daily schedule:\n\n  rjg_utils_schedule_recipe \"my_app::backup\" do\n    action \"delete\"\n  end",
-  "description": "Installs/Configures rjg_utils",
+  "license": "All rights reserved",
   "providing": {
     "rjg_utils_schedule_recipe(name, json_file, frequency, action)": [
 
     ]
   },
-  "platforms": {
-    "ubuntu": [
-
-    ]
-  },
-  "version": "0.0.1",
-  "maintainer": "Ryan J. Geyer",
   "recipes": {
     "rjg_utils::vhost_aio_backup_all_vhosts": "Does what it says it'll do",
     "rjg_utils::aio_ebs_volume_enable_continuous_backup": "Schedules the rjg_utils::aio_ebs_volume_snapshot recipe to run daily",
@@ -41,10 +16,12 @@
     "rjg_utils::aio_ebs_volume": "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server.",
     "rjg_utils::aio_ebs_volume_snapshot": "Creates a snapshot of the EBS volume used for persistent storage on an AIO server."
   },
+  "maintainer": "Ryan J. Geyer",
   "replacing": {
   },
   "maintainer_email": "me@ryangeyer.com",
-  "name": "rjg_utils",
+  "description": "Installs/Configures rjg_utils",
+  "version": "0.0.1",
   "groupings": {
   },
   "attributes": {
@@ -59,8 +36,8 @@
       "recipes": [
         "rjg_utils::aio_ebs_volume"
       ],
-      "display_name": "EBS Volume Snapshot Id",
-      "description": "The full AWS id of a snapshot which will be used to create the volume.  This is used to launch a new server instance with the state stored in the specified snapshot.  If left blank a new EBS volume is created."
+      "description": "The full AWS id of a snapshot which will be used to create the volume.  This is used to launch a new server instance with the state stored in the specified snapshot.  If left blank a new EBS volume is created.",
+      "display_name": "EBS Volume Snapshot Id"
     },
     "rjg_utils/yaml_bucket": {
       "required": "required",
@@ -72,8 +49,8 @@
       "recipes": [
         "rjg_utils::vhost_aio_boot"
       ],
-      "display_name": "Configuration YAML file S3 bucket",
-      "description": "The S3 bucket containing the YAML file used to configure a server instance"
+      "description": "The S3 bucket containing the YAML file used to configure a server instance",
+      "display_name": "Configuration YAML file S3 bucket"
     },
     "aws/secret_access_key": {
       "required": "required",
@@ -88,8 +65,8 @@
         "rjg_utils::aio_ebs_volume_snapshot",
         "rjg_utils::aio_ebs_volume_delete"
       ],
-      "display_name": "Secret Access Key",
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+      "display_name": "Secret Access Key"
     },
     "aws/access_key_id": {
       "required": "required",
@@ -104,8 +81,8 @@
         "rjg_utils::aio_ebs_volume_snapshot",
         "rjg_utils::aio_ebs_volume_delete"
       ],
-      "display_name": "Access Key Id",
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+      "display_name": "Access Key Id"
     },
     "rjg_utils/yaml_file": {
       "required": "required",
@@ -117,8 +94,8 @@
       "recipes": [
         "rjg_utils::vhost_aio_boot"
       ],
-      "display_name": "Configuration YAML file",
-      "description": "The filename of a YAML file stored in an S3 bucket used to configure a server instance"
+      "description": "The filename of a YAML file stored in an S3 bucket used to configure a server instance",
+      "display_name": "Configuration YAML file"
     },
     "rjg_utils/aio_ebs_mountpoint": {
       "required": "optional",
@@ -126,14 +103,14 @@
       "choice": [
 
       ],
-      "default": "/mnt",
+      "default": "/srv",
       "type": "string",
       "recipes": [
         "rjg_utils::aio_ebs_volume",
         "rjg_utils::aio_ebs_volume_snapshot"
       ],
-      "display_name": "EBS Volume Mountpoint",
-      "description": "The path where the new EBS volume will be mounted."
+      "description": "The path where the new EBS volume will be mounted.",
+      "display_name": "EBS Volume Mountpoint"
     },
     "rjg_utils/aio_ebs_size_in_gb": {
       "required": "required",
@@ -173,10 +150,33 @@
         "rjg_utils::aio_ebs_volume",
         "rjg_utils::aio_ebs_volume_snapshot"
       ],
-      "display_name": "EBS Snapshots To Keep",
-      "description": "The number of snapshots for the AIO EBS volume to keep as history"
+      "description": "The number of snapshots for the AIO EBS volume to keep as history",
+      "display_name": "EBS Snapshots To Keep"
     }
   },
   "recommendations": {
-  }
+  },
+  "dependencies": {
+    "cron": [
+
+    ],
+    "web_apache": [
+
+    ],
+    "app_wordpress": [
+
+    ],
+    "aws": [
+
+    ]
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "name": "rjg_utils",
+  "suggestions": {
+  },
+  "long_description": "= DESCRIPTION:\nA collection of utilities that don't fit into any better defined buckets.\n\n= REQUIREMENTS:\n\n== Platform:\nBuilt for, and tested against Ubuntu 10.10.  Many of the recipes also depend upon RightScale and Amazon EC2 and S3\n\n== Cookbooks:\nRequires the following cookbooks from my own repo:\n* aws[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/aws]\n* cron[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/cron]\n* web_apache[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/web_apache]\n* app_wordpress[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/app_wordpress]\n\n= ATTRIBUTES:\n\n= USAGE:\n\n== Defines:\n* rjg_utils_schedule_recipe: Schedules one or many recipes to be run through the RightScale management dashboard using rs_run_recipe\n\nTo schedule one recipe named \"my_app::backup\" to run daily:\n\n  rjg_utils_schedule_recipe \"my_app::backup\"\n\nTo schedule many recipes to run daily:\n\n  rjg_utils_schedule_recipe \"app1::backup,app2::backup,app3::backup\"\n\nTo schedule one recipe named \"my_app::logrotate\" to run weekly:\n\n  rjg_utils_schedule_recipe \"my_app::logrotate\" do\n    frequency \"weekly\"\n  end\n\nTo remove a recipe named \"my_app::backup\" from the daily schedule:\n\n  rjg_utils_schedule_recipe \"my_app::backup\" do\n    action \"delete\"\n  end"
 }

@@ -1,5 +1,5 @@
 #::Dir.foreach(node[:web_apache][:content_dir]) {|fileordir|
-::Dir.foreach("/mnt/www") {|fileordir|
+::Dir.foreach("/srv/www") {|fileordir|
   if (File.directory? fileordir)
     Chef::Log.info "Checking vhost dir #{fileordir}"
     if (File.exist? "#{fileordir}/wordpress.attr.js")

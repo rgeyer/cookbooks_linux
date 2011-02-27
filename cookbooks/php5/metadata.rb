@@ -22,3 +22,10 @@ attribute "php5/module_list",
   :default => "",
   :recipes => ["php5::default"],
   :type => "string"
+
+attribute "php5/server_usage",
+  :display_name => "Server Usage",
+  :description => "* dedicated (where the php-fpm config file allocates all existing resources of the machine)\n* shared (where the php-fpm config file is configured to use less resources so that it can be run concurrently with other apps like MySQL for example)",
+  :recipes => [ "php5::fpm" ],
+  :choice => ["shared", "dedicated"],
+  :default => "dedicated"

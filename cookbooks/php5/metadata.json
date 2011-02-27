@@ -1,32 +1,18 @@
 {
-  "license": "All rights reserved",
-  "suggestions": {
-  },
-  "dependencies": {
-    "apache2": [
-
-    ]
-  },
   "conflicting": {
   },
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "description": "Installs/Configures php5, pear, and smarty",
+  "license": "All rights reserved",
   "providing": {
   },
-  "platforms": {
-    "ubuntu": [
-
-    ]
-  },
-  "version": "0.0.1",
-  "maintainer": "Ryan J. Geyer",
   "recipes": {
     "php5::default": "Performs the installation of php5, pear, the php5 module for apache, and the smarty template library.  Additional modules can be specified at runtime"
   },
+  "maintainer": "Ryan J. Geyer",
   "replacing": {
   },
   "maintainer_email": "me@ryangeyer.com",
-  "name": "php5",
+  "description": "Installs/Configures php5, pear, and smarty",
+  "version": "0.0.1",
   "groupings": {
   },
   "attributes": {
@@ -41,8 +27,23 @@
       "recipes": [
         "php5::default"
       ],
-      "display_name": "PHP5 Module List",
-      "description": "A list of PHP5 modules to install, separated by spaces. Only supply the module name appearing after php5-.  For instance if you wanted php5-mysql and php5-imap installed, this list should be set to \"mysql imap\".  To view a full list of available php5 modules see the Ubuntu package page http://packages.ubuntu.com/search?searchon=names&keywords=php5- "
+      "description": "A list of PHP5 modules to install, separated by spaces. Only supply the module name appearing after php5-.  For instance if you wanted php5-mysql and php5-imap installed, this list should be set to \"mysql imap\".  To view a full list of available php5 modules see the Ubuntu package page http://packages.ubuntu.com/search?searchon=names&keywords=php5- ",
+      "display_name": "PHP5 Module List"
+    },
+    "php5/server_usage": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+        "shared",
+        "dedicated"
+      ],
+      "default": "dedicated",
+      "type": "string",
+      "recipes": [
+        "php5::fpm"
+      ],
+      "description": "* dedicated (where the php-fpm config file allocates all existing resources of the machine)\n* shared (where the php-fpm config file is configured to use less resources so that it can be run concurrently with other apps like MySQL for example)",
+      "display_name": "Server Usage"
     },
     "php5": {
       "required": "optional",
@@ -54,10 +55,24 @@
       "recipes": [
 
       ],
-      "display_name": "php5 hash",
-      "description": "php5"
+      "description": "php5",
+      "display_name": "php5 hash"
     }
   },
   "recommendations": {
-  }
+  },
+  "dependencies": {
+    "apache2": [
+
+    ]
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "name": "php5",
+  "suggestions": {
+  },
+  "long_description": "= DESCRIPTION:\nInstalls Zend Framework 1.11.1 and makes it available to apache and/or the CLI.\n\nAlso provides some tools for deploying zend framework applications using other Chef repos and cookbooks.\n\nWhy not simply install the libzend-framework-php package? Because even on Ubuntu 10.10 it's not the latest version, and\nit doesn't add the zend library to php's include_path.  Believe me, I'd rather use a more standard method to install.\n\n= REQUIREMENTS:\nUbuntu\n\n= ATTRIBUTES:\n\n= USAGE:\n\n"
 }

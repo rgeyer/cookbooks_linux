@@ -2,12 +2,24 @@
 # Cookbook Name:: php5
 # Recipe:: default
 #
-# Copyright 2010, YOUR_COMPANY_NAME
+# Copyright 2010, Ryan J. Geyer
 #
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "apache2"
+# include_recipe "apache2"
+
+# Possible package ppa's for Ubuntu 10.04
+# https://launchpad.net/~nginx/+archive/php5
+# https://launchpad.net/~fabianarias/+archive/php5
+# https://launchpad.net/~chris-lea/+archive/php5.3.3
+if node[:platform] == 'ubuntu' && node[:platform_version] == '10.04'
+  package "python-software-properties"
+  execute "add-apt-repository" do
+    command "add-apt-repository ppa:fabianarias/php5 && apt-get update"
+    action :run
+  end
+end
 
 %w{php5 php5-cli smarty php-pear}.each do |pkgs|
   package pkgs do
