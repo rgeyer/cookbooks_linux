@@ -21,7 +21,7 @@ service "php5-fpm" do
   action [:enable, :start]
 end
 
-template "/etc/php5/fpm/php5-fpm.conf" do
+template "/etc/php5/fpm/main.conf" do
   source "php5-fpm.conf.erb"
   notifies :restart, resources(:service => "php5-fpm"), :immediately
 end
