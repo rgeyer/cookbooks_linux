@@ -135,7 +135,7 @@ pm.max_children = <%= node[:php5_fpm][:tunable][:max_children] %>
 ; The number of child processes created on startup.
 ; Note: Used only when pm is set to 'dynamic'
 ; Default Value: min_spare_servers + (max_spare_servers - min_spare_servers) / 2
-;pm.start_servers = 20
+pm.start_servers = <%= node[:php5_fpm][:tunable][:min_spare] %>
 
 ; The desired minimum number of idle server processes.
 ; Note: Used only when pm is set to 'dynamic'
