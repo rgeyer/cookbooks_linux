@@ -30,3 +30,11 @@ attribute "php5/server_usage",
   :recipes => [ "php5::fpm" ],
   :choice => ["shared", "dedicated"],
   :default => "dedicated"
+
+# This is really just to create a directory for the logfile(s), and is set based on the environment in the default attributes. Don't see
+# a need to allow the user to define this for now
+#attribute "php5/fpm_log_dir",
+#  :display_name => "PHP5-FPM Log Directory",
+#  :description => "The full path to the php5-fpm error log directory.",
+#  :recipes => ["php5::fpm"],
+#  :default => ["/var/log/php5-fpm"]
