@@ -25,3 +25,6 @@ template "/etc/php5/fpm/main.conf" do
   source "php5-fpm.conf.erb"
   notifies :restart, resources(:service => "php5-fpm"), :immediately
 end
+
+# TODO: Instrument it, yo.
+# http://bethesignal.org/blog/2009/07/22/watching-nginx-upstreams-with-collectd/

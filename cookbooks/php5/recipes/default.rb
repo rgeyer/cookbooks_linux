@@ -21,7 +21,7 @@ if node[:platform] == 'ubuntu' && node[:platform_version] == '10.04'
   end
 end
 
-%w{php5 php5-cli smarty php-pear}.each do |pkgs|
+%w{php5-cgi php5-cli smarty php-pear}.each do |pkgs|
   package pkgs do
     action :upgrade
   end
