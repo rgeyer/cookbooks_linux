@@ -1,25 +1,9 @@
 {
-  "license": "All rights reserved",
-  "suggestions": {
-  },
-  "dependencies": {
-    "rs_utils": [
-
-    ]
-  },
   "conflicting": {
   },
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "description": "Installs/Configures openldap",
+  "license": "All rights reserved",
   "providing": {
   },
-  "platforms": {
-    "ubuntu": [
-
-    ]
-  },
-  "version": "0.0.1",
-  "maintainer": "Ryan J. Geyer",
   "recipes": {
     "openldap::create_database": "Creates a new database to contain records for the specified base_dn",
     "openldap::set_config_admin_creds": "Sets the CN (Common Name) and password for the configuration admin",
@@ -27,10 +11,12 @@
     "openldap::enable_rightscale_syslog": "Appends configuration for OpenLDAP to the RightScale syslog configuration.",
     "openldap::install": "Installs a basic, working OpenLDAP server daemon"
   },
+  "maintainer": "Ryan J. Geyer",
   "replacing": {
   },
   "maintainer_email": "me@ryangeyer.com",
-  "name": "openldap",
+  "description": "Installs/Configures openldap",
+  "version": "0.0.1",
   "groupings": {
   },
   "attributes": {
@@ -45,8 +31,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Database Admin CN",
-      "description": "The desired \"Common Name\" for the administrator of the new database"
+      "description": "The desired \"Common Name\" for the administrator of the new database",
+      "display_name": "OpenLDAP Database Admin CN"
     },
     "openldap/schemas": {
       "required": "optional",
@@ -64,8 +50,8 @@
         "openldap::install",
         "openldap::enable_schemas"
       ],
-      "display_name": "OpenLDAP Schemas",
-      "description": "A list (in the form of an array) of schemas to install"
+      "description": "A list (in the form of an array) of schemas to install",
+      "display_name": "OpenLDAP Schemas"
     },
     "openldap/max_lockers": {
       "required": "optional",
@@ -79,8 +65,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Database Max Lockers",
-      "description": "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing."
+      "description": "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing.",
+      "display_name": "OpenLDAP Database Max Lockers"
     },
     "openldap/allow_remote": {
       "required": "required",
@@ -93,8 +79,8 @@
       "recipes": [
         "openldap::install"
       ],
-      "display_name": "OpenLDAP Allow Remote?",
-      "description": "A boolean indicating if the OpenLDAP server should accept remote connections or not"
+      "description": "A boolean indicating if the OpenLDAP server should accept remote connections or not",
+      "display_name": "OpenLDAP Allow Remote?"
     },
     "openldap/base_dn": {
       "required": "optional",
@@ -108,8 +94,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Database Base DN",
-      "description": "The base DN of the new database to create, if left blank the new database will contain all DN's other than cn=config"
+      "description": "The base DN of the new database to create, if left blank the new database will contain all DN's other than cn=config",
+      "display_name": "OpenLDAP Database Base DN"
     },
     "openldap/database_admin_password": {
       "required": "required",
@@ -122,8 +108,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Config Admin password",
-      "description": "The desired password for the administrator of the new database"
+      "description": "The desired password for the administrator of the new database",
+      "display_name": "OpenLDAP Config Admin password"
     },
     "openldap/config_admin_cn": {
       "required": "required",
@@ -136,8 +122,8 @@
         "openldap::install",
         "openldap::set_config_admin_creds"
       ],
-      "display_name": "OpenLDAP Config Admin CN",
-      "description": "The desired \"Common Name\" for the slapd configuration (cn=config) administrator"
+      "description": "The desired \"Common Name\" for the slapd configuration (cn=config) administrator",
+      "display_name": "OpenLDAP Config Admin CN"
     },
     "openldap/max_objects": {
       "required": "optional",
@@ -151,8 +137,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Database Max Objects",
-      "description": "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing."
+      "description": "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing.",
+      "display_name": "OpenLDAP Database Max Objects"
     },
     "openldap/max_locks": {
       "required": "optional",
@@ -166,8 +152,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Database Max Locks",
-      "description": "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing."
+      "description": "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing.",
+      "display_name": "OpenLDAP Database Max Locks"
     },
     "openldap/db_type": {
       "required": "optional",
@@ -182,8 +168,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Database Type",
-      "description": "The OpenLDAP database type, currently only bdb and hdb are supported"
+      "description": "The OpenLDAP database type, currently only bdb and hdb are supported",
+      "display_name": "OpenLDAP Database Type"
     },
     "openldap/listen_port": {
       "required": "optional",
@@ -196,8 +182,8 @@
       "recipes": [
         "openldap::install"
       ],
-      "display_name": "OpenLDAP listen port",
-      "description": "The TCP/IP port the OpenLDAP server should listen on"
+      "description": "The TCP/IP port the OpenLDAP server should listen on",
+      "display_name": "OpenLDAP listen port"
     },
     "openldap/checkpoint": {
       "required": "optional",
@@ -211,8 +197,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Database Checkpoint",
-      "description": "A Berkley DB tuning setting, leave it as \"512 30\" if you don't know what you're doing."
+      "description": "A Berkley DB tuning setting, leave it as \"512 30\" if you don't know what you're doing.",
+      "display_name": "OpenLDAP Database Checkpoint"
     },
     "openldap/cache_size": {
       "required": "optional",
@@ -226,8 +212,8 @@
         "openldap::install",
         "openldap::create_database"
       ],
-      "display_name": "OpenLDAP Database Cache Size",
-      "description": "A Berkley DB tuning setting, leave it as \"0 2097152 0\" if you don't know what you're doing."
+      "description": "A Berkley DB tuning setting, leave it as \"0 2097152 0\" if you don't know what you're doing.",
+      "display_name": "OpenLDAP Database Cache Size"
     },
     "openldap/config_admin_password": {
       "required": "required",
@@ -240,10 +226,24 @@
         "openldap::install",
         "openldap::set_config_admin_creds"
       ],
-      "display_name": "OpenLDAP Config Admin password",
-      "description": "The desired password for the slapd configuration (cn=config) administrator"
+      "description": "The desired password for the slapd configuration (cn=config) administrator",
+      "display_name": "OpenLDAP Config Admin password"
     }
   },
   "recommendations": {
-  }
+  },
+  "dependencies": {
+    "rs_utils": [
+
+    ]
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "name": "openldap",
+  "suggestions": {
+  },
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n"
 }

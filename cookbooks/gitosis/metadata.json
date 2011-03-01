@@ -1,28 +1,9 @@
 {
-  "license": "All rights reserved",
-  "suggestions": {
-  },
-  "dependencies": {
-    "rjg_utils": [
-
-    ],
-    "aws": [
-
-    ]
-  },
   "conflicting": {
   },
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "description": "Installs/Configures gitosis",
+  "license": "All rights reserved",
   "providing": {
   },
-  "platforms": {
-    "ubuntu": [
-
-    ]
-  },
-  "version": "0.0.1",
-  "maintainer": "Ryan J. Geyer",
   "recipes": {
     "gitosis::enable_continuous_backup": "Sets up a cron job to run the gitosis::s3_backup recipe daily",
     "gitosis::s3_backup": "Backs up all gitosis files to an S3 bucket",
@@ -31,10 +12,12 @@
     "gitosis::install": "Installs gitosis in the specified directory",
     "gitosis::disable_continuous_backup": "Kills the cron job which runs gitosis::s3_backup daily"
   },
+  "maintainer": "Ryan J. Geyer",
   "replacing": {
   },
   "maintainer_email": "me@ryangeyer.com",
-  "name": "gitosis",
+  "description": "Installs/Configures gitosis",
+  "version": "0.0.1",
   "groupings": {
   },
   "attributes": {
@@ -49,8 +32,8 @@
         "gitosis::s3_backup",
         "gitosis::s3_restore"
       ],
-      "display_name": "Gitosis Backup Prefix",
-      "description": "The prefix of the filename stored in S3 for backups."
+      "description": "The prefix of the filename stored in S3 for backups.",
+      "display_name": "Gitosis Backup Prefix"
     },
     "aws/secret_access_key": {
       "required": "required",
@@ -63,8 +46,8 @@
         "gitosis::s3_backup",
         "gitosis::s3_restore"
       ],
-      "display_name": "Secret Access Key",
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+      "display_name": "Secret Access Key"
     },
     "gitosis/gitosis_home": {
       "required": "optional",
@@ -80,8 +63,8 @@
         "gitosis::s3_backup",
         "gitosis::s3_restore"
       ],
-      "display_name": "Gitosis Home Directory",
-      "description": "The full path to the home directory for Gitosis"
+      "description": "The full path to the home directory for Gitosis",
+      "display_name": "Gitosis Home Directory"
     },
     "aws/access_key_id": {
       "required": "required",
@@ -94,8 +77,8 @@
         "gitosis::s3_backup",
         "gitosis::s3_restore"
       ],
-      "display_name": "Access Key Id",
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+      "display_name": "Access Key Id"
     },
     "gitosis/s3_bucket": {
       "required": "required",
@@ -108,8 +91,8 @@
         "gitosis::s3_backup",
         "gitosis::s3_restore"
       ],
-      "display_name": "Gitosis Backup S3 Bucket",
-      "description": "The namne of the S3 bucket for backups."
+      "description": "The namne of the S3 bucket for backups.",
+      "display_name": "Gitosis Backup S3 Bucket"
     },
     "gitosis/gitosis_key": {
       "required": "optional",
@@ -122,8 +105,8 @@
         "gitosis::default",
         "gitosis::install"
       ],
-      "display_name": "Gitosis Private Key",
-      "description": "Private RSA (or DSA) key material to be used when initializing the gitosis repository/home"
+      "description": "Private RSA (or DSA) key material to be used when initializing the gitosis repository/home",
+      "display_name": "Gitosis Private Key"
     },
     "gitosis/backup_history_to_keep": {
       "required": "optional",
@@ -136,10 +119,27 @@
       "recipes": [
         "gitosis::s3_backup"
       ],
-      "display_name": "Gitosis Backups to keep",
-      "description": "The number of S3 backups to keep as history."
+      "description": "The number of S3 backups to keep as history.",
+      "display_name": "Gitosis Backups to keep"
     }
   },
   "recommendations": {
-  }
+  },
+  "dependencies": {
+    "rjg_utils": [
+
+    ],
+    "aws": [
+
+    ]
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "name": "gitosis",
+  "suggestions": {
+  },
+  "long_description": "= DESCRIPTION:\n\nTODO: Add some nice info on how to use the \"private key\" input.  It is only used to initialize the repo, and\nsetup access to the gitosis-admin.  Might want to provide best practices so that people aren't exposing their\nadmin repo.\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n"
 }

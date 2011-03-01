@@ -16,6 +16,7 @@ supports "ubuntu"
 depends "apache2"
 depends "aws"
 depends "rs_utils"
+depends "utils"
 
 attribute "web_apache",
   :display_name => "apache hash",

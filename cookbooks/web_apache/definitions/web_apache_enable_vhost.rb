@@ -1,7 +1,8 @@
 define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil, :allow_override => nil do
   fqdn = params[:fqdn]
   aliases = params[:aliases]
-  docroot = "#{node[:web_apache][:content_dir]}/#{fqdn}/htdocs"
+  docroot = ::File.join(node[:web_apache][:content_dir], fqdn, "htdocs")
+  systemroot = ::File.join(docroot, "system")
   allow_override = params[:allow_override]
 
   # A workaround for a bug in RightScale's implementation of chef, where exluded optional
@@ -13,7 +14,7 @@ define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil, :allow_override 
   Chef::Log.info "Setting up vhost for fqdn (#{fqdn})"
 
   # Create the sites new home
-  directory docroot do
+  directory systemroot do
     mode 0775
     owner "www-data"
     group "www-data"
