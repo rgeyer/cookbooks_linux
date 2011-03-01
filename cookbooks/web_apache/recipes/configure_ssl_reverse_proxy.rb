@@ -11,6 +11,7 @@ rsa_keypair_from_pkcs12 "Convert PKCS12 to RSA keypair" do
   s3_file "#{underscored_accept_fqdn}.pkcs12"
   rsa_cert_path rsa_cert
   rsa_key_path rsa_key
+  pkcs12_pass node[:web_apache][:pkcs12_pass]
 end
 
 apache_module "ssl"
