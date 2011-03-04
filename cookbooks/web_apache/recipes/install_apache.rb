@@ -119,7 +119,11 @@ service "collectd" do
   action :nothing
 end
 
+# Load the apache plugin in the main config file
+node[:rs_utils][:plugin_list] += " apache" unless node[:rs_utils][:plugin_list] =~ /apache/
 node[:rs_utils][:process_list] += " apache2" unless node[:rs_utils][:process_list] =~ /apache2/
+
+include_recipe "rs_utils::setup_monitoring"
 
 # Enable monitoring
 file "#{node[:apache][:dir]}/conf.d/status.conf" do
@@ -137,7 +141,7 @@ end
 
 file ::File.join(node.rs_utils.collectd_plugin_dir, "apache.conf") do
   content <<-EOF
-LoadPlugin apache
+#LoadPlugin apache
 <Plugin apache>
   URL "http://localhost/server-status?auto"
 </Plugin>

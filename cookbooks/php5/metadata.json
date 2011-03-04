@@ -63,9 +63,6 @@
   "recommendations": {
   },
   "dependencies": {
-    "apache2": [
-
-    ]
   },
   "platforms": {
     "ubuntu": [

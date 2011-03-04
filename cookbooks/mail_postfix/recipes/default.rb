@@ -7,6 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# Load the tail plugin in the main config file
+node[:rs_utils][:plugin_list] += " tail" unless node[:rs_utils][:plugin_list] =~ /tail/
+
 include_recipe "rs_utils::setup_monitoring"
 
 node[:mail_postfix][:packages].each do |pkg|

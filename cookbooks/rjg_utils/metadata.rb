@@ -7,6 +7,7 @@ version          "0.0.1"
 
 depends "aws"
 depends "cron"
+depends "rs_utils"
 depends "web_apache"
 depends "app_wordpress"
 
