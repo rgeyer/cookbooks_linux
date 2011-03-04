@@ -42,6 +42,7 @@ server {
 
   location ~ .php$ {
     fastcgi_pass   unix:/var/run/php5-fpm.sock;
+    access_log <%= node[:nginx][:log_dir] %>/phpfpm-upstream.log phpfpm_stats;
   }
 
   location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
