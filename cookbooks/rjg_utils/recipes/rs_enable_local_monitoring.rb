@@ -1,5 +1,14 @@
 include_recipe "rs_utils::setup_monitoring"
 
+# Nuke & recreate the rrd directory
+directory "/var/lib/collectd/rrd" do
+  recursive true
+  mode 0755
+  owner "root"
+  group "root"
+  action [:delete, :create]
+end
+
 ruby_block "Fix BaseDir Directive" do
   block do
     # Replace <BaseDir   "/var/lib/collectd"> with <BaseDir   "/var/lib/collectd/rrd">
@@ -13,7 +22,6 @@ ruby_block "Fix BaseDir Directive" do
   end
 end
 
-
 file ::File.join(node[:rs_utils][:collectd_plugin_dir], "rrdtool.conf") do
   content <<-EOF
 LoadPlugin rrdtool
@@ -26,4 +34,5 @@ LoadPlugin rrdtool
   group "root"
   backup false
   action :create
+  notifies :restart, resources(:service => "collectd")
 end
