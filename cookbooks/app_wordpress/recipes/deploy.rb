@@ -1,5 +1,5 @@
 # TODO: So this sorta assumes that an instance runs either nginx or apache2, but not both
-is_apache2 = `which apache2` != nil
+is_apache2 = ::File.exists? `which apache2`
 content_dir = is_apache2 ? node[:web_apache][:content_dir] : node[:nginx][:content_dir]
 webserver = is_apache2 ? "apache2" : "nginx"
 
