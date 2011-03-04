@@ -40,14 +40,14 @@ attribute "aws/secret_access_key",
   :recipes => ["app_wordpress::s3_backup", "app_wordpress::s3_restore"],
   :required => true
 
-attribute "web_apache/vhost_fqdn",
-  :display_name => "VHOST FQDN",
-  :description => "The fully qualified domain name (FQDN) of the new vhost to create.  Example www.apache.org",
+attribute "app_wordpress/vhost_fqdn",
+  :display_name => "Wordpress VHOST FQDN",
+  :description => "The fully qualified domain name (FQDN) of the new vhost to deploy wordpress to.  Example www.apache.org",
   :required => true,
   :recipes => ["app_wordpress::deploy","app_wordpress::s3_backup", "app_wordpress::s3_restore", "app_wordpress::update", "app_wordpress::enable_continuous_backup"]
 
-attribute "web_apache/vhost_aliases",
-  :display_name => "VHOST Aliases",
+attribute "app_wordpress/vhost_aliases",
+  :display_name => "Wordpress VHOST Aliases",
   :description => "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces",
   :default => "",
   :recipes => ["app_wordpress::deploy","app_wordpress::s3_restore"]

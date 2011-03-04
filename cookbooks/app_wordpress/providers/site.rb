@@ -53,16 +53,25 @@ action :install do
 
   underscored_fqdn = fqdn.gsub(".", "_")
   underscored_fqdn_16 = underscored_fqdn.slice(0..15)
-  vhost_dir = "#{node[:web_apache][:content_dir]}/#{fqdn}"
+  vhost_dir = "#{new_resource.content_dir}/#{fqdn}"
   install_dir = "#{vhost_dir}/htdocs"
 
   Chef::Log.info "Installing a wordpress instance for vhost #{fqdn}"
 
   # This step creates the directory, so lets do that first
-  web_apache_enable_vhost fqdn do
-    fqdn fqdn
-    aliases aliases
-    allow_override "FileInfo"
+  if new_resource.webserver == "apache2"
+    web_apache_enable_vhost fqdn do
+      fqdn fqdn
+      aliases aliases
+      allow_override "FileInfo"
+    end
+  else
+    nginx_enable_vhost fqdn do
+      cookbook "app_wordpress"
+      template "nginx.conf.erb"
+      fqdn fqdn
+      aliases aliases
+    end
   end
 
   mysql_database "Create database for this wordpress instance" do
@@ -117,7 +126,7 @@ end
 action :update do
   fqdn = new_resource.fqdn
   tempDir = "/tmp/wordpress"
-  install_dir = "#{node[:web_apache][:content_dir]}/#{fqdn}/htdocs"
+  install_dir = "#{new_resource.content_dir}/#{fqdn}/htdocs"
   wpcontent_dir = "#{install_dir}/wp-content"
 
   if ::File.directory? wpcontent_dir
@@ -158,7 +167,7 @@ action :backup do
   backup_file_path = new_resource.backup_file_path
 
   underscored_fqdn = fqdn.gsub(".", "_")
-  install_dir = "#{node[:web_apache][:content_dir]}/#{fqdn}/htdocs"
+  install_dir = "#{new_resource.content_dir}/#{fqdn}/htdocs"
   version = current_version(install_dir)
 
   tempdir = "/tmp/wordpress-bak"
@@ -224,7 +233,7 @@ action :restore do
   backup_file_path = new_resource.backup_file_path
 
   underscored_fqdn = fqdn.gsub(".", "_")
-  install_dir = "#{node[:web_apache][:content_dir]}/#{fqdn}/htdocs"
+  install_dir = "#{new_resource.content_dir}/#{fqdn}/htdocs"
   wpcontent_dir = "#{install_dir}/wp-content"
 
   tempdir = "/tmp/wordpress-restore"

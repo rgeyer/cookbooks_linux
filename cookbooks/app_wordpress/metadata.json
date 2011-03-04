@@ -24,6 +24,21 @@
   "groupings": {
   },
   "attributes": {
+    "app_wordpress/vhost_aliases": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "",
+      "type": "string",
+      "recipes": [
+        "app_wordpress::deploy",
+        "app_wordpress::s3_restore"
+      ],
+      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces",
+      "display_name": "Wordpress VHOST Aliases"
+    },
     "app_wordpress/s3_bucket": {
       "required": "required",
       "calculated": false,
@@ -39,7 +54,7 @@
       "description": "The namne of the S3 bucket for backups.",
       "display_name": "Vhost Backup S3 Bucket"
     },
-    "web_apache/vhost_fqdn": {
+    "app_wordpress/vhost_fqdn": {
       "required": "required",
       "calculated": false,
       "choice": [
@@ -53,8 +68,8 @@
         "app_wordpress::update",
         "app_wordpress::enable_continuous_backup"
       ],
-      "description": "The fully qualified domain name (FQDN) of the new vhost to create.  Example www.apache.org",
-      "display_name": "VHOST FQDN"
+      "description": "The fully qualified domain name (FQDN) of the new vhost to deploy wordpress to.  Example www.apache.org",
+      "display_name": "Wordpress VHOST FQDN"
     },
     "aws/secret_access_key": {
       "required": "required",
@@ -95,21 +110,6 @@
 
       ],
       "display_name": "app_wordpress"
-    },
-    "web_apache/vhost_aliases": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "",
-      "type": "string",
-      "recipes": [
-        "app_wordpress::deploy",
-        "app_wordpress::s3_restore"
-      ],
-      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces",
-      "display_name": "VHOST Aliases"
     },
     "app_wordpress/backup_history_to_keep": {
       "required": "optional",
