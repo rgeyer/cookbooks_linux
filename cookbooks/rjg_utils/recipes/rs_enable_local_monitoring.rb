@@ -33,6 +33,6 @@ LoadPlugin rrdtool
   owner "root"
   group "root"
   backup false
-  action :create
   notifies :restart, resources(:service => "collectd")
+  action :create
 end
