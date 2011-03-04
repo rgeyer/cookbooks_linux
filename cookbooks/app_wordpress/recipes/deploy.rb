@@ -1,6 +1,8 @@
 # TODO: So this sorta assumes that an instance runs either nginx or apache2, but not both
 is_apache2 = `which apache2` != nil
 
+Chef::Log.info("Is Apache2 was (#{is_apache2})")
+
 app_wordpress_site "Deploy Wordpress for a vhost" do
   fqdn node[:app_wordpress][:vhost_fqdn]
   aliases node[:app_wordpress][:vhost_aliases]
