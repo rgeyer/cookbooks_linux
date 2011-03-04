@@ -13,6 +13,7 @@
     "rjg_utils::aio_ebs_volume_delete": "Detaches and deletes the single EBS volume.",
     "rjg_utils::vhost_aio_boot": "Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server",
     "rjg_utils::aio_ebs_volume_disable_continuous_backup": "Stops the scheduled daily run of the rjg_utils::aio_ebs_volume_snapshot recipe",
+    "rjg_utils::rs_enable_local_monitoring": "Adds local rrd file writing to a RightScale configured collectd instance",
     "rjg_utils::aio_ebs_volume": "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server.",
     "rjg_utils::aio_ebs_volume_snapshot": "Creates a snapshot of the EBS volume used for persistent storage on an AIO server."
   },
