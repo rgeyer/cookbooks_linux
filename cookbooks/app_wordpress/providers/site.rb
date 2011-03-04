@@ -120,6 +120,18 @@ action :install do
 
   end
 
+  if new_resource.webserver == "nginx"
+    bash "Downloading nginx compatibility plugin" do
+      cwd "#{install_dir}/wp-content/plugins"
+      code <<-EOF
+wget -q -O nginx-compatibility.zip http://downloads.wordpress.org/plugin/nginx-compatibility.0.2.5.zip
+unzip nginx-compatibility.zip
+rm -rf nginx-compatibility.zip
+      EOF
+      not_if ::File.directory? "#{install_dir}/wp-content/plugins/nginx-compatibility"
+    end
+  end
+
   right_link_tag "wordpress:vhost=#{fqdn}"
 end
 

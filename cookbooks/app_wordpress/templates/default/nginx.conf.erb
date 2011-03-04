@@ -18,10 +18,21 @@ server {
 
   root <%= node[:nginx][:content_dir] %>/<%= @params[:fqdn] %>/htdocs/;
 
-  # Display a maintenance page if it exists.
-  try_files /system/maintenance.html @proxy;
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
 
-  try_files $uri $uri/ /index.php?q=$uri;
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+
+  location / {
+    index index.html index.php;
+    try_files /system/maintenance.html $uri $uri/ /index.php?q=$args;
+  }
 
   location ~ .php$ {
     fastcgi_pass   unix:/var/run/php5-fpm.sock;
@@ -42,5 +53,10 @@ server {
     fastcgi_param REQUEST_METHOD $request_method;
     fastcgi_param CONTENT_TYPE $content_type;
     fastcgi_param CONTENT_LENGTH $content_length;
+  }
+
+  location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+    expires max;
+    log_not_found off;
   }
 }
