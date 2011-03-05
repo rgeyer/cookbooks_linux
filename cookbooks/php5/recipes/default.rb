@@ -16,9 +16,11 @@
 if node[:platform] == 'ubuntu' && node[:platform_version] == '10.04'
   package "python-software-properties"
   execute "add-apt-repository" do
-    command "add-apt-repository ppa:fabianarias/php5 && apt-get update"
-    action :run
+    command "add-apt-repository ppa:fabianarias/php5 && apt-get update -o Acquire::http::No-Cache"
+    action :nothing
   end
+
+  e.run_action(:run)
 end
 
 %w{php5-cgi php5-cli smarty php-pear}.each do |pkgs|
