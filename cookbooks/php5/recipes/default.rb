@@ -16,9 +16,9 @@
 if node[:platform] == 'ubuntu' && node[:platform_version] == '10.04'
   bash "add-apt-repository" do
     code <<-EOF
-apt-get install python-software-properties
+apt-get -y -q install python-software-properties
 add-apt-repository ppa:fabianarias/php5
-apt-get update -o Acquire::http::No-Cache
+apt-get update -o Acquire::http::No-Cache=1
 EOF
     action :nothing
   end
