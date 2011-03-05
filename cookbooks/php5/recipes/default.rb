@@ -14,9 +14,12 @@
 # https://launchpad.net/~fabianarias/+archive/php5
 # https://launchpad.net/~chris-lea/+archive/php5.3.3
 if node[:platform] == 'ubuntu' && node[:platform_version] == '10.04'
-  package "python-software-properties"
-  execute "add-apt-repository" do
-    command "add-apt-repository ppa:fabianarias/php5 && apt-get update -o Acquire::http::No-Cache"
+  bash "add-apt-repository" do
+    code <<-EOF
+apt-get install python-software-properties
+add-apt-repository ppa:fabianarias/php5
+apt-get update -o Acquire::http::No-Cache
+EOF
     action :nothing
   end
 
