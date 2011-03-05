@@ -14,7 +14,7 @@
 # https://launchpad.net/~fabianarias/+archive/php5
 # https://launchpad.net/~chris-lea/+archive/php5.3.3
 if node[:platform] == 'ubuntu' && node[:platform_version] == '10.04'
-  bash "add-apt-repository" do
+  e = bash "add-apt-repository" do
     code <<-EOF
 apt-get -y -q install python-software-properties
 add-apt-repository ppa:fabianarias/php5
