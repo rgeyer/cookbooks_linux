@@ -15,10 +15,10 @@ template "/etc/logrotate.d/php5-fpm" do
   source "php5-fpm-logrotate.erb"
 end
 
-# start up php-fpm
+# enable php-fpm service
 service "php5-fpm" do
   supports :restart => true
-  action [:enable, :start]
+  action [:enable]
 end
 
 template "/etc/php5/fpm/main.conf" do
