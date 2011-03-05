@@ -1,5 +1,11 @@
 include_recipe "php5::default"
 
+# The default config for php-fpm blows up if there is no /var/www directory
+directory "/var/www" do
+  recursive true
+  action :create
+end
+
 package "php5-fpm"
 
 directory node[:php5][:fpm_log_dir] do
