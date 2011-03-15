@@ -9,8 +9,6 @@ server {
 }
 <% end -%>
 
-include fastcgi_params;
-
 server {
   listen 80;
   server_name <%= @params[:fqdn] %>;
@@ -41,7 +39,7 @@ server {
   }
 
   location ~ .php$ {
-    fastcgi_pass   unix:/var/run/php5-fpm.sock;
+    fastcgi_pass   <%= node[:php5_fpm][:listen] %>;
     access_log <%= node[:nginx][:log_dir] %>/phpfpm-upstream.log phpfpm_stats;
   }
 
@@ -49,4 +47,7 @@ server {
     expires max;
     log_not_found off;
   }
+
+  include <%= node[:nginx][:dir] %>/sites-available/<%= @params[:fqdn] %>.d/*.conf;
+  include <%= node[:nginx][:content_dir] %>/<%= @params[:fqdn] %>/nginx_config/*.conf;
 }

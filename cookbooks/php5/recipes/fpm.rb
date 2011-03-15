@@ -31,3 +31,5 @@ template "/etc/php5/fpm/main.conf" do
   source "php5-fpm.conf.erb"
   notifies :restart, resources(:service => "php5-fpm"), :immediately
 end
+
+# TODO: Stats http://forum.nginx.org/read.php?3,56426

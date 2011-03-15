@@ -1,0 +1,39 @@
+<Plugin "curl_json">
+  <Page "php5-fpm">
+    URL "http://localhost/fpm_status?json"
+    Instance "scoreboard"
+    <Key "idle connections">
+      Type "gauge"
+    </Key>
+    <Key "active connections">
+      Type "gauge"
+    </Key>
+    <Key "total connections">
+      Type "gauge"
+    </Key>
+#    <Match>
+#      Regex "^idle.*([0-9]+)"
+#      DSType "GaugeLast"
+#      Type "gauge"
+#      Instance "idle_processes"
+#    </Match>
+#    <Match>
+#      Regex "^active.*([0-9]+)"
+#      DSType "GaugeLast"
+#      Type "gauge"
+#      Instance "active_processes"
+#    </Match>
+#    <Match>
+#      Regex "^total.*([0-9]+)"
+#      DSType "GaugeLast"
+#      Type "gauge"
+#      Instance "total_processes"
+#    </Match>
+#    <Match>
+#      Regex "^accepted.*([0-9]+)"
+#      DSType "GaugeAverage"
+#      Type "gauge"
+#      Instance "connections"
+#    </Match>
+  </Page>
+</Plugin>

@@ -104,6 +104,8 @@ action :install do
       http.request(req)
     }
 
+    # TODO: By leaving this in this block, if a different DB password is provided, things will break.
+    # May want to reconsider the unless ::File.directory? above
     template "#{install_dir}/wp-config.php" do
       source "wp-config.php.erb"
       mode 0400

@@ -72,7 +72,7 @@ emergency_restart_interval = 1m
 ;                            specific port;
 ;   '/path/to/unix/socket' - to listen on a unix socket.
 ; Note: This value is mandatory.
-listen = /var/run/php5-fpm.sock
+listen = <%= node[:php5_fpm][:listen] %>
 ;listen = 127.0.0.1:9000
 
 ; Set listen(2) backlog. A value of '-1' means unlimited.
