@@ -5,16 +5,161 @@
   "providing": {
   },
   "recipes": {
+    "rightgrid::default": "Installs the specified RightGrid application and gets it rolling"
   },
   "maintainer": "Ryan J. Geyer",
   "replacing": {
   },
   "maintainer_email": "me@ryangeyer.com",
-  "description": "Installs/Configures rg_shp2db",
+  "description": "Installs/Configures rightgrid",
   "version": "0.0.1",
   "groupings": {
   },
   "attributes": {
+    "rightgrid/output_queue": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "The Amazon SQS queue used for output from RightGrid",
+      "display_name": "Output Queue"
+    },
+    "rightgrid/access_key_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+      "display_name": "Access Key Id"
+    },
+    "rightgrid/audit_queue": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "The Amazon SQS queue used for audit info from RightGrid",
+      "display_name": "Audit Queue"
+    },
+    "rightgrid/git_repo": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid:default"
+      ],
+      "description": "A GIT repository containing the grid worker class",
+      "display_name": "GIT Repository"
+    },
+    "rightgrid/worker_count": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "10",
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "The number of workers (in individual threads) RightGrid start",
+      "display_name": "Worker Count"
+    },
+    "rightgrid/worker_gems": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "A list of additional gems (separated by white space) to be installed which are required by the workers",
+      "display_name": "Worker Gems"
+    },
+    "rightgrid/input_queue": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "The Amazon SQS queue used for input to RightGrid",
+      "display_name": "Input Queue"
+    },
+    "rightgrid/secret_access_key": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+      "display_name": "Secret Access Key"
+    },
+    "rightgrid/s3_bucket": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "An S3 bucket where RightGrid will store it's input, output, and log files",
+      "display_name": "S3 Bucket"
+    },
+    "rightgrid/worker_name": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "The name of the class RightGrid will use to complete work",
+      "display_name": "Worker Class Name"
+    },
+    "rightgrid/git_reference": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid:default"
+      ],
+      "description": "The name of a branch, tag, or commit to pull.  If nothing is supplied \"master\" is cloned",
+      "display_name": "GIT Branch/Tag/SHA1"
+    }
   },
   "recommendations": {
   },
@@ -22,7 +167,7 @@
   },
   "platforms": {
   },
-  "name": "rg_shp2db",
+  "name": "rightgrid",
   "suggestions": {
   },
   "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n"

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: rg_shp2db
+# Cookbook Name:: rightgrid
 # Recipe:: default
 #
 #  Copyright 2011 Ryan J. Geyer
@@ -15,3 +15,28 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+# Install the necessary gems
+node[:rightgrid][:worker_gems].split(' ').each do |gem|
+  gem_package gem
+end
+
+directory node[:rightgrid][:rundir] do
+  recursive true
+end
+
+template ::File.join(node[:rightgrid][:rundir], "rightworker.yml") do
+  source "rightworker.yml.erb"
+end
+
+git node[:rightgrid][:rundir] do
+  repository node[:rightgrid][:git_repo]
+  if node[:rightgrid][:git_reference]
+    reference node[:rightgrid][:git_reference]
+  end
+  action :sync
+end
+
+bash "Launch the rightworker" do
+  cwd node[:rightgrid][:rundir]
+  code "rightworker start -e development -d"
+end

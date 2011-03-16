@@ -1,0 +1,23 @@
+development:
+ RightWorkersDaemon:
+  aws_access_key: <%= node[:rightgrid][:aws_access_key_id] %>
+  aws_secret_access_key: <%= node[:rightgrid][:aws_secret_access_key] %>
+  log: <%= node[:rightgrid][:worker_name] %>.log
+  halt_on_exit: true
+  workers: <%= node[:rightgrid][:worker_count] %>
+  user:
+  queues:
+    <%= node[:rightgrid][:input_queue] %>:
+      invocation_model: oneshot
+      result_queue: <%= node[:rightgrid][:output_queue] %>
+      audit_queue: <%= node[:rightgrid][:audit_queue] %>
+      message_decoder: RightYamlDecoder
+      s3_log: <%= node[:rightgrid][:s3_bucket] %>/log/%{DATE}/%{MESSAGE_ID}
+      s3_out: <%= node[:rightgrid][:s3_bucket] %>/out/%{DATE}-%{TIME}-%{MESSAGE_ID}
+      receive_message_timeout: 3600
+      default_worker_name: <%= node[:rightgrid][:worker_name] %>
+      life_time_after_fault: 7200
+      s3_in: /tmp/s3_in
+      s3_in_delete: false
+      s3_in_overwrite: false
+      s3_in_flat: true
