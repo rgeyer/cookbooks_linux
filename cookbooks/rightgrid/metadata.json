@@ -29,19 +29,6 @@
       "description": "The Amazon SQS queue used for output from RightGrid",
       "display_name": "Output Queue"
     },
-    "rightgrid/access_key_id": {
-      "required": "required",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "rightgrid::default"
-      ],
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
-      "display_name": "Access Key Id"
-    },
     "rightgrid/audit_queue": {
       "required": "required",
       "calculated": false,
@@ -108,7 +95,7 @@
       "description": "The Amazon SQS queue used for input to RightGrid",
       "display_name": "Input Queue"
     },
-    "rightgrid/secret_access_key": {
+    "rightgrid/aws_secret_access_key": {
       "required": "required",
       "calculated": false,
       "choice": [
@@ -120,6 +107,19 @@
       ],
       "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
       "display_name": "Secret Access Key"
+    },
+    "rightgrid/aws_access_key_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+      "display_name": "Access Key Id"
     },
     "rightgrid/s3_bucket": {
       "required": "required",
