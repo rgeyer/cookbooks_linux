@@ -64,13 +64,13 @@ attribute "rightgrid/worker_gems",
 attribute "rightgrid/git_repo",
   :display_name => "GIT Repository",
   :description => "A GIT repository containing the grid worker class",
-  :recipes => ["rightgrid:default"],
+  :recipes => ["rightgrid::default"],
   :required => "required"
 
 attribute "rightgrid/git_reference",
   :display_name => "GIT Branch/Tag/SHA1",
   :description => "The name of a branch, tag, or commit to pull.  If nothing is supplied \"master\" is cloned",
-  :recipes => ["rightgrid:default"],
+  :recipes => ["rightgrid::default"],
   :required => "optional"
 
 # No real need for the user to be burdened with this yet.

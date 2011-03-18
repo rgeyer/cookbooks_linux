@@ -50,7 +50,7 @@
       ],
       "type": "string",
       "recipes": [
-        "rightgrid:default"
+        "rightgrid::default"
       ],
       "description": "A GIT repository containing the grid worker class",
       "display_name": "GIT Repository"
@@ -155,7 +155,7 @@
       ],
       "type": "string",
       "recipes": [
-        "rightgrid:default"
+        "rightgrid::default"
       ],
       "description": "The name of a branch, tag, or commit to pull.  If nothing is supplied \"master\" is cloned",
       "display_name": "GIT Branch/Tag/SHA1"

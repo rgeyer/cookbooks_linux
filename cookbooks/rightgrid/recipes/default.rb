@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+include_recipe "rubygems::default"
+
 # Install the necessary gems
 node[:rightgrid][:worker_gems].split(' ').each do |gem|
   gem_package gem
