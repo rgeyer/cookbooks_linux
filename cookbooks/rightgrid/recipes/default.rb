@@ -15,6 +15,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+node[:rightgrid][:ubuntu_packages].split(' ').each do |pkg|
+  package pkg
+end
+
 include_recipe "rubygems::default"
 
 # Install the necessary gems

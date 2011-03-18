@@ -55,6 +55,19 @@
       "description": "A GIT repository containing the grid worker class",
       "display_name": "GIT Repository"
     },
+    "rightgrid/ubuntu_packages": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "A list of additional ubuntu packages (separated by white space) to be installed which are required by the workers",
+      "display_name": "Ubuntu Packages"
+    },
     "rightgrid/worker_count": {
       "required": "optional",
       "calculated": false,

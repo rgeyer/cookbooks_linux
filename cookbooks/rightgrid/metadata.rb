@@ -55,6 +55,12 @@ attribute "rightgrid/s3_bucket",
   :recipes => ["rightgrid::default"],
   :required => "required"
 
+attribute "rightgrid/ubuntu_packages",
+  :display_name => "Ubuntu Packages",
+  :description => "A list of additional ubuntu packages (separated by white space) to be installed which are required by the workers",
+  :recipes => ["rightgrid::default"],
+  :required => "optional"
+
 attribute "rightgrid/worker_gems",
   :display_name => "Worker Gems",
   :description => "A list of additional gems (separated by white space) to be installed which are required by the workers",
