@@ -26,13 +26,9 @@ node[:rightgrid][:worker_gems].split(' ').each do |gem|
   gem_package gem
 end
 
-directory node[:rightgrid][:rundir] do
-  recursive true
-end
-
-template ::File.join(node[:rightgrid][:rundir], "rightworker.yml") do
-  source "rightworker.yml.erb"
-end
+#directory node[:rightgrid][:rundir] do
+#  recursive true
+#end
 
 git node[:rightgrid][:rundir] do
   repository node[:rightgrid][:git_repo]
@@ -40,6 +36,10 @@ git node[:rightgrid][:rundir] do
     reference node[:rightgrid][:git_reference]
   end
   action :sync
+end
+
+template ::File.join(node[:rightgrid][:rundir], "rightworker.yml") do
+  source "rightworker.yml.erb"
 end
 
 bash "Launch the rightworker" do
