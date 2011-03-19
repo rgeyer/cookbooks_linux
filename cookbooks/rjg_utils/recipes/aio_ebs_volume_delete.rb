@@ -1,4 +1,4 @@
-include_recipe "aws::default"
+include_recipe "rjg_aws::default"
 
 bash "Freeze the xfs file system for #{node[:rjg_utils][:aio_ebs_mountpoint]}" do
   code "xfs_freeze -f #{node[:rjg_utils][:aio_ebs_mountpoint]}"
