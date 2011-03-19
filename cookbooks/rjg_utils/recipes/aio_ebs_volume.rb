@@ -2,7 +2,7 @@ include_recipe "rjg_aws::default"
 
 package "xfsprogs"
 
-aws_ebs_volume "aio_ebs-#{node[:rjg_utils][:rs_instance_uuid]}" do
+rjg_aws_ebs_volume "aio_ebs-#{node[:rjg_utils][:rs_instance_uuid]}" do
   aws_access_key node[:aws][:access_key_id]
   aws_secret_access_key node[:aws][:secret_access_key]
   device "/dev/sdi"
