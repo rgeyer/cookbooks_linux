@@ -1,4 +1,4 @@
-include_recipe "aws::default"
+include_recipe "rjg_aws::default"
 
 # Probably should abstract this into a lib or something
 #ruby_block "Fetch the YAML" do

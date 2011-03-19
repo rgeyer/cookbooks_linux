@@ -1,4 +1,4 @@
-include_recipe "aws::default"
+include_recipe "rjg_aws::default"
 
 package "xfsprogs"
 
