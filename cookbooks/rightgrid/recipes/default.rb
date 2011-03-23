@@ -22,7 +22,14 @@ end
 include_recipe "rubygems::default"
 
 # Install the necessary gems
-node[:rightgrid][:worker_gems].split(' ').each do |gem|
+node[:rightgrid][:worker_gems].split(',').each do |gem|
+  name_version_ary = gem.split(' ')
+  if name_version_ary.count > 1
+    gem_package name_version_ary[0] do
+      version name_version_ary[1]
+      action :install
+    end
+  end
   gem_package gem
 end
 

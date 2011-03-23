@@ -63,7 +63,7 @@ attribute "rightgrid/ubuntu_packages",
 
 attribute "rightgrid/worker_gems",
   :display_name => "Worker Gems",
-  :description => "A list of additional gems (separated by white space) to be installed which are required by the workers",
+  :description => "A list of additional gems (separated by commas) to be installed which are required by the workers.  You can specify a particular version by defining it after the gem name, seperated by whitespace.  I.E. (mysql 2.7.1,right_aws) would install version 2.7.1 of the mysql gem, and the latest version of the right_aws gem.",
   :recipes => ["rightgrid::default"],
   :required => "optional"
 
