@@ -24,13 +24,19 @@ include_recipe "rubygems::default"
 # Install the necessary gems
 node[:rightgrid][:worker_gems].split(',').each do |gem|
   name_version_ary = gem.split(' ')
-  if name_version_ary.count > 1
-    gem_package name_version_ary[0] do
-      version name_version_ary[1]
-      action :install
-    end
+  run_this = "gem install #{name_version_ary[0]} --no-rdoc --no-ri"
+  run_this += " -v #{name_version_ary[1]}" if name_version_ary[1]
+
+  execute "Installing #{name_version_ary[0]} gem" do
+    command run_this
   end
-  gem_package gem
+#  if name_version_ary.count > 1
+#    gem_package name_version_ary[0] do
+#      version name_version_ary[1]
+#      action :install
+#    end
+#  end
+#  gem_package gem
 end
 
 #directory node[:rightgrid][:rundir] do

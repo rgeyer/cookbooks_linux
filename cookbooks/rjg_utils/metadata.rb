@@ -19,6 +19,7 @@ recipe "rjg_utils::aio_ebs_volume_delete", "Detaches and deletes the single EBS 
 recipe "rjg_utils::aio_ebs_volume_enable_continuous_backup", "Schedules the rjg_utils::aio_ebs_volume_snapshot recipe to run daily"
 recipe "rjg_utils::aio_ebs_volume_disable_continuous_backup", "Stops the scheduled daily run of the rjg_utils::aio_ebs_volume_snapshot recipe"
 recipe "rjg_utils::rs_enable_local_monitoring","Adds local rrd file writing to a RightScale configured collectd instance"
+recipe "rjg_utils::rs_chef_solo", "Sets up the ability to run recipes from the RS sandbox using chef-solo when SSH'd in to the instance."
 
 provides "rjg_utils_schedule_recipe(name, json_file, frequency, action)"
 
