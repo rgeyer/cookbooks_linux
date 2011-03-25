@@ -49,6 +49,12 @@ attribute "rightgrid/audit_queue",
   :recipes => ["rightgrid::default"],
   :required => "required"
 
+attribute "rightgrid/error_queue",
+  :display_name => "Error Queue",
+  :description => "The Amazon SQS queue used for error info from RightGrid",
+  :recipes => ["rightgrid::default"],
+  :required => "required"
+
 attribute "rightgrid/s3_bucket",
   :display_name => "S3 Bucket",
   :description => "An S3 bucket where RightGrid will store it's input, output, and log files",

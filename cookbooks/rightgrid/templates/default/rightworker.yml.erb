@@ -11,6 +11,7 @@ development:
       invocation_model: oneshot
       result_queue: <%= node[:rightgrid][:output_queue] %>
       audit_queue: <%= node[:rightgrid][:audit_queue] %>
+      error_queue: <%= node[:rightgrid][:error_queue] %>
       message_decoder: RightYamlDecoder
       s3_log: <%= node[:rightgrid][:s3_bucket] %>/log/%{DATE}/%{MESSAGE_ID}
       s3_out: <%= node[:rightgrid][:s3_bucket] %>/out/%{DATE}-%{TIME}-%{MESSAGE_ID}

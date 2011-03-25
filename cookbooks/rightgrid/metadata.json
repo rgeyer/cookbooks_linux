@@ -95,6 +95,19 @@
       "description": "A list of additional gems (separated by commas) to be installed which are required by the workers.  You can specify a particular version by defining it after the gem name, seperated by whitespace.  I.E. (mysql 2.7.1,right_aws) would install version 2.7.1 of the mysql gem, and the latest version of the right_aws gem.",
       "display_name": "Worker Gems"
     },
+    "rightgrid/error_queue": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rightgrid::default"
+      ],
+      "description": "The Amazon SQS queue used for error info from RightGrid",
+      "display_name": "Error Queue"
+    },
     "rightgrid/input_queue": {
       "required": "required",
       "calculated": false,

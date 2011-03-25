@@ -30,13 +30,6 @@ node[:rightgrid][:worker_gems].split(',').each do |gem|
   execute "Installing #{name_version_ary[0]} gem" do
     command run_this
   end
-#  if name_version_ary.count > 1
-#    gem_package name_version_ary[0] do
-#      version name_version_ary[1]
-#      action :install
-#    end
-#  end
-#  gem_package gem
 end
 
 #directory node[:rightgrid][:rundir] do
