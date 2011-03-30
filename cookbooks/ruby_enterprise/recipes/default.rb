@@ -15,8 +15,13 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-machines = {"x86_64" => "amd64", "i386" => "i386"}
-arch = machines[node[:kernel][:machine]]
+uname_machine = `uname -m`.strip
+
+machines = {"x86_64" => "amd64", "i386" => "i386", "i686" => "i386"}
+arch = machines[uname_machine]
+
+Chef::Log.info "Detected system architecture of #{uname_machine} installing the #{arch} Ruby Enterprise package..."
+
 #arch = node[:architecture] == 'i386' ? node[:architecture] : 'amd64'
 pkgname = "ruby-enterprise_#{node[:ruby_enterprise][:version]}_#{arch}_ubuntu10.04.deb"
 
