@@ -7,6 +7,4 @@ version          "0.0.1"
 
 supports "ubuntu"
 
-depends "brightbox"
-
 recipe "ruby_enterprise::default", "Sets up ruby_enterprise"

@@ -20,9 +20,6 @@
   "recommendations": {
   },
   "dependencies": {
-    "brightbox": [
-
-    ]
   },
   "platforms": {
     "ubuntu": [

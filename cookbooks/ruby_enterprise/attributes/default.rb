@@ -1,7 +1,3 @@
-#
-# Cookbook Name:: ruby_enterprise
-# Recipe:: default
-#
 #  Copyright 2011 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -15,14 +11,4 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-arch = node[:architecture] == 'i386' ? node[:architecture] : 'amd64'
-pkgname = "ruby-enterprise_#{node[:ruby_enterprise][:version]}_#{arch}_ubuntu10.04.deb"
-
-bash "Download Ruby Enterprise" do
-  code <<-EOF
-wget -q -O /tmp/#{pkgname}
-dpkg -i /tmp/#{pkgname}
-  EOF
-end
-
-#http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise_1.8.7-2011.03_amd64_ubuntu10.04.deb
+default[:ruby_enterprise][:version] = "1.8.7-2011.03"
