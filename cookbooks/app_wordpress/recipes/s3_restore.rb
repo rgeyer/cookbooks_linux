@@ -1,6 +1,6 @@
 tarfile="/tmp/wordpress.tar.gz"
 
-aws_s3 "Download #{node[:web_apache][:vhost_fqdn]} backup file" do
+rjg_aws_s3 "Download #{node[:web_apache][:vhost_fqdn]} backup file" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:app_wordpress][:s3_bucket]

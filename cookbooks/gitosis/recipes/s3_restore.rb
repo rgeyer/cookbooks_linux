@@ -16,7 +16,7 @@ directory node[:gitosis][:gitosis_home] do
   action :create
 end
 
-aws_s3 "Download gitosis backup to S3" do
+rjg_aws_s3 "Download gitosis backup to S3" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:gitosis][:s3_bucket]

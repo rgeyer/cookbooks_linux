@@ -5,7 +5,7 @@ db_mysql_gzipfile_backup "create a backup file" do
   db_name node[:mail_postfix][:db_name]
 end
 
-aws_s3 "Upload postfix configuration db to S3" do
+rjg_aws_s3 "Upload postfix configuration db to S3" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:mail_postfix][:s3_bucket]

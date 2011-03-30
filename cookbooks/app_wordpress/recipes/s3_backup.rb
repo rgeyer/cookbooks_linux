@@ -6,7 +6,7 @@ app_wordpress_site node[:web_apache][:vhost_fqdn] do
   action :backup
 end
 
-aws_s3 "Push backup to S3" do
+rjg_aws_s3 "Push backup to S3" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:app_wordpress][:s3_bucket]
