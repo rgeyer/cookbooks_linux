@@ -15,12 +15,14 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-arch = node[:architecture] == 'i386' ? node[:architecture] : 'amd64'
+machines = {"x86_64" => "amd64", "i386" => "i386"}
+arch = machines[node[:kernel][:machine]]
+#arch = node[:architecture] == 'i386' ? node[:architecture] : 'amd64'
 pkgname = "ruby-enterprise_#{node[:ruby_enterprise][:version]}_#{arch}_ubuntu10.04.deb"
 
 bash "Download Ruby Enterprise" do
   code <<-EOF
-wget -q -O /tmp/#{pkgname}
+wget -q -O http://rubyenterpriseedition.googlecode.com/files/#{pkgname} /tmp/#{pkgname}
 dpkg -i /tmp/#{pkgname}
   EOF
 end
