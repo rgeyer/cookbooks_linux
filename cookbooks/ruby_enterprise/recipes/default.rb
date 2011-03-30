@@ -27,7 +27,7 @@ pkgname = "ruby-enterprise_#{node[:ruby_enterprise][:version]}_#{arch}_ubuntu10.
 
 bash "Download Ruby Enterprise" do
   code <<-EOF
-wget -q -O http://rubyenterpriseedition.googlecode.com/files/#{pkgname} /tmp/#{pkgname}
+wget -q -O /tmp/#{pkgname} http://rubyenterpriseedition.googlecode.com/files/#{pkgname}
 dpkg -i /tmp/#{pkgname}
   EOF
 end
