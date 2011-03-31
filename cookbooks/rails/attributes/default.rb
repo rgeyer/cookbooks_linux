@@ -1,0 +1,1 @@
+default[:rails][:version] = "3.0.5"
