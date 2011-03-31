@@ -20,4 +20,5 @@ include_recipe "rubygems::default"
 
 gem_package "unicorn" do
   version node[:unicorn][:version] if node[:unicorn][:version]
+  gem_binary "/usr/local/bin/gem"
 end

@@ -19,7 +19,9 @@
 # or succeeds, but returns a non 0 result causing the recipe to fail.
 node[:ruby][:gems_list].split(',').each do |gem|
   name_version_ary = gem.split(' ')
-  run_this = "gem install #{name_version_ary[0]} --no-rdoc --no-ri"
+  run_this = `which gem`.strip
+  run_this = "/usr/local/bin/gem" if ::File.exists?("/usr/local/bin/ree-version")
+  run_this += " install #{name_version_ary[0]} --no-rdoc --no-ri"
   run_this += " -v #{name_version_ary[1]}" if name_version_ary[1]
 
   execute "Installing #{name_version_ary[0]} gem" do
