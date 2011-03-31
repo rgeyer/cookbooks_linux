@@ -1,1 +1,1 @@
-default[:rails][:version] = "3.0.5"
+default[:rails][:version] = nil

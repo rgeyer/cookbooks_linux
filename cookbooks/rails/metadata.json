@@ -17,17 +17,16 @@
   },
   "attributes": {
     "rails/version": {
-      "required": "required",
+      "required": "optional",
       "calculated": false,
       "choice": [
 
       ],
-      "default": "3.0.5",
       "type": "string",
       "recipes": [
         "rails::install"
       ],
-      "description": "The full version number of rails to install.  I.E. 3.0.5",
+      "description": "The full version number of rails to install.  I.E. 3.0.5  If no value is provided, the latest available version is installed.",
       "display_name": "Rails Version"
     },
     "rails/environment": {

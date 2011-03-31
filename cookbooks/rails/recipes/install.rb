@@ -16,7 +16,7 @@
 #  limitations under the License.
 
 gem_package "rails" do
-  version node[:rails][:version]
+  version node[:rails][:version] if node[:rails][:version]
 end
 
 template "/etc/profile.d/rails.sh" do

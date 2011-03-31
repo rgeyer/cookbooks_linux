@@ -11,9 +11,8 @@ recipe "rails::install","Installs the specified version of rails"
 
 attribute "rails/version",
   :display_name => "Rails Version",
-  :description => "The full version number of rails to install.  I.E. 3.0.5",
-  :required => "required",
-  :default => "3.0.5",
+  :description => "The full version number of rails to install.  I.E. 3.0.5  If no value is provided, the latest available version is installed.",
+  :required => "optional",
   :recipes => ["rails::install"]
 
 attribute "rails/environment",
