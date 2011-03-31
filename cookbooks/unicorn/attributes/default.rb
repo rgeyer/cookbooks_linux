@@ -1,0 +1,1 @@
+default[:unicorn][:version] = nil
