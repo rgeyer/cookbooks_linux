@@ -27,4 +27,4 @@ node[:ruby][:gems_list].split(',').each do |gem|
   execute "Installing #{name_version_ary[0]} gem" do
     command run_this
   end
-end
+end if node[:ruby][:gems_list]
