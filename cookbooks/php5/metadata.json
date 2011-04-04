@@ -5,6 +5,8 @@
   "providing": {
   },
   "recipes": {
+    "php5::fpmstats_nginx": "Enables collectd monitoring where PHP FPM is used with nginx",
+    "php5::fpmenable_nginx": "Enables PHP FPM for nginx by including the fastcgi parameters file",
     "php5::fpm": "Installs the PHP-FPM FastCGI manager",
     "php5::default": "Performs the installation of php5, pear, the php5 module for apache, and the smarty template library.  Additional modules can be specified at runtime"
   },

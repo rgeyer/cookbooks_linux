@@ -7,6 +7,8 @@ version          "0.0.1"
 
 recipe "php5::default", "Performs the installation of php5, pear, the php5 module for apache, and the smarty template library.  Additional modules can be specified at runtime"
 recipe "php5::fpm", "Installs the PHP-FPM FastCGI manager"
+recipe "php5::fpmenable_nginx", "Enables PHP FPM for nginx by including the fastcgi parameters file"
+recipe "php5::fpmstats_nginx", "Enables collectd monitoring where PHP FPM is used with nginx"
 
 supports "ubuntu"
 
