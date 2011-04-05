@@ -24,7 +24,7 @@ end
 # enable php-fpm service
 service "php5-fpm" do
   supports :restart => true
-  action [:enable]
+  action [:enable, :start]
 end
 
 template "/etc/php5/fpm/main.conf" do

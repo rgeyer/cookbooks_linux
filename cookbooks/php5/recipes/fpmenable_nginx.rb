@@ -8,5 +8,5 @@ file config_file do
   owner "root"
   group "root"
   mode 0644
-  notifies :reload, resources(:service => "nginx"), :immediately
+  notifies :restart, resources(:service => "nginx"), :immediately
 end
