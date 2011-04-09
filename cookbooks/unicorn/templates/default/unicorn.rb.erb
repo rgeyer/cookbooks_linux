@@ -1,0 +1,29 @@
+WD = <%= @app_path %>
+
+# Use at least one worker per core
+worker_processes <%= node[:unicorn][:worker_processes] %>
+
+# Help ensure your application will always spawn in the symlinked "current" directory that Capistrano sets up
+working_directory WD
+
+# Listen on a Unix domain socket, use the default backlog size
+listen "/var/run/unicorn/<%= @app_name %>.sock", :backlog => 1024
+
+timeout <%= @worker_timeout %>
+
+pid "/var/run/unicorn/<%= @app_name %>.pid"
+
+# Logs are very useful for trouble shooting, use them
+stderr_path "<%= node[:unicorn][:log_path] %>/<%= @app_name %>.stderr.log"
+stdout_path "<%= node[:unicorn][:log_path] %>/<%= @app_name %>.stdout.log"
+
+# Use "preload_app true"
+preload_app true
+
+before_fork do |server, worker|
+
+end
+
+after_fork do |server, worker|
+
+end

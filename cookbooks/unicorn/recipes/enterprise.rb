@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: unicorn
-# Recipe:: default
+# Recipe:: enterprise
 #
 #  Copyright 2011 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
