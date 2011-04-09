@@ -5,7 +5,8 @@
   "providing": {
   },
   "recipes": {
-    "ruby_enterprise::default": "Sets up ruby_enterprise"
+    "ruby_enterprise::rvm_packaged": "Sets up ruby_enterprise as a ruby managed by rvm",
+    "ruby_enterprise::default": "Sets up ruby_enterprise from the official ubuntu packages"
   },
   "maintainer": "Ryan J. Geyer",
   "replacing": {
