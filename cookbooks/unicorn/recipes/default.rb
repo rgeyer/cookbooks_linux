@@ -32,3 +32,7 @@ directory node[:unicorn][:log_path] do
   recursive true
   action :create
 end
+
+template "/etc/logrotate.d/unicorn" do
+  source "logrotate.d.erb"
+end
