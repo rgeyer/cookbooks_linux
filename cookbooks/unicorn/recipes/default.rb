@@ -28,3 +28,7 @@ end
   end
 end
 
+directory node[:unicorn][:log_path] do
+  recursive true
+  action :create
+end

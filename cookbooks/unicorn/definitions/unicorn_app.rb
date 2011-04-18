@@ -11,21 +11,23 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-define :unicorn_app, :app_name => nil, :app_path => nil do
-
-  template "/etc/unicorn/#{@params[:app_name]}.rb" do
-    source @params[:template] || "unicorn.rb.erb"
-    cookbook @params[:cookbook] || "unicorn"
-    variables(@params)
+define :unicorn_app, :app_name => nil, :app_path => nil, :worker_timeout => 60 do
+  template "/etc/unicorn/#{params[:app_name]}.rb" do
+    source params[:template] || "unicorn.rb.erb"
+    cookbook params[:cookbook] || "unicorn"
+    variables(params)
+    backup false
   end
 
-  template "/etc/init.d/unicorn-#{@params[:app_name]}" do
-    source "unicorn-app-init.sh.erb"
-    cookbook "unicorn"
-    variables(@params)
+  template "/etc/init.d/unicorn-#{params[:app_name]}" do
+    source params[:template] || "unicorn-app-init.sh.erb"
+    mode 0755
+    cookbook params[:cookbook] || "unicorn"
+    variables(params)
+    backup false
   end
 
-  service "unicorn-#{@params[:app_name]}" do
+  service "unicorn-#{params[:app_name]}" do
     supports :status => true, :restart => true, :reload => true
     action [ :enable, :start ]
   end
