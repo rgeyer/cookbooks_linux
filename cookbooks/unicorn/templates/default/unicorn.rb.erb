@@ -1,4 +1,4 @@
-WD = <%= @app_path %>
+WD = "<%= @app_path %>"
 
 # Use at least one worker per core
 worker_processes <%= node[:unicorn][:worker_processes] %>
