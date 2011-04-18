@@ -20,9 +20,9 @@ define :unicorn_app, :app_name => nil, :app_path => nil, :worker_timeout => 60 d
   end
 
   template "/etc/init.d/unicorn-#{params[:app_name]}" do
-    source params[:template] || "unicorn-app-init.sh.erb"
+    source "unicorn-app-init.sh.erb"
     mode 0755
-    cookbook params[:cookbook] || "unicorn"
+    cookbook "unicorn"
     variables(params)
     backup false
   end
