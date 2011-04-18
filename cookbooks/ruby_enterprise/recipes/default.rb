@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+# TODO: This mechanism for getting the arch is reused in my code a lot, need to either set a node attribute once
+# somewhere, or otherwise encapsulate this, maybe ohai?
 uname_machine = `uname -m`.strip
 
 machines = {"x86_64" => "amd64", "i386" => "i386", "i686" => "i386"}

@@ -30,6 +30,7 @@ Chef::Log.info "Detected system architecture of #{uname_machine} installing the 
 
 fullrubyname = "ree-#{node[:ruby_enterprise][:version]}"
 targzfile = "rvm-#{fullrubyname}-#{arch}.tar.gz"
+rvm_bin = ::File.join(node[:rvm][:install_path], 'bin', 'rvm')
 
 remote_file "/tmp/#{targzfile}" do
   source targzfile
@@ -43,11 +44,11 @@ tar -zxf /tmp/#{targzfile} -C #{node[:rvm][:install_path]}
 end
 
 bash "Switch to ree if current ruby is system" do
-  code "rvm use #{fullrubyname}"
-  only_if { `rvm current`.strip.downcase == "system" }
+  code "#{rvm_bin} use #{fullrubyname}"
+  only_if { `#{rvm_bin} current`.strip.downcase == "system" }
 end
 
 bash "Make ree the default ruby" do
-  code "rvm #{fullrubyname} --default"
+  code "#{rvm_bin} #{fullrubyname} --default"
   # TODO: Make it idempotent, using rvm default to see the default apparently does not work
 end
