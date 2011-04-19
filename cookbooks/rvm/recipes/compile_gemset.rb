@@ -17,6 +17,7 @@
 
 gemset_file = "/tmp/gemset.gems"
 gemset_dir = ::File.join(node[:rvm][:install_path], "gems", "#{node[:rvm][:compile_gemset][:ruby]}@compile_me")
+rvm_bin = ::File.join(node[:rvm][:install_path], "bin", "rvm")
 
 include_recipe "rvm::default"
 
@@ -31,10 +32,10 @@ end
 
 bash "Create and upload gem binaries (i386 arch)" do
   code <<-EOF
-rvm_archflags="-arch i386" CFLAGS="-arch i386" LDFLAGS="-arch i386" rvm install #{node[:rvm][:compile_gemset][:ruby]}
-rvm --default use #{node[:rvm][:compile_gemset][:ruby]}
-rvm --create #{node[:rvm][:compile_gemset][:ruby]}@compile_me
-rvm gemset import #{gemset_file}
+rvm_archflags="-arch i386" CFLAGS="-arch i386" LDFLAGS="-arch i386" #{rvm_bin} install #{node[:rvm][:compile_gemset][:ruby]}
+#{rvm_bin} --default use #{node[:rvm][:compile_gemset][:ruby]}
+#{rvm_bin} --create #{node[:rvm][:compile_gemset][:ruby]}@compile_me
+#{rvm_bin} gemset import #{gemset_file}
 cd #{gemset_dir}
 tar -cf /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-i386.tar *
 gzip /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-i386.tar
@@ -43,12 +44,12 @@ end
 
 bash "Create and upload gem binaries (x86_64 arch)" do
   code <<-EOF
-rvm remove #{node[:rvm][:compile_gemset][:ruby]}
+#{rvm_bin} remove #{node[:rvm][:compile_gemset][:ruby]}
 rm -rf #{gemset_dir}
-rvm_archflags="-arch x86_64" CFLAGS="-arch x86_64" LDFLAGS="-arch x86_64" rvm install #{node[:rvm][:compile_gemset][:ruby]}
-rvm --default use #{node[:rvm][:compile_gemset][:ruby]}
-rvm --create #{node[:rvm][:compile_gemset][:ruby]}@compile_me
-rvm gemset import #{gemset_file}
+rvm_archflags="-arch x86_64" CFLAGS="-arch x86_64" LDFLAGS="-arch x86_64" #{rvm_bin} install #{node[:rvm][:compile_gemset][:ruby]}
+#{rvm_bin} --default use #{node[:rvm][:compile_gemset][:ruby]}
+#{rvm_bin} --create #{node[:rvm][:compile_gemset][:ruby]}@compile_me
+#{rvm_bin} gemset import #{gemset_file}
 cd #{gemset_dir}
 tar -cf /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-amd64.tar *
 gzip /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-amd64.tar
