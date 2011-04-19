@@ -27,5 +27,5 @@ bash "Install RVM for all users" do
   code <<-EOF
 /tmp/rvm --path #{node[:rvm][:install_path]}
   EOF
-  not_if ::File.exists?(node[:rvm][:install_path])
+  not_if { ::File.exists?(node[:rvm][:install_path]) }
 end
