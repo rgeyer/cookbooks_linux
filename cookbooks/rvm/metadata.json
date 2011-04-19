@@ -5,7 +5,8 @@
   "providing": {
   },
   "recipes": {
-    "rvm::default": "Installs Ruby Version Manager (RVM)"
+    "rvm::default": "Installs Ruby Version Manager (RVM)",
+    "rvm::compile_gemset": "Creates a binary version of the specified gemset for both i386 and x86_64 arch's"
   },
   "maintainer": "Ryan J. Geyer",
   "replacing": {
@@ -16,6 +17,71 @@
   "groupings": {
   },
   "attributes": {
+    "rvm/compile_gemset/s3_bucket": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rvm::compile_gemset"
+      ],
+      "description": "S3 bucket name",
+      "display_name": "RVM gemset S3 bucket"
+    },
+    "aws/secret_access_key": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rvm::compile_gemset"
+      ],
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+      "display_name": "Secret Access Key"
+    },
+    "aws/access_key_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rvm::compile_gemset"
+      ],
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+      "display_name": "Access Key Id"
+    },
+    "rvm/compile_gemset/gemset_name": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rvm::compile_gemset"
+      ],
+      "description": "The name of the gemset to create and upload to s3",
+      "display_name": "RVM gemset name"
+    },
+    "rvm/compile_gemset/ruby": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rvm::compile_gemset"
+      ],
+      "description": "The full RVM version. To find a list run `rvm list known`.  I.E. ruby-1.8.7-head",
+      "display_name": "RVM Ruby Name"
+    },
     "rvm/install_path": {
       "required": "optional",
       "calculated": false,
@@ -29,6 +95,19 @@
       ],
       "description": "The full path where RVM will be installed. I.E. /opt/rvm",
       "display_name": "RVM Installation Path"
+    },
+    "rvm/compile_gemset/gemset_file": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rvm::compile_gemset"
+      ],
+      "description": "An RVM exported gemset file that can be found inside of the defined s3_bucket",
+      "display_name": "RVM gemset export file"
     }
   },
   "recommendations": {
