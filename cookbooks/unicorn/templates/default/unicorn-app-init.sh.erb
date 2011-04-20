@@ -18,6 +18,14 @@ CMD="unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
 action="$1"
 set -u
 
+set -v
+
+echo "My Current Environment Looks like"
+env
+
+echo "My current gemset looks like"
+gem list
+
 old_pid="$PID.oldbin"
 
 cd $APP_ROOT || exit 1
