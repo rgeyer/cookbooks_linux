@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -u
 
 # Necessary for running from within the RightScale sandbox, which doesn't share the system environment
 if [ -f /etc/profile.d/rvm.sh ]; then
