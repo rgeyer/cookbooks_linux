@@ -2,13 +2,13 @@
 set -e
 
 # Necessary for running from within the RightScale sandbox, which doesn't share the system environment
-if [ -f /etc/profile ]; then
-  . /etc/profile
+if [ -f /etc/profile.d/rvm.sh ]; then
+  . /etc/profile.d/rvm.sh
 fi
 
-
-#export RAILS_GEM_VERSION=<%= node[:rails][:version] %>
-#export RAILS_ENV=<%= node[:rails][:environment] %>
+# Should I be doing this, or sourcing /etc/profile.d/rails.sh?
+export RAILS_GEM_VERSION=<%= node[:rails][:version] %>
+export RAILS_ENV=<%= node[:rails][:environment] %>
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
