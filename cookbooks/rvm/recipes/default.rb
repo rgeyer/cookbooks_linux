@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+node[:rvm][:bin_path] = ::File.join(node[:rvm][:install_path], "bin", "rvm")
+
 bash "Download the RVM install script" do
   code <<-EOF
 wget -q -O /tmp/rvm http://rvm.beginrescueend.com/install/rvm
@@ -25,7 +27,8 @@ end
 
 bash "Install RVM for all users" do
   code <<-EOF
-/tmp/rvm --path #{node[:rvm][:install_path]}
+/tmp/rvm --path #{node[:rvm][:install_path]} #{node[:rvm][:version]}
+#{node[:rvm][:bin_path]} reload
   EOF
   not_if { ::File.exists?(node[:rvm][:install_path]) }
 end
