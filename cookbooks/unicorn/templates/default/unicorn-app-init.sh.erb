@@ -2,8 +2,8 @@
 set -e
 
 # Necessary for running from within the RightScale sandbox, which doesn't share the system environment
-if [ -f /etc/profile.d/rvm.sh ]; then
-  . /etc/profile.d/rvm.sh
+if [ -f /etc/profile ]; then
+  . /etc/profile
 fi
 
 
