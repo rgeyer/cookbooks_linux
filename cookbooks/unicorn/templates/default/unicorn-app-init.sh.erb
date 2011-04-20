@@ -2,7 +2,10 @@
 set -e
 
 # Necessary for running from within the RightScale sandbox, which doesn't share the system environment
-source /etc/profile
+if [ -f /etc/profile.d/rvm.sh ]; then
+  . /etc/profile.d/rvm.sh
+fi
+
 
 #export RAILS_GEM_VERSION=<%= node[:rails][:version] %>
 #export RAILS_ENV=<%= node[:rails][:environment] %>
