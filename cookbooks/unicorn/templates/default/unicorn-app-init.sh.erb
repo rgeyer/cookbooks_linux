@@ -1,11 +1,13 @@
 #!/bin/sh
 set -e
 
+export RAILS_GEM_VERSION=<%= node[:rails][:version] %>
+export RAILS_ENV=<%= node[:rails][:environment] %>
+
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=<%= @app_path %>
 PID=/var/run/unicorn/<%= @app_name %>.pid
-RAILS_GEM_VERSION=<%= node[:rails][:version] %>
 CMD="unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
 action="$1"
 set -u
