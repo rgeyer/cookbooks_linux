@@ -2,10 +2,10 @@
 set -u
 
 # Necessary for running from within the RightScale sandbox, which doesn't share the system environment
-if [ -f /etc/profile.d/rvm.sh ]; then
-  . /etc/profile.d/rvm.sh
+if [ -f <%= node[:rvm][:bin_path] %> ]; then
+  . <%= node[:rvm][:bin_path] %>
 else
-  echo "Dude /etc/profile.d/rvm.sh wasn't there?!"
+  echo "Dude <%= node[:rvm][:bin_path] %> wasn't there?!"
 fi
 
 # Should I be doing this, or sourcing /etc/profile.d/rails.sh?
