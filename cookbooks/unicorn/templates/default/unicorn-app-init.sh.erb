@@ -4,6 +4,8 @@ set -e
 # Necessary for running from within the RightScale sandbox, which doesn't share the system environment
 if [ -f /etc/profile.d/rvm.sh ]; then
   . /etc/profile.d/rvm.sh
+else
+  echo "Dude /etc/profile.d/rvm.sh wasn't there?!"
 fi
 
 # Should I be doing this, or sourcing /etc/profile.d/rails.sh?
@@ -18,7 +20,7 @@ CMD="unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
 action="$1"
 set -u
 
-set -v
+#set -v
 
 echo "My Current Environment Looks like"
 env
