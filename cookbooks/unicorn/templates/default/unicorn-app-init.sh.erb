@@ -1,8 +1,11 @@
 #!/bin/sh
 set -e
 
-export RAILS_GEM_VERSION=<%= node[:rails][:version] %>
-export RAILS_ENV=<%= node[:rails][:environment] %>
+# Necessary for running from within the RightScale sandbox, which doesn't share the system environment
+source /etc/profile
+
+#export RAILS_GEM_VERSION=<%= node[:rails][:version] %>
+#export RAILS_ENV=<%= node[:rails][:environment] %>
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
