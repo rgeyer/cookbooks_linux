@@ -28,7 +28,7 @@ define :unicorn_app, :app_name => nil, :app_path => nil, :worker_timeout => 60 d
   end
 
   service "unicorn-#{params[:app_name]}" do
-    supports :status => true, :restart => true, :reload => true
+    supports :status => true, :restart => true
     action [ :enable, :start ]
   end
 
