@@ -1,12 +1,5 @@
 #!/bin/sh
-set -u
-
-# Necessary for running from within the RightScale sandbox, which doesn't share the system environment
-if [ -f <%= node[:rvm][:bin_path] %> ]; then
-  . <%= node[:rvm][:bin_path] %>
-else
-  echo "Dude <%= node[:rvm][:bin_path] %> wasn't there?!"
-fi
+set -e
 
 # Should I be doing this, or sourcing /etc/profile.d/rails.sh?
 export RAILS_GEM_VERSION=<%= node[:rails][:version] %>
@@ -16,17 +9,13 @@ export RAILS_ENV=<%= node[:rails][:environment] %>
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=<%= @app_path %>
 PID=/var/run/unicorn/<%= @app_name %>.pid
+<% if(node[:rvm][:bin_path]) -%>
+CMD="<%= ::File.join(node[:rvm][:install_path], "bin", "init_unicorn_rails") %> -c /etc/unicorn/<%= @app_name %>.rb -D"
+<% else -%>
 CMD="unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
+<% end -%>
 action="$1"
 set -u
-
-#set -v
-
-echo "My Current Environment Looks like"
-env
-
-echo "My current gemset looks like"
-gem list
 
 old_pid="$PID.oldbin"
 

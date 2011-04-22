@@ -49,5 +49,5 @@ end
 
 bash "Make ree the default ruby" do
   code "#{node[:rvm][:bin_path]} #{fullrubyname} --default"
-  # TODO: Make it idempotent, using rvm default to see the default apparently does not work
+  not_if { `#{node[:rvm][:bin_path]} list default string`.strip == fullrubyname }
 end

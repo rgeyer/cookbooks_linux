@@ -12,6 +12,14 @@
 #  limitations under the License.
 
 define :unicorn_app, :app_name => nil, :app_path => nil, :worker_timeout => 60 do
+  if(node[:rvm][:bin_path])
+    default_ruby = `#{node[:rvm][:bin_path]} list default string`.strip
+    bash "Create a unicorn_rails rvm wrapper" do
+      code "#{node[:rvm][:bin_path]} wrapper #{default_ruby}@global init unicorn_rails"
+      creates ::File.join(node[:rvm][:install_path], "bin", "init_unicorn_rails")
+    end
+  end
+
   template "/etc/unicorn/#{params[:app_name]}.rb" do
     source params[:template] || "unicorn.rb.erb"
     cookbook params[:cookbook] || "unicorn"
