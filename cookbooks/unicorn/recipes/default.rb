@@ -41,8 +41,8 @@ end
 #Chef::Log.info("Creating unicorn init wrapper for rvm.  Using rvm binary #{node[:rvm][:bin_path]}.  Using ruby #{default_ruby}")
 bash "Create a unicorn_rails rvm wrapper if necessary" do
   code <<-EOF
-rvm_bin=`which rvm`
-if [ -z $rvm_bin ]
+rvm_bin="#{node[:rvm][:install_path]}/bin/rvm"
+if [ ! -f $rvm_bin ]
 then
   echo "No RVM installation found, not creating a unicorn_rails RVM wrapper"
   exit 0
