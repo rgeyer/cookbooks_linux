@@ -36,3 +36,14 @@ end
 template "/etc/logrotate.d/unicorn" do
   source "logrotate.d.erb"
 end
+
+if(node[:rvm][:bin_path])
+  default_ruby = `#{node[:rvm][:bin_path]} list default string`.strip
+  Chef::Log.info("Creating unicorn init wrapper for rvm.  Using rvm binary #{node[:rvm][:bin_path]}.  Using ruby #{default_ruby}")
+  bash "Create a unicorn_rails rvm wrapper" do
+    code "#{node[:rvm][:bin_path]} wrapper #{default_ruby}@global init unicorn_rails"
+    creates ::File.join(node[:rvm][:install_path], "bin", "init_unicorn_rails")
+  end
+else
+  Chef::Log.info("No rvm detected, so no init wrapper for unicorn was created")
+end
