@@ -42,6 +42,7 @@ end
 bash "Create a unicorn_rails rvm wrapper if necessary" do
   code <<-EOF
 rvm_bin="#{node[:rvm][:install_path]}/bin/rvm"
+echo "Testing for RVM using $rvm_bin"
 if [ ! -f $rvm_bin ]
 then
   echo "No RVM installation found, not creating a unicorn_rails RVM wrapper"
@@ -49,10 +50,11 @@ then
 fi
 
 default_ruby=`$rvm_bin list default string`
-
 unicorn_wrapper="#{node[:rvm][:install_path]}/bin/init_unicorn_rails"
+echo "Testing for RVM unicorn_rails wrapper using $unicorn_wrapper"
 if [ ! -f $unicorn_wrapper ]
 then
+  echo "Creating RVM wrapper for unicorn_rails in gemset $default_ruby@global"
   $rvm_bin wrapper $default_ruby@global init unicorn_rails
 else
   echo "RVM wrapper for unicorn_rails already exists, skipping"

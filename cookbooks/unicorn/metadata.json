@@ -5,7 +5,7 @@
   "providing": {
   },
   "recipes": {
-    "unicorn::enterprise": "Installs the unicorn gem for Ruby Enterprise 1.8"
+    "unicorn::default": "Installs the unicorn gem for the system ruby"
   },
   "maintainer": "Ryan J. Geyer",
   "replacing": {
@@ -24,10 +24,24 @@
       ],
       "type": "string",
       "recipes": [
-        "unicorn::enterprise"
+        "unicorn::default"
       ],
       "description": "The version of the unicorn gem to install.  If not supplied, the latest available version of unicorn will be installed",
       "display_name": "Unicorn Version"
+    },
+    "rvm/install_path": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/opt/rvm",
+      "type": "string",
+      "recipes": [
+        "unicorn::default"
+      ],
+      "description": "The full path where RVM will be installed. I.E. /opt/rvm",
+      "display_name": "RVM Installation Path"
     }
   },
   "recommendations": {
