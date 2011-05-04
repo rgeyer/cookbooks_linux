@@ -37,13 +37,30 @@ template "/etc/logrotate.d/unicorn" do
   source "logrotate.d.erb"
 end
 
-if(node[:rvm][:bin_path])
-  default_ruby = `#{node[:rvm][:bin_path]} list default string`.strip
-  Chef::Log.info("Creating unicorn init wrapper for rvm.  Using rvm binary #{node[:rvm][:bin_path]}.  Using ruby #{default_ruby}")
-  bash "Create a unicorn_rails rvm wrapper" do
-    code "#{node[:rvm][:bin_path]} wrapper #{default_ruby}@global init unicorn_rails"
-    creates ::File.join(node[:rvm][:install_path], "bin", "init_unicorn_rails")
-  end
+#default_ruby = `#{node[:rvm][:bin_path]} list default string`.strip
+#Chef::Log.info("Creating unicorn init wrapper for rvm.  Using rvm binary #{node[:rvm][:bin_path]}.  Using ruby #{default_ruby}")
+bash "Create a unicorn_rails rvm wrapper if necessary" do
+  code <<-EOF
+rvm_bin=`which rvm`
+if [ -z $rvm_bin ]
+then
+  echo "No RVM installation found, not creating a unicorn_rails RVM wrapper"
+  exit 0
+fi
+
+. $rvm_bin
+
+default_ruby=`$rvm_bin list default string`
+
+unicorn_wrapper=`which init_unicorn_rails`
+if [ -z $unicorn_wrapper ]
+then
+  $rvm_bin wrapper $default_ruby@global init unicorn_rails
 else
-  Chef::Log.info("No rvm detected, so no init wrapper for unicorn was created")
+  echo "RVM wrapper for unicorn_rails already exists, skipping"
+  exit 0
+fi
+
+exit 0
+EOF
 end
