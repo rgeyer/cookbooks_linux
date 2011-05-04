@@ -48,8 +48,6 @@ then
   exit 0
 fi
 
-. $rvm_bin
-
 default_ruby=`$rvm_bin list default string`
 
 unicorn_wrapper="#{node[:rvm][:install_path]}/bin/init_unicorn_rails"
