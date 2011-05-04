@@ -52,8 +52,8 @@ fi
 
 default_ruby=`$rvm_bin list default string`
 
-unicorn_wrapper=`which init_unicorn_rails`
-if [ -z $unicorn_wrapper ]
+unicorn_wrapper="#{node[:rvm][:install_path]}/bin/init_unicorn_rails"
+if [ ! -f $unicorn_wrapper ]
 then
   $rvm_bin wrapper $default_ruby@global init unicorn_rails
 else
