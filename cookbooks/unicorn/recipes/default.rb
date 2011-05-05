@@ -49,13 +49,22 @@ then
   exit 0
 fi
 
-default_ruby=`$rvm_bin list default string`
+if [[ -s "#{node[:rvm][:install_path]}/environments/default" ]] ; then
+  echo "Found a default RVM environment, loading it now"
+  source "#{node[:rvm][:install_path]}/environments/default"
+else
+  echo "No default RVM environment found, can not continue.  Try setting one with rvm --default"
+  exit 1
+fi
+
+default_ruby=`rvm list default string`
+
 unicorn_wrapper="#{node[:rvm][:install_path]}/bin/init_unicorn_rails"
 echo "Testing for RVM unicorn_rails wrapper using $unicorn_wrapper"
 if [ ! -f $unicorn_wrapper ]
 then
   echo "Creating RVM wrapper for unicorn_rails in gemset $default_ruby@global"
-  $rvm_bin wrapper $default_ruby@global init unicorn_rails
+  rvm wrapper $default_ruby@global init unicorn_rails
 else
   echo "RVM wrapper for unicorn_rails already exists, skipping"
   exit 0

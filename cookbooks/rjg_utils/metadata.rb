@@ -11,6 +11,7 @@ depends "rs_utils"
 depends "web_apache"
 depends "app_wordpress"
 
+recipe "rjg_utils::default", "Misc hacky stuff."
 recipe "rjg_utils::vhost_aio_boot","Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server"
 recipe "rjg_utils::vhost_aio_backup_all_vhosts","Does what it says it'll do"
 recipe "rjg_utils::aio_ebs_volume", "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server."
@@ -81,3 +82,11 @@ attribute "rjg_utils/rs_instance_uuid",
   :display_name => "env:RS_INSTANCE_UUID",
   :recipes => ["rjg_utils::aio_ebs_volume","rjg_utils::aio_ebs_volume_snapshot","rjg_utils::aio_ebs_volume_delete"],
   :required => "required"
+
+# HAX
+attribute "rvm/install_path",
+  :display_name => "RVM Installation Path",
+  :description => "The full path where RVM will be installed. I.E. /opt/rvm",
+  :required => "optional",
+  :default => "/opt/rvm",
+  :recipes => ["rjg_utils::default"]

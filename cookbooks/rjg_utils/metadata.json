@@ -12,6 +12,8 @@
     "rjg_utils::aio_ebs_volume_enable_continuous_backup": "Schedules the rjg_utils::aio_ebs_volume_snapshot recipe to run daily",
     "rjg_utils::aio_ebs_volume_delete": "Detaches and deletes the single EBS volume.",
     "rjg_utils::vhost_aio_boot": "Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server",
+    "rjg_utils::default": "Misc hacky stuff.",
+    "rjg_utils::rs_chef_solo": "Sets up the ability to run recipes from the RS sandbox using chef-solo when SSH'd in to the instance.",
     "rjg_utils::aio_ebs_volume_disable_continuous_backup": "Stops the scheduled daily run of the rjg_utils::aio_ebs_volume_snapshot recipe",
     "rjg_utils::rs_enable_local_monitoring": "Adds local rrd file writing to a RightScale configured collectd instance",
     "rjg_utils::aio_ebs_volume": "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server.",
@@ -84,6 +86,20 @@
       ],
       "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
       "display_name": "Access Key Id"
+    },
+    "rvm/install_path": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/opt/rvm",
+      "type": "string",
+      "recipes": [
+        "rjg_utils::default"
+      ],
+      "description": "The full path where RVM will be installed. I.E. /opt/rvm",
+      "display_name": "RVM Installation Path"
     },
     "rjg_utils/yaml_file": {
       "required": "required",
