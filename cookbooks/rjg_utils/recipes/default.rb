@@ -35,9 +35,7 @@ else
   exit 0
 fi
 
-default_ruby=`rvm list default string`
-
-echo "The default RVM environment is $default_ruby"
+env
 EOF
 end
 
