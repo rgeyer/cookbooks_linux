@@ -41,30 +41,28 @@ end
 #Chef::Log.info("Creating unicorn init wrapper for rvm.  Using rvm binary #{node[:rvm][:bin_path]}.  Using ruby #{default_ruby}")
 bash "Create a unicorn_rails rvm wrapper if necessary" do
   code <<-EOF
-rvm_bin="#{node[:rvm][:install_path]}/bin/rvm"
-echo "Testing for RVM using $rvm_bin"
-if [ ! -f $rvm_bin ]
+rvm_script="#{node[:rvm][:install_path]}/scripts/rvm"
+echo "Testing for RVM using $rvm_script"
+if [ ! -f $rvm_script ]
 then
-  echo "No RVM installation found, not creating a unicorn_rails RVM wrapper"
+  echo "No RVM installation found, not loading RVM environment"
   exit 0
 fi
 
-if [[ -s "#{node[:rvm][:install_path]}/environments/default" ]] ; then
+if [[ -s "$rvm_script" ]] ; then
   echo "Found a default RVM environment, loading it now"
-  source "#{node[:rvm][:install_path]}/environments/default"
+  source "$rvm_script"
 else
   echo "No default RVM environment found, can not continue.  Try setting one with rvm --default"
-  exit 1
+  exit 0
 fi
-
-default_ruby=`rvm list default string`
 
 unicorn_wrapper="#{node[:rvm][:install_path]}/bin/init_unicorn_rails"
 echo "Testing for RVM unicorn_rails wrapper using $unicorn_wrapper"
 if [ ! -f $unicorn_wrapper ]
 then
-  echo "Creating RVM wrapper for unicorn_rails in gemset $default_ruby@global"
-  rvm wrapper $default_ruby@global init unicorn_rails
+  echo "Creating RVM wrapper for unicorn_rails in gemset $rvm_ruby_string@global"
+  rvm wrapper $rvm_ruby_string@global init unicorn_rails
 else
   echo "RVM wrapper for unicorn_rails already exists, skipping"
   exit 0

@@ -18,7 +18,7 @@
 bash "Load RVM default environment (if any)" do
   code <<-EOF
 rvm_script="#{node[:rvm][:install_path]}/scripts/rvm"
-echo "Testing for RVM using $rvm_scripts"
+echo "Testing for RVM using $rvm_script"
 if [ ! -f $rvm_script ]
 then
   echo "No RVM installation found, not loading RVM environment"
