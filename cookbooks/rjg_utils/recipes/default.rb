@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-#include_recipe "rvm::load_environment"
+include_recipe "rvm::load_environment"
 
 #bash "Which gem yo" do
 #  code "echo `which gem`"

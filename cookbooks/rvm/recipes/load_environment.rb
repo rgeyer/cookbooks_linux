@@ -17,17 +17,17 @@
 
 bash "Load RVM default environment (if any)" do
   code <<-EOF
-rvm_bin="#{node[:rvm][:install_path]}/bin/rvm"
-echo "Testing for RVM using $rvm_bin"
-if [ ! -f $rvm_bin ]
+rvm_script="#{node[:rvm][:install_path]}/scripts/rvm"
+echo "Testing for RVM using $rvm_scripts"
+if [ ! -f $rvm_script ]
 then
   echo "No RVM installation found, not loading RVM environment"
   exit 0
 fi
 
-if [[ -s "#{node[:rvm][:install_path]}/environments/default" ]] ; then
+if [[ -s "$rvm_script" ]] ; then
   echo "Found a default RVM environment, loading it now"
-  source "#{node[:rvm][:install_path]}/environments/default"
+  source "$rvm_script"
 else
   echo "No default RVM environment found, can not continue.  Try setting one with rvm --default"
   exit 0
