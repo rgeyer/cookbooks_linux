@@ -18,7 +18,7 @@ bash "Here comes env" do
 end
 
 bash "Load bashrc" do
-  code "/etc/bash.bashrc"
+  code "source /root/.bashrc"
 end
 
 bash "Here comes env again" do
