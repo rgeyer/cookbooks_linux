@@ -8,7 +8,7 @@ version          "0.0.1"
 supports "ubuntu"
 
 recipe "rvm::default", "Installs Ruby Version Manager (RVM)"
-recipe "rvm::compile_gemset", "Creates a binary version of the specified gemset for both i386 and x86_64 arch's"
+recipe "rvm::compile_gemset", "Creates a binary version of the specified gemset for the arch of the running instance"
 
 attribute "rvm/install_path",
   :display_name => "RVM Installation Path",

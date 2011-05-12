@@ -6,7 +6,7 @@
   },
   "recipes": {
     "rvm::default": "Installs Ruby Version Manager (RVM)",
-    "rvm::compile_gemset": "Creates a binary version of the specified gemset for both i386 and x86_64 arch's"
+    "rvm::compile_gemset": "Creates a binary version of the specified gemset for the arch of the running instance"
   },
   "maintainer": "Ryan J. Geyer",
   "replacing": {

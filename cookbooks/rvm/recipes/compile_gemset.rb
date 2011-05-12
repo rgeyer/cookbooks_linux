@@ -30,46 +30,23 @@ rjg_aws_s3 "Download gemset file" do
   action :get
 end
 
-bash "Create and upload gem binaries (i386 arch)" do
+bash "Create and tar.gz gem binaries" do
   code <<-EOF
-rvm_archflags="-arch i386" CFLAGS="-arch i386" LDFLAGS="-arch i386" #{node[:rvm][:bin_path]} install #{node[:rvm][:compile_gemset][:ruby]}
+#{node[:rvm][:bin_path]} install #{node[:rvm][:compile_gemset][:ruby]}
 #{node[:rvm][:bin_path]} --default use #{node[:rvm][:compile_gemset][:ruby]}
 #{node[:rvm][:bin_path]} --create #{node[:rvm][:compile_gemset][:ruby]}@compile_me
 #{node[:rvm][:bin_path]} gemset import #{gemset_file}
 cd #{gemset_dir}
-tar -cf /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-i386.tar *
-gzip /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-i386.tar
+tar -cf /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-#{node[:kernel][:machine]}.tar *
+gzip /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-#{node[:kernel][:machine]}.tar
   EOF
 end
 
-bash "Create and upload gem binaries (x86_64 arch)" do
-  code <<-EOF
-#{node[:rvm][:bin_path]} remove #{node[:rvm][:compile_gemset][:ruby]}
-rm -rf #{gemset_dir}
-rvm_archflags="-arch x86_64" CFLAGS="-arch x86_64" LDFLAGS="-arch x86_64" #{node[:rvm][:bin_path]} install #{node[:rvm][:compile_gemset][:ruby]}
-#{node[:rvm][:bin_path]} --default use #{node[:rvm][:compile_gemset][:ruby]}
-#{node[:rvm][:bin_path]} --create #{node[:rvm][:compile_gemset][:ruby]}@compile_me
-#{node[:rvm][:bin_path]} gemset import #{gemset_file}
-cd #{gemset_dir}
-tar -cf /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-amd64.tar *
-gzip /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-amd64.tar
-  EOF
-end
-
-rjg_aws_s3 "Upload i386 file" do
+rjg_aws_s3 "Upload gemset file" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:rvm][:compile_gemset][:s3_bucket]
   s3_file node[:rvm][:compile_gemset][:gemset_file]
-  file_path "/tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-i386.tar.gz"
-  action :put
-end
-
-rjg_aws_s3 "Upload x86_64 file" do
-  access_key_id node[:aws][:access_key_id]
-  secret_access_key node[:aws][:secret_access_key]
-  s3_bucket node[:rvm][:compile_gemset][:s3_bucket]
-  s3_file node[:rvm][:compile_gemset][:gemset_file]
-  file_path "/tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-amd64.tar.gz"
+  file_path "/tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-#{node[:kernel][:machine]}.tar.gz"
   action :put
 end
