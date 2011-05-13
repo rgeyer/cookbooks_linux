@@ -46,6 +46,8 @@ if node[:platform] == "ubuntu"
     end
   end
 
+  # TODO: This symlinking is pointless here, since a ruby has not yet been installed, possibly need to notify this
+  # from another recipe which actually installs a ruby.
   bash "Symlink RVM binaries to /usr/bin" do
     code "for bin in `ls #{bindir}`; do ln -sf #{bindir}/$bin /usr/bin/$bin; done;"
     creates "/usr/bin/ruby"

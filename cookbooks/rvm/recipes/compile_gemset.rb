@@ -16,8 +16,7 @@
 #  limitations under the License.
 
 gemset_file = "/tmp/gemset.gems"
-gemset_dir = ::File.join(node[:rvm][:install_path], "gems", "#{node[:rvm][:compile_gemset][:ruby]}@compile_me")
-rvm_bin = ::File.join(node[:rvm][:install_path], "bin", "rvm")
+gemset_dir = ::File.join(node[:rvm][:install_path], "gems", "#{node[:rvm][:compile_gemset][:ruby]}")
 
 include_recipe "rvm::default"
 
@@ -34,7 +33,6 @@ bash "Create and tar.gz gem binaries" do
   code <<-EOF
 #{node[:rvm][:bin_path]} install #{node[:rvm][:compile_gemset][:ruby]}
 #{node[:rvm][:bin_path]} --default use #{node[:rvm][:compile_gemset][:ruby]}
-#{node[:rvm][:bin_path]} --create #{node[:rvm][:compile_gemset][:ruby]}@compile_me
 #{node[:rvm][:bin_path]} gemset import #{gemset_file}
 cd #{gemset_dir}
 tar -cf /tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-#{node[:kernel][:machine]}.tar *
@@ -46,7 +44,7 @@ rjg_aws_s3 "Upload gemset file" do
   access_key_id node[:aws][:access_key_id]
   secret_access_key node[:aws][:secret_access_key]
   s3_bucket node[:rvm][:compile_gemset][:s3_bucket]
-  s3_file node[:rvm][:compile_gemset][:gemset_file]
+  s3_file "#{node[:rvm][:compile_gemset][:gemset_name]}-#{node[:kernel][:machine]}.tar.gz"
   file_path "/tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-#{node[:kernel][:machine]}.tar.gz"
   action :put
 end
