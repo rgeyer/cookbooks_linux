@@ -50,3 +50,5 @@ rjg_aws_s3 "Upload gemset file" do
   file_path "/tmp/#{node[:rvm][:compile_gemset][:gemset_name]}-#{node[:kernel][:machine]}.tar.gz"
   action :put
 end
+
+execute "shutdown -h now"
