@@ -51,4 +51,6 @@ rjg_aws_s3 "Upload gemset file" do
   action :put
 end
 
-execute "shutdown -h now"
+if node[:rvm][:compile_gemset][:shutdown]
+  execute "shutdown -h now"
+end

@@ -41,6 +41,13 @@ attribute "rvm/compile_gemset/s3_bucket",
   :required => "required",
   :recipes => ["rvm::compile_gemset"]
 
+attribute "rvm/compile_gemset/shutdown",
+  :display_name => "RVM Shutdown After Compile?",
+  :description => "A boolean indicating if the server should be terminated once the the compilation is completed",
+  :required => "required",
+  :choice => ["true", "false"],
+  :recipes => ["rvm::compile_gemset"]
+
 attribute "aws/access_key_id",
   :display_name => "Access Key Id",
   :description => "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",

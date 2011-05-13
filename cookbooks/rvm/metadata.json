@@ -17,6 +17,20 @@
   "groupings": {
   },
   "attributes": {
+    "rvm/compile_gemset/shutdown": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+        "true",
+        "false"
+      ],
+      "type": "string",
+      "recipes": [
+        "rvm::compile_gemset"
+      ],
+      "description": "A boolean indicating if the server should be terminated once the the compilation is completed",
+      "display_name": "RVM Shutdown After Compile?"
+    },
     "rvm/compile_gemset/s3_bucket": {
       "required": "required",
       "calculated": false,
