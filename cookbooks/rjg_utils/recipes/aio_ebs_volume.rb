@@ -7,7 +7,7 @@ rjg_aws_ebs_volume "aio_ebs-#{node[:rjg_utils][:rs_instance_uuid]}" do
   aws_secret_access_key node[:aws][:secret_access_key]
   device "/dev/sdi"
   size node[:rjg_utils][:aio_ebs_size_in_gb].to_i
-  unless node[:rjg_utils][:aio_ebs_snapshot_id] == "blank"
+  if node[:rjg_utils][:aio_ebs_snapshot_id]
     snapshot_id node[:rjg_utils][:aio_ebs_snapshot_id]
   end
   action [:create, :attach]

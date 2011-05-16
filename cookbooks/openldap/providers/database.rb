@@ -1,6 +1,5 @@
 action :create do
   base_dn     = new_resource.base_dn
-  base_dn     = nil if base_dn == "blank"
   db_type     = new_resource.db_type
   cache_size  = new_resource.cache_size
   max_objects = new_resource.max_objects
