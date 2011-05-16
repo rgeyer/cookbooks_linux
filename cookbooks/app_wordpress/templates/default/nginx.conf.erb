@@ -39,7 +39,11 @@ server {
   }
 
   location ~ .php$ {
-    fastcgi_pass   <%= node[:php5_fpm][:listen] %>;
+<% if node[:php5_fpm][:listen] == "socket" -%>
+    fastcgi_pass   unix:<%= node[:php5_fpm][:listen_socket] %>;
+<% else %>
+    fastcgi_pass   <%= node[:php5_fpm][:listen_ip] %>:<%= node[:php5_fpm][:listen_port] %>;
+<% end -%>
   }
 
   location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {

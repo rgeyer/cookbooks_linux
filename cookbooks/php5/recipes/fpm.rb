@@ -1,5 +1,7 @@
 include_recipe "php5::default"
 
+listen_str = node[:php5_fpm][:listen] == "socket" ? node[:php5_fpm][:listen_socket] : "#{node[:php5_fpm][:listen_ip]}:#{node[:php5_fpm][:listen_port]}"
+
 # The default config for php-fpm blows up if there is no /var/www directory
 directory "/var/www" do
   recursive true
@@ -29,6 +31,7 @@ end
 
 template "/etc/php5/fpm/main.conf" do
   source "php5-fpm.conf.erb"
+  variables({:listen_str => listen_str})
   notifies :restart, resources(:service => "php5-fpm"), :immediately
 end
 

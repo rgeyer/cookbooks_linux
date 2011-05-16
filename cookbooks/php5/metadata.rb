@@ -31,6 +31,34 @@ attribute "php5/server_usage",
   :choice => ["shared", "dedicated"],
   :default => "dedicated"
 
+attribute "php5/listen",
+  :display_name => "PHP5 FPM Listen Method",
+  :description => "The listening method, one of [socket, tcp].  If socket is selected, php5/listen_socket can optionally be supplied.  If tcp is selected, php5/listen_ip and php5/listen_port can optionally be supplied",
+  :recipes => [ "php5::fpm" ],
+  :choice => ["socket", "tcp"],
+  :default => "socket"
+
+attribute "php5/listen_socket",
+  :display_name => "PHP5 FPM Listen Socket",
+  :description => "The full path and filename of the unix socket to listen on",
+  :recipes => [ "php5::fpm" ],
+  :required => "optional",
+  :default => "/var/run/php5-fpm.sock"
+
+attribute "php5/listen_ip",
+  :display_name => "PHP5 FPM Listen IP",
+  :description => "The TCP/IP address for PHP-FPM to listen on",
+  :recipes => [ "php5::fpm" ],
+  :required => "optional",
+  :default => "127.0.0.1"
+
+attribute "php5/listen_port",
+  :display_name => "PHP5 FPM Listen",
+  :description => "The TCP/IP address for PHP-FPM to listen on",
+  :recipes => [ "php5::fpm" ],
+  :required => "optional",
+  :default => "9000"
+
 # This is really just to create a directory for the logfile(s), and is set based on the environment in the default attributes. Don't see
 # a need to allow the user to define this for now
 #attribute "php5/fpm_log_dir",
