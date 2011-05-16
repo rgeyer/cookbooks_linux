@@ -40,7 +40,6 @@ server {
 
   location ~ .php$ {
     fastcgi_pass   <%= node[:php5_fpm][:listen] %>;
-    access_log <%= node[:nginx][:log_dir] %>/phpfpm-upstream.log phpfpm_stats;
   }
 
   location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
