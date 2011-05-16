@@ -8,11 +8,6 @@ end
 # into it, and deleting the temp directory every time, whether gitosis is already installed or not.
 gitosis_install_dir = "/tmp/gitosisinstall"
 
-directory gitosis_install_dir do
-  action :create
-  recursive true
-end
-
 git gitosis_install_dir do
   repository "git://eagain.net/gitosis.git"
   reference "master"
