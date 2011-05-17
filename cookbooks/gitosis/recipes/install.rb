@@ -98,9 +98,18 @@ chmod -R 755 #{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git/hoo
   not_if "[ -d #{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git ]"
 end
 
+bash "Set permissions for gitosis home dir" do
+  code <<EOF
+chown -R #{node[:gitosis][:uid]}:#{node[:gitosis][:gid]} #{node[:gitosis][:gitosis_home]}
+chmod -R 770 #{node[:gitosis][:gitosis_home]}/gitosis
+chmod -R 770 #{node[:gitosis][:gitosis_home]}/repositories
+EOF
+end
+
 # Setup gitosis-daemon service
 template "/etc/sv/git-daemon/run" do
   source "git-daemon-run.sh.erb"
+  mode 00711
   variables(:gitosis_home => node[:gitosis][:gitosis_home])
 end
 
