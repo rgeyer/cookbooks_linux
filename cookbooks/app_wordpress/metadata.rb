@@ -5,12 +5,11 @@ description      "Installs/Configures app_wordpress"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-# Does this really depend upon web_apache?  It's sorta more loosely coupled?
-depends "aws"
+# Does this really depend upon web_apache or nginx?  It's sorta more loosely coupled?
+depends "rjg_aws"
 depends "web_apache"
 depends "db_mysql"
 depends "mysql"
-depends "execute[mysql_database]"
 depends "rjg_utils"
 
 provides "app_wordpress[site]"

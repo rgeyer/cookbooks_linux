@@ -143,9 +143,6 @@
   "recommendations": {
   },
   "dependencies": {
-    "execute[mysql_database]": [
-
-    ],
     "db_mysql": [
 
     ],
@@ -155,10 +152,10 @@
     "rjg_utils": [
 
     ],
-    "web_apache": [
+    "rjg_aws": [
 
     ],
-    "aws": [
+    "web_apache": [
 
     ]
   },
