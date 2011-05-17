@@ -34,7 +34,6 @@
       "choice": [
 
       ],
-      "default": "blank",
       "type": "string",
       "recipes": [
         "rjg_utils::aio_ebs_volume"

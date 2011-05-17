@@ -61,7 +61,6 @@ attribute "rjg_utils/aio_ebs_snapshot_id",
   :display_name => "EBS Volume Snapshot Id",
   :description => "The full AWS id of a snapshot which will be used to create the volume.  This is used to launch a new server instance with the state stored in the specified snapshot.  If left blank a new EBS volume is created.",
   :recipes => ["rjg_utils::aio_ebs_volume"],
-  :default => "blank",
   :required => "optional"
 
 attribute "rjg_utils/aio_ebs_mountpoint",

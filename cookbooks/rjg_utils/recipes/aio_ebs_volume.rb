@@ -34,7 +34,7 @@ mkfs.xfs -q /dev/sdi
   # the bash code, or make an assumption that if I'm creating a new ebs volume (always the case when no snapshot id
   # is supplied) it needs to be formatted.
   not_if do
-    node[:rjg_utils][:aio_ebs_snapshot_id] != "blank" or
+    node[:rjg_utils][:aio_ebs_snapshot_id] or
     `file -s /dev/sdi | grep XFS`.strip =~ /XFS/
   end
   # TODO: This blows up on reboot or stop/start because the node attribute is still "blank" but the device exists & is initialized
