@@ -164,9 +164,6 @@
   "recommendations": {
   },
   "dependencies": {
-    "execute[mysql_database]": [
-
-    ],
     "db_mysql": [
 
     ],

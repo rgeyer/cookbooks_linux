@@ -9,7 +9,6 @@ depends "rjg_aws"
 depends "rs_utils"
 depends "db_mysql"
 depends "mysql"
-depends "execute[mysql_database]"
 
 recipe "mail_postfix::default", "Installs postfix with mysql backend configuration"
 recipe "mail_postfix::s3_backup", "Backs up the configuration database to s3"
