@@ -5,7 +5,7 @@ description      "Installs/Configures postfix"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-depends "aws"
+depends "rjg_aws"
 depends "rs_utils"
 depends "db_mysql"
 depends "mysql"
