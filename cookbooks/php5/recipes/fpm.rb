@@ -21,6 +21,7 @@ end
 
 template "/etc/logrotate.d/php5-fpm" do
   source "php5-fpm-logrotate.erb"
+  backup false
 end
 
 # enable php-fpm service
@@ -31,6 +32,7 @@ end
 
 template "/etc/php5/fpm/main.conf" do
   source "php5-fpm.conf.erb"
+  backup false
   variables(:listen_str => listen_str)
   notifies :restart, resources(:service => "php5-fpm"), :immediately
 end

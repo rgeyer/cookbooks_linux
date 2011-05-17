@@ -30,5 +30,6 @@ template nginx_collectd_conf do
   mode 0644
   owner "root"
   group "root"
+  backup false
   notifies :restart, resources(:service => "collectd"), :immediately
 end

@@ -43,4 +43,5 @@ end
 # with a statement like include_path=${include_path} ":/appended/path/to/includes"
 template "/etc/php5/conf.d/include_path.ini" do
   source "include_path.ini.erb"
+  backup false
 end
