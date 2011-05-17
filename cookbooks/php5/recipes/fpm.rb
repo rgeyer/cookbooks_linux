@@ -31,7 +31,7 @@ end
 
 template "/etc/php5/fpm/main.conf" do
   source "php5-fpm.conf.erb"
-  variables({:listen_str => listen_str})
+  variables(:listen_str => listen_str)
   notifies :restart, resources(:service => "php5-fpm"), :immediately
 end
 
