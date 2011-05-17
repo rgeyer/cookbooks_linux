@@ -33,5 +33,8 @@ define :web_apache_enable_vhost, :fqdn => nil, :aliases => nil, :allow_override 
     allow_override allow_override
   end
 
-  right_link_tag "apache2:vhost=#{fqdn}"
+  # TODO: This is illegal according to RightScale.  Each namespace:key can have only one value
+  skeme_tag "apache2:vhost=#{fqdn}" do
+    action :add
+  end
 end

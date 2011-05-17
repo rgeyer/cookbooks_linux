@@ -17,6 +17,7 @@ depends "apache2"
 depends "aws"
 depends "rs_utils"
 depends "utils"
+depends "skeme"
 
 attribute "web_apache",
   :display_name => "apache hash",

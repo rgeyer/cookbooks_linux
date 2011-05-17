@@ -11,6 +11,7 @@ depends "web_apache"
 depends "db_mysql"
 depends "mysql"
 depends "rjg_utils"
+depends "skeme"
 
 provides "app_wordpress[site]"
 
