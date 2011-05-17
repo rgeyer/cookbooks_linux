@@ -176,13 +176,13 @@
     "cron": [
 
     ],
+    "rjg_aws": [
+
+    ],
     "web_apache": [
 
     ],
     "app_wordpress": [
-
-    ],
-    "aws": [
 
     ],
     "rs_utils": [

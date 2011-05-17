@@ -5,7 +5,7 @@ description      "Installs/Configures rjg_utils"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-depends "aws"
+depends "rjg_aws"
 depends "cron"
 depends "rs_utils"
 depends "web_apache"
