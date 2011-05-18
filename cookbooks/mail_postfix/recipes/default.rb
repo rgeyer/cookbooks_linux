@@ -35,7 +35,9 @@ file tmp_sqlfile do
   action :nothing
 end
 
-if Gem::Version.new(node[:chef_packages][:chef][:version]) < Gem::Version.new('0.9.0')
+#if Gem::Version.new(node[:chef_packages][:chef][:version]) < Gem::Version.new('0.9.0')
+# TODO: This is a hacky check to see if we're running as chef-solo in the RightScale sandbox
+if node[:rightscale_deprecated]
   remote_file tmp_sqlfile do
     source "postfix.sql"
   end
