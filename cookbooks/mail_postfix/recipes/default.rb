@@ -2,7 +2,7 @@
 # Cookbook Name:: mail_postfix
 # Recipe:: default
 #
-# Copyright 2010, YOUR_COMPANY_NAME
+# Copyright 2010, Ryan J. Geyer
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -66,8 +66,16 @@ end
     owner "root"
     group "root"
     mode 0644
-    notifies :restart, resources(:service => "postfix")
+    notifies :restart, resources(:service => "postfix"), :immediately
   end
+end
+
+# "Touch" the maillog file so that collectd can start monitoring postfix immediately
+file "/var/log/maillog" do
+  owner "root"
+  group "root"
+  mode 00600
+  action :create
 end
 
 # Enable monitoring
@@ -76,7 +84,7 @@ template File.join(node.rs_utils.collectd_plugin_dir, 'postfix.conf') do
   variables(
     :maillog => "/var/log/maillog"
   )
-  notifies :restart, resources(:service => "collectd")
+  notifies :restart, resources(:service => "collectd"), :immediately
 end
 
 # For when we support local delivery, currently targeting dovecot
