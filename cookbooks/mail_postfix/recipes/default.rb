@@ -12,6 +12,8 @@ node[:rs_utils][:plugin_list] += " tail" unless node[:rs_utils][:plugin_list] =~
 
 include_recipe "rs_utils::setup_monitoring"
 
+tmp_sqlfile = "/tmp/postfix.sql"
+
 node[:mail_postfix][:packages].each do |pkg|
   package pkg
 end
@@ -28,13 +30,25 @@ mysql_database "Create postfix configuration database" do
   action :create_db
 end
 
-attachments_path = File.expand_path(File.join(File.dirname(__FILE__), '..', 'files', 'default'))
+file tmp_sqlfile do
+  action :nothing
+end
 
-# Populate the new database with the expected schema
+if Gem::Version.new(node[:chef_packages][:chef][:version]) < Gem::Version.new('0.9.0')
+  remote_file tmp_sqlfile do
+    source "postfix.sql"
+  end
+else
+  cookbook_file tmp_sqlfile do
+    source "postfix.sql"
+  end
+end
+
+  # Populate the new database with the expected schema
 bash "Populate postfix configuration database with empty schema" do
   user "root"
-  cwd attachments_path
-  code "mysql -u root -b postfix < postfix.sql"
+  code "mysql -u root -b postfix < #{tmp_sqlfile}"
+  notifies :delete, resources(:file => tmp_sqlfile), :immediately
 end
 
 # Grant permissions to the mysql database for postfix
@@ -64,9 +78,6 @@ template File.join(node.rs_utils.collectd_plugin_dir, 'postfix.conf') do
   )
   notifies :restart, resources(:service => "collectd")
 end
-
-
-# TODO: Enable logging by using collectd.conf.erb and adding mail_counter to types.db
 
 # For when we support local delivery, currently targeting dovecot
 # Add the virtual mail group & user
