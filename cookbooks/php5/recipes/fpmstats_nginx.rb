@@ -3,8 +3,10 @@ include_recipe "php5::fpm"
 include_recipe "php5::fpmenable_nginx"
 
 # Load the nginx plugin in the main config file
-node[:rs_utils][:plugin_list] += " curl_json" unless node[:rs_utils][:plugin_list] =~ /curl/
-node[:rs_utils][:process_list] += " php5-fpm" unless node[:rs_utils][:process_list] =~ /php5-fpm/
+rs_utils_enable_collectd_plugin "curl_json"
+#node[:rs_utils][:plugin_list] += " curl_json" unless node[:rs_utils][:plugin_list] =~ /curl/
+rs_utils_monitor_process "php5-fpm"
+#node[:rs_utils][:process_list] += " php5-fpm" unless node[:rs_utils][:process_list] =~ /php5-fpm/
 
 nginx_conf = ::File.join(node[:nginx][:dir], "sites-available", "#{node[:hostname]}.d", "php5-fpm-stats.conf")
 nginx_collectd_conf = ::File.join(node[:rs_utils][:collectd_plugin_dir], "php5-fpm.conf")

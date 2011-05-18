@@ -8,7 +8,8 @@
 #
 
 # Load the tail plugin in the main config file
-node[:rs_utils][:plugin_list] += " tail" unless node[:rs_utils][:plugin_list] =~ /tail/
+rs_utils_enable_collectd_plugin "tail"
+#node[:rs_utils][:plugin_list] += " tail" unless node[:rs_utils][:plugin_list] =~ /tail/
 
 include_recipe "rs_utils::setup_monitoring"
 

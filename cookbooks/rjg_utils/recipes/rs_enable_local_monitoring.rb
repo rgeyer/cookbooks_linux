@@ -1,5 +1,6 @@
 # Load the rrdtool plugin in the main config file
-node[:rs_utils][:plugin_list] += " rrdtool" unless node[:rs_utils][:plugin_list] =~ /rrdtool/
+rs_utils_enable_collectd_plugin "rrdtool"
+#node[:rs_utils][:plugin_list] += " rrdtool" unless node[:rs_utils][:plugin_list] =~ /rrdtool/
 
 include_recipe "rs_utils::setup_monitoring"
 
