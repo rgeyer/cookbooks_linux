@@ -1,3 +1,7 @@
+gitosis_install_dir = "/tmp/gitosisinstall"
+gitosis_conf_link = ::File.join(node[:gitosis][:gitosis_home],".gitosis.conf")
+gitosis_conf = ::File.join(node[:gitosis][:gitosis_home],"repositories","gitosis-admin.git","gitosis.conf")
+
 # Install git, and git-daemon first
 %w{git-core git-daemon-run python-setuptools}.each do |p|
   package p
@@ -6,8 +10,6 @@ end
 # Install Gitosis
 # Probably want to wrap all of this in a big fat "not-if" type block. We're creating the temp dir, checking code out
 # into it, and deleting the temp directory every time, whether gitosis is already installed or not.
-gitosis_install_dir = "/tmp/gitosisinstall"
-
 git gitosis_install_dir do
   repository "git://eagain.net/gitosis.git"
   reference "master"
@@ -96,6 +98,14 @@ sudo -H -u #{node[:gitosis][:uid]} gitosis-init < #{node[:gitosis][:gitosis_home
 chmod -R 755 #{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git/hooks/post-update
   EOF
   not_if "[ -d #{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git ]"
+end
+
+# Delete and recreate the gitosis.conf symlink.  This is just in case the node[:gitosis][:gitosis_home] moves when
+# it's launched on a new instance
+link gitosis_conf_link do
+  to gitosis_conf
+  link_type :symbolic
+  action [:delete, :create]
 end
 
 bash "Set permissions for gitosis home dir" do
