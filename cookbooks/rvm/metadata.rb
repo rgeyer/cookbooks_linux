@@ -17,6 +17,12 @@ attribute "rvm/install_path",
   :default => "/opt/rvm",
   :recipes => ["rvm::default"]
 
+attribute "rvm/ruby",
+  :display_name => "RVM Ruby Name",
+  :description => "The full RVM version to install and set as default. To find a list run `rvm list known`.  I.E. ruby-1.8.7-head",
+  :required => "required",
+  :recipes => ["rvm::default"]
+
 attribute "rvm/compile_gemset/ruby",
   :display_name => "RVM Ruby Name",
   :description => "The full RVM version. To find a list run `rvm list known`.  I.E. ruby-1.8.7-head",

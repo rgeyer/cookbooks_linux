@@ -38,6 +38,13 @@ bash "Install RVM for all users" do
   not_if { ::File.exists?(node[:rvm][:install_path]) }
 end
 
+bash "Installing #{node[:rvm][:ruby]} as RVM's default ruby" do
+  code <<-EOF
+#{node[:rvm][:bin_path]} install #{node[:rvm][:ruby]}
+#{node[:rvm][:bin_path]} --default use #{node[:rvm][:ruby]}
+  EOF
+end
+
 # Erase all existence of "standard" ruby 1.8 and replace it with the RVM installed/default ruby
 if node[:platform] == "ubuntu"
   %w{libopenssl-ruby1.8 libreadline-ruby1.8 libruby1.8 libshadow-ruby1.8 ruby ruby1.8 ruby1.8-dev}.each do |p|
@@ -46,8 +53,6 @@ if node[:platform] == "ubuntu"
     end
   end
 
-  # TODO: This symlinking is pointless here, since a ruby has not yet been installed, possibly need to notify this
-  # from another recipe which actually installs a ruby.
   bash "Symlink RVM binaries to /usr/bin" do
     code "for bin in `ls #{bindir}`; do ln -sf #{bindir}/$bin /usr/bin/$bin; done;"
     creates "/usr/bin/ruby"
