@@ -22,6 +22,9 @@
 bindir=::File.join(node[:rvm][:install_path], 'bin')
 node[:rvm][:bin_path] = ::File.join(node[:rvm][:install_path], "bin", "rvm")
 
+# Required to compile some rubies
+package "libssl-dev"
+
 bash "Download the RVM install script" do
   code <<-EOF
 wget -q -O /tmp/rvm http://rvm.beginrescueend.com/install/rvm
