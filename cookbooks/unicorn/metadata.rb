@@ -7,7 +7,6 @@ version          "0.0.1"
 
 supports "ubuntu"
 
-depends "ruby_enterprise"
 depends "rubygems"
 
 #recipe "unicorn::enterprise","Installs the unicorn gem for Ruby Enterprise 1.8"
