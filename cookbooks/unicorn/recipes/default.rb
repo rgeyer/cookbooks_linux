@@ -61,7 +61,7 @@ unicorn_wrapper="#{node[:rvm][:install_path]}/bin/init_unicorn_rails"
 echo "Testing for RVM unicorn_rails wrapper using $unicorn_wrapper"
 if [ ! -f $unicorn_wrapper ]
 then
-  echo "Creating RVM wrapper for unicorn_rails in gemset $rvm_ruby_string
+  echo "Creating RVM wrapper for unicorn_rails in gemset $rvm_ruby_string"
   rvm wrapper $rvm_ruby_string init unicorn_rails
 else
   echo "RVM wrapper for unicorn_rails already exists, skipping"
