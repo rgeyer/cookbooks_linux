@@ -1,3 +1,5 @@
+include_recipe "skeme::default"
+
 # TODO: So this sorta assumes that an instance runs either nginx or apache2, but not both.  And that either one is already installed
 is_apache2 = ::File.exists? `which apache2`
 content_dir = is_apache2 ? node[:web_apache][:content_dir] : node[:nginx][:content_dir]
