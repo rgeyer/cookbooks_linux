@@ -1,3 +1,16 @@
+#  Copyright 2011 Ryan J. Geyer
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
 def update_latest_version()
   require 'net/http'
   require 'uri'
@@ -53,7 +66,7 @@ action :install do
 
   underscored_fqdn = fqdn.gsub(".", "_")
   underscored_fqdn_16 = underscored_fqdn.slice(0..15)
-  vhost_dir = "#{new_resource.content_dir}/#{fqdn}"
+  vhost_dir = "#{node[:app_wordpress][:content_dir]}/#{fqdn}"
   install_dir = "#{vhost_dir}/htdocs"
 
   Chef::Log.info "Installing a wordpress instance for vhost #{fqdn}"
@@ -142,7 +155,7 @@ end
 action :update do
   fqdn = new_resource.fqdn
   tempDir = "/tmp/wordpress"
-  install_dir = "#{new_resource.content_dir}/#{fqdn}/htdocs"
+  install_dir = "#{node[:app_wordpress][:content_dir]}/#{fqdn}/htdocs"
   wpcontent_dir = "#{install_dir}/wp-content"
 
   if ::File.directory? wpcontent_dir
@@ -183,7 +196,7 @@ action :backup do
   backup_file_path = new_resource.backup_file_path
 
   underscored_fqdn = fqdn.gsub(".", "_")
-  install_dir = "#{new_resource.content_dir}/#{fqdn}/htdocs"
+  install_dir = "#{node[:app_wordpress][:content_dir]}/#{fqdn}/htdocs"
   version = current_version(install_dir)
 
   tempdir = "/tmp/wordpress-bak"
@@ -249,7 +262,7 @@ action :restore do
   backup_file_path = new_resource.backup_file_path
 
   underscored_fqdn = fqdn.gsub(".", "_")
-  install_dir = "#{new_resource.content_dir}/#{fqdn}/htdocs"
+  install_dir = "#{node[:app_wordpress][:content_dir]}/#{fqdn}/htdocs"
   wpcontent_dir = "#{install_dir}/wp-content"
 
   tempdir = "/tmp/wordpress-restore"

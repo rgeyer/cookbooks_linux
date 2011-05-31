@@ -4,8 +4,7 @@
     "mysql": ">= 0.0.0",
     "rjg_utils": ">= 0.0.0",
     "rjg_aws": ">= 0.0.0",
-    "skeme": ">= 0.0.0",
-    "web_apache": ">= 0.0.0"
+    "skeme": ">= 0.0.0"
   },
   "name": "app_wordpress",
   "maintainer_email": "me@ryangeyer.com  ",
@@ -56,6 +55,20 @@
       ],
       "display_name": "Wordpress VHOST FQDN",
       "description": "The fully qualified domain name (FQDN) of the new vhost to deploy wordpress to.  Example www.apache.org"
+    },
+    "app_wordpress/webserver": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+        "nginx",
+        "apache2"
+      ],
+      "type": "string",
+      "recipes": [
+
+      ],
+      "display_name": "Wordpress Web Server",
+      "description": "The web server which will be serving pages for the wordpress instance"
     },
     "aws/secret_access_key": {
       "required": "required",
@@ -134,8 +147,10 @@
   },
   "maintainer": "Ryan J. Geyer",
   "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "recommendations": {
+    "nginx": ">= 0.0.0",
+    "web_apache": ">= 0.0.0"
   },
   "recipes": {
     "app_wordpress::s3_restore": "Installs (if necessary) and restores wordpress for the specified vhost",
@@ -143,7 +158,7 @@
     "app_wordpress::update": "Updates the instance of wordpress for the specified vhost to the latest version from wordpress.org",
     "app_wordpress::enable_continuous_backup": "Creates a cron job which will run app_wordpress::s3_backup daily",
     "app_wordpress::s3_backup": "Backs up the content of the wp-content directory for the specified vhost.",
-    "app_wordpress::default": "Don't do nuthin'"
+    "app_wordpress::default": "Installs and configures some defaults for the app_wordpress cookbook"
   },
   "groupings": {
   },
