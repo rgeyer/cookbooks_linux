@@ -1,9 +1,10 @@
 # TODO: When 5.6 is released, exchange this for rs_run_recipe with json input.
+# TODO: Make this apache2/nginx aware
 
 include_recipe "utils::install_rest_connection_gem"
 
 # Cron hates periods in file names
-fqdn = node[:web_apache][:vhost_fqdn].gsub(".", "_")
+fqdn = node[:app_wordpress][:vhost_fqdn].gsub(".", "_")
 
 cron_job "#{fqdn}_wordpress_backup" do
   frequency "daily"
