@@ -25,13 +25,14 @@ def update_latest_version()
   latest_version_dir = "#{node[:app_wordpress][:version_store_path]}/#{latest_version_num}"
 
   if !::File.exist? latest_version_dir
-    directory latest_version_dir do
+    d = directory latest_version_dir do
       recursive true
-      action :create
+      action :nothing
     end
 
-    bash "Downloading Wordpress #{latest_version_num}" do
+    b = bash "Downloading Wordpress #{latest_version_num}" do
       code "wget -q -O #{latest_version_dir}/wordpress.tar.gz http://wordpress.org/wordpress-#{latest_version_num}.tar.gz"
+      action :nothing
     end
 
 #    remote_file "#{latest_version_dir}/wordpress.tar.gz" do
@@ -39,9 +40,15 @@ def update_latest_version()
 #      backup false
 #    end
 
-    link "#{node[:app_wordpress][:version_store_path]}/latest" do
+    l = link "#{node[:app_wordpress][:version_store_path]}/latest" do
       to latest_version_dir
+      action :nothing
     end
+
+    # We need to do this "right now" because we're using this like a blocking method call
+    d.run_action(:create)
+    b.run_action(:run)
+    l.run_action(:create)
   end
 end
 
