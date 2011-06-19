@@ -7,32 +7,32 @@ version          "0.0.1"
 
 supports "ubuntu"
 
-recipe "mongodb::apt", "Installs mongodb from the net10 official packages"
+recipe "mongod::apt", "Installs mongodb from the net10 official packages"
 
-attribute "mongodb/datadir",
+attribute "mongod/datadir",
   :display_name => "MongoDB Data Directory",
   :description => "The full path to the directory where mongodb should store it's data files",
-  :recipes => ["mongodb::apt"],
+  :recipes => ["mongod::apt"],
   :required => "optional",
   :default => "/var/db/mongodb"
 
-attribute "mongodb/logfile",
+attribute "mongod/logfile",
   :display_name => "MongoDB Log File",
   :description => "The full path to a file where MongoDB will write logs",
-  :recipes => ["mongodb::apt"],
+  :recipes => ["mongod::apt"],
   :required => "optional",
   :default => "/var/log/mongodb.log"
 
-attribute "mongodb/port",
+attribute "mongod/port",
   :display_name => "MongoDB Listen Port",
   :description => "Accept connections on the specified port",
-  :recipes => ["mongodb::apt"],
+  :recipes => ["mongod::apt"],
   :required => "optional",
   :default => "27017"
 
-attribute "mongodb/bind_ip",
+attribute "mongod/bind_ip",
   :display_name => "MongoDB Bind IP",
   :description => "Accept connections on the interface with the given IP, or 0.0.0.0 for all",
-  :recipes => ["mongodb::apt"],
+  :recipes => ["mongod::apt"],
   :required => "optional",
   :default => "0.0.0.0"

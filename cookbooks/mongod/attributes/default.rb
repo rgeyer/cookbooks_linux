@@ -1,7 +1,3 @@
-#
-# Cookbook Name:: mongodb
-# Recipe:: default
-#
 #  Copyright 2011 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -14,3 +10,14 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+
+if node[:ec2] && node[:ec2][:instance_type] != "t1.micro"
+  default[:mongod][:datadir] = "/mnt/db/mongodb"
+  default[:mongod][:logfile] = "/mnt/log/mongodb.log"
+else
+  default[:mongod][:datadir] = "/var/db/mongodb"
+  default[:mongod][:logfile] = "/var/log/mongodb.log"
+end
+
+default[:mongod][:port] = "27017"
+default[:mongod][:bind_ip] = "0.0.0.0"

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mongodb
+# Cookbook Name:: mongod
 # Recipe:: apt
 #
 #  Copyright 2011 Ryan J. Geyer
@@ -39,14 +39,14 @@ end
 package "mongodb-stable"
 
 # All installed, and we could leave it at that, but lets do some configuration
-directory node[:mongodb][:datadir] do
+directory node[:mongod][:datadir] do
   owner "mongodb"
   group "mongodb"
   mode 0755
   recursive true
 end
 
-file node[:mongodb][:logfile] do
+file node[:mongod][:logfile] do
   owner "mongodb"
   group "mongodb"
   mode 0644
@@ -69,6 +69,6 @@ template "/etc/logrotate.d/mongod" do
   group "mongodb"
   mode "0644"
   backup false
-  variables(:logfile => node[:mongodb][:logfile])
+  variables(:logfile => node[:mongod][:logfile])
 end
 

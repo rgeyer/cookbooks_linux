@@ -1,10 +1,10 @@
 {
   "dependencies": {
   },
-  "name": "mongodb",
+  "name": "mongod",
   "maintainer_email": "me@ryangeyer.com",
   "attributes": {
-    "mongodb/bind_ip": {
+    "mongod/bind_ip": {
       "required": "optional",
       "calculated": false,
       "choice": [
@@ -13,26 +13,12 @@
       "default": "0.0.0.0",
       "type": "string",
       "recipes": [
-        "mongodb::apt"
+        "mongod::apt"
       ],
       "display_name": "MongoDB Bind IP",
       "description": "Accept connections on the interface with the given IP, or 0.0.0.0 for all"
     },
-    "mongodb/logfile": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "/var/log/mongodb.log",
-      "type": "string",
-      "recipes": [
-        "mongodb::apt"
-      ],
-      "display_name": "MongoDB Log File",
-      "description": "The full path to a file where MongoDB will write logs"
-    },
-    "mongodb/port": {
+    "mongod/port": {
       "required": "optional",
       "calculated": false,
       "choice": [
@@ -41,12 +27,26 @@
       "default": "27017",
       "type": "string",
       "recipes": [
-        "mongodb::apt"
+        "mongod::apt"
       ],
       "display_name": "MongoDB Listen Port",
       "description": "Accept connections on the specified port"
     },
-    "mongodb/datadir": {
+    "mongod/logfile": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/var/log/mongodb.log",
+      "type": "string",
+      "recipes": [
+        "mongod::apt"
+      ],
+      "display_name": "MongoDB Log File",
+      "description": "The full path to a file where MongoDB will write logs"
+    },
+    "mongod/datadir": {
       "required": "optional",
       "calculated": false,
       "choice": [
@@ -55,7 +55,7 @@
       "default": "/var/db/mongodb",
       "type": "string",
       "recipes": [
-        "mongodb::apt"
+        "mongod::apt"
       ],
       "display_name": "MongoDB Data Directory",
       "description": "The full path to the directory where mongodb should store it's data files"
@@ -73,7 +73,7 @@
   "recommendations": {
   },
   "recipes": {
-    "mongodb::apt": "Installs mongodb from the net10 official packages"
+    "mongod::apt": "Installs mongodb from the net10 official packages"
   },
   "groupings": {
   },

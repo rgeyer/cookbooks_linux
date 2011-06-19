@@ -1,0 +1,6 @@
+dbpath=<%= node[:mongod][:datadir] %>
+logpath=<%= node[:mongod][:logfile] %>
+port = <%= node[:mongod][:port] %>
+
+logappend=true
+bind_ip = <%= node[:mongod][:bind_ip] %>
