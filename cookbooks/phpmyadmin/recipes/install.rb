@@ -17,5 +17,6 @@
 # limitations under the License.
 
 phpmyadmin_instance node[:phpmyadmin][:home] do
+  home node[:phpmyadmin][:home]
   action :create
 end

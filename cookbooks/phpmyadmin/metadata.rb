@@ -5,6 +5,8 @@ description      "A definition for installing phpmyadmin in the desired location
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
+depends "db_mysql"
+
 recipe "phpmyadmin::install", "Installs phpmyadmin at the specified location"
 
 attribute "phpmyadmin/home",
