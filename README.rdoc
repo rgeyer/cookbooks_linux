@@ -13,6 +13,5 @@ A collection of Chef cookbooks for linux (mostly Ubuntu).  Used to configure EC2
 * Setup of SSL vhost with some default service(s) like phpmyadmin and a self management tool (vhost manager)
 * Enable gitweb & assign it to the default vhost
 * Ability to deploy Drupal sites
-* Look into ngnix support
 * Enable local delivery for emails (expose an IMAP and POP3 server)
 * KeePass or similar?
