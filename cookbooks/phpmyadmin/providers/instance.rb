@@ -40,7 +40,7 @@ action :create do
 
   bash "Unzip tarfile" do
     code <<-EOF
-tar -zxf #{tar_path} --skip-components=1 -C #{home}
+tar -zxf #{tar_path} --strip-components=1 -C #{home}
     EOF
   end
 
@@ -60,6 +60,12 @@ mysql < #{::File.join(home, "scripts", "create_tables.sql")}
     source "config.inc.php.erb"
     backup false
     variables({:blowfish_secret => bfsecret, :pmapass => newpass})
+  end
+
+  bash "Make sure file permissions are right" do
+    code <<-EOF
+chown -R www-data:www-data #{home}
+    EOF
   end
 
 end
