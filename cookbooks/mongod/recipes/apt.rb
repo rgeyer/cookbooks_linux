@@ -18,6 +18,7 @@
 # If mongo is not yet installed, but the data dir exists, and there is a lock file, delete it.
 # These conditions will occur only if restoring data from a snapshot, and probably needs some more thought and a more elegant solution
 file ::File.join(node[:mongod][:datadir], "mongod.lock") do
+  backup false
   action :delete
   only_if { `which mongo`.empty? }
 end

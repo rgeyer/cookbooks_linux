@@ -8,6 +8,8 @@ version          "0.0.1"
 supports "ubuntu"
 
 recipe "mongod::apt", "Installs mongodb from the net10 official packages"
+recipe "mongod::lock_for_backup", "Locks the mongo server from writes so that a consistent backup can be made"
+recipe "mongod::unlock_for_backup", "Unlocks the mongo server for writes after a backup has been completed"
 
 attribute "mongod/datadir",
   :display_name => "MongoDB Data Directory",
