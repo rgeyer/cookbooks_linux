@@ -3,15 +3,3 @@ A collection of Chef cookbooks for linux (mostly Ubuntu).  Used to configure EC2
 
 = TODO
 
-== Web & Email Vhost AIO
-* Require a default vhost
-* Alerts for high apache/mysql load or low/non-existent postfix activity, etc.
-* Support Wordpress MultiSite
-* Support Wordpress self update over SFTP
-* Ability to deploy Zend Framework apps/sites from SCM (SVN, Git, other?)
-* ZF Backup & restore
-* Setup of SSL vhost with some default service(s) like phpmyadmin and a self management tool (vhost manager)
-* Enable gitweb & assign it to the default vhost
-* Ability to deploy Drupal sites
-* Enable local delivery for emails (expose an IMAP and POP3 server)
-* KeePass or similar?
