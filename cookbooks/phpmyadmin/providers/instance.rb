@@ -57,6 +57,7 @@ mysql < #{::File.join(home, "scripts", "create_tables.sql")}
   end
 
   template ::File.join(home, "config.inc.php") do
+    cookbook "phpmyadmin"
     source "config.inc.php.erb"
     backup false
     variables({:blowfish_secret => bfsecret, :pmapass => newpass})
