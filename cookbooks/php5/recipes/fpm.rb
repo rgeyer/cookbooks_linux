@@ -34,7 +34,7 @@ template "/etc/php5/fpm/main.conf" do
   source "php5-fpm.conf.erb"
   backup false
   variables(:listen_str => listen_str)
-  notifies :restart, resources(:service => "php5-fpm"), :immediately
+  notifies :restart, resources(:service => "php5-fpm"), :delayed
 end
 
 # TODO: Stats http://forum.nginx.org/read.php?3,56426
