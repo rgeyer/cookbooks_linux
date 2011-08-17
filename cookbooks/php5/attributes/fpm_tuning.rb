@@ -1,6 +1,6 @@
 case ec2[:instance_type]
   when "t1.micro"
-    if (db_mysql[:server_usage] == :dedicated)
+    if (php5[:server_usage] == :dedicated)
       default[:php5_fpm][:tunable][:max_children] = 5
       default[:php5_fpm][:tunable][:min_spare]    = 2
       default[:php5_fpm][:tunable][:max_spare]    = 4
@@ -10,7 +10,7 @@ case ec2[:instance_type]
       default[:php5_fpm][:tunable][:max_spare]    = 2
     end
   when "m1.small", "c1.medium"
-    if (db_mysql[:server_usage] == :dedicated)
+    if (php5[:server_usage] == :dedicated)
       default[:php5_fpm][:tunable][:max_children] = 15
       default[:php5_fpm][:tunable][:min_spare]    = 5
       default[:php5_fpm][:tunable][:max_spare]    = 10
@@ -20,7 +20,7 @@ case ec2[:instance_type]
       default[:php5_fpm][:tunable][:max_spare]    = 5
     end
   when "m1.large", "c1.xlarge"
-    if (db_mysql[:server_usage] == :dedicated)
+    if (php5[:server_usage] == :dedicated)
       default[:php5_fpm][:tunable][:max_children] = 68
       default[:php5_fpm][:tunable][:min_spare]    = 6
       default[:php5_fpm][:tunable][:max_spare]    = 12
@@ -30,7 +30,7 @@ case ec2[:instance_type]
       default[:php5_fpm][:tunable][:max_spare]    = 6
     end
   when "m1.xlarge"
-    if (db_mysql[:server_usage] == :dedicated)
+    if (php5[:server_usage] == :dedicated)
       default[:php5_fpm][:tunable][:max_children] = 136
       default[:php5_fpm][:tunable][:min_spare]    = 12
       default[:php5_fpm][:tunable][:max_spare]    = 24
