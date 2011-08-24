@@ -45,3 +45,9 @@ template "/etc/php5/conf.d/include_path.ini" do
   source "include_path.ini.erb"
   backup false
 end
+
+# Bump up the max file upload size
+template "/etc/php5/conf.d/upload_max_filesize.ini" do
+  source "upload_max_filesize.ini.erb"
+  backup false
+end
