@@ -1,10 +1,4 @@
 = DESCRIPTION:
-Installs Zend Framework 1.11.1 and makes it available to apache and/or the CLI.
-
-Also provides some tools for deploying zend framework applications using other Chef repos and cookbooks.
-
-Why not simply install the libzend-framework-php package? Because even on Ubuntu 10.10 it's not the latest version, and
-it doesn't add the zend library to php's include_path.  Believe me, I'd rather use a more standard method to install.
 
 = REQUIREMENTS:
 Ubuntu
@@ -13,3 +7,5 @@ Ubuntu
 
 = USAGE:
 
+= TODO:
+Increase max upload size, possibly allowing that to be an input?
