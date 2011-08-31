@@ -11,7 +11,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-if node[:ec2] && node[:ec2][:instance_type] != "t1.micro"
+if attribute?(:ec2) && node[:ec2][:instance_type] != "t1.micro"
   default[:mongod][:datadir] = "/mnt/db/mongodb"
   default[:mongod][:logfile] = "/mnt/log/mongodb.log"
 else
