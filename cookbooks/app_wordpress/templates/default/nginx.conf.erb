@@ -18,6 +18,8 @@ server {
 
   root <%= node[:nginx][:content_dir] %>/<%= @params[:fqdn] %>/htdocs/;
 
+  client_max_body_size 128M;
+
   error_page 503 /system/maintenance.html;
   if (-f $document_root/system/maintenance.html$nocycle) { set $nocycle 1; return 503; }
   location = /system/maintenance.html { }
