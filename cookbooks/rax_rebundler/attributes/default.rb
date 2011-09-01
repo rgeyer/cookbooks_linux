@@ -1,0 +1,1 @@
+default[:rax_rebundler][:path] = "/opt/rackspace_rebundler"
