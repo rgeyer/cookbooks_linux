@@ -23,7 +23,7 @@ bindir=::File.join(node[:rvm][:install_path], 'bin')
 node[:rvm][:bin_path] = ::File.join(node[:rvm][:install_path], "bin", "rvm")
 
 # Required to compile some rubies
-package "libssl-dev"
+package value_for_platform("centos" => {"default" => "openssl-devel"}, "default" => "libssl-dev")
 
 bash "Download the RVM install script" do
   code <<-EOF
@@ -49,18 +49,25 @@ bash "Installing #{node[:rvm][:ruby]} as RVM's default ruby" do
 end
 
 # Erase all existence of "standard" ruby 1.8 and replace it with the RVM installed/default ruby
-if node[:platform] == "ubuntu"
-  %w{libopenssl-ruby1.8 libreadline-ruby1.8 libruby1.8 libshadow-ruby1.8 ruby ruby1.8 ruby1.8-dev}.each do |p|
-    package p do
-      action :remove
+case node[:platform]
+  when "ubuntu"
+    %w{libopenssl-ruby1.8 libreadline-ruby1.8 libruby1.8 libshadow-ruby1.8 ruby ruby1.8 ruby1.8-dev}.each do |p|
+      package p do
+        action :remove
+      end
     end
-  end
+  when "centos"
+    %w{ruby}.each do |p|
+      package p do
+        action :remove
+      end
+    end
+  else
+    Chef::Log.info("Your platform (#{node[:platform]}) is not supported by this recipe!")
+end
 
-  bash "Symlink RVM binaries to /usr/bin" do
-    code "for bin in `ls #{bindir}`; do ln -sf #{bindir}/$bin /usr/bin/$bin; done;"
-    creates "/usr/bin/ruby"
-    action :run
-  end
-else
-  Chef::Log.info("Your platform (#{node[:platform]}) is not supported by this recipe!")
+bash "Symlink RVM binaries to /usr/bin" do
+  code "for bin in `ls #{bindir}`; do ln -sf #{bindir}/$bin /usr/bin/$bin; done;"
+  creates "/usr/bin/ruby"
+  action :run
 end
