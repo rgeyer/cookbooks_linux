@@ -20,7 +20,7 @@ gem_package "bundler" do
 end
 
 git node[:rax_rebundler][:path] do
-  repository "git://github.com/caryp/rackspace_rebundler.git"
+  repository "git://github.com/caryp/rackspace_rebundle.git"
   action :sync
 end
 
