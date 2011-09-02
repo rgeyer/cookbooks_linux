@@ -18,6 +18,45 @@
       "display_name": "RVM Ruby Name",
       "description": "The full RVM version to install and set as default. To find a list run `rvm list known`.  I.E. ruby-1.8.7-head"
     },
+    "rax_rebundler/image_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rax_rebundler::launch"
+      ],
+      "display_name": "Rackspace Image Id",
+      "description": "The unique resource ID of the rackspace image you want to launch in your account"
+    },
+    "rax_rebundler/rax_username": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rax_rebundler::launch"
+      ],
+      "display_name": "Rackspace Username",
+      "description": "Your Rackspace Dashboard and API username"
+    },
+    "rax_rebundler/rax_api_token": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rax_rebundler::launch"
+      ],
+      "display_name": "Rackspace API Token",
+      "description": "Your Rackspace API Token"
+    },
     "rvm/install_path": {
       "required": "optional",
       "calculated": false,
