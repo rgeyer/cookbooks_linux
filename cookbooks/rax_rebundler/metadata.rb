@@ -30,6 +30,14 @@ attribute "rax_rebundler/image_id",
   :required => "required",
   :recipes => ["rax_rebundler::launch"]
 
+attribute "rax_rebundler/image_type",
+  :display_name => "Rackspace Image Type",
+  :description => "The OS of the image specified in \"Rackspace Image Id\"",
+  :required => "required",
+  :choice => ["centos", "ubuntu"],
+  :recipes => ["rax_rebundler::launch"],
+  :default => "centos"
+
 attribute "rax_rebundler/instance_name",
   :display_name => "Rackspace Instane Name",
   :description => "The name for the new Rackspace instance to be launched from the specified image",
