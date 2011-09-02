@@ -44,6 +44,19 @@
       "display_name": "Rackspace Username",
       "description": "Your Rackspace Dashboard and API username"
     },
+    "rax_rebundler/instance_name": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "rax_rebundler::launch"
+      ],
+      "display_name": "Rackspace Instane Name",
+      "description": "The name for the new Rackspace instance to be launched from the specified image"
+    },
     "rax_rebundler/rax_api_token": {
       "required": "required",
       "calculated": false,

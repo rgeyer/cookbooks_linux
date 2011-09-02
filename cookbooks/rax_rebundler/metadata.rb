@@ -30,6 +30,12 @@ attribute "rax_rebundler/image_id",
   :required => "required",
   :recipes => ["rax_rebundler::launch"]
 
+attribute "rax_rebundler/instance_name",
+  :display_name => "Rackspace Instane Name",
+  :description => "The name for the new Rackspace instance to be launched from the specified image",
+  :required => "required",
+  :recipes => ["rax_rebundler::launch"]
+
 attribute "rvm/install_path",
   :display_name => "RVM Installation Path",
   :description => "The full path where RVM will be installed. I.E. /opt/rvm",

@@ -20,6 +20,7 @@ bash "Launch a new Rackspace instance from the specified image id" do
   code <<-EOH
   export RACKSPACE_ACCOUNT="#{node[:rax_rebundler][:rax_username]}"
   export RACKSPACE_API_TOKEN="#{node[:rax_rebundler][:rax_api_token]}"
-  #{::File.join("bin","launch")} #{node[:rax_rebundler][:image_id]}
+  #{::File.join("bin","launch")} #{node[:rax_rebundler][:instance_name]} #{node[:rax_rebundler][:image_id]}
+  #{::File.join("bin","upload")}
 EOH
 end
