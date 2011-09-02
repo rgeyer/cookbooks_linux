@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+include_recipe "rvm::default"
+
 gem_package "bundler" do
   action :install
 end
@@ -26,5 +28,5 @@ end
 
 bash "Install rackspace_rebundler dependant gems" do
   cwd node[:rax_rebundler][:path]
-  code "bundle install"
+  code "#{::File.join(node[:rvm][:install_path],"gems",node[:rvm][:ruby],"bin","bundle")} install"
 end
