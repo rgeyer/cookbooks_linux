@@ -91,7 +91,6 @@
         "centos",
         "ubuntu"
       ],
-      "default": "centos",
       "type": "string",
       "recipes": [
         "rax_rebundler::launch"
