@@ -17,6 +17,7 @@
 
 ruby_block "Launch a new Rackspace instance from the specified image id" do
   block do
+    require "rubygems"
     require "pp"
     require "yaml"
     require "right_rackspace"
