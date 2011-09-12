@@ -16,32 +16,39 @@ attribute "rax_rebundler/rax_username",
   :display_name => "Rackspace Username",
   :description => "Your Rackspace Dashboard and API username",
   :required => "required",
-  :recipes => ["rax_rebundler::launch"]
+  :recipes => ["rax_rebundler::default"]
 
 attribute "rax_rebundler/rax_api_token",
   :display_name => "Rackspace API Token",
   :description => "Your Rackspace API Token",
   :required => "required",
-  :recipes => ["rax_rebundler::launch"]
+  :recipes => ["rax_rebundler::default"]
 
 attribute "rax_rebundler/image_id",
   :display_name => "Rackspace Image Id",
   :description => "The unique resource ID of the rackspace image you want to launch in your account",
   :required => "required",
-  :recipes => ["rax_rebundler::launch"]
+  :recipes => ["rax_rebundler::default"]
 
-attribute "rax_rebundler/image_type",
-  :display_name => "Rackspace Image Type",
-  :description => "The OS of the image specified in \"Rackspace Image Id\"",
-  :required => "required",
-  :choice => ["centos", "ubuntu"],
-  :recipes => ["rax_rebundler::launch"]
+#attribute "rax_rebundler/image_type",
+#  :display_name => "Rackspace Image Type",
+#  :description => "The OS of the image specified in \"Rackspace Image Id\"",
+#  :required => "required",
+#  :choice => ["centos", "ubuntu"],
+#  :recipes => ["rax_rebundler::default"]
 
 attribute "rax_rebundler/instance_name",
   :display_name => "Rackspace Instane Name",
   :description => "The name for the new Rackspace instance to be launched from the specified image",
   :required => "required",
-  :recipes => ["rax_rebundler::launch"]
+  :recipes => ["rax_rebundler::default"]
+
+attribute "rax_rebundler/wait_timeout",
+  :display_name => "Rackspace Instane Launch Timeout",
+  :description => "The length of time (in seconds) to wait for the requested Rackspace image to become ACTIVE before giving up",
+  :required => "required",
+  :default => "600",
+  :recipes => ["rax_rebundler::default"]
 
 attribute "rvm/install_path",
   :display_name => "RVM Installation Path",
