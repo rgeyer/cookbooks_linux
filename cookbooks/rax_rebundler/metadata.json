@@ -85,7 +85,7 @@
       "description": "The full path where RVM will be installed. I.E. /opt/rvm"
     },
     "rax_rebundler/wait_timeout": {
-      "required": "required",
+      "required": "optional",
       "calculated": false,
       "choice": [
 

@@ -46,7 +46,7 @@ attribute "rax_rebundler/instance_name",
 attribute "rax_rebundler/wait_timeout",
   :display_name => "Rackspace Instane Launch Timeout",
   :description => "The length of time (in seconds) to wait for the requested Rackspace image to become ACTIVE before giving up",
-  :required => "required",
+  :required => "optional",
   :default => "600",
   :recipes => ["rax_rebundler::default"]
 
