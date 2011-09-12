@@ -7,11 +7,12 @@
   "maintainer_email": "me@ryangeyer.com ",
   "attributes": {
     "rvm/ruby": {
-      "required": "required",
+      "required": "optional",
       "calculated": false,
       "choice": [
 
       ],
+      "default": "ruby-1.8.7-p302",
       "type": "string",
       "recipes": [
         "rax_rebundler::default"

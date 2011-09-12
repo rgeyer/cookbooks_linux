@@ -48,6 +48,9 @@ ruby_block "Launch an instance and wait" do
     require 'yaml'
     require 'pp'
 
+    ENV["RACKSPACE_ACCOUNT"] = node[:rax_rebundler][:rax_username]
+    ENV["RACKSPACE_API_TOKEN"] = node[:rax_rebundler][:rax_api_token]
+
     launch_bin = ::File.join(node[:rax_rebundler][:path],"bin","launch")
     upload_bin = ::File.join(node[:rax_rebundler][:path],"bin","upload")
 
