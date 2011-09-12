@@ -57,6 +57,8 @@ ruby_block "Launch an instance and wait" do
     yaml_result = `#{launch_bin} #{node[:rax_rebundler][:instance_name]} #{node[:rax_rebundler][:image_id]} yaml #{node[:rax_rebundler][:wait_timeout]}`
     hash_result = YAML::load(yaml_result)
 
+    ::Chef::Log.info("Hash result was #{pp hash_result}")
+
     if hash_result["server"]["status"] == "ACTIVE"
       ::File.open(::File.join(node[:rax_rebundler][:path],"instance-#{hash_result["server"]["id"]}")) { |f| f.write(hash_result) }
       ::Chef::Log.info <<EOF
