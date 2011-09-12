@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "rvm": ">= 0.0.0"
+    "rvm": ">= 0.0.0",
+    "rs_utils": ">= 0.0.0"
   },
   "name": "rax_rebundler",
   "maintainer_email": "me@ryangeyer.com ",
