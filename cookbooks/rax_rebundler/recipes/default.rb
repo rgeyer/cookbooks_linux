@@ -42,25 +42,33 @@ template File.join(node[:rs_utils][:collectd_plugin_dir], 'rax_rebundle.conf') d
   notifies :restart, resources(:service => "collectd")
 end
 
-ruby_block "Launch an instance and wait" do
+bash "Launch an instance and wait" do
+  cwd node[:rax_rebundler][:path]
+  environment ({'RACKSPACE_ACCOUNT' => node[:rax_rebundler][:rax_username], 'RACKSPACE_API_TOKEN' => node[:rax_rebundler][:rax_api_token]})
+  code <<EOF
+bin/launch #{node[:rax_rebundler][:instance_name]} #{node[:rax_rebundler][:image_id]} yaml #{node[:rax_rebundler][:wait_timeout]} > foobar.txt
+EOF
+end
+
+ruby_block "Check result of launch" do
   block do
     require 'rubygems'
     require 'yaml'
     require 'pp'
+    require 'fileutils'
 
-    ENV["RACKSPACE_ACCOUNT"] = node[:rax_rebundler][:rax_username]
-    ENV["RACKSPACE_API_TOKEN"] = node[:rax_rebundler][:rax_api_token]
-
-    launch_bin = ::File.join(node[:rax_rebundler][:path],"bin","launch")
     upload_bin = ::File.join(node[:rax_rebundler][:path],"bin","upload")
 
-    yaml_result = `#{launch_bin} #{node[:rax_rebundler][:instance_name]} #{node[:rax_rebundler][:image_id]} yaml #{node[:rax_rebundler][:wait_timeout]}`
+    yaml_result = ::File.open(::File.join(node[:rax_rebundler][:path],"foobar.txt")).gets
+
+    ::Chef::Log.info("Yaml result was #{pp yaml_result}")
+
     hash_result = YAML::load(yaml_result)
 
     ::Chef::Log.info("Hash result was #{pp hash_result}")
 
     if hash_result["server"]["status"] == "ACTIVE"
-      ::File.open(::File.join(node[:rax_rebundler][:path],"instance-#{hash_result["server"]["id"]}")) { |f| f.write(hash_result) }
+      FileUtils.mv(::File.join(node[:rax_rebundler][:path], "foobar.txt"), ::File.join(node[:rax_rebundler][:path],"instance-#{hash_result["server"]["id"]}"))
       ::Chef::Log.info <<EOF
 Successfully launched a new instance from image ID: #{node[:rax_rebundler][:image_id]}
 The next step is to SSH into this Rackspace Rebundle instance (#{ENV['RS_PUBLIC_IP']}) and run the following command...
