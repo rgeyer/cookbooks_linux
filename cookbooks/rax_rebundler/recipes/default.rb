@@ -19,7 +19,7 @@ include_recipe "rs_utils::setup_monitoring"
 include_recipe "rvm::default"
 
 # Load the filecount plugin in the main collectd config file
-rs_utils_enable_collectd_plugin "filecount"
+#rs_utils_enable_collectd_plugin "filecount"
 
 gem_package "bundler" do
   action :install
@@ -36,9 +36,9 @@ bash "Install rackspace_rebundler dependent gems" do
   code "#{::File.join(node[:rvm][:install_path],"gems",node[:rvm][:ruby],"bin","bundle")} install"
 end
 
-template File.join(node[:rs_utils][:collectd_plugin_dir], 'rax_rebundle.conf') do
+template File.join(node[:rs_utils][:collectd_plugin_dir], 'raxrebundle.conf') do
   backup false
-  source "rax_rebundle.conf.erb"
+  source "raxrebundle.conf.erb"
   notifies :restart, resources(:service => "collectd")
 end
 
@@ -71,14 +71,14 @@ The next step is to SSH into this Rackspace Rebundle instance (#{node[:rax_rebun
 When prompted for the password enter (excluding the quote marks) "#{hash_result["server"]["adminPass"]}"
 
 Here's the full output of the launch API call;
-#{hash_result}
+#{hash_result.to_yaml}
 EOF
     else
       ::Chef::Log.error <<EOF
 Something went wrong while trying to launch an instance from image ID:  #{node[:rax_rebundler][:image_id]}
 
 Here's the full output from the launch API call;
-#{hash_result}
+#{hash_result.to_yaml}
 EOF
     end
   end
