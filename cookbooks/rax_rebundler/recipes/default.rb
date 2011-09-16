@@ -78,7 +78,7 @@ EOF
 Something went wrong while trying to launch an instance from image ID:  #{node[:rax_rebundler][:image_id]}
 
 Here's the full output from the launch API call;
-#{pp hash_result}
+#{hash_result}
 EOF
     end
   end
