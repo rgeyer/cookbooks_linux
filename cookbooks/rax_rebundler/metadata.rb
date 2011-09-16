@@ -51,6 +51,12 @@ attribute "rax_rebundler/wait_timeout",
   :default => "600",
   :recipes => ["rax_rebundler::default"]
 
+attribute "rax_rebundler/RS_PUBLIC_IP",
+  :display_name => "EVN:RS_PUBLIC_IP",
+  :description => "Required for some internal logging, just set this to ENV:RS_PUBLIC_IP",
+  :required => "required",
+  :recipes => ["rax_rebundler::default"]
+
 attribute "rvm/install_path",
   :display_name => "RVM Installation Path",
   :description => "The full path where RVM will be installed. I.E. /opt/rvm",

@@ -54,31 +54,24 @@ ruby_block "Check result of launch" do
   block do
     require 'rubygems'
     require 'yaml'
-    require 'pp'
     require 'fileutils'
 
     upload_bin = ::File.join(node[:rax_rebundler][:path],"bin","upload")
-
-    yaml_result = ::File.open(::File.join(node[:rax_rebundler][:path],"foobar.txt")).gets
-
-    ::Chef::Log.info("Yaml result was #{pp yaml_result}")
-
+    yaml_result = ::File.open(::File.join(node[:rax_rebundler][:path],"foobar.txt")).read
     hash_result = YAML::load(yaml_result)
-
-    ::Chef::Log.info("Hash result was #{pp hash_result}")
 
     if hash_result["server"]["status"] == "ACTIVE"
       FileUtils.mv(::File.join(node[:rax_rebundler][:path], "foobar.txt"), ::File.join(node[:rax_rebundler][:path],"instance-#{hash_result["server"]["id"]}"))
       ::Chef::Log.info <<EOF
 Successfully launched a new instance from image ID: #{node[:rax_rebundler][:image_id]}
-The next step is to SSH into this Rackspace Rebundle instance (#{ENV['RS_PUBLIC_IP']}) and run the following command...
+The next step is to SSH into this Rackspace Rebundle instance (#{node[:rax_rebundler][:RS_PUBLIC_IP]}) and run the following command...
 
 [root@#{`hostname`} ~]# #{upload_bin} #{hash_result["server"]["addresses"]["public"]} [ubuntu|centos]
 
 When prompted for the password enter (excluding the quote marks) "#{hash_result["server"]["adminPass"]}"
 
 Here's the full output of the launch API call;
-#{pp hash_result}
+#{hash_result}
 EOF
     else
       ::Chef::Log.error <<EOF
