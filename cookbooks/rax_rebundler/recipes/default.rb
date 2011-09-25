@@ -19,7 +19,7 @@ include_recipe "rs_utils::setup_monitoring"
 include_recipe "rvm::default"
 
 # Load the filecount plugin in the main collectd config file
-#rs_utils_enable_collectd_plugin "filecount"
+rs_utils_enable_collectd_plugin "filecount"
 
 gem_package "bundler" do
   action :install
