@@ -72,6 +72,7 @@ action :install do
   db_pass = new_resource.db_pass
 
   underscored_fqdn = fqdn.gsub(".", "_")
+  underscored_fqdn = underscored_fqdn.gsub("-", "_")
   underscored_fqdn_16 = underscored_fqdn.slice(0..15)
   vhost_dir = "#{node[:app_wordpress][:content_dir]}/#{fqdn}"
   install_dir = "#{vhost_dir}/htdocs"
