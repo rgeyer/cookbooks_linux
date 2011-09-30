@@ -1,4 +1,4 @@
-include_recipe "nginx::default"
+include_recipe "nginx::install_from_package"
 include_recipe "php5::fpm"
 
 config_file = ::File.join(node[:nginx][:dir], "conf.d", "phpfpm-fastcgi.conf")

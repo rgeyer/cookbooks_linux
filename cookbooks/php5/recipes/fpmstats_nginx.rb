@@ -1,4 +1,4 @@
-include_recipe "nginx::default"
+include_recipe "nginx::install_from_package"
 include_recipe "php5::fpm"
 include_recipe "php5::fpmenable_nginx"
 
