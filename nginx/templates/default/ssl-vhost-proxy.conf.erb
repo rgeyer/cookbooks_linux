@@ -1,0 +1,73 @@
+upstream proxy {
+  server <%= @params[:dest_fqdn] %><% if @params[:dest_port] -%>:<%= @params[:dest_port] %><% end -%>;
+}
+
+<% if @params[:aliases] -%>
+server {
+  <% if @params[:listen_on_http] -%>
+  listen 80;
+  <% end -%>
+  listen 443;
+  server_name <% @params[:aliases].each do |a| -%><%= " #{a}" %><% end -%>;
+
+  # Canonical host, <%= @params[:fqdn] %>
+  # The "right" Nginx way - http://wiki.nginx.org/Pitfalls#Taxing_Rewrites
+  rewrite ^ $scheme://<%= @params[:fqdn] %>$request_uri? permanent;
+}
+<% end -%>
+
+<% if @params[:listen_on_http] -%>
+server {
+  listen 80;
+  server_name <%= @params[:fqdn] %>;
+
+  access_log <%= node[:nginx][:log_dir] %>/<%= @params[:fqdn] %>-access.log;
+  error_log <%= node[:nginx][:log_dir] %>/<%= @params[:fqdn] %>-error.log;
+
+  root <%= node[:nginx][:content_dir] %>/<%= @params[:fqdn] %>/htdocs/;
+
+  # Display a maintenance page if it exists.
+  try_files /system/maintenance.html @proxy;
+
+<% if @params[:force_https] -%>
+  # Force SSL
+  rewrite ^ https://<%= @params[:fqdn] %>$request_uri? permanent;
+<% else -%>
+
+  location @proxy {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_redirect off;
+
+    proxy_pass http://proxy;
+  }
+<% end -%>
+}
+<% end -%>
+
+server {
+  listen 443 default ssl;
+  server_name <%= @params[:fqdn] %>;
+
+  access_log <%= node[:nginx][:log_dir] %>/<%= @params[:fqdn] %>-access.log;
+  error_log <%= node[:nginx][:log_dir] %>/<%= @params[:fqdn] %>-error.log;
+
+  root <%= node[:nginx][:content_dir] %>/<%= @params[:fqdn] %>/htdocs/;
+
+  # Display a maintenance page if it exists.
+  try_files /system/maintenance.html @proxy;
+
+  # SSL config
+  ssl_certificate <%= node[:nginx][:dir] %>/ssl/<%= @params[:fqdn] %>.crt;
+  ssl_certificate_key <%= node[:nginx][:dir] %>/ssl/<%= @params[:fqdn] %>.key;
+
+  location @proxy {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_redirect off;
+
+    proxy_pass http://proxy;
+  }
+}

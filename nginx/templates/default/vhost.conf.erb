@@ -1,0 +1,47 @@
+<% if @params[:aliases] -%>
+server {
+  listen 80;
+  server_name <% @params[:aliases].each do |a| -%><%= " #{a}" %><% end -%>;
+
+  # Canonical host, <%= @params[:fqdn] %>
+  # The "right" Nginx way - http://wiki.nginx.org/Pitfalls#Taxing_Rewrites
+  rewrite ^ http://<%= @params[:fqdn] %>$request_uri? permanent;
+}
+<% end -%>
+
+server {
+  listen 80;
+  server_name <%= @params[:fqdn] %>;
+
+  access_log <%= node[:nginx][:log_dir] %>/<%= @params[:fqdn] %>-access.log;
+  error_log <%= node[:nginx][:log_dir] %>/<%= @params[:fqdn] %>-error.log;
+
+  root <%= node[:nginx][:content_dir] %>/<%= @params[:fqdn] %>/htdocs/;
+
+  error_page 503 /system/maintenance.html;
+  if (-f $document_root/system/maintenance.html$nocycle) { set $nocycle 1; return 503; }
+  location = /system/maintenance.html { }
+
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
+
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+
+  location / {
+    index index.html;
+  }
+
+  location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+    expires max;
+    log_not_found off;
+  }
+
+  include <%= node[:nginx][:dir] %>/sites-available/<%= @params[:fqdn] %>.d/*.conf;
+  include <%= node[:nginx][:content_dir] %>/<%= @params[:fqdn] %>/nginx_config/*.conf;
+}
