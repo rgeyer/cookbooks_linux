@@ -4,10 +4,6 @@ license           "Apache 2.0"
 description       "Originally forked from and inspired by the opscode nginx cookbook, but subsequently tweaked and hacked to no longer represent it. https://github.com/opscode/cookbooks/tree/master/nginx"
 version           "0.0.1"
 
-depends "utils"
-depends "rs_utils"
-depends "skeme"
-
 recipe "nginx::install_from_package", "Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available"
 recipe "nginx::install_from_source", "Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available"
 recipe "nginx::setup_ssl_reverse_proxy","Sets nginx up as a reverse proxy for ssl"
@@ -20,7 +16,7 @@ recipe "nginx::setup_vhost","Sets up a basic vhost directory and configuration"
   supports os
 end
 
-%w{ build-essential runit rs_utils }.each do |cb|
+%w{ build-essential runit rs_utils skeme utils }.each do |cb|
   depends cb
 end
 
