@@ -6,7 +6,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
 depends "rjg_aws"
-depends "rjg_utils"
+depends "scheduler"
 
 recipe "gitosis::default","Just runs gitosis::install"
 recipe "gitosis::install","Installs gitosis in the specified directory"
