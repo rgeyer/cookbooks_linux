@@ -1,0 +1,8 @@
+<Location /svn>
+  DAV svn
+  SVNPath <%= node[:svn][:install_path] %>/repositories
+  AuthType Basic
+  AuthName "Subversion repository"
+  AuthUserFile <%= params[:htpasswd_path] %>
+  Require valid-user
+</Location>
