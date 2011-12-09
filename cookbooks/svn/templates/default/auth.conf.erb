@@ -1,2 +1,2 @@
 [/]
-<%= node[:svn][:username] %> = r<% if node[:svn][:http_read_only] -%>w<%end -%>
+<%= node[:svn][:username] %> = r<% unless node[:svn][:http_read_only] == true -%>w<%end -%>
