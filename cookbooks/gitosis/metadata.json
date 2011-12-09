@@ -91,7 +91,7 @@
         "gitosis::install"
       ],
       "display_name": "Gitosis Private Key",
-      "description": "Private RSA (or DSA) key material to be used when initializing the gitosis repository/home"
+      "description": "Private RSA (or DSA) key material to be used when initializing the gitosis repository/home. Set to ignore for a new key to be automatically generated."
     },
     "gitosis/backup_history_to_keep": {
       "required": "optional",
@@ -112,6 +112,7 @@
   "suggestions": {
   },
   "platforms": {
+    "centos": ">= 0.0.0",
     "ubuntu": ">= 0.0.0"
   },
   "maintainer": "Ryan J. Geyer",

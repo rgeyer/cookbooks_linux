@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+#   Startup/shutdown script for Git Daemon
+#
+#   Linux chkconfig stuff:
+#
+#   chkconfig: 345 56 10
+#   description: Startup/shutdown script for Git Daemon
+#
+. /etc/init.d/functions
+
+DAEMON=git-daemon
+ARGS='--base-path=<%= node[:gitosis][:gitosis_home] %>/repositories --detach --user=<%= node[:gitosis][:uid] %> --group=<%= node[:gitosis][:gid] %>'
+
+prog=git-daemon
+
+start () {
+    echo -n $"Starting $prog: "
+
+    # start daemon
+    daemon $DAEMON $ARGS
+        RETVAL=$?
+    echo
+    [ $RETVAL = 0 ] && touch /var/lock/git-daemon
+    return $RETVAL
+}
+
+stop () {
+    # stop daemon
+    echo -n $"Stopping $prog: "
+    killproc $DAEMON
+    RETVAL=$?
+    echo
+    [ $RETVAL = 0 ] && rm -f /var/lock/git-daemon
+}
+
+restart() {
+    stop
+    start
+}
+
+case $1 in
+    start)
+        start
+    ;;
+    stop)
+        stop
+    ;;
+    restart)
+        restart
+    ;;
+    status)
+        status $DAEMON
+        RETVAL=$?
+    ;;
+    *)
+
+    echo $"Usage: $prog {start|stop|restart|status}"
+    exit 3
+esac
+
+exit $RETVAL

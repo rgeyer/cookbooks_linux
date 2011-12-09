@@ -3,7 +3,7 @@ gitosis_conf_link = ::File.join(node[:gitosis][:gitosis_home],".gitosis.conf")
 gitosis_conf = ::File.join(node[:gitosis][:gitosis_home],"repositories","gitosis-admin.git","gitosis.conf")
 
 # Install git, and git-daemon first
-%w{git-core git-daemon-run python-setuptools}.each do |p|
+node[:gitosis][:package_list].each do |p|
   package p
 end
 
@@ -92,9 +92,10 @@ end
 
 # Run gitosis-init
 bash "Run gitosis-init" do
+  user node[:gitosis][:uid]
   cwd node[:gitosis][:gitosis_home]
   code <<-EOF
-sudo -H -u #{node[:gitosis][:uid]} gitosis-init < #{node[:gitosis][:gitosis_home]}/.ssh/id_rsa.pub
+su --session-command="gitosis-init < #{node[:gitosis][:gitosis_home]}/.ssh/id_rsa.pub" #{node[:gitosis][:uid]}
 chmod -R 755 #{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git/hooks/post-update
   EOF
   not_if "[ -d #{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git ]"
@@ -116,14 +117,29 @@ chmod -R 770 #{node[:gitosis][:gitosis_home]}/repositories
 EOF
 end
 
-# Setup gitosis-daemon service
-template "/etc/sv/git-daemon/run" do
-  source "git-daemon-run.sh.erb"
-  mode 00711
-  variables(:gitosis_home => node[:gitosis][:gitosis_home])
+if node[:platform] == 'ubuntu'
+  # Setup gitosis-daemon service
+  template "/etc/sv/git-daemon/run" do
+    source "git-daemon-run.sh.erb"
+    mode 00711
+    variables(:gitosis_home => node[:gitosis][:gitosis_home])
+  end
+
+  # TODO: Should probably embrace runit from opscode, but I'm not ready yet
+  execute "sv" do
+    command "sv restart git-daemon"
+  end
 end
 
-# TODO: Should probably embrace runit from opscode, but I'm not ready yet
-execute "sv" do
-  command "sv restart git-daemon"
+if node[:platform] == 'centos'
+  template "/etc/init.d/git-daemon" do
+    source "git-daemon-init.erb"
+    mode "0700"
+    backup false
+  end
+
+  service "git-daemon" do
+    supports :status => true, :restart => true, :stop => true, :start => true
+    action [:enable, :start]
+  end
 end

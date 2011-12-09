@@ -5,6 +5,10 @@ description      "Installs/Configures gitosis"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
+%w{ubuntu centos}.each do |os|
+  supports os
+end
+
 depends "rjg_aws"
 depends "scheduler"
 
@@ -15,7 +19,6 @@ recipe "gitosis::s3_restore", "Restores all gitosis files from an S3 bucket"
 recipe "gitosis::enable_continuous_backup", "Sets up a cron job to run the gitosis::s3_backup recipe daily"
 recipe "gitosis::disable_continuous_backup", "Kills the cron job which runs gitosis::s3_backup daily"
 
-supports "ubuntu"
 
 attribute "aws/access_key_id",
   :display_name => "Access Key Id",
@@ -37,7 +40,7 @@ attribute "gitosis/gitosis_home",
 
 attribute "gitosis/gitosis_key",
   :display_name => "Gitosis Private Key",
-  :description => "Private RSA (or DSA) key material to be used when initializing the gitosis repository/home",
+  :description => "Private RSA (or DSA) key material to be used when initializing the gitosis repository/home. Set to ignore for a new key to be automatically generated.",
   :required => false,
   :recipes => ["gitosis::default", "gitosis::install"]
 
