@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+rs_utils_marker :begin
+
 include_recipe "apache2::mod_dav"
 include_recipe "apache2::mod_dav_svn"
 include_recipe "svn::default"
@@ -36,7 +38,7 @@ end
 template ::File.join(node[:svn][:svn_home], 'auth.conf') do
   source 'auth.conf.erb'
   backup false
-  user node[:apache][:user]
+  owner node[:apache][:user]
 end
 
 web_app node[:svn][:fqdn] do
@@ -45,3 +47,5 @@ web_app node[:svn][:fqdn] do
   htpasswd_path htpasswd_path
   notifies :restart, resources(:service => "apache2")
 end
+
+rs_utils_marker :end

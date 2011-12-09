@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+rs_utils_marker :begin
+
 svn_tools_name = value_for_platform(
   ["centos","redhat","fedora"] => {
     "default" => "subversion-devel"
@@ -48,3 +50,5 @@ end
     mode "0775"
   end
 end
+
+rs_utils_marker :end
