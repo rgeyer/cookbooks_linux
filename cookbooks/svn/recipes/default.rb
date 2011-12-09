@@ -29,3 +29,22 @@ end
 package svn_tools_name do
   action :install
 end
+
+# Add svn users & groups
+group node[:svn][:gid] do
+  action :create
+end
+
+user node[:svn][:uid] do
+  comment "svn version control"
+  gid node[:svn][:gid]
+  home node[:svn][:svn_home]
+  shell "/bin/sh"
+end
+
+[node[:svn][:svn_home], ::File.join(node[:svn][:svn_home],"repositories")].each do |dir|
+  directory dir do
+    recursive true
+    mode "0755"
+  end
+end

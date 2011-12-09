@@ -31,7 +31,7 @@
       "display_name": "SVN Username",
       "description": "The username required to authenticate with the SVN server"
     },
-    "svn/install_path": {
+    "svn/svn_home": {
       "required": "optional",
       "calculated": false,
       "choice": [
@@ -42,7 +42,7 @@
       "recipes": [
         "svn::setup_svn_dav_server"
       ],
-      "display_name": "SVN Install Path",
+      "display_name": "SVN Home Directory",
       "description": "The full path where the SVN repositories will be stored"
     },
     "svn/fqdn": {
@@ -84,7 +84,7 @@
   },
   "replacing": {
   },
-  "description": "Installs/Configures rvm",
+  "description": "Installs/Configures SVN",
   "providing": {
   }
 }

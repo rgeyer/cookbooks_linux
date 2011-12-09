@@ -20,15 +20,11 @@ include_recipe "apache2::mod_dav"
 include_recipe "apache2::mod_dav_svn"
 include_recipe "svn::default"
 
-htpasswd_path = ::File.join(node[:svn][:install_path], 'htpasswd')
+htpasswd_path = ::File.join(node[:svn][:svn_home], 'htpasswd')
 
-[node[:svn][:install_path], ::File.join(node[:svn][:install_path],"repositories")].each do |dir|
-  directory dir do
-    recursive true
-    owner node[:apache][:user]
-    group node[:apache][:user]
-    mode "0755"
-  end
+group node[:svn][:gid] do
+  members [node[:apache][:user]]
+  action :modify
 end
 
 execute "Create an htpasswd file for SVN" do
@@ -37,7 +33,7 @@ execute "Create an htpasswd file for SVN" do
   creates htpasswd_path
 end
 
-web_app "svn" do
+web_app node[:svn][:fqdn] do
   template "svn.conf.erb"
   server_name node[:svn][:fqdn]
   htpasswd_path htpasswd_path

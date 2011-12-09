@@ -1,8 +1,17 @@
-<Location /svn>
-  DAV svn
-  SVNPath <%= node[:svn][:install_path] %>/repositories
-  AuthType Basic
-  AuthName "Subversion repository"
-  AuthUserFile <%= params[:htpasswd_path] %>
-  Require valid-user
-</Location>
+<VirtualHost *:80>
+  ServerName <%= @params[:server_name] %>
+
+  <Location /svn>
+    DAV svn
+    SVNParentPath <%= node[:svn][:svn_home] %>/repositories
+    AuthType Basic
+    AuthName "Subversion repository"
+    AuthUserFile <%= @params[:htpasswd_path] %>
+    Require valid-user
+  </Location>
+
+  LogLevel info
+  ErrorLog <%= node[:apache][:log_dir] %>/<%= @params[:server_name] %>-error.log
+  CustomLog <%= node[:apache][:log_dir] %>/<%= @params[:server_name] %>-access.log combined
+
+</VirtualHost>

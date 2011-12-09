@@ -22,8 +22,8 @@ attribute "svn/fqdn",
   :required => "required",
   :recipes => ["svn::setup_svn_dav_server"]
 
-attribute "svn/install_path",
-  :display_name => "SVN Install Path",
+attribute "svn/svn_home",
+  :display_name => "SVN Home Directory",
   :description => "The full path where the SVN repositories will be stored",
   :required => "optional",
   :default => "/srv/svn",
