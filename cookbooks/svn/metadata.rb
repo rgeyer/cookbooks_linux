@@ -26,17 +26,21 @@ attribute "svn/svn_home",
   :display_name => "SVN Home Directory",
   :description => "The full path where the SVN repositories will be stored",
   :required => "optional",
-  :default => "/srv/svn",
-  :recipes => ["svn::setup_svn_dav_server"]
+  :default => "/srv/svn"
 
 attribute "svn/username",
   :display_name => "SVN Username",
   :description => "The username required to authenticate with the SVN server",
-  :required => "required",
-  :recipes => ["svn::setup_svn_dav_server"]
+  :required => "required"
 
 attribute "svn/password",
   :display_name => "SVN Password",
   :description => "The password required to authenticate with the SVN server",
-  :required => "required",
-  :recipes => ["svn::setup_svn_dav_server"]
+  :required => "required"
+
+attribute "svn/http_read_only",
+  :display_name => "SVN dav readonly",
+  :description => "A boolean indicating if the HTTP access should be read only",
+  :required => "optional",
+  :choice => ["true", "false"],
+  :default => "true"

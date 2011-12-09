@@ -45,6 +45,6 @@ end
 [node[:svn][:svn_home], ::File.join(node[:svn][:svn_home],"repositories")].each do |dir|
   directory dir do
     recursive true
-    mode "0755"
+    mode "0775"
   end
 end

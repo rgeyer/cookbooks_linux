@@ -33,6 +33,12 @@ execute "Create an htpasswd file for SVN" do
   creates htpasswd_path
 end
 
+template ::File.join(node[:svn][:svn_home], 'auth.conf') do
+  source 'auth.conf.erb'
+  backup false
+  user node[:apache][:user]
+end
+
 web_app node[:svn][:fqdn] do
   template "svn.conf.erb"
   server_name node[:svn][:fqdn]

@@ -8,6 +8,9 @@
     AuthName "Subversion repository"
     AuthUserFile <%= @params[:htpasswd_path] %>
     Require valid-user
+
+    AuthzSVNAccessFile <%= node[:svn][:svn_home] %>/auth.conf
+
   </Location>
 
   LogLevel info
