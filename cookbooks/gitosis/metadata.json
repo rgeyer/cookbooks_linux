@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "rjg_aws": ">= 0.0.0",
-    "scheduler": ">= 0.0.0"
+    "scheduler": ">= 0.0.0",
+    "rs_utils": ">= 0.0.0"
   },
   "name": "gitosis",
   "maintainer_email": "me@ryangeyer.com",

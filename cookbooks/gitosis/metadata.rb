@@ -9,8 +9,9 @@ version          "0.0.1"
   supports os
 end
 
-depends "rjg_aws"
-depends "scheduler"
+%w{rjg_aws scheduler rs_utils}.each do |dep|
+  depends dep
+end
 
 recipe "gitosis::default","Just runs gitosis::install"
 recipe "gitosis::install","Installs gitosis in the specified directory"

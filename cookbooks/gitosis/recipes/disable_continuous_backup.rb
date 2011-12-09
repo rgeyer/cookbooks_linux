@@ -16,7 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+rs_utils_marker :begin
+
 scheduler_rs_run_recipe "gitosis::s3_backup" do
   frequency "daily"
   action "delete"
 end
+
+rs_utils_marker :end
