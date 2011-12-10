@@ -37,7 +37,7 @@ subversion node[:mrclean][:install_dir] do
     svn_password node[:mrclean][:svn_password]
   end
   revision "HEAD"
-  action :sync
+  action :force_export
 end
 
 template ::File.join(node[:mrclean][:install_dir], 'mrclean.py') do
