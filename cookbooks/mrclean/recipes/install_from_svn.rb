@@ -18,6 +18,11 @@
 
 rs_utils_marker :begin
 
+if node[:platform] == "centos"
+  package "python26"
+  package "python26-httplib2"
+end
+
 directory node[:mrclean][:install_dir] do
   recursive true
   action :create
@@ -31,7 +36,7 @@ subversion node[:mrclean][:install_dir] do
   if node[:mrclean][:svn_password]
     svn_password node[:mrclean][:svn_password]
   end
-  revision "master"
+  revision "HEAD"
   action :sync
 end
 

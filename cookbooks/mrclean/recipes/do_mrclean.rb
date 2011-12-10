@@ -19,7 +19,7 @@
 rs_utils_marker :begin
 
 bash "Run the MrClean script" do
-  code "python #{::File.join(node[:mrclean][:install_dir], 'mrclean.py')}"
+  code "python26 #{::File.join(node[:mrclean][:install_dir], 'mrclean.py')}"
 end
 
 rs_utils_marker :end

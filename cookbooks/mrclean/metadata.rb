@@ -15,7 +15,7 @@ end
 
 recipe "mrclean::install_from_svn", "Fetches the MrClean sourcecode from SVN and sets up a configuration"
 recipe "mrclean::do_mrclean", "Executes the MrClean python script"
-recipe "mrclean::do_enable_continuous_cleanup", "Schedules the MrClean python script to run daily"
+recipe "mrclean::do_enable_continuous_cleanup", "Schedules the MrClean python script to run daily at the time specifed by running scheduler::default"
 recipe "mrclean::do_disable_continuous_cleanup", "Disables the daily scheduled execution of the MrClean python script"
 
 attribute "mrclean/svn_repo",

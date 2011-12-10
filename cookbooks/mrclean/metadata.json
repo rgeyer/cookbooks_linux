@@ -204,7 +204,7 @@
   "recommendations": {
   },
   "recipes": {
-    "mrclean::do_enable_continuous_cleanup": "Schedules the MrClean python script to run daily",
+    "mrclean::do_enable_continuous_cleanup": "Schedules the MrClean python script to run daily at the time specifed by running scheduler::default",
     "mrclean::do_mrclean": "Executes the MrClean python script",
     "mrclean::do_disable_continuous_cleanup": "Disables the daily scheduled execution of the MrClean python script",
     "mrclean::install_from_svn": "Fetches the MrClean sourcecode from SVN and sets up a configuration"
