@@ -18,8 +18,16 @@
 
 rs_utils_marker :begin
 
+case node[:platform]
+  when "ubuntu", "debian"
+    python_exe = "python"
+  when "centos", "fedora", "redhat"
+    python_exe = "python26"
+end
+
+
 bash "Run the MrClean script" do
-  code "python26 #{::File.join(node[:mrclean][:install_dir], 'mrclean.py')}"
+  code "#{python_exe} #{::File.join(node[:mrclean][:install_dir], 'mrclean.py')}"
 end
 
 rs_utils_marker :end
