@@ -18,9 +18,8 @@
 
 rs_utils_marker :begin
 
-if node[:platform] == "centos"
-  package "python26"
-  package "python26-httplib2"
+node[:mrclean][:package_list].each do |pkg|
+  package pkg
 end
 
 directory node[:mrclean][:install_dir] do
