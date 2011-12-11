@@ -113,8 +113,10 @@
   "suggestions": {
   },
   "platforms": {
+    "debian": ">= 0.0.0",
     "centos": ">= 0.0.0",
-    "ubuntu": ">= 0.0.0"
+    "ubuntu": ">= 0.0.0",
+    "redhat": ">= 0.0.0"
   },
   "maintainer": "Ryan J. Geyer",
   "long_description": "= DESCRIPTION:\n\nTODO: Add some nice info on how to use the \"private key\" input.  It is only used to initialize the repo, and\nsetup access to the gitosis-admin.  Might want to provide best practices so that people aren't exposing their\nadmin repo.\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",

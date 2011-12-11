@@ -5,7 +5,7 @@ description      "Installs/Configures gitosis"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-%w{ubuntu centos}.each do |os|
+%w{ubuntu debian redhat centos}.each do |os|
   supports os
 end
 
