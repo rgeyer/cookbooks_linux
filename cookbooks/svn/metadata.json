@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "apache2": ">= 0.0.0"
+    "apache2": ">= 0.0.0",
+    "rs_utils": ">= 0.0.0"
   },
   "name": "svn",
   "maintainer_email": "me@ryangeyer.com",

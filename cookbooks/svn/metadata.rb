@@ -9,7 +9,7 @@ version          "0.0.1"
   supports os
 end
 
-%w{apache2}.each do |dep|
+%w{apache2 rs_utils}.each do |dep|
   depends dep
 end
 
