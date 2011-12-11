@@ -22,6 +22,13 @@ gitosis_install_dir = "/tmp/gitosisinstall"
 gitosis_conf_link = ::File.join(node[:gitosis][:gitosis_home],".gitosis.conf")
 gitosis_conf = ::File.join(node[:gitosis][:gitosis_home],"repositories","gitosis-admin.git","gitosis.conf")
 
+case node[:platform]
+  when "ubuntu", "debian"
+    su_param = "--command"
+  when "centos", "fedora", "redhat"
+    su_param = "--session-command"
+end
+
 # Install git, and git-daemon first
 node[:gitosis][:package_list].each do |p|
   package p
@@ -115,7 +122,7 @@ bash "Run gitosis-init" do
   user node[:gitosis][:uid]
   cwd node[:gitosis][:gitosis_home]
   code <<-EOF
-su --session-command="gitosis-init < #{node[:gitosis][:gitosis_home]}/.ssh/id_rsa.pub" #{node[:gitosis][:uid]}
+su #{su_param}="gitosis-init < #{node[:gitosis][:gitosis_home]}/.ssh/id_rsa.pub" #{node[:gitosis][:uid]}
 chmod -R 755 #{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git/hooks/post-update
   EOF
   not_if "[ -d #{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git ]"
