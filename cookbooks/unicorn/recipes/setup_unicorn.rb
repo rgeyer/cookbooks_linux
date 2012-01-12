@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: unicorn
-# Recipe:: enterprise
+# Recipe:: setup_unicorn
 #
 #  Copyright 2011 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,11 +15,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-include_recipe "rubygems::default"
-
-gem_package "unicorn" do
-  version node[:unicorn][:version] if node[:unicorn][:version]
-end
+rs_utils_marker :begin
 
 %w{/etc/unicorn /var/run/unicorn}.each do |dir|
   directory dir do
@@ -71,3 +67,5 @@ fi
 exit 0
   EOF
 end
+
+rs_utils_marker :end

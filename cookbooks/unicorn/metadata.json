@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "rubygems": ">= 0.0.0"
+    "rubygems": ">= 0.0.0",
+    "rs_utils": ">= 0.0.0"
   },
   "name": "unicorn",
   "maintainer_email": "me@ryangeyer.com",
@@ -13,7 +14,7 @@
       ],
       "type": "string",
       "recipes": [
-        "unicorn::default"
+        "unicorn::install_unicorn"
       ],
       "display_name": "Unicorn Version",
       "description": "The version of the unicorn gem to install.  If not supplied, the latest available version of unicorn will be installed"
@@ -27,7 +28,7 @@
       "default": "/opt/rvm",
       "type": "string",
       "recipes": [
-        "unicorn::default"
+
       ],
       "display_name": "RVM Installation Path",
       "description": "The full path where RVM will be installed. I.E. /opt/rvm"
@@ -41,11 +42,12 @@
   },
   "maintainer": "Ryan J. Geyer",
   "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "recommendations": {
   },
   "recipes": {
-    "unicorn::default": "Installs the unicorn gem for the system ruby"
+    "unicorn::setup_unicorn": "Configures unicorn",
+    "unicorn::install_unicorn": "Installs the unicorn gem for the system ruby"
   },
   "groupings": {
   },
