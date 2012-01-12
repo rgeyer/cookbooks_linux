@@ -17,8 +17,6 @@
 
 rs_utils_marker :begin
 
-include_recipe "rubygems::default"
-
 gem_package "unicorn" do
   version node[:unicorn][:version] if node[:unicorn][:version]
 end

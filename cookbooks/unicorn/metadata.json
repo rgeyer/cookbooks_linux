@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "rubygems": ">= 0.0.0",
     "rs_utils": ">= 0.0.0"
   },
   "name": "unicorn",
