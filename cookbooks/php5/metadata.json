@@ -1,23 +1,9 @@
 {
-  "conflicting": {
+  "dependencies": {
+    "rs_utils": ">= 0.0.0"
   },
-  "license": "All rights reserved",
-  "providing": {
-  },
-  "recipes": {
-    "php5::fpmstats_nginx": "Enables collectd monitoring where PHP FPM is used with nginx",
-    "php5::fpmenable_nginx": "Enables PHP FPM for nginx by including the fastcgi parameters file",
-    "php5::fpm": "Installs the PHP-FPM FastCGI manager",
-    "php5::default": "Performs the installation of php5, pear, the php5 module for apache, and the smarty template library.  Additional modules can be specified at runtime"
-  },
-  "maintainer": "Ryan J. Geyer",
-  "replacing": {
-  },
+  "name": "php5",
   "maintainer_email": "me@ryangeyer.com",
-  "description": "Installs/Configures php5, pear, and smarty",
-  "version": "0.0.1",
-  "groupings": {
-  },
   "attributes": {
     "php5/module_list": {
       "required": "optional",
@@ -28,10 +14,10 @@
       "default": "",
       "type": "string",
       "recipes": [
-        "php5::default"
+        "php5::install_php"
       ],
-      "description": "A list of PHP5 modules to install, separated by spaces. Only supply the module name appearing after php5-.  For instance if you wanted php5-mysql and php5-imap installed, this list should be set to \"mysql imap\".  To view a full list of available php5 modules see the Ubuntu package page http://packages.ubuntu.com/search?searchon=names&keywords=php5- ",
-      "display_name": "PHP5 Module List"
+      "display_name": "PHP5 Module List",
+      "description": "A list of PHP5 modules to install, separated by spaces. Only supply the module name appearing after php5-.  For instance if you wanted php5-mysql and php5-imap installed, this list should be set to \"mysql imap\".  To view a full list of available php5 modules see the Ubuntu package page http://packages.ubuntu.com/search?searchon=names&keywords=php5- "
     },
     "php5/listen_socket": {
       "required": "optional",
@@ -42,10 +28,10 @@
       "default": "/var/run/php5-fpm.sock",
       "type": "string",
       "recipes": [
-        "php5::fpm"
+        "php5::install_fpm"
       ],
-      "description": "The full path and filename of the unix socket to listen on",
-      "display_name": "PHP5 FPM Listen Socket"
+      "display_name": "PHP5 FPM Listen Socket",
+      "description": "The full path and filename of the unix socket to listen on"
     },
     "php5/listen": {
       "required": "optional",
@@ -57,10 +43,10 @@
       "default": "socket",
       "type": "string",
       "recipes": [
-        "php5::fpm"
+        "php5::install_fpm"
       ],
-      "description": "The listening method, one of [socket, tcp].  If socket is selected, php5/listen_socket can optionally be supplied.  If tcp is selected, php5/listen_ip and php5/listen_port can optionally be supplied",
-      "display_name": "PHP5 FPM Listen Method"
+      "display_name": "PHP5 FPM Listen Method",
+      "description": "The listening method, one of [socket, tcp].  If socket is selected, php5/listen_socket can optionally be supplied.  If tcp is selected, php5/listen_ip and php5/listen_port can optionally be supplied"
     },
     "php5/listen_ip": {
       "required": "optional",
@@ -71,10 +57,10 @@
       "default": "127.0.0.1",
       "type": "string",
       "recipes": [
-        "php5::fpm"
+        "php5::install_fpm"
       ],
-      "description": "The TCP/IP address for PHP-FPM to listen on",
-      "display_name": "PHP5 FPM Listen IP"
+      "display_name": "PHP5 FPM Listen IP",
+      "description": "The TCP/IP address for PHP-FPM to listen on"
     },
     "php5/listen_port": {
       "required": "optional",
@@ -85,10 +71,10 @@
       "default": "9000",
       "type": "string",
       "recipes": [
-        "php5::fpm"
+        "php5::install_fpm"
       ],
-      "description": "The TCP/IP address for PHP-FPM to listen on",
-      "display_name": "PHP5 FPM Listen"
+      "display_name": "PHP5 FPM Listen",
+      "description": "The TCP/IP address for PHP-FPM to listen on"
     },
     "php5/server_usage": {
       "required": "optional",
@@ -100,10 +86,10 @@
       "default": "dedicated",
       "type": "string",
       "recipes": [
-        "php5::fpm"
+        "php5::install_fpm"
       ],
-      "description": "* dedicated (where the php-fpm config file allocates all existing resources of the machine)\n* shared (where the php-fpm config file is configured to use less resources so that it can be run concurrently with other apps like MySQL for example)",
-      "display_name": "Server Usage"
+      "display_name": "Server Usage",
+      "description": "* dedicated (where the php-fpm config file allocates all existing resources of the machine)\n* shared (where the php-fpm config file is configured to use less resources so that it can be run concurrently with other apps like MySQL for example)"
     },
     "php5": {
       "required": "optional",
@@ -115,21 +101,35 @@
       "recipes": [
 
       ],
-      "description": "php5",
-      "display_name": "php5 hash"
+      "display_name": "php5 hash",
+      "description": "php5"
     }
   },
-  "recommendations": {
-  },
-  "dependencies": {
-  },
-  "platforms": {
-    "ubuntu": [
-
-    ]
-  },
-  "name": "php5",
+  "license": "All rights reserved",
   "suggestions": {
   },
-  "long_description": "= DESCRIPTION:\nInstalls Zend Framework 1.11.1 and makes it available to apache and/or the CLI.\n\nAlso provides some tools for deploying zend framework applications using other Chef repos and cookbooks.\n\nWhy not simply install the libzend-framework-php package? Because even on Ubuntu 10.10 it's not the latest version, and\nit doesn't add the zend library to php's include_path.  Believe me, I'd rather use a more standard method to install.\n\n= REQUIREMENTS:\nUbuntu\n\n= ATTRIBUTES:\n\n= USAGE:\n\n"
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "maintainer": "Ryan J. Geyer",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\nUbuntu\n\n= ATTRIBUTES:\n\n= USAGE:\n\n= TODO:\nIncrease max upload size, possibly allowing that to be an input?",
+  "version": "0.0.2",
+  "recommendations": {
+  },
+  "recipes": {
+    "php5::install_php": "Performs the installation of php5, pear, and the smarty template library.  Additional modules can be specified at runtime",
+    "php5::setup_fpmstats_nginx": "Enables collectd monitoring where PHP FPM is used with nginx",
+    "php5::install_fpm": "Installs the PHP-FPM FastCGI manager",
+    "php5::setup_fpm_nginx": "Enables PHP FPM for nginx by including the fastcgi parameters file"
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs/Configures php5, pear, and smarty",
+  "providing": {
+  }
 }
