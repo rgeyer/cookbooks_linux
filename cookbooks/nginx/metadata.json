@@ -144,22 +144,6 @@
       "display_name": "Nginx Binary",
       "description": "Location of the nginx server binary"
     },
-    "nginx/user": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "www-data",
-      "type": "string",
-      "recipes": [
-        "nginx::install_from_package",
-        "nginx::install_from_source",
-        "nginx::setup_server"
-      ],
-      "display_name": "Nginx User",
-      "description": "User nginx will run as"
-    },
     "nginx/keepalive_timeout": {
       "required": "optional",
       "calculated": false,

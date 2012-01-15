@@ -38,12 +38,6 @@ attribute "nginx/log_dir",
   :default => "/var/log/nginx",
   :recipes => ["nginx::install_from_package", "nginx::install_from_source", "nginx::setup_server"]
 
-attribute "nginx/user",
-  :display_name => "Nginx User",
-  :description => "User nginx will run as",
-  :default => "www-data",
-  :recipes => ["nginx::install_from_package", "nginx::install_from_source", "nginx::setup_server"]
-
 attribute "nginx/binary",
   :display_name => "Nginx Binary",
   :description => "Location of the nginx server binary",

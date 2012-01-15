@@ -40,7 +40,7 @@ case node[:platform]
     end
 
     e = bash "yum update" do
-      code "yum update"
+      code "yum update -y"
       action :nothing
     end
 
@@ -48,7 +48,7 @@ case node[:platform]
     e.run_action(:run)
 end
 
-package "nginx-full"
+package value_for_platform("ubuntu" => {"default" => "nginx-full"}, "centos" => {"default" => "nginx"})
 
 include_recipe "nginx::setup_server"
 

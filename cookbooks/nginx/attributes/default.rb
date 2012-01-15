@@ -13,7 +13,7 @@ when "debian","ubuntu"
 else
   default[:nginx][:dir]     = "/etc/nginx"
   default[:nginx][:log_dir] = "/var/log/nginx"
-  default[:nginx][:user]    = "www-data"
+  default[:nginx][:user]    = "nginx"
   default[:nginx][:binary]  = "/usr/sbin/nginx"
 end
 
