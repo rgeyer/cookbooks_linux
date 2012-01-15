@@ -1,6 +1,6 @@
 #svn export http://framework.zend.com/svn/framework/standard/branches/release-1.11/library
 
-include_recipe "php5::default"
+include_recipe "php5::install_php"
 
 zend_dl_uri="http://framework.zend.com/releases/ZendFramework-#{node[:zendframework][:version]}/ZendFramework-#{node[:zendframework][:version]}-minimal.tar.gz"
 Chef::Log.info("About to install Zend Framework, requested version is #{node[:zendframework][:version]}, resulting in a URL request of #{zend_dl_uri}")
