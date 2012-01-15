@@ -32,7 +32,15 @@ nginx_conf    = ::File.join(node[:nginx][:dir], "sites-available", "#{node[:host
 nginx_collectd_conf = ::File.join(node[:rs_utils][:collectd_plugin_dir], "nginx.conf")
 
 if node[:platform] == "centos"
-  package "collectd-nginx"
+  arch = (node[:kernel][:machine] == "x86_64") ? "64" : "i386"
+  installed_ver = `rpm -q --queryformat %{VERSION}-%{RELEASE} collectd`.strip
+  rpmfile = "collectd-nginx-#{installed_ver}.#{arch}.rpm"
+
+  cookbook_file "/tmp/collectd-nginx.rpm" do
+    source rpmfile
+  end
+
+
 end
 
 template nginx_conf do
