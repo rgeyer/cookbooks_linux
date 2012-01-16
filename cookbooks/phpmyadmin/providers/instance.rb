@@ -12,11 +12,14 @@
 #  limitations under the License.
 
 action :create do
+  include_recipe "php5::install_php"
+
   version = new_resource.version
   tar_name = "phpMyAdmin-#{version}-all-languages.tar.gz"
   tar_path = ::File.join("/tmp", tar_name)
   remote_source = "http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/#{version}/#{tar_name}"
   home = new_resource.home
+  user = new_resource.user
 
   chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
 
@@ -31,7 +34,7 @@ action :create do
     action :create
   end
 
-  package "php5-mcrypt"
+  package "#{node[:php5][:package_prefix]}mcrypt"
 
   remote_file tar_path do
     backup false
@@ -65,7 +68,7 @@ mysql < #{::File.join(home, "scripts", "create_tables.sql")}
 
   bash "Make sure file permissions are right" do
     code <<-EOF
-chown -R www-data:www-data #{home}
+chown -R #{user}:#{user} #{home}
     EOF
   end
 

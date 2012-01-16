@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "db_mysql": ">= 0.0.0"
+    "db_mysql": ">= 0.0.0",
+    "php5": ">= 0.0.0"
   },
   "name": "phpmyadmin",
   "maintainer_email": "me@ryangeyer.com",
