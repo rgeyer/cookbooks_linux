@@ -3,20 +3,21 @@ maintainer_email "me@ryangeyer.com  "
 license          "All rights reserved"
 description      "Installs/Configures postfix"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "0.0.1"
+version          "0.0.2"
 
-depends "rjg_aws"
-depends "rs_utils"
-depends "db_mysql"
-depends "mysql"
+%w{rjg_aws rs_utils db_mysql mysql}.each do |d|
+  depends d
+end
+
+%w{ubuntu centos}.each do |os|
+  supports os
+end
 
 recipe "mail_postfix::default", "Installs postfix with mysql backend configuration"
 recipe "mail_postfix::s3_backup", "Backs up the configuration database to s3"
 recipe "mail_postfix::s3_restore", "Restores the configuration database from s3"
 recipe "mail_postfix::enable_continuous_backup", "Schedules mail_postfix::s3_backup to be run daily using cron"
 recipe "mail_postfix::disable_continuous_backup", "Stops daily scheduled runs of mail_postfix::s3_backup"
-
-supports "ubuntu"
 
 attribute "mail_postfix",
   :display_name => "Mail Postfix",

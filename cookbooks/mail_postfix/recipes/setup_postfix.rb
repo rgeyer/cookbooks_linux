@@ -1,11 +1,21 @@
 #
 # Cookbook Name:: mail_postfix
-# Recipe:: default
+# Recipe:: setup_postfix
 #
-# Copyright 2010, Ryan J. Geyer
+#  Copyright 2011-2012 Ryan J. Geyer
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
 #
-# All rights reserved - Do Not Redistribute
+#  http://www.apache.org/licenses/LICENSE-2.0
 #
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+rs_utils_marker :begin
 
 # Load the tail plugin in the main config file
 rs_utils_enable_collectd_plugin "tail"
@@ -105,3 +115,5 @@ end
 #  gid 1000
 #  home "/home/vmail"
 #end
+
+rs_utils_marker :end

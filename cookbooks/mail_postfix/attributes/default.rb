@@ -1,7 +1,11 @@
 default[:mail_postfix][:db_user]  = "postfix"
 default[:mail_postfix][:db_name]  = "postfix"
 default[:mail_postfix][:db_host]  = "localhost"
-default[:mail_postfix][:packages] = ["postfix", "postfix-mysql"]
+if node[:platform] == "ubuntu"
+  default[:mail_postfix][:packages] = ["postfix", "postfix-mysql"]
+elsif node[:platform] == "centos"
+  default[:mail_postfix][:packages] = ["postfix"]
+end
 
 # When we get a little more adventerous and start handling local mail delivery
 #default[:mail_postfix][:packages] = ["postfix", "postfix-mysql", "dovecot-common", "dovecot-imapd", "dovecot-pop3d"]
