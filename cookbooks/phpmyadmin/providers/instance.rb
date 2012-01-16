@@ -12,8 +12,6 @@
 #  limitations under the License.
 
 action :create do
-  include_recipe "php5::install_php"
-
   version = new_resource.version
   tar_name = "phpMyAdmin-#{version}-all-languages.tar.gz"
   tar_path = ::File.join("/tmp", tar_name)
