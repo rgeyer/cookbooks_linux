@@ -13,7 +13,7 @@ end
   supports os
 end
 
-recipe "mail_postfix::default", "Installs postfix with mysql backend configuration"
+recipe "mail_postfix::setup_postfix", "Installs postfix with mysql backend configuration"
 recipe "mail_postfix::s3_backup", "Backs up the configuration database to s3"
 recipe "mail_postfix::s3_restore", "Restores the configuration database from s3"
 recipe "mail_postfix::enable_continuous_backup", "Schedules mail_postfix::s3_backup to be run daily using cron"
