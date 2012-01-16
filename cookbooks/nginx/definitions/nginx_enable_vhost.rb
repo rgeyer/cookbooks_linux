@@ -26,16 +26,16 @@ define :nginx_enable_vhost, :fqdn => nil, :aliases => nil, :create_doc_root => t
     # Create the sites new home
     directory systemroot do
       mode 0775
-      owner "www-data"
-      group "www-data"
+      owner node[:nginx][:user]
+      group node[:nginx][:user]
       recursive true
       action :create
     end
 
     directory configroot do
       mode 0775
-      owner "www-data"
-      group "www-data"
+      owner node[:nginx][:user]
+      group node[:nginx][:user]
       recursive true
       action :create
     end

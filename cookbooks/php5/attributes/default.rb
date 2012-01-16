@@ -13,7 +13,7 @@ case node[:platform]
         default[:php5][:package_prefix] = "php5-"
         default[:php5][:conf_d_path] = "/etc/php.d"
         default[:php5_fpm][:service_name] = "php-fpm"
-        default[:php5_fpm][:configfile] = "/etc/php-fpm.d/www.conf"
+        default[:php5_fpm][:configfile] = "/etc/php-fpm.conf"
     end
   when "ubuntu"
     case node[:platform_version]
