@@ -58,23 +58,23 @@ attribute "mail_postfix/db_user",
   :display_name => "Postfix MySQL Database Username",
   :description => "The username to access the postfix configuration database in MySQL",
   :default => "postfix",
-  :recipes => [ "mail_postfix::default" ]
+  :recipes => [ "mail_postfix::setup_postfix" ]
 
 attribute "mail_postfix/db_pass",
   :display_name => "Postfix MySQL Database Password",
   :description => "The password to access the postfix configuration database in MySQL",
   :required => true,
-  :recipes => [ "mail_postfix::default" ]
+  :recipes => [ "mail_postfix::setup_postfix" ]
 
 attribute "mail_postfix/db_name",
   :display_name => "Postfix MySQL Database Name",
   :description => "The name of the postfix configuration database in MySQL",
   :default => "postfix",
-  :recipes => [ "mail_postfix::default", "mail_postfix::s3_backup", "mail_postfix::s3_restore" ]
+  :recipes => [ "mail_postfix::setup_postfix", "mail_postfix::s3_backup", "mail_postfix::s3_restore" ]
 
 
 attribute "mail_postfix/db_host",
   :display_name => "Postfix MySQL Database Host",
   :description => "The hostname of the postfix configuration MySQL database server",
   :default => "localhost",
-  :recipes => [ "mail_postfix::default" ]
+  :recipes => [ "mail_postfix::setup_postfix" ]

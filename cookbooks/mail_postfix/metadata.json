@@ -17,7 +17,7 @@
       "default": "localhost",
       "type": "string",
       "recipes": [
-        "mail_postfix::default"
+        "mail_postfix::setup_postfix"
       ],
       "display_name": "Postfix MySQL Database Host",
       "description": "The hostname of the postfix configuration MySQL database server"
@@ -59,7 +59,7 @@
       "default": "postfix",
       "type": "string",
       "recipes": [
-        "mail_postfix::default",
+        "mail_postfix::setup_postfix",
         "mail_postfix::s3_backup",
         "mail_postfix::s3_restore"
       ],
@@ -129,7 +129,7 @@
       ],
       "type": "string",
       "recipes": [
-        "mail_postfix::default"
+        "mail_postfix::setup_postfix"
       ],
       "display_name": "Postfix MySQL Database Password",
       "description": "The password to access the postfix configuration database in MySQL"
@@ -143,7 +143,7 @@
       "default": "postfix",
       "type": "string",
       "recipes": [
-        "mail_postfix::default"
+        "mail_postfix::setup_postfix"
       ],
       "display_name": "Postfix MySQL Database Username",
       "description": "The username to access the postfix configuration database in MySQL"
