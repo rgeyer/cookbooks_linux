@@ -32,9 +32,7 @@ action :create do
     action :create
   end
 
-  # I'd love to use the php package prefix here, but the attributes aren't available
-  # package "#{node[:php5][:package_prefix]}mcrypt"
-  package value_for_platform("centos" => {"default" => "php53u-mcrypt"}, "ubuntu" => {"default" => "php5-mcrypt"})
+  package "#{node[:php5][:package_prefix]}mcrypt"
 
   remote_file tar_path do
     backup false

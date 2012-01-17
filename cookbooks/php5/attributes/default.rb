@@ -10,7 +10,7 @@ case node[:platform]
       when node[:platform_version].to_f > 5.4
         default[:php5][:packages_remove] = %w{php php-cli php-common}
         default[:php5][:packages] = %w{php53u php53u-cli php-Smarty php53u-pear}
-        default[:php5][:package_prefix] = "php5-"
+        default[:php5][:package_prefix] = "php53u-"
         default[:php5][:conf_d_path] = "/etc/php.d"
         default[:php5_fpm][:service_name] = "php-fpm"
         default[:php5_fpm][:configfile] = "/etc/php-fpm.conf"
@@ -20,7 +20,7 @@ case node[:platform]
       when "10.04"
         default[:php5][:packages_remove] = []
         default[:php5][:packages] = %w{php5-cgi php5-cli smarty php-pear}
-        default[:php5][:package_prefix] = "php53u-"
+        default[:php5][:package_prefix] = "php5-"
         default[:php5][:conf_d_path] = "/etc/php5/conf.d"
         default[:php5_fpm][:service_name] = "php5-fpm"
         default[:php5_fpm][:configfile] = "/etc/php5/fpm/main.conf"

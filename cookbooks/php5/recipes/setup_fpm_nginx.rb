@@ -21,6 +21,7 @@ include_recipe "nginx::install_from_package"
 include_recipe "php5::install_fpm"
 
 config_file = ::File.join(node[:nginx][:dir], "conf.d", "phpfpm-fastcgi.conf")
+listen_str = node[:php5_fpm][:listen] == "socket" ? node[:php5_fpm][:listen_socket] : "#{node[:php5_fpm][:listen_ip]}:#{node[:php5_fpm][:listen_port]}"
 
 template node[:php5_fpm][:configfile] do
   source "php5-fpm.conf.erb"

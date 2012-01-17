@@ -46,13 +46,13 @@ end
 
 node[:php5][:packages].each do |pkgs|
   package pkgs do
-    action :upgrade
+    action :install
   end
 end
 
 node[:php5][:module_list].split(' ').each do |mod|
   package "#{node[:php5][:package_prefix]}#{mod}" do
-    action :upgrade
+    action :install
   end
 end
 
