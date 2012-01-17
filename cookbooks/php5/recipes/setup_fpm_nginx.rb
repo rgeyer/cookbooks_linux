@@ -22,6 +22,13 @@ include_recipe "php5::install_fpm"
 
 config_file = ::File.join(node[:nginx][:dir], "conf.d", "phpfpm-fastcgi.conf")
 
+template node[:php5_fpm][:configfile] do
+  source "php5-fpm.conf.erb"
+  backup false
+  variables(:listen_str => listen_str, :user => node[:nginx][:user], :group => node[:nginx][:user])
+  notifies :restart, resources(:service => node[:php5_fpm][:service_name]), :delayed
+end
+
 file config_file do
   content "include #{node[:nginx][:dir]}/fastcgi_params;"
   owner "root"

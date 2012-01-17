@@ -52,7 +52,7 @@ end
 template node[:php5_fpm][:configfile] do
   source "php5-fpm.conf.erb"
   backup false
-  variables(:listen_str => listen_str)
+  variables(:listen_str => listen_str, :user => "www-data", :group => "www-data")
   notifies :restart, resources(:service => node[:php5_fpm][:service_name]), :delayed
 end
 
