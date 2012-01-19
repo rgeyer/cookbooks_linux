@@ -1,6 +1,8 @@
 = DESCRIPTION:
+A set of Chef tools for installing, configuring, and managing OpenLDAP
 
 = REQUIREMENTS:
+This cookbook requires the rs_utils cookbook.
 
 = ATTRIBUTES:
 

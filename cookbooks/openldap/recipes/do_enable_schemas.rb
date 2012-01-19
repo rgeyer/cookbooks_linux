@@ -1,3 +1,7 @@
+#
+# Cookbook Name:: openldap
+# Recipe:: do_enable_schemas
+#
 # Copyright 2011, Ryan J. Geyer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,14 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-actions :create
+rs_utils_marker :begin
 
-attribute :base_dn, :kind_of => [ String ]
-attribute :db_type, :kind_of => [ String ], :equal_to => ["hdb","bdb"], :required => true
-attribute :admin_cn, :kind_of => [ String ], :required => true
-attribute :admin_password, :kind_of => [ String ], :required => true
-attribute :cache_size, :kind_of => [ String ]
-attribute :max_objects, :kind_of => [ String ]
-attribute :max_locks, :kind_of => [ String ]
-attribute :max_lockers, :kind_of => [ String ]
-attribute :checkpoint, :kind_of => [ String ]
+openldap_schema "Enable schema list" do
+  schemas node[:openldap][:schemas]
+  action :enable
+end
+
+rs_utils_marker :end
