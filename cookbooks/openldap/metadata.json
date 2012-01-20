@@ -73,14 +73,13 @@
       "choice": [
 
       ],
-      "default": "blank",
       "type": "string",
       "recipes": [
         "openldap::install_openldap",
         "openldap::do_create_database"
       ],
       "display_name": "OpenLDAP Database Base DN",
-      "description": "The base DN of the new database to create, if left blank the new database will contain all DN's other than cn=config"
+      "description": "The base DN of the new database to create, if set to 'Ignore' the new database will contain all DN's other than cn=config"
     },
     "openldap/database_admin_password": {
       "required": "required",
@@ -222,7 +221,7 @@
     "ubuntu": ">= 0.0.0"
   },
   "maintainer": "Ryan J. Geyer",
-  "long_description": "= DESCRIPTION:\nA set of Chef tools for installing, configuring, and managing OpenLDAP\n\n= REQUIREMENTS:\nThis cookbook requires the rs_utils cookbook.\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "long_description": "= DESCRIPTION:\nA set of Chef tools for installing, configuring, and managing OpenLDAP\n\n= REQUIREMENTS:\nThis cookbook requires the rs_utils cookbook.\n\n= ATTRIBUTES:\n\n= USAGE:\n\n= TODO:\ncollectd monitoring goodness.\nhttp://prefetch.net/articles/monitoringldap.html",
   "version": "0.0.1",
   "recommendations": {
   },

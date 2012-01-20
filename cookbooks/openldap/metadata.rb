@@ -61,8 +61,7 @@ attribute "openldap/database_admin_password",
 
 attribute "openldap/base_dn",
   :display_name => "OpenLDAP Database Base DN",
-  :description => "The base DN of the new database to create, if left blank the new database will contain all DN's other than cn=config",
-  :default => "blank",
+  :description => "The base DN of the new database to create, if set to 'Ignore' the new database will contain all DN's other than cn=config",
   :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
 
 attribute "openldap/db_type",

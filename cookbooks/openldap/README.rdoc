@@ -8,3 +8,6 @@ This cookbook requires the rs_utils cookbook.
 
 = USAGE:
 
+= TODO:
+collectd monitoring goodness.
+http://prefetch.net/articles/monitoringldap.html
