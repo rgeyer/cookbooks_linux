@@ -57,7 +57,7 @@ if node[:platform] == "ubuntu" && node[:platform_version] == "9.10"
   end
 end
 
-include_recipe "openldap::set_config_admin_creds"
+include_recipe "openldap::setup_config_admin_creds"
 
 %w{back_bdb back_hdb}.each do |mod|
   openldap_module mod do
@@ -65,7 +65,7 @@ include_recipe "openldap::set_config_admin_creds"
   end
 end
 
-include_recipe "openldap::enable_schemas"
+include_recipe "openldap::do_enable_schemas"
 
 directory node[:openldap][:db_dir] do
   recursive true
@@ -74,6 +74,6 @@ directory node[:openldap][:db_dir] do
   action :create
 end
 
-include_recipe "openldap::create_database"
+include_recipe "openldap::do_create_database"
 
 rs_utils_marker :end
