@@ -27,7 +27,7 @@ package value_for_platform("centos" => {"default" => "openssl-devel"}, "default"
 
 bash "Download the RVM install script" do
   code <<-EOF
-wget -q -O /tmp/rvm http://rvm.beginrescueend.com/install/rvm
+wget -q -O /tmp/rvm https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer
 chmod +x /tmp/rvm
   EOF
   creates "/tmp/rvm"
