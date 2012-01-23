@@ -10,7 +10,7 @@ TIMEOUT=${TIMEOUT-60}
 APP_ROOT=<%= @app_path %>
 PID=/var/run/unicorn/<%= @app_name %>.pid
 <% if(node[:rvm][:bin_path]) -%>
-CMD="<%= ::File.join(node[:rvm][:install_path], "bin", "init_unicorn_rails") %> -c /etc/unicorn/<%= @app_name %>.rb -D"
+CMD="rvm exec unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
 <% else -%>
 CMD="unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
 <% end -%>
