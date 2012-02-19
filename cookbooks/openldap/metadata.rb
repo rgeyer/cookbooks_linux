@@ -5,7 +5,9 @@ description      "Installs/Configures openldap"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-depends "rs_utils"
+%w{rs_utils rs_sandbox sys_dns block_device}.each do |d|
+  depends d
+end
 
 supports "ubuntu"
 
@@ -14,6 +16,7 @@ recipe "openldap::setup_rightscale_syslog", "Appends configuration for OpenLDAP 
 recipe "openldap::setup_config_admin_creds", "Sets the CN (Common Name) and password for the configuration admin"
 recipe "openldap::do_create_database", "Creates a new database to contain records for the specified base_dn"
 recipe "openldap::do_enable_schemas", "Enables the OpenLDAP schemas listed"
+recipe "openldap::do_initialize_provider", "Configures this node to be the LDAP replication provider."
 
 attribute "openldap/allow_remote",
   :display_name => "OpenLDAP Allow Remote?",
@@ -51,52 +54,52 @@ attribute "openldap/database_admin_cn",
   :display_name => "OpenLDAP Database Admin CN",
   :description => "The desired \"Common Name\" for the administrator of the new database",
   :required => "required",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]
 
 attribute "openldap/database_admin_password",
   :display_name => "OpenLDAP Config Admin password",
   :description => "The desired password for the administrator of the new database",
   :required => "required",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]
 
 attribute "openldap/base_dn",
   :display_name => "OpenLDAP Database Base DN",
   :description => "The base DN of the new database to create, if set to 'Ignore' the new database will contain all DN's other than cn=config",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]
 
 attribute "openldap/db_type",
   :display_name => "OpenLDAP Database Type",
   :description => "The OpenLDAP database type, currently only bdb and hdb are supported",
   :choice =>  ["hdb","bdb"],
   :default => "hdb",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]
 
 attribute "openldap/cache_size",
   :display_name => "OpenLDAP Database Cache Size",
   :description => "A Berkley DB tuning setting, leave it as \"0 2097152 0\" if you don't know what you're doing.",
   :default => "0 2097152 0",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]
 
 attribute "openldap/max_objects",
   :display_name => "OpenLDAP Database Max Objects",
   :description => "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing.",
   :default => "1500",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]
 
 attribute "openldap/max_locks",
   :display_name => "OpenLDAP Database Max Locks",
   :description => "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing.",
   :default => "1500",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]
 
 attribute "openldap/max_lockers",
   :display_name => "OpenLDAP Database Max Lockers",
   :description => "A Berkley DB tuning setting, leave it as \"1500\" if you don't know what you're doing.",
   :default => "1500",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]
 
 attribute "openldap/checkpoint",
   :display_name => "OpenLDAP Database Checkpoint",
   :description => "A Berkley DB tuning setting, leave it as \"512 30\" if you don't know what you're doing.",
   :default => "512 30",
-  :recipes => ["openldap::install_openldap", "openldap::do_create_database"]
+  :recipes => ["openldap::do_create_database"]

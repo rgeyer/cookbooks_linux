@@ -18,6 +18,8 @@
 
 rs_utils_marker :begin
 
+include_recipe "openldap::setup_openldap"
+
 listen_host = ""
 listen_host = "127.0.0.1" unless node[:openldap][:allow_remote] == "true"
 
@@ -73,7 +75,5 @@ directory node[:openldap][:db_dir] do
   group "openldap"
   action :create
 end
-
-include_recipe "openldap::do_create_database"
 
 rs_utils_marker :end

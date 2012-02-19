@@ -11,3 +11,10 @@ This cookbook requires the rs_utils cookbook.
 = TODO:
 collectd monitoring goodness.
 http://prefetch.net/articles/monitoringldap.html
+
+Use a rubygem to access and manipulate ldap
+https://rubygems.org/gems/net-ldap
+
+Fully implement provider/consumer
+
+Enable LDAP over SSH encryption
