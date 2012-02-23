@@ -26,8 +26,8 @@ include_recipe "cloudstack::install_cloudstack"
 
 if !::File.exists?("/etc/selinux/config")
   directory "/etc/selinux" do
-    user root
-    group root
+    owner "root"
+    group "root"
     action :create
   end  
   
@@ -69,7 +69,7 @@ else
   end
   
   execute "Set MySQL BinLog format to ROW" do
-    command 'echo "set global binlog_format = 'ROW'" | mysql'
+    command "echo \"set global binlog_format = 'ROW'\" | mysql"
   end
   
   execute "Install/Setup CS Manager" do
