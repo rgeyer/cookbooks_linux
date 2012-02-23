@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+rs_utils_marker :begin
+
 include_recipe "cloudstack::install_cloudstack"
 
 # Not sure if I need this or not
@@ -90,3 +92,5 @@ else
   # xenserver -F`
 
 end
+
+rs_utils_marker :end

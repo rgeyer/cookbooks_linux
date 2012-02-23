@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "rsutils": ">= 0.0.0"
+    "rs_utils": ">= 0.0.0"
   },
   "name": "cloudstack",
   "maintainer_email": "me@ryangeyer.com",

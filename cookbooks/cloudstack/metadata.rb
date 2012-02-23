@@ -7,7 +7,7 @@ version          "0.0.1"
 
 supports "centos"
 
-depends "rsutils"
+depends "rs_utils"
 
 recipe "cloudstack::install_cloudstack", "Installs the CloudStack binary files used for setting up the CloudStack agent and management server"
 recipe "cloudstack::setup_management_server", "Sets up a single node CloudStack management server"

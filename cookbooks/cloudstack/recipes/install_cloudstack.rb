@@ -15,6 +15,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+rs_utils_marker :begin
+
 cloudstack_tarfile = ::File.join(ENV['TMPDIR'] || '/tmp', 'cloudstack.tar.gz')
 
 file cloudstack_tarfile do
@@ -34,3 +36,5 @@ bash "Unzip CloudStack File" do
   code "tar -zxf #{cloudstack_tarfile} -C #{node[:cloudstack][:install_dir]} --strip-components=1"
   notifies :delete, "file[#{cloudstack_tarfile}]", :immediately
 end
+
+rs_utils_marker :end
