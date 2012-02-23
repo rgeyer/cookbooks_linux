@@ -28,7 +28,7 @@ directory node[:cloudstack][:install_dir] do
   action :create
 end
 
-unless ::File.exists?("#{node[:cloudstack][:install_dir]}", "install.sh")
+unless ::File.exists?(::File.join("#{node[:cloudstack][:install_dir]}", "install.sh"))
   # Download/unzip CloudStack file
   remote_file cloudstack_tarfile do
     source node[:cloudstack][:package_url]
