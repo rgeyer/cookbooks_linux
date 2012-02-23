@@ -19,11 +19,7 @@ rs_utils_marker :begin
 
 include_recipe "cloudstack::install_cloudstack"
 
-# Not sure if I need this or not
-#%w{setools selinux-policy}.each do |p|
-#  package p
-#end
-
+# TODO: Don't really need to if/else this.  If selinux config doesn't exist, create it, if it isn't disabled, disable it.
 if !::File.exists?("/etc/selinux/config")
   directory "/etc/selinux" do
     owner "root"
@@ -40,21 +36,21 @@ if !::File.exists?("/etc/selinux/config")
   # because selinux is already "disabled" or "permissive"
 else
   unless ::File.directory?("/etc/cloud/management")
-    csmanager_script = ::File.join(ENV['TMPDIR'] || '/tmp', 'csmanager.sh')
+    csmanager_answers = ::File.join(ENV['TMPDIR'] || '/tmp', 'answers')
   
-    file csmanager_script do
+    file csmanager_answers do
       action :nothing
     end
   
-    template csmanager_script do
-      source "csmanage_install.sh.erb"
+    cookbook_file csmanager_answers do
+      source "csmanager_install_answers"
       backup false
     end
   
     execute "CS Manager Install Script" do
-      command csmanager_script
+      command "#{::File.join(node[:cloudstack][:install_dir], "install.sh")} < #{csmanager_answers}"
       action :run
-      notifies :delete, "file[#{csmanager_script}]", :immediately
+      notifies :delete, "file[#{csmanager_answers}]", :immediately
     end
   end
   
