@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "sys_firewall": ">= 0.0.0",
     "rs_utils": ">= 0.0.0"
   },
   "name": "cloudstack",

@@ -76,6 +76,14 @@ execute "Install/Setup CS Manager" do
   command "cloud-setup-management"
 end
 
+# Open up some firewall rules for the management server UI and API
+if node[:sys_firewall][:enabled] == "enabled"  
+  sys_firewall 8080
+  sys_firewall 9090
+  sys_firewall 8250
+  sys_firewall 8096
+end
+
 # Mount secondary storage
 # mount -t nfs servername:/nfs/share /mnt/secondary
 
