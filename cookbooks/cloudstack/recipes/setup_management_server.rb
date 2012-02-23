@@ -72,7 +72,6 @@ else
   
   execute "Install/Setup CS Manager" do
     command "cloud-setup-management"
-    not_if "iptables -L -n | grep 8080"
   end
 
   # Mount secondary storage
