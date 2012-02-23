@@ -1,8 +1,41 @@
 = DESCRIPTION:
 
+Downloads and unzips the CloudStack installation files, and provides tools for setting up a Single Node Management Server or installing the CloudStack agent on an infrastructure node.
+
 = REQUIREMENTS:
+
+Currently assumes that MySQL is already installed and configured.  This is intended to be used as additional recipes on a cloned version of the RightScale [MySQL Database Manager](http://www.rightscale.com/library/server_templates/Database-Manager-for-MySQL-5-1/31819) ServerTemplate.
 
 = ATTRIBUTES:
 
+* `node[:cloudstack][:package_url]` - The Download URL for the CloudStack package, defaults to "http://sourceforge.net/projects/cloudstack/files/Cloudstack%202.2/2.2.13/CloudStack-2.2.13-1-rhel5.tar.gz".
+* `node[:cloudstack][:install_dir]` - The directory where the CloudStack package will be uzipped
+
+= RECIPES:
+
 = USAGE:
 
+* Place cloudstack::install_cloudstack into your runlist to download and unzip the CloudStack installation files
+* Place cloudstack::setup_management_server into your runlist to configure the CloudStack Management Server in a single node configuration (Requires MySQL preinstalled per REQUIREMENTS above).
+
+= TODO:
+
+* Create a recipe for setting up a management server in a multi node configuration
+* Create a recipe for installing the CloudStack agent
+
+= LICENSE AND AUTHOR:
+
+Author:: Ryan J. Geyer <me@ryangeyer.com>
+
+Copyright 2012 Ryan J. Geyer
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
