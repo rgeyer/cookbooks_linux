@@ -20,6 +20,7 @@ rs_utils_marker :begin
 cloudstack_tarfile = ::File.join(ENV['TMPDIR'] || '/tmp', 'cloudstack.tar.gz')
 
 file cloudstack_tarfile do
+  backup false
   action :nothing
 end
 
@@ -27,14 +28,16 @@ directory node[:cloudstack][:install_dir] do
   action :create
 end
 
-# Download/unzip CloudStack file
-remote_file cloudstack_tarfile do
-  source node[:cloudstack][:package_url]
-end
+unless ::File.exists?("#{node[:cloudstack][:install_dir]}", "install.sh")
+  # Download/unzip CloudStack file
+  remote_file cloudstack_tarfile do
+    source node[:cloudstack][:package_url]
+  end
 
-bash "Unzip CloudStack File" do
-  code "tar -zxf #{cloudstack_tarfile} -C #{node[:cloudstack][:install_dir]} --strip-components=1"
-  notifies :delete, "file[#{cloudstack_tarfile}]", :immediately
+  bash "Unzip CloudStack File" do
+    code "tar -zxf #{cloudstack_tarfile} -C #{node[:cloudstack][:install_dir]} --strip-components=1"
+    notifies :delete, "file[#{cloudstack_tarfile}]", :immediately
+  end
 end
 
 rs_utils_marker :end
