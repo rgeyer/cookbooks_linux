@@ -55,3 +55,9 @@ attribute "cloustack/csmanage/vpn/netmask",
   :required => "optional",
   :default => "255.255.255.0",
   :recipes => ["cloudstack::setup_single_node_management_server"]
+
+attribute "cloudstack/csmanage/vpn/hostname",
+  :display_name => "CloudStack Management VPN Server Hostname",
+  :description => "Used to create the client OpenVPN config files, this should be set to the remotely accessible hostname or ip address of the server",
+  :required => "required",
+  :recipes => ["cloudstack::setup_single_node_management_server"]

@@ -19,12 +19,13 @@ rs_utils_marker :begin
 
 node[:openvpn] ||= {}
 
-node[:openvpn][:local]    = node[:cloudstack][:csmanage][:vpn][:local]
+node[:openvpn][:local]    = node[:cloudstack][:csmanage][:vpn][:listen_ip]
 node[:openvpn][:netmask]  = node[:cloudstack][:csmanage][:vpn][:netmask]
 node[:openvpn][:subnet]   = node[:cloudstack][:csmanage][:vpn][:subnet]
 node[:openvpn][:protocol] = "udp"
 node[:openvpn][:type]     = "server"
 node[:openvpn][:users]    = ["remote"]
+node[:openvpn][:gateway]  = node[:cloudstack][:csmanage][:vpn][:hostname]
 
 include_recipe "cloudstack::setup_management_server"
 include_recipe "openvpn::setup_server"
