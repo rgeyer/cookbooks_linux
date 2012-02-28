@@ -2,9 +2,11 @@
 
 Downloads and unzips the CloudStack installation files, and provides tools for setting up a Single Node Management Server or installing the CloudStack agent on an infrastructure node.
 
+Currently this cookbook is geared toward installing a single node (all in one) Management Server.  Later enhancements should include installation of the CloudStack agent and other Management Server configurations.
+
 = REQUIREMENTS:
 
-Currently assumes that MySQL is already installed and configured.  This is intended to be used as additional recipes on a cloned version of the RightScale [MySQL Database Manager](http://www.rightscale.com/library/server_templates/Database-Manager-for-MySQL-5-1/31819) ServerTemplate.
+Currently assumes that MySQL is already installed and configured.  This is intended to be used as additional recipes on a cloned version of the RightScale MySQL Database Manager - (http://www.rightscale.com/library/server_templates/Database-Manager-for-MySQL-5-1/31819) ServerTemplate.
 
 = ATTRIBUTES:
 
@@ -18,10 +20,25 @@ Currently assumes that MySQL is already installed and configured.  This is inten
 * Place cloudstack::install_cloudstack into your runlist to download and unzip the CloudStack installation files
 * Place cloudstack::setup_management_server into your runlist to configure the CloudStack Management Server in a single node configuration (Requires MySQL preinstalled per REQUIREMENTS above).
 
+== Single-Node Management Server
+* Include the following recipes in your runlist (or RightScale "boot" phase in ServerTemplate)
+  * db::default
+  * db_mysql::default
+  * db::install_client
+  * db::install_server
+  * db::setup_privileges_admin
+  * db::setup_privileges_application
+  * db::setup_monitoring
+  * cloudstack::setup_single_node_management_server
+* Make sure to set the following attributes
+  * cloudstack/csmanage/vpn/local = env:PRIVATE_IP
+
+
 = TODO:
 
 * Create a recipe for setting up a management server in a multi node configuration
 * Create a recipe for installing the CloudStack agent
+* Self sign an SSL cert and protect the endpoint in single-node configuration
 
 = LICENSE AND AUTHOR:
 
