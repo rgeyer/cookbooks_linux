@@ -14,7 +14,7 @@
       "default": "server",
       "type": "string",
       "recipes": [
-        "openvpn::default"
+        "openvpn::setup_server"
       ],
       "description": "Server or server-bridge",
       "display_name": "OpenVPN Type"
@@ -28,7 +28,7 @@
       "default": "udp",
       "type": "string",
       "recipes": [
-        "openvpn::default"
+        "openvpn::setup_server"
       ],
       "description": "UDP or TCP",
       "display_name": "OpenVPN Protocol"
@@ -54,7 +54,7 @@
       "default": "255.255.0.0",
       "type": "string",
       "recipes": [
-        "openvpn::default"
+        "openvpn::setup_server"
       ],
       "description": "Netmask for clients",
       "display_name": "OpenVPN Netmask"
@@ -68,7 +68,7 @@
       "default": "10.8.0.0",
       "type": "string",
       "recipes": [
-        "openvpn::default"
+        "openvpn::setup_server"
       ],
       "description": "Subnet to hand out to clients",
       "display_name": "OpenVPN Subnet"
@@ -95,7 +95,7 @@
       "default": "env:PUBLIC_IP",
       "type": "string",
       "recipes": [
-        "openvpn::default"
+        "openvpn::setup_server"
       ],
       "description": "Local interface (ip) to listen on",
       "display_name": "OpenVPN Local"
@@ -117,7 +117,8 @@
   "recommendations": {
   },
   "recipes": {
-    "openvpn::default": "Installs and configures openvpn",
+    "openvpn::default": "Does nothing",
+    "openvpn::setup_server": "Installs and configures openvpn",
     "openvpn::users": "Sets up openvpn cert/configs for users data bag items"
   },
   "groupings": {

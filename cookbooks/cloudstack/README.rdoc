@@ -29,6 +29,7 @@ Currently assumes that MySQL is already installed and configured.  This is inten
   * db::setup_privileges_admin
   * db::setup_privileges_application
   * db::setup_monitoring
+  * openvpn::default
   * cloudstack::setup_single_node_management_server
 * Make sure to set the following attributes
   * cloudstack/csmanage/vpn/local = env:PRIVATE_IP
