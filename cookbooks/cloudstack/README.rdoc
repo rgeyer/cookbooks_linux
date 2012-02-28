@@ -36,7 +36,7 @@ Currently assumes that MySQL is already installed and configured.  This is inten
 * Fetch the OpenVPN Client configuration and keys thusly
   * scp root@<ip of management server>:/etc/openvpn/keys/remote.tar.gz .
 * Connect your network to the management server OpenVPN server using the client config downloaded in the previous step
-* Complete configuration of your CloudStack managed private cloud by going to http://<ip or hostname of instance>:8080/client
+* Complete configuration of your CloudStack managed private cloud by going to `http://<ip or hostname of instance>:8080/client`
 
 
 = TODO:
