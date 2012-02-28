@@ -14,6 +14,10 @@ end
 
 depends "rs_utils"
 
+attribute "openvpn",
+  :display_name => "openvpn",
+  :type => "hash"
+
 attribute "openvpn/local",
   :display_name => "OpenVPN Local",
   :description => "Local interface (ip) to listen on",

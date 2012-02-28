@@ -17,6 +17,8 @@
 
 rs_utils_marker :begin
 
+node[:openvpn] ||= {}
+
 node[:openvpn][:local]    = node[:cloudstack][:csmanage][:vpn][:local]
 node[:openvpn][:netmask]  = node[:cloudstack][:csmanage][:vpn][:netmask]
 node[:openvpn][:subnet]   = node[:cloudstack][:csmanage][:vpn][:subnet]

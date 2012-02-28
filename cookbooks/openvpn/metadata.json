@@ -33,6 +33,18 @@
       "description": "UDP or TCP",
       "display_name": "OpenVPN Protocol"
     },
+    "openvpn": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "hash",
+      "recipes": [
+
+      ],
+      "display_name": "openvpn"
+    },
     "openvpn/netmask": {
       "required": "optional",
       "calculated": false,
