@@ -27,7 +27,7 @@ node[:openvpn][:type]     = "server"
 node[:openvpn][:users]    = ["remote"]
 
 include_recipe "cloudstack::setup_management_server"
-include_recipe "openvpn::default"
+include_recipe "openvpn::setup_server"
 include_recipe "openvpn::users"
 
 sys_firewall "Open UDP port 1194 for OpenVPN server" do
