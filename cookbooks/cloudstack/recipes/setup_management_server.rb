@@ -65,7 +65,7 @@ end
 
 execute "CS Manager db.properties Hack for Single-Node operation" do
   command "sed -i 's/=localhost/=#{node[:cloudstack][:csmanage][:dbhost]}/g' /etc/cloud/management/db.properties"
-  not_if "grep #{node[:cloudstack][:csmanage][:dbhost]} /etc/management/db.properties" # This is redundant with a sed *shrug*
+  not_if "grep #{node[:cloudstack][:csmanage][:dbhost]} /etc/cloud/management/db.properties" # This is redundant with a sed *shrug*
 end
 
 execute "Set MySQL BinLog format to ROW" do
