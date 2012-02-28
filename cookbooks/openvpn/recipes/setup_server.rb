@@ -26,6 +26,12 @@ node.default['openvpn']['routes'] << routes.flatten!
 key_dir = node["openvpn"]["key_dir"]
 key_size = node["openvpn"]["key"]["size"]
 
+node[:openvpn][:gid] = value_for_platform(
+  ["centos", "redhat", "suse", "fedora" ] => {
+    "default" => "nobody"
+  }, "default" => "nogroup"
+)
+
 package "openvpn" do
   action :install
 end
@@ -120,6 +126,7 @@ template "/etc/openvpn/server.conf" do
   owner "root"
   group "root"
   mode 0644
+  backup false
   notifies :restart, "service[openvpn]"
 end
 
