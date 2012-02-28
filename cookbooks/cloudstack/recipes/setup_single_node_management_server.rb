@@ -28,4 +28,11 @@ include_recipe "cloudstack::setup_management_server"
 include_recipe "openvpn::default"
 include_recipe "openvpn::users"
 
+sys_firewall "Open UDP port 1194 for OpenVPN server" do
+  port 1194
+  protocol "udp"
+  enable true
+  action :update
+end
+
 rs_utils_marker :end
