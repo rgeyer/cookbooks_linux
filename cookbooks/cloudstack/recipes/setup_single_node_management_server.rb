@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cloudstack
-# Recipe:: setup_management_server
+# Recipe:: setup_single_node_management_server
 #
 #  Copyright 2012 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
