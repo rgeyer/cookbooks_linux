@@ -12,6 +12,8 @@ recipe "openvpn::users", "Sets up openvpn cert/configs for users data bag items"
   supports os
 end
 
+depends "rs_utils"
+
 attribute "openvpn/local",
   :display_name => "OpenVPN Local",
   :description => "Local interface (ip) to listen on",

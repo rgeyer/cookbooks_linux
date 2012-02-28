@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+rs_utils_marker :begin
+
 if !Chef::Config.solo
   search("users", "*:*") do |u|
     openvpn_add_user u['id']
@@ -26,3 +28,5 @@ else
     openvpn_add_user u
   end
 end
+
+rs_utils_marker :end

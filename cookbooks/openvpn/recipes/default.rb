@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+rs_utils_marker :begin
+
 routes = node['openvpn']['routes']
 routes << node['openvpn'] if node['openvpn'].attribute?('push')
 node.default['openvpn']['routes'] << routes.flatten!
@@ -124,3 +126,5 @@ end
 service "openvpn" do
   action [:enable, :start]
 end
+
+rs_utils_marker :end
