@@ -51,7 +51,7 @@ attribute "cloustack/csmanage/vpn/subnet",
   :display_name => "CloudStack Management VPN Subnet",
   :description => "The ip subnet for OpenVPN to use",
   :required => "optional",
-  :default => "176.16.1.0",
+  :default => "172.16.1.0",
   :category => "CloudStack Management Server (VPN)",
   :recipes => ["cloudstack::setup_single_node_management_server"]
 
