@@ -8,7 +8,7 @@
   "attributes": {
     "cloudstack/csmanage/vpn/hostname": {
       "required": "required",
-      "category": "CloudStack Management Server (VPN)",
+      "category": "CloudStack_Management_Server_VPN",
       "calculated": false,
       "choice": [
 
@@ -22,7 +22,7 @@
     },
     "cloudstack/csmanage/dbuser": {
       "required": "required",
-      "category": "CloudStack Management Server",
+      "category": "CloudStack_Management_Server",
       "calculated": false,
       "choice": [
 
@@ -37,7 +37,7 @@
     },
     "cloudstack/csmanage/dbhost": {
       "required": "required",
-      "category": "CloudStack Management Server",
+      "category": "CloudStack_Management_Server",
       "calculated": false,
       "choice": [
 
@@ -52,7 +52,7 @@
     },
     "cloudstack/csmanage/dbpass": {
       "required": "required",
-      "category": "CloudStack Management Server",
+      "category": "CloudStack_Management_Server",
       "calculated": false,
       "choice": [
 
@@ -67,7 +67,7 @@
     },
     "cloudstack/csmanage/secondary_storage/nfs_hostname": {
       "required": "required",
-      "category": "CloudStack Management Server (Secondary Storage)",
+      "category": "CloudStack_Management_Server_Secondary_Storage",
       "calculated": false,
       "choice": [
 
@@ -81,7 +81,7 @@
     },
     "cloustack/csmanage/vpn/subnet": {
       "required": "optional",
-      "category": "CloudStack Management Server (VPN)",
+      "category": "CloudStack_Management_Server_VPN",
       "calculated": false,
       "choice": [
 
@@ -96,7 +96,7 @@
     },
     "cloudstack/csmanage/secondary_storage/nfs_path": {
       "required": "required",
-      "category": "CloudStack Management Server (Secondary Storage)",
+      "category": "CloudStack_Management_Server_Secondary_Storage",
       "calculated": false,
       "choice": [
 
@@ -110,7 +110,7 @@
     },
     "cloustack/csmanage/vpn/netmask": {
       "required": "optional",
-      "category": "CloudStack Management Server (VPN)",
+      "category": "CloudStack_Management_Server_VPN",
       "calculated": false,
       "choice": [
 
@@ -125,7 +125,7 @@
     },
     "cloudstack/csmanage/vpn/listen_ip": {
       "required": "required",
-      "category": "CloudStack Management Server (VPN)",
+      "category": "CloudStack_Management_Server_VPN",
       "calculated": false,
       "choice": [
 
