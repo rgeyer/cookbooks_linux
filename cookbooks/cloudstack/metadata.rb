@@ -17,7 +17,7 @@ recommends "openvpn"
 recipe "cloudstack::install_cloudstack", "Installs the CloudStack binary files used for setting up the CloudStack agent and management server"
 recipe "cloudstack::setup_management_server", "Sets up the CloudStack management server software"
 recipe "cloudstack::setup_single_node_management_server", "Sets up a single node CloudStack management server"
-recipe "cloudstack::do_mount_secondary_storage","Mounts the secondary storage volume using NFS"
+recipe "cloudstack::do_prepare_system_vm_template","Mounts the secondary storage volume using NFS and downloads the system VM for the specified hypervisors"
 
 attribute "cloudstack/csmanage/dbuser",
   :display_name => "CloudStack Management Database Username",
@@ -70,16 +70,24 @@ attribute "cloudstack/csmanage/vpn/hostname",
   :category => "CloudStack_Management_Server_VPN",
   :recipes => ["cloudstack::setup_single_node_management_server"]
 
-attribute "cloudstack/csmanage/secondary_storage/nfs_hostname",
-  :display_name => "CloudStack Management Secondary Storage NFS Hostname",
+attribute "cloudstack/csmanage/system_vm/nfs_hostname",
+  :display_name => "CloudStack Management System VM NFS Hostname",
   :description => "The hostname of the remote NFS server containing secondary storage",
   :required => "required",
-  :category => "CloudStack_Management_Server_Secondary_Storage",
-  :recipes => ["cloudstack::do_mount_secondary_storage"]
+  :category => "CloudStack_Management_Server_System_VM",
+  :recipes => ["cloudstack::do_prepare_system_vm_template"]
 
-attribute "cloudstack/csmanage/secondary_storage/nfs_path",
-  :display_name => "CloudStack Management Secondary Storage NFS Path",
-  :description => "The filsystem path to secondary storage on the remote NFS server containing secondary storage",
+attribute "cloudstack/csmanage/system_vm/nfs_path",
+  :display_name => "CloudStack Management System VM NFS Path",
+  :description => "The filesystem path to secondary storage on the remote NFS server containing secondary storage",
   :required => "required",
-  :category => "CloudStack_Management_Server_Secondary_Storage",
-  :recipes => ["cloudstack::do_mount_secondary_storage"]
+  :category => "CloudStack_Management_Server_System_VM",
+  :recipes => ["cloudstack::do_prepare_system_vm_template"]
+
+attribute "cloudstack/csmanage/system_vm/hypervisors",
+  :display_name => "CloudStack Management System VM Hypervisors",
+  :description => "A list of hypervisors to fetch a system vm template for. Possible values are (kvm, vmware, xenserver)",
+  :type => "array",
+  :required => "required",
+  :category => "CloudStack_Management_Server_System_VM",
+  :recipes => ["cloudstack::do_prepare_system_vm_template"]

@@ -3,3 +3,5 @@ default[:cloudstack][:install_dir] = "/opt/cloudstack"
 
 default[:cloudstack][:csmanage][:vpn][:subnet] = "172.16.1.0"
 default[:cloudstack][:csmanage][:vpn][:netmask] = "255.255.255.0"
+
+default[:cloudstack][:csmanage][:system_vm][:download_url] = "http://download.cloud.com/releases/2.2.0/"
