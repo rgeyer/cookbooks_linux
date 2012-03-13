@@ -52,6 +52,7 @@ unless ::File.directory?("/etc/cloud/management")
   end
 
   execute "CS Manager Install Script" do
+    cwd node[:cloudstack][:install_dir]
     command "#{::File.join(node[:cloudstack][:install_dir], "install.sh")} < #{csmanager_answers}"
     action :run
     notifies :delete, "file[#{csmanager_answers}]", :immediately
