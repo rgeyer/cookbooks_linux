@@ -13,8 +13,8 @@
 # limitations under the License.
 
 define :openvpn_add_user do
-  execute "generate-openvpn-#{params[:name]}" do
-    command "./pkitool #{params[:name]}"
+  execute "generate-openvpn-#{params[:name][:name]}" do
+    command "./pkitool #{params[:name][:name]}"
     cwd "/etc/openvpn/easy-rsa"
     environment(
       'EASY_RSA' => '/etc/openvpn/easy-rsa',
@@ -29,21 +29,28 @@ define :openvpn_add_user do
       'KEY_ORG' => node["openvpn"]["key"]["org"],
       'KEY_EMAIL' => node["openvpn"]["key"]["email"]
     )
-    not_if { ::File.exists?("#{node["openvpn"]["key_dir"]}/#{params[:name]}.crt") }
+    not_if { ::File.exists?("#{node["openvpn"]["key_dir"]}/#{params[:name][:name]}.crt") }
   end
 
   %w{ conf ovpn }.each do |ext|
-    template "#{node["openvpn"]["key_dir"]}/#{params[:name]}.#{ext}" do
+    template "#{node["openvpn"]["key_dir"]}/#{params[:name][:name]}.#{ext}" do
       source "client.conf.erb"
-      variables :username => params[:name]
+      variables :username => params[:name][:name]
     end
   end
 
-  execute "create-openvpn-tar-#{params[:name]}" do
+  execute "create-openvpn-tar-#{params[:name][:name]}" do
     cwd node["openvpn"]["key_dir"]
     command <<-EOH
-      tar zcf #{params[:name]}.tar.gz ca.crt #{params[:name]}.crt #{params[:name]}.key #{params[:name]}.conf #{params[:name]}.ovpn
+      tar zcf #{params[:name][:name]}.tar.gz ca.crt #{params[:name][:name]}.crt #{params[:name][:name]}.key #{params[:name][:name]}.conf #{params[:name][:name]}.ovpn
     EOH
-    not_if { ::File.exists?("#{node["openvpn"]["key_dir"]}/#{params[:name]}.tar.gz") }
+    not_if { ::File.exists?("#{node["openvpn"]["key_dir"]}/#{params[:name][:name]}.tar.gz") }
+  end
+
+  if params[:name][:ccd]
+    template "/etc/openvpn/ccd/#{params[:name][:name]}" do
+      source "ccd.erb"
+      variables :ccd => params[:name][:ccd]
+    end
   end
 end

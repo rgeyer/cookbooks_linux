@@ -20,20 +20,6 @@
       "description": "A list of hypervisors to fetch a system vm template for. Possible values are (kvm, vmware, xenserver)",
       "display_name": "CloudStack Management System VM Hypervisors"
     },
-    "cloudstack/csmanage/vpn/hostname": {
-      "required": "required",
-      "category": "CloudStack_Management_Server_VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "Used to create the client OpenVPN config files, this should be set to the remotely accessible hostname or ip address of the server",
-      "display_name": "CloudStack Management VPN Server Hostname"
-    },
     "cloudstack/csmanage/dbuser": {
       "required": "required",
       "category": "CloudStack_Management_Server",
@@ -48,6 +34,21 @@
       ],
       "description": "The database username for the CloudStack Management Server DB connection",
       "display_name": "CloudStack Management Database Username"
+    },
+    "cloustack/csmanage/vpn/server/subnet": {
+      "required": "optional",
+      "category": "CloudStack_Management_Server_VPN",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "172.16.1.0",
+      "type": "string",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "description": "The ip subnet for OpenVPN to use",
+      "display_name": "CloudStack Management VPN Subnet"
     },
     "cloudstack/csmanage/dbhost": {
       "required": "required",
@@ -93,21 +94,6 @@
       "description": "The filesystem path to secondary storage on the remote NFS server containing secondary storage",
       "display_name": "CloudStack Management System VM NFS Path"
     },
-    "cloustack/csmanage/vpn/subnet": {
-      "required": "optional",
-      "category": "CloudStack_Management_Server_VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "172.16.1.0",
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The ip subnet for OpenVPN to use",
-      "display_name": "CloudStack Management VPN Subnet"
-    },
     "cloudstack/csmanage/system_vm/nfs_hostname": {
       "required": "required",
       "category": "CloudStack_Management_Server_System_VM",
@@ -122,7 +108,35 @@
       "description": "The hostname of the remote NFS server containing secondary storage",
       "display_name": "CloudStack Management System VM NFS Hostname"
     },
-    "cloustack/csmanage/vpn/netmask": {
+    "cloudstack/csmanage/vpn/client/cidr": {
+      "required": "required",
+      "category": "CloudStack_Management_Server_VPN",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "description": "Used to create the client OpenVPN config files, this should be set to the CIDR of the local network which will connect to this server.  Example: 172.16.0.0/24",
+      "display_name": "CloudStack Management VPN Client CIDR"
+    },
+    "cloudstack/csmanage/vpn/server/hostname": {
+      "required": "required",
+      "category": "CloudStack_Management_Server_VPN",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "description": "Used to create the client OpenVPN config files, this should be set to the remotely accessible hostname or ip address of the server",
+      "display_name": "CloudStack Management VPN Server Hostname"
+    },
+    "cloustack/csmanage/vpn/server/netmask": {
       "required": "optional",
       "category": "CloudStack_Management_Server_VPN",
       "calculated": false,

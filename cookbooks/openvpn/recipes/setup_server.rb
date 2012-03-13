@@ -42,10 +42,12 @@ directory key_dir do
   mode 0700
 end
 
-directory "/etc/openvpn/easy-rsa" do
-  owner "root"
-  group "root"
-  mode 0755
+%w{easy-rsa ccd}.each do |dir|
+  directory ::File.join("/etc/openvpn" , dir) do
+    owner "root"
+    group "root"
+    mode 0755
+  end
 end
 
 %w{openssl.cnf pkitool vars Rakefile}.each do |f|

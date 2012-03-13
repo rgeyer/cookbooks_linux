@@ -19,13 +19,17 @@ rs_utils_marker :begin
 
 node[:openvpn] ||= {}
 
-node[:openvpn][:local]    = node[:cloudstack][:csmanage][:vpn][:listen_ip]
-node[:openvpn][:netmask]  = node[:cloudstack][:csmanage][:vpn][:netmask]
-node[:openvpn][:subnet]   = node[:cloudstack][:csmanage][:vpn][:subnet]
+node[:openvpn][:local]    = node[:cloudstack][:csmanage][:vpn][:server][:listen_ip]
+node[:openvpn][:netmask]  = node[:cloudstack][:csmanage][:vpn][:server][:netmask]
+node[:openvpn][:subnet]   = node[:cloudstack][:csmanage][:vpn][:server][:subnet]
 node[:openvpn][:protocol] = "udp"
 node[:openvpn][:type]     = "server"
-node[:openvpn][:users]    = ["remote"]
-node[:openvpn][:gateway]  = node[:cloudstack][:csmanage][:vpn][:hostname]
+node[:openvpn][:users]    = [{"name" => "remote", "ccd" => {"routes" => [node[:cloudstack][:csmanage][:vpn][:client][:cidr]]} }]
+node[:openvpn][:gateway]  = node[:cloudstack][:csmanage][:vpn][:server][:hostname]
+node[:openvpn][:route]    = "route #{node[:cloudstack][:csmanage][:vpn][:client][:cidr]}"
+
+# TODO: Setup an /etc/openvpn/ccd directory and allow user input for each node[:openvpn][:users] can be
+# a complex hash including a name and subnet/mask that it routes.
 
 include_recipe "cloudstack::setup_management_server"
 include_recipe "openvpn::setup_server"

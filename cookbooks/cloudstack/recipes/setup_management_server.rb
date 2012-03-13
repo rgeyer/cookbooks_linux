@@ -71,6 +71,10 @@ execute "Set MySQL BinLog format to ROW" do
   command "echo \"set global binlog_format = 'ROW'\" | mysql"
 end
 
+cookbook_file "/etc/mysql/conf.d/binlogformat.cnf" do
+  source "binlogformat.cnf"
+end
+
 execute "Install/Setup CS Manager" do
   command "cloud-setup-management"
 end

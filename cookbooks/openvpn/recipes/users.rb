@@ -21,7 +21,7 @@ rs_utils_marker :begin
 
 if !Chef::Config.solo
   search("users", "*:*") do |u|
-    openvpn_add_user u['id']
+    openvpn_add_user u
   end
 else
   node[:openvpn][:users].each do |u|
