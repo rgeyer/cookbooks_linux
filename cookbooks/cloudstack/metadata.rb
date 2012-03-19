@@ -18,6 +18,7 @@ recipe "cloudstack::install_cloudstack", "Installs the CloudStack binary files u
 recipe "cloudstack::setup_management_server", "Sets up the CloudStack management server software"
 recipe "cloudstack::setup_single_node_management_server", "Sets up a single node CloudStack management server"
 recipe "cloudstack::do_prepare_system_vm_template","Mounts the secondary storage volume using NFS and downloads the system VM for the specified hypervisors"
+recipe "cloudstack::setup_xenserver","Installs CloudStack xenserver support on a xenserver hypervisor node"
 
 attribute "cloudstack/csmanage/dbuser",
   :display_name => "CloudStack Management Database Username",

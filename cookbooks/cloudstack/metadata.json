@@ -184,6 +184,7 @@
     "cloudstack::install_cloudstack": "Installs the CloudStack binary files used for setting up the CloudStack agent and management server",
     "cloudstack::do_prepare_system_vm_template": "Mounts the secondary storage volume using NFS and downloads the system VM for the specified hypervisors",
     "cloudstack::setup_single_node_management_server": "Sets up a single node CloudStack management server",
+    "cloudstack::setup_xenserver": "Installs CloudStack xenserver support on a xenserver hypervisor node",
     "cloudstack::setup_management_server": "Sets up the CloudStack management server software"
   },
   "groupings": {
