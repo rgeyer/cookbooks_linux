@@ -24,9 +24,9 @@ node[:openvpn][:netmask]  = node[:cloudstack][:csmanage][:vpn][:server][:netmask
 node[:openvpn][:subnet]   = node[:cloudstack][:csmanage][:vpn][:server][:subnet]
 node[:openvpn][:protocol] = "udp"
 node[:openvpn][:type]     = "server"
-node[:openvpn][:users]    = [{"name" => "remote", "ccd" => {"routes" => [node[:cloudstack][:csmanage][:vpn][:client][:cidr]]} }]
+node[:openvpn][:users]    = [{"name" => "remote", "ccd" => {"routes" => ["#{node[:cloudstack][:csmanage][:vpn][:client][:subnet]} #{node[:cloudstack][:csmanage][:vpn][:client][:netmask]}"]} }]
 node[:openvpn][:gateway]  = node[:cloudstack][:csmanage][:vpn][:server][:hostname]
-node[:openvpn][:routes]   = ["route #{node[:cloudstack][:csmanage][:vpn][:client][:cidr]}"]
+node[:openvpn][:routes]   = ["route #{node[:cloudstack][:csmanage][:vpn][:client][:subnet]} #{node[:cloudstack][:csmanage][:vpn][:client][:netmask]}"]
 
 include_recipe "cloudstack::setup_management_server"
 include_recipe "openvpn::setup_server"

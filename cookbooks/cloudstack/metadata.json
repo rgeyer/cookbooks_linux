@@ -109,6 +109,34 @@
       "description": "The filesystem path to secondary storage on the remote NFS server containing secondary storage",
       "display_name": "CloudStack Management System VM NFS Path"
     },
+    "cloudstack/csmanage/vpn/client/netmask": {
+      "required": "required",
+      "category": "CloudStack_Management_Server_VPN",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "description": "Used to create the client OpenVPN config files, this should be set to the netmask of the local network which will connect to this server.  Example: 255.255.255.0",
+      "display_name": "CloudStack Management VPN Client Netmask"
+    },
+    "cloudstack/csmanage/vpn/client/subnet": {
+      "required": "required",
+      "category": "CloudStack_Management_Server_VPN",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "description": "Used to create the client OpenVPN config files, this should be set to the subnet of the local network which will connect to this server.  Example: 172.16.0.0",
+      "display_name": "CloudStack Management VPN Client Subnet"
+    },
     "cloudstack/csmanage/system_vm/nfs_hostname": {
       "required": "required",
       "category": "CloudStack_Management_Server_System_VM",
@@ -122,20 +150,6 @@
       ],
       "description": "The hostname of the remote NFS server containing secondary storage",
       "display_name": "CloudStack Management System VM NFS Hostname"
-    },
-    "cloudstack/csmanage/vpn/client/cidr": {
-      "required": "required",
-      "category": "CloudStack_Management_Server_VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "Used to create the client OpenVPN config files, this should be set to the CIDR of the local network which will connect to this server.  Example: 172.16.0.0/24",
-      "display_name": "CloudStack Management VPN Client CIDR"
     },
     "cloudstack/csmanage/vpn/server/hostname": {
       "required": "required",

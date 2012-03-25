@@ -71,9 +71,16 @@ attribute "cloudstack/csmanage/vpn/server/hostname",
   :category => "CloudStack_Management_Server_VPN",
   :recipes => ["cloudstack::setup_single_node_management_server"]
 
-attribute "cloudstack/csmanage/vpn/client/cidr",
-  :display_name => "CloudStack Management VPN Client CIDR",
-  :description => "Used to create the client OpenVPN config files, this should be set to the CIDR of the local network which will connect to this server.  Example: 172.16.0.0/24",
+attribute "cloudstack/csmanage/vpn/client/subnet",
+  :display_name => "CloudStack Management VPN Client Subnet",
+  :description => "Used to create the client OpenVPN config files, this should be set to the subnet of the local network which will connect to this server.  Example: 172.16.0.0",
+  :required => "required",
+  :category => "CloudStack_Management_Server_VPN",
+  :recipes => ["cloudstack::setup_single_node_management_server"]
+
+attribute "cloudstack/csmanage/vpn/client/netmask",
+  :display_name => "CloudStack Management VPN Client Netmask",
+  :description => "Used to create the client OpenVPN config files, this should be set to the netmask of the local network which will connect to this server.  Example: 255.255.255.0",
   :required => "required",
   :category => "CloudStack_Management_Server_VPN",
   :recipes => ["cloudstack::setup_single_node_management_server"]
