@@ -26,20 +26,19 @@ node[:openvpn][:protocol] = "udp"
 node[:openvpn][:type]     = "server"
 node[:openvpn][:users]    = [{"name" => "remote", "ccd" => {"routes" => [node[:cloudstack][:csmanage][:vpn][:client][:cidr]]} }]
 node[:openvpn][:gateway]  = node[:cloudstack][:csmanage][:vpn][:server][:hostname]
-node[:openvpn][:route]    = "route #{node[:cloudstack][:csmanage][:vpn][:client][:cidr]}"
-
-# TODO: Setup an /etc/openvpn/ccd directory and allow user input for each node[:openvpn][:users] can be
-# a complex hash including a name and subnet/mask that it routes.
+node[:openvpn][:routes]    = "route #{node[:cloudstack][:csmanage][:vpn][:client][:cidr]}"
 
 include_recipe "cloudstack::setup_management_server"
 include_recipe "openvpn::setup_server"
 include_recipe "openvpn::users"
 
-sys_firewall "Open UDP port 1194 for OpenVPN server" do
-  port 1194
-  protocol "udp"
-  enable true
-  action :update
+if node[:sys_firewall][:enabled] == "enabled"
+  sys_firewall "Open UDP port 1194 for OpenVPN server" do
+    port 1194
+    protocol "udp"
+    enable true
+    action :update
+  end
 end
 
 rs_utils_marker :end
