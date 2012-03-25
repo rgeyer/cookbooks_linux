@@ -20,6 +20,21 @@
       "description": "A list of hypervisors to fetch a system vm template for. Possible values are (kvm, vmware, xenserver)",
       "display_name": "CloudStack Management System VM Hypervisors"
     },
+    "cloudstack/csmanage/vpn/server/netmask": {
+      "required": "optional",
+      "category": "CloudStack_Management_Server_VPN",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "255.255.255.0",
+      "type": "string",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "description": "The ip netmask for OpenVPN to use",
+      "display_name": "CloudStack Management VPN Netmask"
+    },
     "cloudstack/csmanage/dbuser": {
       "required": "required",
       "category": "CloudStack_Management_Server",
@@ -34,21 +49,6 @@
       ],
       "description": "The database username for the CloudStack Management Server DB connection",
       "display_name": "CloudStack Management Database Username"
-    },
-    "cloustack/csmanage/vpn/server/subnet": {
-      "required": "optional",
-      "category": "CloudStack_Management_Server_VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "172.16.1.0",
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The ip subnet for OpenVPN to use",
-      "display_name": "CloudStack Management VPN Subnet"
     },
     "cloudstack/csmanage/dbhost": {
       "required": "required",
@@ -79,6 +79,21 @@
       ],
       "description": "The database password for the CloudStack Management Server DB connection",
       "display_name": "CloudStack Management Database Password"
+    },
+    "cloudstack/csmanage/vpn/server/subnet": {
+      "required": "optional",
+      "category": "CloudStack_Management_Server_VPN",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "172.16.1.0",
+      "type": "string",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "description": "The ip subnet for OpenVPN to use",
+      "display_name": "CloudStack Management VPN Subnet"
     },
     "cloudstack/csmanage/system_vm/nfs_path": {
       "required": "required",
@@ -135,21 +150,6 @@
       ],
       "description": "Used to create the client OpenVPN config files, this should be set to the remotely accessible hostname or ip address of the server",
       "display_name": "CloudStack Management VPN Server Hostname"
-    },
-    "cloustack/csmanage/vpn/server/netmask": {
-      "required": "optional",
-      "category": "CloudStack_Management_Server_VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "255.255.255.0",
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The ip netmask for OpenVPN to use",
-      "display_name": "CloudStack Management VPN Netmask"
     },
     "cloudstack/csmanage/vpn/listen_ip": {
       "required": "required",

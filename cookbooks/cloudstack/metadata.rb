@@ -48,7 +48,7 @@ attribute "cloudstack/csmanage/vpn/listen_ip",
   :category => "CloudStack_Management_Server_VPN",
   :recipes => ["cloudstack::setup_single_node_management_server"]
 
-attribute "cloustack/csmanage/vpn/server/subnet",
+attribute "cloudstack/csmanage/vpn/server/subnet",
   :display_name => "CloudStack Management VPN Subnet",
   :description => "The ip subnet for OpenVPN to use",
   :required => "optional",
@@ -56,7 +56,7 @@ attribute "cloustack/csmanage/vpn/server/subnet",
   :category => "CloudStack_Management_Server_VPN",
   :recipes => ["cloudstack::setup_single_node_management_server"]
 
-attribute "cloustack/csmanage/vpn/server/netmask",
+attribute "cloudstack/csmanage/vpn/server/netmask",
   :display_name => "CloudStack Management VPN Netmask",
   :description => "The ip netmask for OpenVPN to use",
   :required => "optional",
