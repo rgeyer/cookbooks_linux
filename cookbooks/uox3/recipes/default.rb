@@ -136,7 +136,7 @@ if Dir[::File.join(shard_dir, '*')].empty?
     user 'uox3'
     cwd worldfiles_path
     code <<-EOF
-      unrar e #{worldfilerar_path}
+      unrar e -o+ #{worldfilerar_path}
       for i in `ls #{worldfiles_path}`; do #{convert_binary} $i; done
     EOF
   end
@@ -150,7 +150,7 @@ if Dir[::File.join(shard_dir, '*')].empty?
     user 'uox3'
     cwd shard_dir
     code <<-EOF
-      unzip #{spawnfilezip_path}
+      unzip -o #{spawnfilezip_path}
       #{convert_binary} #{spawnfile_path}
     EOF
   end
