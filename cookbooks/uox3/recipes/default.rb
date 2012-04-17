@@ -35,19 +35,26 @@ end
 if node[:platform] == 'centos'
   package 'dos2unix'
 
+  # Install RPMForge then bruteforce all the cache clearing
   bash "Setup RPMForge" do
     cwd '/tmp'
     code <<-EOF
       wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
       rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
       rpm -i rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
-      yum clean all
+      yum -q makecache
     EOF
     not_if ::File.exists?('/etc/yum.repos.d/rpmforge.repo')
   end
 
+  ruby_block "reload-internal-yum-cache" do
+    block do
+      Chef::Provider::Package::Yum::YumCache.instance.reload
+    end
+  end
+
   package 'unrar' do
-    options "--enablerepo rpmforge"
+    flush_cache [ :before ]
   end
 end
 
