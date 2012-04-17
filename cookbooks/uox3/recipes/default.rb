@@ -53,9 +53,7 @@ if node[:platform] == 'centos'
     end
   end
 
-  package 'unrar' do
-    flush_cache [ :before ]
-  end
+  package 'unrar'
 end
 
 user 'uox3'
