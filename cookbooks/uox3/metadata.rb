@@ -27,6 +27,12 @@ attribute "uox3/admin_password",
   :required => "required",
   :recipes => [ "uox3::default" ]
 
+attribute "uox3/dns_id",
+  :display_name => "UOX3 DNS Record ID",
+  :description => "The unique identifier that is associated with the DNS A record of the server.  The unique identifier is assigned by the DNS provider when you create a dynamic DNS A record. This ID is used to update the associated A record with the private IP address of the server when this recipe is run.  If you are using DNS Made Easy as your DNS provider, a 7-digit number is used (e.g., 4403234).",
+  :required => "required",
+  :recipes => ["uox3::default"]
+
 
 # == Import/export attributes
 #

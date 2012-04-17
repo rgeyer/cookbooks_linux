@@ -171,7 +171,7 @@ template accountfile_path do
 end
 
 sys_dns "default" do
-  id node[:sys_dns][:id]
+  id node[:uox3][:dns_id]
   address node[:cloud][:public_ips][0]
 
   action :set_private
