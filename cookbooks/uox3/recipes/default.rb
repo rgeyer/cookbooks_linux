@@ -55,6 +55,7 @@ group 'uox3'
 directory client_dir do
   owner 'uox3'
   group 'uox3'
+  recursive true
   action :create
 end
 
@@ -85,6 +86,7 @@ end
 directory shard_dir do
   owner 'uox3'
   group 'uox3'
+  recursive true
   action :create
 end
 
