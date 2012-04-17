@@ -1,0 +1,1 @@
+default[:uox3][:install_dir] = '/opt/uox3'
