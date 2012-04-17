@@ -21,6 +21,8 @@ worldfilerar_path = '/tmp/worldfiles.rar'
 worldfiles_path = ::File.join(shard_dir, 'shared')
 spawnfilezip_path = '/tmp/spawnfile.zip'
 spawnfile_path = ::File.join(shard_dir, 'dfndata', 'spawn', 'spawn.dfn')
+uoxinifile_path = ::File.join(shard_dir, 'uox.ini')
+accountfile_path = ::File.join(shard_dir, 'accounts', 'accounts.adm')
 
 convert_binary = value_for_platform('centos' => {'default' => 'dos2unix'}, 'ubuntu' => {'default' => 'fromdos'})
 
@@ -157,6 +159,23 @@ if Dir[::File.join(shard_dir, '*')].empty?
 end
 
 # Configuration for servername/ip, default admin password, shard name, etc (do this every time)
+template uoxinifile_path do
+  source "uox.ini.erb"
+  backup false
+  variables :client_dir => client_dir
+end
+
+template accountfile_path do
+  source "accounts.adm.erb"
+  backup false
+end
+
+sys_dns "default" do
+  id node[:sys_dns][:id]
+  address node[:cloud][:public_ips][0]
+
+  action :set_private
+end
 
 # Figure out how to daemonize properly, and put that in here
 

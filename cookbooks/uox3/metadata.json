@@ -18,6 +18,18 @@
       "description": "The prefix that will be used to locate the UO Multis/Client files archive.",
       "display_name": "Client Files Prefix"
     },
+    "uox3": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "hash",
+      "recipes": [
+
+      ],
+      "display_name": "Settings for uox3"
+    },
     "uox3/client/container": {
       "required": "required",
       "calculated": false,
@@ -74,6 +86,19 @@
       "description": "In order to read the UO Multis/Client files from the specified cloud storage location, you will need to provide cloud authentication credentials. For Amazon S3, use your AWS secret access key (e.g., cred:AWS_SECRET_ACCESS_KEY). For Rackspace Cloud Files, use your Rackspace account API key (e.g., cred:RACKSPACE_AUTH_KEY).",
       "display_name": "Client Files Storage Account Secret"
     },
+    "uox3/shard_name": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "uox3::default"
+      ],
+      "description": "The name of your UO Emulation Shard",
+      "display_name": "UOX3 Shard Name"
+    },
     "uox3/client/storage_account_id": {
       "required": "required",
       "calculated": false,
@@ -86,6 +111,18 @@
       ],
       "description": "In order to read the UO Multis/Client files from the specified cloud storage location, you need to provide cloud authentication credentials. For Amazon S3, use your Amazon access key ID (e.g., cred:AWS_ACCESS_KEY_ID). For Rackspace Cloud Files, use your Rackspace login username (e.g., cred:RACKSPACE_USERNAME).",
       "display_name": "Client Files Storage Account ID"
+    },
+    "uox3/admin_password": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "uox3::default"
+      ],
+      "display_name": "UOX3 Admin Password"
     }
   },
   "license": "All rights reserved",

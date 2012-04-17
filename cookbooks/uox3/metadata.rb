@@ -12,6 +12,22 @@ depends "rs_utils"
 
 recipe "uox3::default", "Installs and configures UOX3 0.99.1"
 
+attribute "uox3",
+  :display_name => "Settings for uox3",
+  :type => "hash"
+
+attribute "uox3/shard_name",
+  :display_name => "UOX3 Shard Name",
+  :description => "The name of your UO Emulation Shard",
+  :required => "required",
+  :recipes => [ "uox3::default" ]
+
+attribute "uox3/admin_password",
+  :display_name => "UOX3 Admin Password",
+  :required => "required",
+  :recipes => [ "uox3::default" ]
+
+
 # == Import/export attributes
 #
 
