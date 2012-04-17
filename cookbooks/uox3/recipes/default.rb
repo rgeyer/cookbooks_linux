@@ -41,7 +41,6 @@ if node[:platform] == 'centos'
       wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
       rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
       rpm -i rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
-      yum update
     EOF
     not_if ::File.exists?('/etc/yum.repos.d/rpmforge.repo')
   end
@@ -180,5 +179,7 @@ end
 # Figure out how to daemonize properly, and put that in here
 
 # HTML hosting of appropriate stuff
+
+# Open ports w/ sys_firewall
 
 rs_utils_marker :end
