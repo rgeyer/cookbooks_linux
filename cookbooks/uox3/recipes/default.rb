@@ -78,7 +78,7 @@ if !::File.directory?(client_dir) || Dir[::File.join(client_dir, '*')].empty?
 
   execute "Extract UO Multis/Client files to the client directory" do
     user 'uox3'
-    command "tar -zxf #{dumpfilepath} -C #{client_dir}"
+    command "tar -zxf #{dumpfilepath} -C #{node[:uox3][:install_dir]}"
   end
 end
 
@@ -102,7 +102,7 @@ if Dir[::File.join(shard_dir, '*')].empty?
     bash "Unzip binary and set permissions" do
       user 'uox3'
       code <<-EOF
-        unzip #{uoxbinzip_path} -d #{node[:uox3][:install_dir]}
+        unzip #{uoxbinzip_path} -d #{shard_dir}
         chown uox3:uox3 #{uoxbin_path}
         chmod a+x #{uoxbin_path}
       EOF
