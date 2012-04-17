@@ -102,7 +102,7 @@ if Dir[::File.join(shard_dir, '*')].empty?
     bash "Unzip binary and set permissions" do
       user 'uox3'
       code <<-EOF
-        unzip #{uoxbinzip_path} -d #{shard_dir}
+        unzip #{uoxbinzip_path} -d #{node[:uox3][:install_dir]}
         chown uox3:uox3 #{uoxbin_path}
         chmod a+x #{uoxbin_path}
       EOF
