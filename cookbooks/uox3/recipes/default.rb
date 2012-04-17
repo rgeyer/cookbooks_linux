@@ -68,7 +68,7 @@ if !::File.directory?(client_dir) || Dir[::File.join(client_dir, '*')].empty?
 
   # Obtain the client files from ROS
   execute "Download UO Multis/Client files from Remote Object Store" do
-    command "/opt/rightscale/sandbox/bin/ros_util get --cloud #{cloud} --container #{container} --dest #{dumpfilepath} --source #{prefix}"
+    command "/opt/rightscale/sandbox/bin/ros_util get --cloud #{cloud} --container #{container} --dest #{dumpfilepath} --source #{prefix} --latest"
     creates dumpfilepath
     environment ({
       'STORAGE_ACCOUNT_ID' => node[:uox3][:client][:storage_account_id],
