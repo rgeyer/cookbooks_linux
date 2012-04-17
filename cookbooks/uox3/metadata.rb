@@ -8,7 +8,9 @@ version          "0.0.1"
 supports "ubuntu"
 supports "centos"
 
-depends "rs_utils"
+%w{rs_utils sys_firewall sys_dns}.each do |d|
+  depends d
+end
 
 recipe "uox3::default", "Installs and configures UOX3 0.99.1"
 

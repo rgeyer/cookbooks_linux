@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "sys_dns": ">= 0.0.0",
+    "sys_firewall": ">= 0.0.0",
     "rs_utils": ">= 0.0.0"
   },
   "name": "uox3",
