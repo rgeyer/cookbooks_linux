@@ -38,8 +38,10 @@ if node[:platform] == 'centos'
     code <<-EOF
       wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
       rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
-      rpm -i rpmforge-release-0.5.2-2.el5.rf.*.rpm
+      rpm -i rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
+      yum update
     EOF
+    not_if ::File.exists?('/etc/yum.repos.d/rpmforge.repo')
   end
 end
 
