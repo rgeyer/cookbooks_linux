@@ -101,6 +101,7 @@
   "recommendations": {
   },
   "recipes": {
+    "uox3::default": "Installs and configures UOX3 0.99.1"
   },
   "groupings": {
   },

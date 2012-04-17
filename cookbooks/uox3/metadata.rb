@@ -10,6 +10,8 @@ supports "centos"
 
 depends "rs_utils"
 
+recipe "uox3::default", "Installs and configures UOX3 0.99.1"
+
 # == Import/export attributes
 #
 
