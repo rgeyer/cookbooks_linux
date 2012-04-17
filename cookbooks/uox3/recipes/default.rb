@@ -137,7 +137,7 @@ if Dir[::File.join(shard_dir, '*')].empty?
     cwd worldfiles_path
     code <<-EOF
       unrar e #{worldfilerar_path}
-      find i in `ls #{worldfiles_path}`; do #{convert_binary} $i; done
+      for i in `ls #{worldfiles_path}`; do #{convert_binary} $i; done
     EOF
   end
 
