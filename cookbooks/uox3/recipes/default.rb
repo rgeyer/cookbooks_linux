@@ -27,7 +27,7 @@ accountfile_path = ::File.join(shard_dir, 'accounts', 'accounts.adm')
 convert_binary = value_for_platform('centos' => {'default' => 'dos2unix'}, 'ubuntu' => {'default' => 'fromdos'})
 
 if node[:platform] == 'ubuntu'
-  %w{libc6-i386 ia32-libs tofrodos}.each do |p|
+  %w{libc6-i386 ia32-libs tofrodos unrar}.each do |p|
     package p
   end
 end
@@ -45,9 +45,11 @@ if node[:platform] == 'centos'
     EOF
     not_if ::File.exists?('/etc/yum.repos.d/rpmforge.repo')
   end
-end
 
-package 'unrar'
+  package 'unrar' do
+    options "--enablerepo rpmforge"
+  end
+end
 
 user 'uox3'
 group 'uox3'
