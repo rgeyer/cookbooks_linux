@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+rs_utils_marker :begin
+
 # http://www.uo.com/uoml/downloads.shtml
 # http://www.uox3.org/forums/viewtopic.php?f=6&t=457&hilit=how+to+compile
 
@@ -30,6 +32,15 @@ end
 
 if node[:platform] == 'centos'
   package 'dos2unix'
+
+  bash "Setup RPMForge" do
+    cwd '/tmp'
+    code <<-EOF
+      wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
+      rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+      rpm -i rpmforge-release-0.5.2-2.el5.rf.*.rpm
+    EOF
+  end
 end
 
 package 'unrar'
@@ -146,3 +157,5 @@ end
 # Figure out how to daemonize properly, and put that in here
 
 # HTML hosting of appropriate stuff
+
+rs_utils_marker :end
