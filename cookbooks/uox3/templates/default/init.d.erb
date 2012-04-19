@@ -1,0 +1,127 @@
+#!/bin/sh
+. /etc/init.d/functions
+
+UOXDIR=<%= @shard_dir %>
+
+# Probably don't need to change anything after this
+BINNAME=uox3
+SCREENLOGFILE=$UOXDIR'screenlog.0'
+
+uox_start() {
+  if pgrep -f $BINNAME > /dev/null
+  then
+    echo "$BINNAME is already running!"
+  else
+    echo "Starting $BINNAME in a screen session named $BINNAME"
+    cd $UOXDIR
+    rm -rf screenlog.*
+    screen -dmSL $BINNAME ./$BINNAME
+    # Wait a bit so that the screenlog file exists
+    sleep 2
+    COUNTER=0
+    while [ 1 -eq 1 ]; do
+      grep "UOX: Startup Complete" $SCREENLOGFILE > /dev/null
+      if [ $? -eq 0 -o $COUNTER -eq 12 ]
+      then
+        break
+      fi
+      sleep 5
+      let $COUNTER+1
+    done
+    if [ $COUNTER -eq 12 ]
+    then
+      echo "Something went wrong starting $BINNAME. Nuking the universe and giving up"
+      screen -S $BINNAME -X quit
+      exit 1
+    else
+      echo "$BINNAME started successfully"
+    fi
+  fi
+}
+
+uox_stop() {
+  if pgrep -f $BINNAME > /dev/null
+  then
+    echo "Stopping $BINNAME"
+    screen -p 0 -S $BINNAME -X eval "stuff '*'"
+    screen -p 0 -S $BINNAME -X eval "stuff 'Q'"
+    COUNTER=0
+    while [ 1 -eq 1 ]; do
+      grep "Exiting UOX with no errors..." $SCREENLOGFILE > /dev/null
+      if [ $? -eq 0 -o $COUNTER -eq 12 ]
+      then
+        break
+      fi
+      sleep 5
+      let $COUNTER+1
+    done
+    if [ $COUNTER -eq 12 ]
+    then
+      echo "Timed out (5 minutes) waiting for UOX to exit."
+      exit 1
+    else
+      echo "$BINNAME stopped successfully"
+    fi
+  else
+    echo "$BINNAME is not running!"
+  fi
+}
+
+uox_world_backup() {
+  if pgrep -f $BINNAME > /dev/null
+  then
+    echo "Backing up World Files"
+    screen -p 0 -S $BINNAME -X eval "stuff '*'"
+    screen -p 0 -S $BINNAME -X eval "stuff '@'"
+    COUNTER=0
+    while [ 1 -eq 1 ]; do
+      tail -10 $SCREENLOGFILE | grep "World save complete." > /dev/null
+      if [ $? -eq 0 -o $COUNTER -lt 12 ]
+      then
+        break
+      fi
+      sleep 5
+      let $COUNTER+1
+    done
+    screen -p 0 -S $BINNAME -X eval "stuff '*'"
+    if [ $COUNTER -eq 12 ]
+    then
+      echo "Timed out (5 minutes) waiting for UOX to finish World File backup."
+      exit 1
+    else
+      echo "World File backup completed successfully"
+    fi
+  else
+    echo "$BINNAME is not running!"
+  fi
+}
+
+uox_status() {
+  if pgrep -f $BINNAME > /dev/null
+  then
+    echo "$BINNAME is running"
+  else
+    echo "$BINNAME is stopped"
+  fi
+}
+
+case "$1" in
+  start)
+    uox_start
+    ;;
+  stop)
+    uox_stop
+    ;;
+  status)
+    uox_status
+    ;;
+  world_backup)
+    uox_world_backup
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|status|world_backup}"
+    exit 1
+    ;;
+esac
+
+exit 0

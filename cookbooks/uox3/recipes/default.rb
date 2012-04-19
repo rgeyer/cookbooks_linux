@@ -177,6 +177,19 @@ template accountfile_path do
   backup false
 end
 
+sys_firewall "2593"
+
+template "/etc/init.d/uox3" do
+  source "init.d.erb"
+  backup false
+  variables :shard_dir => shard_dir
+end
+
+service "uox3" do
+  supports :status => true, :start => true, :stop => true
+  action [ :enable, :start ]
+end
+
 sys_dns "default" do
   id node[:uox3][:dns_id]
   address node[:cloud][:public_ips][0]
@@ -184,10 +197,6 @@ sys_dns "default" do
   action :set_private
 end
 
-# Figure out how to daemonize properly, and put that in here
-
 # HTML hosting of appropriate stuff
-
-# Open ports w/ sys_firewall
 
 rs_utils_marker :end
