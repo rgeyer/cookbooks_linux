@@ -58,6 +58,19 @@
       "description": "The cloud storage location where the UO Multis/Client files will be restored from. For Amazon S3, use the bucket name. For Rackspace Cloud Files, use the container name.",
       "display_name": "Client Files Container"
     },
+    "uox3/shard/container": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "uox3::do_shard_backup"
+      ],
+      "description": "The cloud storage location where the UO shard files will be backed up and restored from. For Amazon S3, use the bucket name. For Rackspace Cloud Files, use the container name.",
+      "display_name": "Client Files Container"
+    },
     "uox3/client": {
       "required": "optional",
       "calculated": false,
@@ -69,6 +82,18 @@
 
       ],
       "display_name": "Settings for fetching the UO multi/client files."
+    },
+    "uox3/shard": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "hash",
+      "recipes": [
+
+      ],
+      "display_name": "Settings for fetching and storing the UO shard files."
     },
     "uox3/client/storage_account_provider": {
       "required": "required",
@@ -88,6 +113,19 @@
       "description": "Location where the UO Multis/Client files will be fetched from.",
       "display_name": "Client Files Storage Account Provider"
     },
+    "uox3/shard/prefix": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "uox3::do_shard_backup"
+      ],
+      "description": "The prefix that will be used to locate the UO shard files archive.",
+      "display_name": "Client Files Prefix"
+    },
     "uox3/client/storage_account_secret": {
       "required": "required",
       "calculated": false,
@@ -101,6 +139,32 @@
       "description": "In order to read the UO Multis/Client files from the specified cloud storage location, you will need to provide cloud authentication credentials. For Amazon S3, use your AWS secret access key (e.g., cred:AWS_SECRET_ACCESS_KEY). For Rackspace Cloud Files, use your Rackspace account API key (e.g., cred:RACKSPACE_AUTH_KEY).",
       "display_name": "Client Files Storage Account Secret"
     },
+    "uox3/shard/storage_account_secret": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "uox3::do_shard_backup"
+      ],
+      "description": "In order to read or write the UO shard files from the specified cloud storage location, you will need to provide cloud authentication credentials. For Amazon S3, use your AWS secret access key (e.g., cred:AWS_SECRET_ACCESS_KEY). For Rackspace Cloud Files, use your Rackspace account API key (e.g., cred:RACKSPACE_AUTH_KEY).",
+      "display_name": "Client Files Storage Account Secret"
+    },
+    "uox3/shard/storage_account_id": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "uox3::do_shard_backup"
+      ],
+      "description": "In order to read or write the UO shard files from the specified cloud storage location, you need to provide cloud authentication credentials. For Amazon S3, use your Amazon access key ID (e.g., cred:AWS_ACCESS_KEY_ID). For Rackspace Cloud Files, use your Rackspace login username (e.g., cred:RACKSPACE_USERNAME).",
+      "display_name": "Client Files Storage Account ID"
+    },
     "uox3/shard_name": {
       "required": "required",
       "calculated": false,
@@ -113,6 +177,24 @@
       ],
       "description": "The name of your UO Emulation Shard",
       "display_name": "UOX3 Shard Name"
+    },
+    "uox3/shard/storage_account_provider": {
+      "required": "required",
+      "calculated": false,
+      "choice": [
+        "s3",
+        "cloudfiles",
+        "cloudfilesuk",
+        "SoftLayer_Dallas",
+        "SoftLayer_Singapore",
+        "SoftLayer_Amsterdam"
+      ],
+      "type": "string",
+      "recipes": [
+        "uox3::do_shard_backup"
+      ],
+      "description": "Location where the UO shard files will be fetched from and stored to.",
+      "display_name": "Client Files Storage Account Provider"
     },
     "uox3/client/storage_account_id": {
       "required": "required",
