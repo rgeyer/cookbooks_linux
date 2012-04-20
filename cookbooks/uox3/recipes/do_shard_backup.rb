@@ -29,7 +29,7 @@ end
 
 bash "Tar the shard directory" do
   cwd node[:uox3][:install_dir]
-  code "tar -zxf #{shard_tar} shard"
+  code "tar -zcf #{shard_tar} shard"
 end
 
 execute "Backup UO shard files to Remote Object Store" do
