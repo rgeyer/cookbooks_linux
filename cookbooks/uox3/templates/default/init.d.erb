@@ -14,10 +14,11 @@ UOXDIR=<%= @shard_dir %>
 
 # Probably don't need to change anything after this
 BINNAME=uox3
+BINFILEPATH='./'$BINNAME
 SCREENLOGFILE=$UOXDIR'screenlog.0'
 
 uox_start() {
-  if pgrep -f $BINNAME > /dev/null
+  if pgrep -f $BINFILEPATH > /dev/null
   then
     echo "$BINNAME is already running!"
   else
@@ -49,7 +50,7 @@ uox_start() {
 }
 
 uox_stop() {
-  if pgrep -f $BINNAME > /dev/null
+  if pgrep -f $BINFILEPATH > /dev/null
   then
     echo "Stopping $BINNAME"
     screen -p 0 -S $BINNAME -X eval "stuff '*'"
@@ -77,7 +78,7 @@ uox_stop() {
 }
 
 uox_world_backup() {
-  if pgrep -f $BINNAME > /dev/null
+  if pgrep -f $BINFILEPATH > /dev/null
   then
     echo "Backing up World Files"
     screen -p 0 -S $BINNAME -X eval "stuff '*'"
@@ -106,7 +107,7 @@ uox_world_backup() {
 }
 
 uox_status() {
-  if pgrep -f $BINNAME > /dev/null
+  if pgrep -f $BINFILEPATH > /dev/null
   then
     echo "$BINNAME is running"
     exit 0
