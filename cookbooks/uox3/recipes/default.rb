@@ -182,6 +182,7 @@ sys_firewall "2593"
 template "/etc/init.d/uox3" do
   source "init.d.erb"
   backup false
+  mode 00750
   variables :shard_dir => "#{shard_dir}/"
 end
 

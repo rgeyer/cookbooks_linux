@@ -1,4 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+#
+# Init file for OpenSSH server daemon
+#
+# chkconfig: 3 90 10
+# description: UOX3 Ultima Offline Experiment Emulator
+#
+# processname: uox3
+# pidfile: /var/run/uox3.pid
+
 . /etc/init.d/functions
 
 UOXDIR=<%= @shard_dir %>
@@ -100,8 +109,10 @@ uox_status() {
   if pgrep -f $BINNAME > /dev/null
   then
     echo "$BINNAME is running"
+    exit 0
   else
     echo "$BINNAME is stopped"
+    exit 3
   fi
 }
 
