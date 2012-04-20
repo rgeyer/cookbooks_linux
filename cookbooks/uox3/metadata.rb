@@ -13,6 +13,7 @@ supports "centos"
 end
 
 recipe "uox3::default", "Installs and configures UOX3 0.99.1"
+recipe "uox3::do_shard_backup", "Backs up the shard information to a tar, and ships it off to a ROS"
 
 attribute "uox3",
   :display_name => "Settings for uox3",
