@@ -16,29 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-shard_tar = "/tmp/uoshard.tar.gz"
 prefix       = node[:uox3][:shard][:prefix]
 container    = node[:uox3][:shard][:container]
 cloud        = node[:uox3][:shard][:storage_account_provider]
 
 rs_utils_marker :begin
 
-file shard_tar do
-  action :delete
-end
-
-execute "Restore UO shard files from Remote Object Store" do
-  command "/opt/rightscale/sandbox/bin/ros_util get --cloud #{cloud} --container #{container} --dest #{shard_tar} --source #{prefix} --latest"
-  environment ({
-    'STORAGE_ACCOUNT_ID' => node[:uox3][:shard][:storage_account_id],
-    'STORAGE_ACCOUNT_SECRET' => node[:uox3][:shard][:storage_account_secret]
-  })
-end
-
-bash "Extract the shard tarfile" do
-  cwd node[:uox3][:install_dir]
-  code "tar -zxf #{shard_tar}"
-  notifies :delete, "file[#{shard_tar}]", :immediately
+uox_shard_restore "Restore the shard" do
+  prefix prefix
+  container container
+  cloud cloud
 end
 
 rs_utils_marker :end
