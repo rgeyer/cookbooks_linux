@@ -26,7 +26,7 @@ define :uox_shard_backup, :prefix => nil, :container => nil, :cloud => nil do
   end
 
   execute "Backup UO shard files to Remote Object Store" do
-    command "/opt/rightscale/sandbox/bin/ros_util put --cloud #{param[:cloud]} --container #{param[:container]} --dest #{ros_filename} --source #{shard_tar}"
+    command "/opt/rightscale/sandbox/bin/ros_util put --cloud #{params[:cloud]} --container #{params[:container]} --dest #{ros_filename} --source #{shard_tar}"
     environment ({
       'STORAGE_ACCOUNT_ID' => node[:uox3][:shard][:storage_account_id],
       'STORAGE_ACCOUNT_SECRET' => node[:uox3][:shard][:storage_account_secret]
