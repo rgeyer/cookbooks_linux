@@ -17,6 +17,7 @@ define :uox_shard_backup, :prefix => nil, :container => nil, :cloud => nil do
   ros_filename = params[:prefix] + "-" + Time.now.strftime("%Y%m%d%H%M") + ".gz"
 
   file shard_tar do
+    backup false
     action :delete
   end
 

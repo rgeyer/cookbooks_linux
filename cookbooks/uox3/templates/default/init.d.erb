@@ -6,7 +6,6 @@
 # description: UOX3 Ultima Offline Experiment Emulator
 #
 # processname: uox3
-# pidfile: /var/run/uox3.pid
 
 . /etc/init.d/functions
 
@@ -14,7 +13,7 @@ UOXDIR=<%= @shard_dir %>
 
 # Probably don't need to change anything after this
 BINNAME=uox3
-BINFILEPATH='./'$BINNAME
+BINFILEPATH='\./'$BINNAME
 SCREENLOGFILE=$UOXDIR'screenlog.0'
 
 uox_start() {

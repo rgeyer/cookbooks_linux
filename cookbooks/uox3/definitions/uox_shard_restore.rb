@@ -16,11 +16,12 @@ define :uox_shard_restore, :prefix => nil, :container => nil, :cloud => nil do
   shard_tar = "/tmp/uoshard.tar.gz"
 
   file shard_tar do
+    backup false
     action :delete
   end
 
   execute "Restore UO shard files from Remote Object Store" do
-    command "/opt/rightscale/sandbox/bin/ros_util get --cloud #{cloud} --container #{container} --dest #{shard_tar} --source #{prefix} --latest"
+    command "/opt/rightscale/sandbox/bin/ros_util get --cloud #{params[:cloud]} --container #{params[:container]} --dest #{shard_tar} --source #{params[:prefix]} --latest"
     environment ({
       'STORAGE_ACCOUNT_ID' => node[:uox3][:shard][:storage_account_id],
       'STORAGE_ACCOUNT_SECRET' => node[:uox3][:shard][:storage_account_secret]
@@ -29,7 +30,10 @@ define :uox_shard_restore, :prefix => nil, :container => nil, :cloud => nil do
 
   bash "Extract the shard tarfile" do
     cwd node[:uox3][:install_dir]
-    code "tar -zxf #{shard_tar}"
+    code <<-EOF
+tar -zxf #{shard_tar}
+chown -R uox3:uox3 #{node[:uox3][:install_dir]}
+EOF
     notifies :delete, "file[#{shard_tar}]", :immediately
   end
 
