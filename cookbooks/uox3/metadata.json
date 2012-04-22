@@ -34,6 +34,7 @@
     },
     "uox3/dns_id": {
       "required": "required",
+      "category": "UOX3",
       "calculated": false,
       "choice": [
 
@@ -47,6 +48,7 @@
     },
     "uox3/client/container": {
       "required": "required",
+      "category": "UOX3 Client Files",
       "calculated": false,
       "choice": [
 
@@ -60,6 +62,7 @@
     },
     "uox3/shard/container": {
       "required": "required",
+      "category": "UOX3 Shard Files",
       "calculated": false,
       "choice": [
 
@@ -67,7 +70,8 @@
       "type": "string",
       "recipes": [
         "uox3::do_shard_backup",
-        "uox3::do_shard_restore"
+        "uox3::do_shard_restore",
+        "uox3::default"
       ],
       "description": "The cloud storage location where the UO shard files will be backed up and restored from. For Amazon S3, use the bucket name. For Rackspace Cloud Files, use the container name.",
       "display_name": "Client Files Container"
@@ -98,6 +102,7 @@
     },
     "uox3/client/storage_account_provider": {
       "required": "required",
+      "category": "UOX3 Client Files",
       "calculated": false,
       "choice": [
         "s3",
@@ -116,6 +121,7 @@
     },
     "uox3/shard/prefix": {
       "required": "required",
+      "category": "UOX3 Shard Files",
       "calculated": false,
       "choice": [
 
@@ -123,13 +129,15 @@
       "type": "string",
       "recipes": [
         "uox3::do_shard_backup",
-        "uox3::do_shard_restore"
+        "uox3::do_shard_restore",
+        "uox3::default"
       ],
       "description": "The prefix that will be used to locate the UO shard files archive.",
       "display_name": "Client Files Prefix"
     },
     "uox3/client/storage_account_secret": {
       "required": "required",
+      "category": "UOX3 Client Files",
       "calculated": false,
       "choice": [
 
@@ -143,6 +151,7 @@
     },
     "uox3/shard/storage_account_secret": {
       "required": "required",
+      "category": "UOX3 Shard Files",
       "calculated": false,
       "choice": [
 
@@ -150,13 +159,15 @@
       "type": "string",
       "recipes": [
         "uox3::do_shard_backup",
-        "uox3::do_shard_restore"
+        "uox3::do_shard_restore",
+        "uox3::default"
       ],
       "description": "In order to read or write the UO shard files from the specified cloud storage location, you will need to provide cloud authentication credentials. For Amazon S3, use your AWS secret access key (e.g., cred:AWS_SECRET_ACCESS_KEY). For Rackspace Cloud Files, use your Rackspace account API key (e.g., cred:RACKSPACE_AUTH_KEY).",
       "display_name": "Client Files Storage Account Secret"
     },
     "uox3/shard/storage_account_id": {
       "required": "required",
+      "category": "UOX3 Shard Files",
       "calculated": false,
       "choice": [
 
@@ -164,13 +175,15 @@
       "type": "string",
       "recipes": [
         "uox3::do_shard_backup",
-        "uox3::do_shard_restore"
+        "uox3::do_shard_restore",
+        "uox3::default"
       ],
       "description": "In order to read or write the UO shard files from the specified cloud storage location, you need to provide cloud authentication credentials. For Amazon S3, use your Amazon access key ID (e.g., cred:AWS_ACCESS_KEY_ID). For Rackspace Cloud Files, use your Rackspace login username (e.g., cred:RACKSPACE_USERNAME).",
       "display_name": "Client Files Storage Account ID"
     },
     "uox3/shard_name": {
       "required": "required",
+      "category": "UOX3",
       "calculated": false,
       "choice": [
 
@@ -184,6 +197,7 @@
     },
     "uox3/shard/storage_account_provider": {
       "required": "required",
+      "category": "UOX3 Shard Files",
       "calculated": false,
       "choice": [
         "s3",
@@ -196,13 +210,15 @@
       "type": "string",
       "recipes": [
         "uox3::do_shard_backup",
-        "uox3::do_shard_restore"
+        "uox3::do_shard_restore",
+        "uox3::default"
       ],
       "description": "Location where the UO shard files will be fetched from and stored to.",
       "display_name": "Client Files Storage Account Provider"
     },
     "uox3/client/storage_account_id": {
       "required": "required",
+      "category": "UOX3 Client Files",
       "calculated": false,
       "choice": [
 
@@ -216,6 +232,7 @@
     },
     "uox3/admin_password": {
       "required": "required",
+      "category": "UOX3",
       "calculated": false,
       "choice": [
 
