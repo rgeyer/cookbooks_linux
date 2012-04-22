@@ -18,6 +18,7 @@
 
 shard_tar = "/tmp/uoshard.tar.gz"
 prefix       = node[:uox3][:shard][:prefix]
+ros_filename = prefix + "-" + Time.now.strftime("%Y%m%d%H%M") + ".gz"
 container    = node[:uox3][:shard][:container]
 cloud        = node[:uox3][:shard][:storage_account_provider]
 
@@ -33,7 +34,7 @@ bash "Tar the shard directory" do
 end
 
 execute "Backup UO shard files to Remote Object Store" do
-  command "/opt/rightscale/sandbox/bin/ros_util put --cloud #{cloud} --container #{container} --dest #{shard_tar} --source #{prefix}"
+  command "/opt/rightscale/sandbox/bin/ros_util put --cloud #{cloud} --container #{container} --dest #{ros_filename} --source #{shard_tar}"
   environment ({
     'STORAGE_ACCOUNT_ID' => node[:uox3][:shard][:storage_account_id],
     'STORAGE_ACCOUNT_SECRET' => node[:uox3][:shard][:storage_account_secret]
