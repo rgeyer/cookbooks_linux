@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "sys_dns": ">= 0.0.0",
+    "scheduler": ">= 0.0.0",
     "sys_firewall": ">= 0.0.0",
     "rs_utils": ">= 0.0.0"
   },
@@ -74,7 +75,7 @@
         "uox3::default"
       ],
       "description": "The cloud storage location where the UO shard files will be backed up and restored from. For Amazon S3, use the bucket name. For Rackspace Cloud Files, use the container name.",
-      "display_name": "Client Files Container"
+      "display_name": "Shard Files Container"
     },
     "uox3/client": {
       "required": "optional",
@@ -133,7 +134,7 @@
         "uox3::default"
       ],
       "description": "The prefix that will be used to locate the UO shard files archive.",
-      "display_name": "Client Files Prefix"
+      "display_name": "Shard Files Prefix"
     },
     "uox3/client/storage_account_secret": {
       "required": "required",
@@ -163,7 +164,7 @@
         "uox3::default"
       ],
       "description": "In order to read or write the UO shard files from the specified cloud storage location, you will need to provide cloud authentication credentials. For Amazon S3, use your AWS secret access key (e.g., cred:AWS_SECRET_ACCESS_KEY). For Rackspace Cloud Files, use your Rackspace account API key (e.g., cred:RACKSPACE_AUTH_KEY).",
-      "display_name": "Client Files Storage Account Secret"
+      "display_name": "Shard Files Storage Account Secret"
     },
     "uox3/shard/storage_account_id": {
       "required": "required",
@@ -179,7 +180,7 @@
         "uox3::default"
       ],
       "description": "In order to read or write the UO shard files from the specified cloud storage location, you need to provide cloud authentication credentials. For Amazon S3, use your Amazon access key ID (e.g., cred:AWS_ACCESS_KEY_ID). For Rackspace Cloud Files, use your Rackspace login username (e.g., cred:RACKSPACE_USERNAME).",
-      "display_name": "Client Files Storage Account ID"
+      "display_name": "Shard Files Storage Account ID"
     },
     "uox3/shard_name": {
       "required": "required",
@@ -214,7 +215,7 @@
         "uox3::default"
       ],
       "description": "Location where the UO shard files will be fetched from and stored to.",
-      "display_name": "Client Files Storage Account Provider"
+      "display_name": "Shard Files Storage Account Provider"
     },
     "uox3/client/storage_account_id": {
       "required": "required",
@@ -257,8 +258,10 @@
   "recommendations": {
   },
   "recipes": {
+    "uox3::do_shard_backup_schedule_disable": "Disables daily backup of shard files",
     "uox3::default": "Installs and configures UOX3 0.99.1",
     "uox3::do_shard_backup": "Backs up the shard information to a tar, and ships it off to a ROS",
+    "uox3::do_shard_backup_schedule_enable": "Enables daily backup of shard files",
     "uox3::do_shard_restore": "Restores the shard information from a tarfile stored in a ROS"
   },
   "groupings": {

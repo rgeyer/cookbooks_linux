@@ -8,13 +8,15 @@ version          "0.0.1"
 supports "ubuntu"
 supports "centos"
 
-%w{rs_utils sys_firewall sys_dns}.each do |d|
+%w{rs_utils sys_firewall sys_dns scheduler}.each do |d|
   depends d
 end
 
 recipe "uox3::default", "Installs and configures UOX3 0.99.1"
 recipe "uox3::do_shard_backup", "Backs up the shard information to a tar, and ships it off to a ROS"
 recipe "uox3::do_shard_restore", "Restores the shard information from a tarfile stored in a ROS"
+recipe "uox3::do_shard_backup_schedule_enable", "Enables daily backup of shard files"
+recipe "uox3::do_shard_backup_schedule_disable", "Disables daily backup of shard files"
 
 attribute "uox3",
   :display_name => "Settings for uox3",
@@ -90,7 +92,7 @@ attribute "uox3/shard",
   :type => "hash"
 
 attribute "uox3/shard/storage_account_provider",
-  :display_name => "Client Files Storage Account Provider",
+  :display_name => "Shard Files Storage Account Provider",
   :description => "Location where the UO shard files will be fetched from and stored to.",
   :required => "required",
   :choice => [ "s3", "cloudfiles", "cloudfilesuk", "SoftLayer_Dallas", "SoftLayer_Singapore", "SoftLayer_Amsterdam" ],
@@ -98,28 +100,28 @@ attribute "uox3/shard/storage_account_provider",
   :recipes => [ "uox3::do_shard_backup", "uox3::do_shard_restore", "uox3::default" ]
 
 attribute "uox3/shard/storage_account_id",
-  :display_name => "Client Files Storage Account ID",
+  :display_name => "Shard Files Storage Account ID",
   :description => "In order to read or write the UO shard files from the specified cloud storage location, you need to provide cloud authentication credentials. For Amazon S3, use your Amazon access key ID (e.g., cred:AWS_ACCESS_KEY_ID). For Rackspace Cloud Files, use your Rackspace login username (e.g., cred:RACKSPACE_USERNAME).",
   :required => "required",
   :category => "UOX3 Shard Files",
   :recipes => [ "uox3::do_shard_backup", "uox3::do_shard_restore", "uox3::default" ]
 
 attribute "uox3/shard/storage_account_secret",
-  :display_name => "Client Files Storage Account Secret",
+  :display_name => "Shard Files Storage Account Secret",
   :description => "In order to read or write the UO shard files from the specified cloud storage location, you will need to provide cloud authentication credentials. For Amazon S3, use your AWS secret access key (e.g., cred:AWS_SECRET_ACCESS_KEY). For Rackspace Cloud Files, use your Rackspace account API key (e.g., cred:RACKSPACE_AUTH_KEY).",
   :required => "required",
   :category => "UOX3 Shard Files",
   :recipes => [ "uox3::do_shard_backup", "uox3::do_shard_restore", "uox3::default" ]
 
 attribute "uox3/shard/container",
-  :display_name => "Client Files Container",
+  :display_name => "Shard Files Container",
   :description => "The cloud storage location where the UO shard files will be backed up and restored from. For Amazon S3, use the bucket name. For Rackspace Cloud Files, use the container name.",
   :required => "required",
   :category => "UOX3 Shard Files",
   :recipes => [ "uox3::do_shard_backup", "uox3::do_shard_restore", "uox3::default" ]
 
 attribute "uox3/shard/prefix",
-  :display_name => "Client Files Prefix",
+  :display_name => "Shard Files Prefix",
   :description => "The prefix that will be used to locate the UO shard files archive.",
   :required => "required",
   :category => "UOX3 Shard Files",
