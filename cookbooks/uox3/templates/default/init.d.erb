@@ -13,18 +13,28 @@ UOXDIR=<%= @shard_dir %>
 
 # Probably don't need to change anything after this
 BINNAME=uox3
-BINFILEPATH='\./'$BINNAME
+BINFILEPATH=$UOXDIR$BINNAME
 SCREENLOGFILE=$UOXDIR'screenlog.0'
+USERNAME=uox3
+
+exec_as_user() {
+  if [ `whoami` == "$USERNAME" ]
+  then
+    bash -c "$1"
+  else
+    su $USERNAME -c "$1"
+  fi
+}
 
 uox_start() {
-  if pgrep -f $BINFILEPATH > /dev/null
+  if pgrep -f $BINFILEPATH -u $USERNAME > /dev/null
   then
     echo "$BINNAME is already running!"
   else
     echo "Starting $BINNAME in a screen session named $BINNAME"
     cd $UOXDIR
-    rm -rf screenlog.*
-    screen -dmSL $BINNAME ./$BINNAME
+    rm -rf $SCREENLOGFILE
+    exec_as_user "screen -dmSL $BINNAME $BINFILEPATH"
     # Wait a bit so that the screenlog file exists
     sleep 2
     COUNTER=0
@@ -40,20 +50,20 @@ uox_start() {
     if [ $COUNTER -eq 12 ]
     then
       echo "Something went wrong starting $BINNAME. Nuking the universe and giving up"
-      screen -S $BINNAME -X quit
+      exec_as_user "screen -S $BINNAME -X quit"
       exit 1
     else
+      exec_as_user "screen -p 0 -S $BINNAME -X eval \"stuff '*'\""
       echo "$BINNAME started successfully"
     fi
   fi
 }
 
 uox_stop() {
-  if pgrep -f $BINFILEPATH > /dev/null
+  if pgrep -f $BINFILEPATH -u $USERNAME > /dev/null
   then
     echo "Stopping $BINNAME"
-    screen -p 0 -S $BINNAME -X eval "stuff '*'"
-    screen -p 0 -S $BINNAME -X eval "stuff 'Q'"
+    exec_as_user "screen -p 0 -S $BINNAME -X eval \"stuff 'Q'\""
     COUNTER=0
     while [ 1 -eq 1 ]; do
       grep "Exiting UOX with no errors..." $SCREENLOGFILE > /dev/null
@@ -77,11 +87,10 @@ uox_stop() {
 }
 
 uox_world_backup() {
-  if pgrep -f $BINFILEPATH > /dev/null
+  if pgrep -f $BINFILEPATH -u $USERNAME > /dev/null
   then
     echo "Backing up World Files"
-    screen -p 0 -S $BINNAME -X eval "stuff '*'"
-    screen -p 0 -S $BINNAME -X eval "stuff '@'"
+    exec_as_user "screen -p 0 -S $BINNAME -X eval \"stuff '@'\""
     COUNTER=0
     while [ 1 -eq 1 ]; do
       tail -10 $SCREENLOGFILE | grep "World save complete." > /dev/null
@@ -92,7 +101,6 @@ uox_world_backup() {
       sleep 5
       let $COUNTER+1
     done
-    screen -p 0 -S $BINNAME -X eval "stuff '*'"
     if [ $COUNTER -eq 12 ]
     then
       echo "Timed out (5 minutes) waiting for UOX to finish World File backup."
@@ -106,7 +114,7 @@ uox_world_backup() {
 }
 
 uox_status() {
-  if pgrep -f $BINFILEPATH > /dev/null
+  if pgrep -f $BINFILEPATH -u $USERNAME > /dev/null
   then
     echo "$BINNAME is running"
     exit 0

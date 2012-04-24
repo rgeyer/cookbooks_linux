@@ -1,1 +1,1 @@
-default[:uox3][:install_dir] = '/opt/uox3'
+default[:uox3][:install_dir] = '/home/uox3'

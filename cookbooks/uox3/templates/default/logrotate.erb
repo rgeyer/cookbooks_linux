@@ -1,0 +1,17 @@
+#
+#
+# Logrotate UOX3 Screenlog file, version 1.
+#
+# Managed by Chef
+# DO NOT EDIT BY HAND
+#
+
+<% @path.each do |p| -%>
+<%= p %> {
+    size 10M
+    rotate 4
+    missingok
+    notifempty
+    compress
+}
+<% end -%>

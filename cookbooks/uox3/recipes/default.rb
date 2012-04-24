@@ -32,8 +32,10 @@ spawnfilezip_path = '/tmp/spawnfile.zip'
 spawnfile_path = ::File.join(shard_dir, 'dfndata', 'spawn', 'spawn.dfn')
 uoxinifile_path = ::File.join(shard_dir, 'uox.ini')
 accountfile_path = ::File.join(shard_dir, 'accounts', 'accounts.adm')
-
 convert_binary = value_for_platform('centos' => {'default' => 'dos2unix'}, 'ubuntu' => {'default' => 'fromdos'})
+
+# Enable collectd exec plugin
+rs_utils_enable_collectd_plugin "exec"
 
 if node[:platform] == 'ubuntu'
   %w{libc6-i386 ia32-libs tofrodos unrar}.each do |p|
@@ -69,7 +71,6 @@ user 'uox3'
 group 'uox3'
 
 # Attach or restore a block device
-
 directory client_dir do
   owner 'uox3'
   group 'uox3'
@@ -196,12 +197,16 @@ end
 
 # Configuration for servername/ip, default admin password, shard name, etc (do this every time)
 template uoxinifile_path do
+  owner 'uox3'
+  group 'uox3'
   source "uox.ini.erb"
   backup false
   variables :client_dir => client_dir
 end
 
 template accountfile_path do
+  owner 'uox3'
+  group 'uox3'
   source "accounts.adm.erb"
   backup false
 end
@@ -225,6 +230,31 @@ sys_dns "default" do
   address node[:cloud][:public_ips][0]
 
   action :set_private
+end
+
+# Monitoring bits
+template ::File.join(node[:rs_utils][:collectd_plugin_dir], 'uox3.sh') do
+  source "uox3.sh.erb"
+  mode 00644
+  backup false
+  variables :screenlog => ::File.join(shard_dir, 'screenlog.0')
+end
+
+template ::File.join(node[:rs_utils][:collectd_plugin_dir], 'uox3.conf') do
+  source "uox3.conf.erb"
+  mode 00644
+  backup false
+  variables :scriptpath => ::File.join(node[:rs_utils][:collectd_plugin_dir], 'uox3.sh')
+  notifies :restart, resources(:service => "collectd")
+end
+
+rs_utils_logrotate_app "uox3_screenlog" do
+  cookbook "uox3"
+  template "logrotate.erb"
+  path [::File.join(shard_dir, 'screenlog.0')]
+  frequency "daily"
+  rotate 4
+  create "660 uox3 uox3"
 end
 
 # HTML hosting of appropriate stuff

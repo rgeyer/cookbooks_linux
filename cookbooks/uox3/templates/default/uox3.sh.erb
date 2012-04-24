@@ -1,0 +1,35 @@
+#!/bin/bash
+
+HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname -f)}"
+INTERVAL="${COLLECTD_INTERVAL:-10}"
+BINNAME=uox3
+SCREENLOG=<%= @screenlog %>
+
+while sleep "$INTERVAL"
+do
+  #screen -p 0 -S $BINNAME -X eval "stuff 'P'"
+  screen -p 0 -S $BINNAME -X eval "stuff 'M'"
+  sleep 2
+  MEMORY=`tail -15 $SCREENLOG`
+
+  screen -p 0 -S $BINNAME -X eval "stuff 'W'"
+  sleep 2
+  WORLD=`tail -5 $SCREENLOG`
+
+  TILES=$(echo "$MEMORY" | grep "Tiles:" | awk '{ print $4 }')
+  MULTIS=$(echo "$MEMORY" | grep "Multis:" | awk '{ print $4 }')
+  CHARACTERS=$(echo "$MEMORY" | grep "Characters:" | awk '{ print $4 }')
+  ITEMS=$(echo "$MEMORY" | grep "Items:" | awk '{ print $4 }')
+  TOTAL=$(echo "$MEMORY" | grep "Approximate Total:" | awk '{ print $5 }')
+  
+  USERS=$(echo "$WORLD" | grep "Total users online:" | awk '{ print $6 }')
+
+  echo "PUTVAL \"$HOSTNAME/exec-uox3/memory-tiles\" interval=$INTERVAL N:$TILES"
+  echo "PUTVAL \"$HOSTNAME/exec-uox3/memory-multis\" interval=$INTERVAL N:$MULTIS"
+  echo "PUTVAL \"$HOSTNAME/exec-uox3/memory-characters\" interval=$INTERVAL N:$CHARACTERS"
+  echo "PUTVAL \"$HOSTNAME/exec-uox3/memory-items\" interval=$INTERVAL N:$ITEMS"
+  echo "PUTVAL \"$HOSTNAME/exec-uox3/memory-total\" interval=$INTERVAL N:$TOTAL"
+  echo "PUTVAL \"$HOSTNAME/exec-uox3/users-online-characters\" interval=$INTERVAL N:$USERS"
+done
+
+exit 0
