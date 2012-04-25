@@ -234,7 +234,7 @@ end
 # Monitoring bits
 template ::File.join(node[:uox3][:install_dir], 'uox3.sh') do
   source "uox3.sh.erb"
-  mode 00766
+  mode 00755
   backup false
   variables :screenlog => ::File.join(shard_dir, 'screenlog.0')
 end
