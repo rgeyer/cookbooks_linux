@@ -18,9 +18,6 @@
 
 rs_utils_marker :begin
 
-# http://www.uo.com/uoml/downloads.shtml
-# http://www.uox3.org/forums/viewtopic.php?f=6&t=457&hilit=how+to+compile
-
 client_dir = ::File.join(node[:uox3][:install_dir], 'client')
 shard_dir = ::File.join(node[:uox3][:install_dir], 'shard')
 uoxbin_path = ::File.join(shard_dir, 'uox3')
@@ -128,6 +125,8 @@ if Dir[::File.join(shard_dir, '*')].empty?
       container shard_container
       cloud shard_cloud
     end
+
+    # TODO: Should probably always overwrite the binary, allowing switching between ubuntu & centos
 
   else
 

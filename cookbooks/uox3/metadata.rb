@@ -8,7 +8,7 @@ version          "0.0.1"
 supports "ubuntu"
 supports "centos"
 
-%w{rs_utils sys_firewall sys_dns scheduler}.each do |d|
+%w{rs_utils sys_firewall sys_dns scheduler logrotate}.each do |d|
   depends d
 end
 
