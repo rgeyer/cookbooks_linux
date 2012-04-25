@@ -118,7 +118,7 @@ if Dir[::File.join(shard_dir, '*')].empty?
   shard_container    = node[:uox3][:shard][:container]
   shard_cloud        = node[:uox3][:shard][:storage_account_provider]
 
-  if `STORAGE_ACCOUNT_ID=#{node[:uox3][:shard][:storage_account_id]} STORAGE_ACCOUNT_SECRET=#{node[:uox3][:shard][:storage_account_secret]} /opt/rightscale/sandbox/bin/ros_util list --cloud #{shard_cloud} --container #{shard_container} | grep #{shard_prefix}`
+  if 0 < `STORAGE_ACCOUNT_ID=#{node[:uox3][:shard][:storage_account_id]} STORAGE_ACCOUNT_SECRET=#{node[:uox3][:shard][:storage_account_secret]} /opt/rightscale/sandbox/bin/ros_util list --cloud #{shard_cloud} --container #{shard_container} | grep "^#{shard_prefix}-[0-9]*\.gz" | wc -l`.to_i
 
     uox_shard_restore "Restore the shard" do
       prefix shard_prefix
@@ -232,9 +232,9 @@ sys_dns "default" do
 end
 
 # Monitoring bits
-template ::File.join(node[:rs_utils][:collectd_plugin_dir], 'uox3.sh') do
+template ::File.join(node[:uox3][:install_dir], 'uox3.sh') do
   source "uox3.sh.erb"
-  mode 00644
+  mode 00766
   backup false
   variables :screenlog => ::File.join(shard_dir, 'screenlog.0')
 end
@@ -243,7 +243,7 @@ template ::File.join(node[:rs_utils][:collectd_plugin_dir], 'uox3.conf') do
   source "uox3.conf.erb"
   mode 00644
   backup false
-  variables :scriptpath => ::File.join(node[:rs_utils][:collectd_plugin_dir], 'uox3.sh')
+  variables :scriptpath => ::File.join(node[:uox3][:install_dir], 'uox3.sh')
   notifies :restart, resources(:service => "collectd")
 end
 
