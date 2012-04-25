@@ -1,8 +1,33 @@
 = DESCRIPTION:
+The default recipe installs the UOX3 emulator, setting up a SysV init script to launch it in a screen session.
+Monitoring is also setup via collectd.
+
+Client files can be downloaded from a ROS, and the shard files can be backed up or restored from a ROS.  "ROS"
+is an abbreviation for "Remote Object Store".
+
+Currently supported ROS sources are;
+
+* Amazon S3
+* Rackspace CloudFiles and CloudFiles UK
+* SoftLayer Dallas, Singapore, and Amsterdam.
+
+Continuous (daily) backup of the shard files is enabled by default and can be disabled.  Backups are not pruned automatically!
+You should plan to periodically clean up the shard files backups in the ROS.
 
 = REQUIREMENTS:
+A copy of the UO client files (the *.mul files in your game directory) are required and not distributed with this
+cookbook.  The default recipe is configured to download those files from a ROS.
+
+To make the *.mul files available, install UO on your windows computer, then put all of the *.mul files into a zip file.
+Upload that zip file to one of the above supported ROS sources, then specify that source when launching your UOX server
+with these recipes.
+
+These recipes are intended to be used as part of a RightScale ServerTemplate.  The default recipe requires that it
+is run as part of a boot runlist that includes rs_utils::default, otherwise the collectd monitoring bits will fail.
 
 = ATTRIBUTES:
 
 = USAGE:
 
+= TODO:
+Add apache or nginx to host the docs, html, help, msgboards, etc.

@@ -112,6 +112,32 @@ directory shard_dir do
   action :create
 end
 
+# The binary first (and always, in case we change OS's)
+if node[:platform] == 'ubuntu'
+  remote_file uoxbinzip_path do
+    source 'http://www.uox3.org/files/uox3binarylinux_0_99_1.zip'
+  end
+
+  bash "Unzip binary and set permissions" do
+    user 'uox3'
+    code <<-EOF
+      unzip #{uoxbinzip_path} -d #{shard_dir}
+      chown uox3:uox3 #{uoxbin_path}
+      chmod a+x #{uoxbin_path}
+    EOF
+    notifies :delete, "remote_file[#{uoxbinzip_path}]", :immediately
+  end
+
+elsif node[:platform] == 'centos'
+  cookbook_file uoxbin_path do
+    source 'uox3_centos_5.6_i386'
+    owner 'uox3'
+    group 'uox3'
+    mode 00755
+    backup false
+  end
+end
+
 if Dir[::File.join(shard_dir, '*')].empty?
   # Search for a backup file first, only bootstrap in it's absence
   shard_prefix       = node[:uox3][:shard][:prefix]
@@ -126,33 +152,7 @@ if Dir[::File.join(shard_dir, '*')].empty?
       cloud shard_cloud
     end
 
-    # TODO: Should probably always overwrite the binary, allowing switching between ubuntu & centos
-
   else
-
-    # The binary first
-    if node[:platform] == 'ubuntu'
-      remote_file uoxbinzip_path do
-        source 'http://www.uox3.org/files/uox3binarylinux_0_99_1.zip'
-      end
-
-      bash "Unzip binary and set permissions" do
-        user 'uox3'
-        code <<-EOF
-          unzip #{uoxbinzip_path} -d #{shard_dir}
-          chown uox3:uox3 #{uoxbin_path}
-          chmod a+x #{uoxbin_path}
-        EOF
-      end
-
-    elsif node[:platform] == 'centos'
-      cookbook_file uoxbin_path do
-        source 'uox3_centos_5.6_i386'
-        owner 'uox3'
-        group 'uox3'
-        mode 0755
-      end
-    end
 
     # Base scripts next
     remote_file uoxscriptszip_path do
