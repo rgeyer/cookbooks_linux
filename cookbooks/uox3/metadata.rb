@@ -48,7 +48,8 @@ attribute "uox3/dns_id",
 
 attribute "uox3/client",
   :display_name => "Settings for fetching the UO multi/client files.",
-  :type => "hash"
+  :type => "hash",
+  :category => "UOX3 Client Files"
 
 attribute "uox3/client/storage_account_provider",
   :display_name => "Client Files Storage Account Provider",
@@ -83,13 +84,15 @@ attribute "uox3/client/prefix",
   :display_name => "Client Files Prefix",
   :description => "The prefix that will be used to locate the UO Multis/Client files archive.",
   :required => "required",
+  :category => "UOX3 Client Files",
   :recipes => [ "uox3::default" ]
 
 
 
 attribute "uox3/shard",
   :display_name => "Settings for fetching and storing the UO shard files.",
-  :type => "hash"
+  :type => "hash",
+  :category => "UOX3 Shard Files"
 
 attribute "uox3/shard/storage_account_provider",
   :display_name => "Shard Files Storage Account Provider",

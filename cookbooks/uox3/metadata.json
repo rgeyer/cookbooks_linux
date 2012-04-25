@@ -11,6 +11,7 @@
   "attributes": {
     "uox3/client/prefix": {
       "required": "required",
+      "category": "UOX3 Client Files",
       "calculated": false,
       "choice": [
 
@@ -80,6 +81,7 @@
     },
     "uox3/client": {
       "required": "optional",
+      "category": "UOX3 Client Files",
       "calculated": false,
       "choice": [
 
@@ -92,6 +94,7 @@
     },
     "uox3/shard": {
       "required": "optional",
+      "category": "UOX3 Shard Files",
       "calculated": false,
       "choice": [
 
