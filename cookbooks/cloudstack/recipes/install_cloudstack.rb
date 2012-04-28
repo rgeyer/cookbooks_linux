@@ -31,7 +31,7 @@ end
 unless ::File.exists?(::File.join("#{node[:cloudstack][:install_dir]}", "install.sh"))
   # Download/unzip CloudStack file
   remote_file cloudstack_tarfile do
-    source node[:cloudstack][:package_url]
+    source node[:cloudstack][node[:cloudstack][:csmanage][:version]][:package_url]
   end
 
   bash "Unzip CloudStack File" do

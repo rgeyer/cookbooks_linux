@@ -19,9 +19,16 @@ rs_utils_marker :begin
 
 mount_dir = "/mnt/secondary"
 hypervisor_hash = {
-  "vmware"    => "systemvm.ova",
-  "kvm"       => "systemvm.qcow2.bz2",
-  "xenserver" => "systevm.vhd.bz2"
+  "2.2.x" => {
+    "vmware"    => "systemvm.ova",
+    "kvm"       => "systemvm.qcow2.bz2",
+    "xenserver" => "systevm.vhd.bz2"
+  },
+  "3.0.x" => {
+    "vmware"    => "acton-systemvm-02062012.ova",
+    "kvm"       => "acton-systemvm-02062012.qcow2.bz2",
+    "xenserver" => "acton-systemvm-02062012.vhd.bz2"
+  }
 }
 
 service "portmap" do
@@ -42,7 +49,7 @@ node[:cloudstack][:csmanage][:system_vm][:hypervisors].each do |hypervisor|
   bash "Download System VM for #{hypervisor}" do
     code <<-EOF
     /usr/lib64/cloud/agent/scripts/storage/secondary/cloud-install-sys-tmplt -m #{mount_dir} \
-      -u #{node[:cloudstack][:csmanage][:system_vm][:download_url]}#{hypervisor_hash[hypervisor]} \
+      -u #{node[:cloudstack][:system_vm][:csmanage][node[:cloudstack][:csmanage][:version]][:download_url]}#{hypervisor_hash[node[:cloudstack][:csmanage][:version]][hypervisor]} \
       -h #{hypervisor} -F
     EOF
   end
