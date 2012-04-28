@@ -203,6 +203,8 @@ template uoxinifile_path do
   variables :client_dir => client_dir
 end
 
+# TODO: This is actually bad news because it overwrites the users other than admin.
+# May just want to do a sed here?
 template accountfile_path do
   owner 'uox3'
   group 'uox3'
