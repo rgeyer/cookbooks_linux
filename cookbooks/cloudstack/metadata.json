@@ -189,7 +189,8 @@
       ],
       "type": "string",
       "recipes": [
-        "cloudstack::setup_management_server"
+        "cloudstack::setup_management_server",
+        "cloudstack::setup_single_node_management_server"
       ],
       "description": "The versin of CloudStack to install",
       "display_name": "CloudStack Management Version"

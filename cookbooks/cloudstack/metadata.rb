@@ -26,7 +26,7 @@ attribute "cloudstack/csmanage/version",
   :required => "required",
   :category => "CloudStack Management Server",
   :choice => ["2.2.x", "3.0/x"],
-  :recipes => ["cloudstack::setup_management_server"]
+  :recipes => ["cloudstack::setup_management_server","cloudstack::setup_single_node_management_server"]
 
 attribute "cloudstack/csmanage/dbuser",
   :display_name => "CloudStack Management Database Username",
