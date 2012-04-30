@@ -185,7 +185,7 @@
       "calculated": false,
       "choice": [
         "2.2.x",
-        "3.0/x"
+        "3.0.x"
       ],
       "type": "string",
       "recipes": [
