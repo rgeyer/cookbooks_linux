@@ -1,5 +1,6 @@
-default[:cloudstack]["2.2.x"][:package_url] = "http://sourceforge.net/projects/cloudstack/files/Cloudstack%202.2/2.2.14/CloudStack-2.2.14-1-rhel5.tar.gz"
-default[:cloudstack]["3.0.x"][:package_url] = "http://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.1/CloudStack-oss-3.0.1-1-rhel5.tar.gz"
+# We're prompting for the full path to the download in the inputs now
+#default[:cloudstack]["2.2.x"][:package_url] = "http://sourceforge.net/projects/cloudstack/files/Cloudstack%202.2/2.2.14/CloudStack-2.2.14-1-rhel5.tar.gz"
+#default[:cloudstack]["3.0.x"][:package_url] = "http://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.1/CloudStack-oss-3.0.1-1-rhel5.tar.gz"
 default[:cloudstack][:install_dir] = "/opt/cloudstack"
 
 default[:cloudstack][:csmanage][:vpn][:server][:subnet] = "172.16.1.0"

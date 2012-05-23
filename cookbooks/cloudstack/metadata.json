@@ -50,6 +50,22 @@
       "description": "The database username for the CloudStack Management Server DB connection",
       "display_name": "CloudStack Management Database Username"
     },
+    "cloudstack/csmanage/package_url": {
+      "required": "required",
+      "category": "CloudStack Management Server",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "type": "string",
+      "recipes": [
+        "cloudstack::setup_management_server",
+        "cloudstack::setup_single_node_management_server",
+        "cloudstack::install_cloudstack"
+      ],
+      "description": "The full URL from which to download the CloudStack Management Server Installer",
+      "display_name": "CloudStack Management Install Package URL"
+    },
     "cloudstack/csmanage/dbhost": {
       "required": "required",
       "category": "CloudStack Management Server",

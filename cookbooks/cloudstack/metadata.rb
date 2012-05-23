@@ -28,6 +28,13 @@ attribute "cloudstack/csmanage/version",
   :choice => ["2.2.x", "3.0.x"],
   :recipes => ["cloudstack::setup_management_server","cloudstack::setup_single_node_management_server"]
 
+attribute "cloudstack/csmanage/package_url",
+  :display_name => "CloudStack Management Install Package URL",
+  :description => "The full URL from which to download the CloudStack Management Server Installer",
+  :required => "required",
+  :category => "CloudStack Management Server",
+  :recipes => ["cloudstack::setup_management_server","cloudstack::setup_single_node_management_server", "cloudstack::install_cloudstack"]
+
 attribute "cloudstack/csmanage/dbuser",
   :display_name => "CloudStack Management Database Username",
   :description => "The database username for the CloudStack Management Server DB connection",
