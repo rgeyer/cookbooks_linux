@@ -2,7 +2,7 @@
 # Cookbook Name:: handbrake
 # Recipe:: install_cli_from_package
 #
-# Copyright 2011, Ryan J. Geyer
+# Copyright 2012, Ryan J. Geyer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,13 +21,14 @@ rs_utils_marker :begin
 case node[:platform]
   when "debian", "ubuntu"
     apt_repository "handbrake" do
-      uri "http://ppa.launchpad.net/stebbins/handbrake-releases"
+      uri "http://ppa.launchpad.net/stebbins/handbrake-releases/ubuntu"
       distribution node['lsb']['codename']
       components ["main"]
       keyserver "keyserver.ubuntu.com"
+      key "816950D8"
     end
   else
-    ::Chef::Log.error "#{node[:platform]} is not supported by this recipe"
+    raise "handbrake::install_cli_from_package does not support your operating system #{node[:platform]}"
 end
 
 package 'handbrake-cli'
