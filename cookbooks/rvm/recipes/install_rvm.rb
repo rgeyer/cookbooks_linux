@@ -36,6 +36,7 @@ chmod +x /tmp/rvm
 end
 
 bash "Install RVM for all users" do
+  environment ({'rvm_path' => node[:rvm][:install_path]})
   code <<-EOF
 /tmp/rvm --path #{node[:rvm][:install_path]} #{node[:rvm][:version]}
 #{node[:rvm][:bin_path]} reload
