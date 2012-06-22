@@ -26,6 +26,7 @@ case node[:platform]
       components ["main"]
       keyserver "keyserver.ubuntu.com"
       key "816950D8"
+      action :add
     end
   else
     raise "handbrake::install_cli_from_package does not support your operating system #{node[:platform]}"
