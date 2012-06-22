@@ -1,0 +1,12 @@
+= DESCRIPTION:
+
+Installs and configures the commandline HandBrake tools for video transcoding
+
+http://handbrake.fr/
+
+= REQUIREMENTS:
+
+= ATTRIBUTES:
+
+= USAGE:
+

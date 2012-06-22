@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "apt": ">= 0.0.0",
+    "rs_utils": ">= 0.0.0"
+  },
+  "name": "handbrake",
+  "maintainer_email": "me@ryangeyer.com",
+  "attributes": {
+  },
+  "license": "All rights reserved",
+  "suggestions": {
+  },
+  "platforms": {
+    "ubuntu": ">= 0.0.0"
+  },
+  "maintainer": "Ryan J. Geyer",
+  "long_description": "= DESCRIPTION:\n\nInstalls and configures the commandline HandBrake tools for video transcoding\n\nhttp://handbrake.fr/\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "recipes": {
+    "handbrake::install_cli_from_package": "Installs the HandBrakeCLI from packages"
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs/Configures handbrake",
+  "providing": {
+  }
+}
