@@ -6,8 +6,11 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
 supports "ubuntu"
+supports "centos"
 
-recipe "rvm::default", "Installs Ruby Version Manager (RVM)"
+depends "rs_utils"
+
+recipe "rvm::install_rvm", "Installs Ruby Version Manager (RVM)"
 recipe "rvm::compile_gemset", "Creates a binary version of the specified gemset for the arch of the running instance"
 
 attribute "rvm/install_path",

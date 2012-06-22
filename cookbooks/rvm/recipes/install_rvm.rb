@@ -2,7 +2,7 @@
 # Cookbook Name:: rvm
 # Recipe:: default
 #
-#  Copyright 2011 Ryan J. Geyer
+#  Copyright 2011-2012 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
@@ -19,6 +19,8 @@
 # This will effectively "erase" any ruby presence, and make the currently selected RVM environment
 # the "system" ruby
 
+rs_utils_marker :begin
+
 bindir=::File.join(node[:rvm][:install_path], 'bin')
 node[:rvm][:bin_path] = ::File.join(node[:rvm][:install_path], "bin", "rvm")
 
@@ -27,7 +29,7 @@ package value_for_platform("centos" => {"default" => "openssl-devel"}, "default"
 
 bash "Download the RVM install script" do
   code <<-EOF
-wget -q -O /tmp/rvm https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer
+wget -q -O /tmp/rvm https://get.rvm.io
 chmod +x /tmp/rvm
   EOF
   creates "/tmp/rvm"
@@ -50,13 +52,13 @@ end
 
 # Erase all existence of "standard" ruby 1.8 and replace it with the RVM installed/default ruby
 case node[:platform]
-  when "ubuntu"
+  when "debian","ubuntu"
     %w{libopenssl-ruby1.8 libreadline-ruby1.8 libruby1.8 libshadow-ruby1.8 ruby ruby1.8 ruby1.8-dev}.each do |p|
       package p do
         action :remove
       end
     end
-  when "centos"
+  when "centos","rhel"
     %w{ruby}.each do |p|
       package p do
         action :remove
@@ -71,3 +73,5 @@ bash "Symlink RVM binaries to /usr/bin" do
   creates "/usr/bin/ruby"
   action :run
 end
+
+rs_utils_marker :end
