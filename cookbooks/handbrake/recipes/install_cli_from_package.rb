@@ -20,11 +20,6 @@ rs_utils_marker :begin
 
 case node[:platform]
   when "debian", "ubuntu"
-    execute "apt-get update" do
-      ignore_failure true
-      action :nothing
-    end
-
     apt_repository "handbrake" do
       uri "http://ppa.launchpad.net/stebbins/handbrake-releases/ubuntu"
       distribution node['lsb']['codename']
@@ -32,7 +27,11 @@ case node[:platform]
       keyserver "keyserver.ubuntu.com"
       key "816950D8"
       action :add
-      notifies :run, resources(:execute => "apt-get update"), :immediately
+    end
+
+    execute "apt-get update" do
+      ignore_failure true
+      action :run
     end
   else
     raise "handbrake::install_cli_from_package does not support your operating system #{node[:platform]}"
