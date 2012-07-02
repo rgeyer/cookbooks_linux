@@ -45,6 +45,7 @@ bash "Install RVM for all users" do
 end
 
 bash "Installing #{node[:rvm][:ruby]} as RVM's default ruby" do
+  environment ({'rvm_path' => node[:rvm][:install_path]})-
   code <<-EOF
 #{node[:rvm][:bin_path]} install #{node[:rvm][:ruby]}
 #{node[:rvm][:bin_path]} --default use #{node[:rvm][:ruby]}
