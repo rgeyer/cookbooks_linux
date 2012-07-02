@@ -63,29 +63,29 @@ nginx_enable_vhost accept_fqdn do
   force_https node[:nginx][:force_https] == "true"
 end
 
-skeme_tag "reverse_proxy:target=http://#{node[:nginx][:dest_fqdn]}:#{node[:nginx][:dest_port]}" do
-  action :add
+right_link_tag "reverse_proxy:target=http://#{node[:nginx][:dest_fqdn]}:#{node[:nginx][:dest_port]}" do
+  action :publish
 end
 
 if do_https
-  skeme_tag "reverse_proxy:for=https://#{accept_fqdn}" do
-    action :add
+  right_link_tag "reverse_proxy:for=https://#{accept_fqdn}" do
+    action :publish
   end
 end
 
 if do_http
-  skeme_tag "reverse_proxy:for=http://#{accept_fqdn}" do
-    action :add
+  right_link_tag "reverse_proxy:for=http://#{accept_fqdn}" do
+    action :publish
   end
 end
 
 # TODO: This is illegal according to RightScale.  Each namespace:key can have only one value
 node[:nginx][:aliases].each do |a|
-  skeme_tag "reverse_proxy:for=https://#{a}" do
-    action :add
+  right_link_tag "reverse_proxy:for=https://#{a}" do
+    action :publish
   end if do_https
-  skeme_tag "reverse_proxy:for=http://#{a}" do
-    action :add
+  right_link_tag "reverse_proxy:for=http://#{a}" do
+    action :publish
   end if do_http
 end if node[:nginx][:aliases]
 

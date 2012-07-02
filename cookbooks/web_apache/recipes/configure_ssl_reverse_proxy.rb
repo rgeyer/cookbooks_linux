@@ -50,27 +50,27 @@ end
 
 
 # TODO: This is illegal according to RightScale.  Each namespace:key can have only one value
-skeme_tag "reverse_proxy:for=https://#{accept_fqdn}" do
-  action :add
+right_link_tag "reverse_proxy:for=https://#{accept_fqdn}" do
+  action :publish
 end
-skeme_tag "reverse_proxy:target=https://#{node[:web_apache][:dest_fqdn]}:#{node[:web_apache][:dest_port]}" do
-  action :add
+right_link_tag "reverse_proxy:target=https://#{node[:web_apache][:dest_fqdn]}:#{node[:web_apache][:dest_port]}" do
+  action :publish
 end
 
 if node[:web_apache][:proxy_http] == "true"
-  skeme_tag "reverse_proxy:for=http://#{accept_fqdn}" do
-    action :add
+  right_link_tag "reverse_proxy:for=http://#{accept_fqdn}" do
+    action :publish
   end
-  skeme_tag "reverse_proxy:target=http://#{node[:web_apache][:dest_fqdn]}" do
-    action :add
+  right_link_tag "reverse_proxy:target=http://#{node[:web_apache][:dest_fqdn]}" do
+    action :publish
   end unless node[:web_apache][:force_https] == "true"
 end
 
 node[:web_apache][:aliases].each do |a|
-  skeme_tag "reverse_proxy:for=https://#{a}" do
-    action :add
+  right_link_tag "reverse_proxy:for=https://#{a}" do
+    action :publish
   end
-  skeme_tag "reverse_proxy:for=http://#{a}" do
-    action :add
+  right_link_tag "reverse_proxy:for=http://#{a}" do
+    action :publish
   end if node[:web_apache][:proxy_http] == "true"
 end if node[:web_apache][:aliases]

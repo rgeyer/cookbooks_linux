@@ -32,6 +32,6 @@ end
 
 include_recipe "sys_dns::do_set_private"
 
-rs_tag "openldap:role=provider"
+right_link_tag "openldap:role=provider"
 
 rightscale_marker :end

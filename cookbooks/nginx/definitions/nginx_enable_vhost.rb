@@ -74,7 +74,7 @@ define :nginx_enable_vhost, :fqdn => nil, :aliases => nil, :create_doc_root => t
   # /END - The equivalent of web_app in the apache2 cookbook
 
   # TODO: This is illegal according to RightScale.  Each namespace:key can have only one value
-  skeme_tag "nginx:vhost=#{fqdn}" do
-    action :add
+  right_link_tag "vhost:#{fqdn}=nginx" do
+    action :publish
   end
 end

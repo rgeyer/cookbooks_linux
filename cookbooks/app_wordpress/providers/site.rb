@@ -155,8 +155,8 @@ rm -rf nginx-compatibility.zip
     end
   end
 
-  skeme_tag "wordpress:vhost=#{fqdn}" do
-    action :add
+  right_link_tag "vhost:#{fqdn}=#{new_resource.webserver}+wordpress" do
+    action :publish
   end
 end
 
