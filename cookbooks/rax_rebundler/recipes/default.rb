@@ -15,11 +15,11 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-include_recipe "rs_utils::setup_monitoring"
+include_recipe "rightscale::setup_monitoring"
 include_recipe "rvm::default"
 
 # Load the filecount plugin in the main collectd config file
-rs_utils_enable_collectd_plugin "filecount"
+rightscale_enable_collectd_plugin "filecount"
 
 gem_package "bundler" do
   action :install
@@ -36,7 +36,7 @@ bash "Install rackspace_rebundler dependent gems" do
   code "#{::File.join(node[:rvm][:install_path],"gems",node[:rvm][:ruby],"bin","bundle")} install"
 end
 
-template File.join(node[:rs_utils][:collectd_plugin_dir], 'raxrebundle.conf') do
+template File.join(node[:rightscale][:collectd_plugin_dir], 'raxrebundle.conf') do
   backup false
   source "raxrebundle.conf.erb"
   notifies :restart, resources(:service => "collectd")

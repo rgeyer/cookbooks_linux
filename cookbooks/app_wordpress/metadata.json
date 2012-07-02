@@ -21,8 +21,8 @@
         "app_wordpress::deploy",
         "app_wordpress::s3_restore"
       ],
-      "display_name": "Wordpress VHOST Aliases",
-      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces"
+      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces",
+      "display_name": "Wordpress VHOST Aliases"
     },
     "app_wordpress/s3_bucket": {
       "required": "required",
@@ -36,8 +36,8 @@
         "app_wordpress::s3_restore",
         "app_wordpress::enable_continuous_backup"
       ],
-      "display_name": "Vhost Backup S3 Bucket",
-      "description": "The namne of the S3 bucket for backups."
+      "description": "The namne of the S3 bucket for backups.",
+      "display_name": "Vhost Backup S3 Bucket"
     },
     "app_wordpress/vhost_fqdn": {
       "required": "required",
@@ -53,8 +53,8 @@
         "app_wordpress::update",
         "app_wordpress::enable_continuous_backup"
       ],
-      "display_name": "Wordpress VHOST FQDN",
-      "description": "The fully qualified domain name (FQDN) of the new vhost to deploy wordpress to.  Example www.apache.org"
+      "description": "The fully qualified domain name (FQDN) of the new vhost to deploy wordpress to.  Example www.apache.org",
+      "display_name": "Wordpress VHOST FQDN"
     },
     "app_wordpress/webserver": {
       "required": "required",
@@ -67,8 +67,8 @@
       "recipes": [
 
       ],
-      "display_name": "Wordpress Web Server",
-      "description": "The web server which will be serving pages for the wordpress instance"
+      "description": "The web server which will be serving pages for the wordpress instance",
+      "display_name": "Wordpress Web Server"
     },
     "aws/secret_access_key": {
       "required": "required",
@@ -81,8 +81,8 @@
         "app_wordpress::s3_backup",
         "app_wordpress::s3_restore"
       ],
-      "display_name": "Secret Access Key",
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+      "display_name": "Secret Access Key"
     },
     "aws/access_key_id": {
       "required": "required",
@@ -95,8 +95,8 @@
         "app_wordpress::s3_backup",
         "app_wordpress::s3_restore"
       ],
-      "display_name": "Access Key Id",
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+      "display_name": "Access Key Id"
     },
     "app_wordpress": {
       "required": "optional",
@@ -121,8 +121,8 @@
       "recipes": [
         "app_wordpress::s3_backup"
       ],
-      "display_name": "Vhost Backups to keep",
-      "description": "The number of S3 backups to keep as history."
+      "description": "The number of S3 backups to keep as history.",
+      "display_name": "Vhost Backups to keep"
     },
     "app_wordpress/db_pass": {
       "required": "required",
@@ -135,8 +135,8 @@
         "app_wordpress::deploy",
         "app_wordpress::s3_restore"
       ],
-      "display_name": "MySQL Database Password for this Wordpress instance",
-      "description": "The password to access the MySQL database for this Wordpress instance"
+      "description": "The password to access the MySQL database for this Wordpress instance",
+      "display_name": "MySQL Database Password for this Wordpress instance"
     }
   },
   "license": "All rights reserved",

@@ -7,7 +7,7 @@ version          "0.0.1"
 
 supports 'ubuntu'
 
-%w{rs_utils apt}.each do |dep|
+%w{rightscale apt}.each do |dep|
   depends dep
 end
 

@@ -13,7 +13,7 @@ recipe "openvpn::users", "Sets up openvpn cert/configs for users data bag items"
   supports os
 end
 
-depends "rs_utils"
+depends "rightscale"
 
 attribute "openvpn",
   :display_name => "openvpn",

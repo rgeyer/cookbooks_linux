@@ -7,7 +7,7 @@ version          "0.0.1"
 
 supports "centos"
 
-depends "rs_utils"
+depends "rightscale"
 depends "sys_firewall"
 
 recommends "db"

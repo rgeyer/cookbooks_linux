@@ -8,7 +8,7 @@ version          "0.0.1"
 supports "ubuntu"
 supports "centos"
 
-depends "rs_utils"
+depends "rightscale"
 
 recipe "rvm::install_rvm", "Installs Ruby Version Manager (RVM)"
 recipe "rvm::compile_gemset", "Creates a binary version of the specified gemset for the arch of the running instance"

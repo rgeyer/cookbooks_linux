@@ -2,9 +2,9 @@
   "dependencies": {
     "runit": ">= 0.0.0",
     "skeme": ">= 0.0.0",
+    "rightscale": ">= 0.0.0",
     "utils": ">= 0.0.0",
-    "build-essential": ">= 0.0.0",
-    "rs_utils": ">= 0.0.0"
+    "build-essential": ">= 0.0.0"
   },
   "name": "nginx",
   "maintainer_email": "me@ryangeyer.com",
@@ -21,8 +21,8 @@
         "nginx::setup_server",
         "nginx::setup_reverse_proxy"
       ],
-      "display_name": "Proxy Destination FQDN",
-      "description": "The FQDN the server that will back the proxy, the actual source of the responses for HTTP requests."
+      "description": "The FQDN the server that will back the proxy, the actual source of the responses for HTTP requests.",
+      "display_name": "Proxy Destination FQDN"
     },
     "nginx/aliases": {
       "required": "recommended",
@@ -40,8 +40,8 @@
         "nginx::setup_reverse_proxy",
         "nginx::setup_vhost"
       ],
-      "display_name": "Nginx Site Aliases",
-      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces. The full syntax which Nginx supports for the server_name directive are applicable here, http://wiki.nginx.org/HttpCoreModule#server_name"
+      "description": "The possible hostname aliases (if any) for the vhost.  For instance to host the same content at www.yourdomain.com and yourdomain.com simply put \"yourdomain.com\" here.  Many values can be supplied, separated by spaces. The full syntax which Nginx supports for the server_name directive are applicable here, http://wiki.nginx.org/HttpCoreModule#server_name",
+      "display_name": "Nginx Site Aliases"
     },
     "nginx/worker_connections": {
       "required": "optional",
@@ -56,8 +56,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Worker Connections",
-      "description": "Number of connections per worker"
+      "description": "Number of connections per worker",
+      "display_name": "Nginx Worker Connections"
     },
     "nginx/vhost_fqdn": {
       "required": "required",
@@ -69,8 +69,8 @@
       "recipes": [
         "nginx::setup_vhost"
       ],
-      "display_name": "VHOST FQDN",
-      "description": "The fully qualified domain name (FQDN) of the new vhost to create.  Example www.apache.org"
+      "description": "The fully qualified domain name (FQDN) of the new vhost to create.  Example www.apache.org",
+      "display_name": "VHOST FQDN"
     },
     "nginx/force_https": {
       "required": "required",
@@ -85,8 +85,8 @@
         "nginx::setup_server",
         "nginx::setup_reverse_proxy"
       ],
-      "display_name": "Force HTTPS?",
-      "description": "A boolean indicating if the proxy should redirect all requests to the destination using HTTPS.  This setting requires nginx/proxy_http to be true."
+      "description": "A boolean indicating if the proxy should redirect all requests to the destination using HTTPS.  This setting requires nginx/proxy_http to be true.",
+      "display_name": "Force HTTPS?"
     },
     "nginx/dest_port": {
       "required": "optional",
@@ -100,8 +100,8 @@
         "nginx::setup_server",
         "nginx::setup_reverse_proxy"
       ],
-      "display_name": "Proxy Port",
-      "description": "The the proxy port to forward to"
+      "description": "The the proxy port to forward to",
+      "display_name": "Proxy Port"
     },
     "nginx/gzip_types": {
       "required": "optional",
@@ -125,8 +125,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Gzip Types",
-      "description": "Supported MIME-types for gzip"
+      "description": "Supported MIME-types for gzip",
+      "display_name": "Nginx Gzip Types"
     },
     "nginx/binary": {
       "required": "optional",
@@ -141,8 +141,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Binary",
-      "description": "Location of the nginx server binary"
+      "description": "Location of the nginx server binary",
+      "display_name": "Nginx Binary"
     },
     "nginx/keepalive_timeout": {
       "required": "optional",
@@ -172,8 +172,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Gzip Proxied",
-      "description": "Whether gzip is proxied"
+      "description": "Whether gzip is proxied",
+      "display_name": "Nginx Gzip Proxied"
     },
     "nginx/gzip_comp_level": {
       "required": "optional",
@@ -188,8 +188,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Gzip Compression Level",
-      "description": "Amount of compression to use"
+      "description": "Amount of compression to use",
+      "display_name": "Nginx Gzip Compression Level"
     },
     "nginx/dir": {
       "required": "optional",
@@ -204,8 +204,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Directory",
-      "description": "Location of nginx configuration files"
+      "description": "Location of nginx configuration files",
+      "display_name": "Nginx Directory"
     },
     "nginx/proxy_http": {
       "required": "required",
@@ -220,8 +220,8 @@
         "nginx::setup_server",
         "nginx::setup_reverse_proxy"
       ],
-      "display_name": "Proxy for HTTP?",
-      "description": "A boolean indicating if the proxy should listen and forward traffic on port 80 (HTTP)"
+      "description": "A boolean indicating if the proxy should listen and forward traffic on port 80 (HTTP)",
+      "display_name": "Proxy for HTTP?"
     },
     "nginx/accept_fqdn": {
       "required": "required",
@@ -235,8 +235,8 @@
         "nginx::setup_server",
         "nginx::setup_reverse_proxy"
       ],
-      "display_name": "Proxy for FQDN",
-      "description": "The FQDN of a domain name which will be proxied to another server and port"
+      "description": "The FQDN of a domain name which will be proxied to another server and port",
+      "display_name": "Proxy for FQDN"
     },
     "nginx/server_names_hash_bucket_size": {
       "required": "optional",
@@ -265,8 +265,8 @@
         "nginx::setup_server",
         "nginx::setup_reverse_proxy"
       ],
-      "display_name": "PKCS12 Cert Password",
-      "description": "The password used to protect the PKCS12 file.  This password is specified when the certificate is exported from windows"
+      "description": "The password used to protect the PKCS12 file.  This password is specified when the certificate is exported from windows",
+      "display_name": "PKCS12 Cert Password"
     },
     "nginx/worker_processes": {
       "required": "optional",
@@ -281,8 +281,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Worker Processes",
-      "description": "Number of worker processes"
+      "description": "Number of worker processes",
+      "display_name": "Nginx Worker Processes"
     },
     "nginx/gzip_http_version": {
       "required": "optional",
@@ -297,8 +297,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Gzip HTTP Version",
-      "description": "Version of HTTP Gzip"
+      "description": "Version of HTTP Gzip",
+      "display_name": "Nginx Gzip HTTP Version"
     },
     "nginx/s3_cert_bucket": {
       "required": "required",
@@ -312,8 +312,8 @@
         "nginx::setup_server",
         "nginx::setup_reverse_proxy"
       ],
-      "display_name": "S3 Bucket",
-      "description": "The S3 bucket containing site certificate and key pairs in the pkcs12 format."
+      "description": "The S3 bucket containing site certificate and key pairs in the pkcs12 format.",
+      "display_name": "S3 Bucket"
     },
     "nginx/log_dir": {
       "required": "optional",
@@ -328,8 +328,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Log Directory",
-      "description": "Location for nginx logs"
+      "description": "Location for nginx logs",
+      "display_name": "Nginx Log Directory"
     },
     "nginx/content_dir": {
       "required": "optional",
@@ -344,8 +344,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Content Directory",
-      "description": "Location of nginx content files"
+      "description": "Location of nginx content files",
+      "display_name": "Nginx Content Directory"
     },
     "nginx/gzip": {
       "required": "optional",
@@ -360,8 +360,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Gzip",
-      "description": "Whether gzip is enabled"
+      "description": "Whether gzip is enabled",
+      "display_name": "Nginx Gzip"
     },
     "nginx/proxy_https": {
       "required": "required",
@@ -376,8 +376,8 @@
         "nginx::setup_server",
         "nginx::setup_reverse_proxy"
       ],
-      "display_name": "Proxy for HTTPS?",
-      "description": "A boolean indicating if the proxy should listen and forward traffic on port 443 (HTTPS)"
+      "description": "A boolean indicating if the proxy should listen and forward traffic on port 443 (HTTPS)",
+      "display_name": "Proxy for HTTPS?"
     },
     "nginx/keepalive": {
       "required": "optional",
@@ -392,8 +392,8 @@
         "nginx::install_from_source",
         "nginx::setup_server"
       ],
-      "display_name": "Nginx Keepalive",
-      "description": "Whether to enable keepalive"
+      "description": "Whether to enable keepalive",
+      "display_name": "Nginx Keepalive"
     }
   },
   "license": "Apache 2.0",

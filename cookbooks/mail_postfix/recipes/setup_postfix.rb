@@ -18,12 +18,12 @@
 rightscale_marker :begin
 
 # Load the tail plugin in the main config file
-rs_utils_enable_collectd_plugin "tail"
-rs_utils_monitor_process "master"
-rs_utils_monitor_process "pickup"
-rs_utils_monitor_process "qmgr"
+rightscale_enable_collectd_plugin "tail"
+rightscale_monitor_process "master"
+rightscale_monitor_process "pickup"
+rightscale_monitor_process "qmgr"
 
-include_recipe "rs_utils::setup_monitoring"
+include_recipe "rightscale::setup_monitoring"
 
 tmp_sqlfile = "/tmp/postfix.sql"
 
@@ -94,7 +94,7 @@ file "/var/log/maillog" do
 end
 
 # Enable monitoring
-template File.join(node.rs_utils.collectd_plugin_dir, 'postfix.conf') do
+template File.join(node.rightscale.collectd_plugin_dir, 'postfix.conf') do
   source "postfix.conf.erb"
   variables(
     :maillog => "/var/log/maillog"

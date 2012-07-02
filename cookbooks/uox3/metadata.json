@@ -3,8 +3,8 @@
     "logrotate": ">= 0.0.0",
     "sys_dns": ">= 0.0.0",
     "scheduler": ">= 0.0.0",
-    "sys_firewall": ">= 0.0.0",
-    "rs_utils": ">= 0.0.0"
+    "rightscale": ">= 0.0.0",
+    "sys_firewall": ">= 0.0.0"
   },
   "name": "uox3",
   "maintainer_email": "me@ryangeyer.com",
@@ -257,7 +257,7 @@
     "ubuntu": ">= 0.0.0"
   },
   "maintainer": "Ryan J. Geyer",
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "long_description": "= DESCRIPTION:\nThe default recipe installs the UOX3 emulator, setting up a SysV init script to launch it in a screen session.\nMonitoring is also setup via collectd.\n\nClient files can be downloaded from a ROS, and the shard files can be backed up or restored from a ROS.  \"ROS\"\nis an abbreviation for \"Remote Object Store\".\n\nCurrently supported ROS sources are;\n\n* Amazon S3\n* Rackspace CloudFiles and CloudFiles UK\n* SoftLayer Dallas, Singapore, and Amsterdam.\n\nContinuous (daily) backup of the shard files is enabled by default and can be disabled.  Backups are not pruned automatically!\nYou should plan to periodically clean up the shard files backups in the ROS.\n\n= REQUIREMENTS:\nA copy of the UO client files (the *.mul files in your game directory) are required and not distributed with this\ncookbook.  The default recipe is configured to download those files from a ROS.\n\nTo make the *.mul files available, install UO on your windows computer, then put all of the *.mul files into a zip file.\nUpload that zip file to one of the above supported ROS sources, then specify that source when launching your UOX server\nwith these recipes.\n\nThese recipes are intended to be used as part of a RightScale ServerTemplate.  The default recipe requires that it\nis run as part of a boot runlist that includes rightscale::default, otherwise the collectd monitoring bits will fail.\n\n= ATTRIBUTES:\n\n= USAGE:\n\n= TODO:\nAdd apache or nginx to host the docs, html, help, msgboards, etc.\n",
   "version": "0.0.1",
   "recommendations": {
   },

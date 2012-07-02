@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "apt": ">= 0.0.0",
-    "rs_utils": ">= 0.0.0"
+    "rightscale": ">= 0.0.0"
   },
   "name": "handbrake",
   "maintainer_email": "me@ryangeyer.com",

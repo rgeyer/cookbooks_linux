@@ -1,32 +1,145 @@
 {
+  "dependencies": {
+    "build-essential": ">= 0.0.0"
+  },
   "name": "znc",
-  "description": "Installs/Configures ZNC IRC bouncer",
-  "long_description": "Description\n===========\n\nInstalls and configures ZNC, an IRC bouncer.\n\nRequirements\n============\n\nPlatform\n--------\n\n* Debian, Ubuntu\n\nUsage\n=====\n\ndefault\n-------\n\nInclude the default recipe in a run list, to get `znc`.  By default `znc` is installed from packages but this can be changed by using the `install_method` attribute.\n\npackage\n-------\n\nThis recipe installs ZNC from packages.\n\nsource\n------\n\nThis recipe installs ZNC from source.\n\nLicense and Author\n==================\n\nAuthor:: Seth Chisamore (<schisamo@gmail.com>)\n\nCopyright:: 2011, Seth Chisamore\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
-  "maintainer": "Seth Chisamore",
   "maintainer_email": "cookbooks@chisamore.com",
+  "attributes": {
+    "znc/group": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "znc",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "The name of the system group under which ZNC will be run",
+      "display_name": "ZNC System Group"
+    },
+    "znc/user": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "znc",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "The name of the system user under which ZNC will be run",
+      "display_name": "ZNC System User"
+    },
+    "znc/module_dir": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/etc/znc/modules",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Directory where ZNC modules will be stored",
+      "display_name": "ZNC Module Dir"
+    },
+    "znc/data_dir": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/etc/znc",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Directory where ZNC data will be stored",
+      "display_name": "ZNC Data Dir"
+    },
+    "znc/install_method": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+        "package",
+        "source"
+      ],
+      "default": "package",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "The installation source for znc, either source or package",
+      "display_name": "ZNC Install Method"
+    },
+    "znc/user_dir": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/etc/znc/users",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Directory where ZNC users will be stored",
+      "display_name": "ZNC User Dir"
+    },
+    "znc/log_dir": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/etc/znc/moddata/adminlog",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Directory where ZNC logs will be stored",
+      "display_name": "ZNC Log Dir"
+    },
+    "znc/conf_dir": {
+      "required": "optional",
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "/etc/znc/configs",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Directory where ZNC configuration will be stored",
+      "display_name": "ZNC Config Dir"
+    }
+  },
   "license": "Apache 2.0",
+  "suggestions": {
+  },
   "platforms": {
     "debian": ">= 0.0.0",
     "ubuntu": ">= 0.0.0"
   },
-  "dependencies": {
-    "build-essential": ">= 0.0.0"
-  },
+  "maintainer": "Seth Chisamore",
+  "long_description": "Description\n===========\n\nInstalls and configures ZNC, an IRC bouncer.\n\nRequirements\n============\n\nPlatform\n--------\n\n* Debian, Ubuntu\n\nUsage\n=====\n\ndefault\n-------\n\nInclude the default recipe in a run list, to get `znc`.  By default `znc` is installed from packages but this can be changed by using the `install_method` attribute.\n\npackage\n-------\n\nThis recipe installs ZNC from packages.\n\nsource\n------\n\nThis recipe installs ZNC from source.\n\nLicense and Author\n==================\n\nAuthor:: Seth Chisamore (<schisamo@gmail.com>)\n\nCopyright:: 2011, Seth Chisamore\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "version": "0.0.1",
   "recommendations": {
-  },
-  "suggestions": {
-  },
-  "conflicting": {
-  },
-  "providing": {
-  },
-  "replacing": {
-  },
-  "attributes": {
-  },
-  "groupings": {
   },
   "recipes": {
   },
-  "version": "0.0.1"
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs/Configures ZNC IRC bouncer",
+  "providing": {
+  }
 }

@@ -7,7 +7,7 @@ version          "0.0.2"
 
 supports "ubuntu"
 
-%w{rs_utils}.each do |d|
+%w{rightscale}.each do |d|
   depends d
 end
 

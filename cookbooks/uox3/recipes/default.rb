@@ -32,7 +32,7 @@ accountfile_path = ::File.join(shard_dir, 'accounts', 'accounts.adm')
 convert_binary = value_for_platform('centos' => {'default' => 'dos2unix'}, 'ubuntu' => {'default' => 'fromdos'})
 
 # Enable collectd exec plugin
-rs_utils_enable_collectd_plugin "exec"
+rightscale_enable_collectd_plugin "exec"
 
 if node[:platform] == 'ubuntu'
   %w{libc6-i386 ia32-libs tofrodos unrar}.each do |p|
@@ -241,7 +241,7 @@ template ::File.join(node[:uox3][:install_dir], 'uox3.sh') do
   variables :screenlog => ::File.join(shard_dir, 'screenlog.0')
 end
 
-template ::File.join(node[:rs_utils][:collectd_plugin_dir], 'uox3.conf') do
+template ::File.join(node[:rightscale][:collectd_plugin_dir], 'uox3.conf') do
   source "uox3.conf.erb"
   mode 00644
   backup false
@@ -249,7 +249,7 @@ template ::File.join(node[:rs_utils][:collectd_plugin_dir], 'uox3.conf') do
   notifies :restart, resources(:service => "collectd")
 end
 
-rs_utils_logrotate_app "uox3_screenlog" do
+rightscale_logrotate_app "uox3_screenlog" do
   cookbook "uox3"
   template "logrotate.erb"
   path [::File.join(shard_dir, 'screenlog.0')]

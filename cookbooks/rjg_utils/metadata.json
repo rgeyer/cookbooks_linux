@@ -1,32 +1,13 @@
 {
-  "conflicting": {
+  "dependencies": {
+    "cron": ">= 0.0.0",
+    "rjg_aws": ">= 0.0.0",
+    "web_apache": ">= 0.0.0",
+    "app_wordpress": ">= 0.0.0",
+    "rightscale": ">= 0.0.0"
   },
-  "license": "All rights reserved",
-  "providing": {
-    "rjg_utils_schedule_recipe(name, json_file, frequency, action)": [
-
-    ]
-  },
-  "recipes": {
-    "rjg_utils::vhost_aio_backup_all_vhosts": "Does what it says it'll do",
-    "rjg_utils::aio_ebs_volume_enable_continuous_backup": "Schedules the rjg_utils::aio_ebs_volume_snapshot recipe to run daily",
-    "rjg_utils::aio_ebs_volume_delete": "Detaches and deletes the single EBS volume.",
-    "rjg_utils::vhost_aio_boot": "Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server",
-    "rjg_utils::default": "Misc hacky stuff.",
-    "rjg_utils::rs_chef_solo": "Sets up the ability to run recipes from the RS sandbox using chef-solo when SSH'd in to the instance.",
-    "rjg_utils::aio_ebs_volume_disable_continuous_backup": "Stops the scheduled daily run of the rjg_utils::aio_ebs_volume_snapshot recipe",
-    "rjg_utils::rs_enable_local_monitoring": "Adds local rrd file writing to a RightScale configured collectd instance",
-    "rjg_utils::aio_ebs_volume": "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server.",
-    "rjg_utils::aio_ebs_volume_snapshot": "Creates a snapshot of the EBS volume used for persistent storage on an AIO server."
-  },
-  "maintainer": "Ryan J. Geyer",
-  "replacing": {
-  },
+  "name": "rjg_utils",
   "maintainer_email": "me@ryangeyer.com",
-  "description": "Installs/Configures rjg_utils",
-  "version": "0.0.1",
-  "groupings": {
-  },
   "attributes": {
     "rjg_utils/aio_ebs_snapshot_id": {
       "required": "optional",
@@ -170,32 +151,37 @@
       "display_name": "EBS Snapshots To Keep"
     }
   },
-  "recommendations": {
-  },
-  "dependencies": {
-    "cron": [
-
-    ],
-    "rjg_aws": [
-
-    ],
-    "web_apache": [
-
-    ],
-    "app_wordpress": [
-
-    ],
-    "rs_utils": [
-
-    ]
-  },
-  "platforms": {
-    "ubuntu": [
-
-    ]
-  },
-  "name": "rjg_utils",
+  "license": "All rights reserved",
   "suggestions": {
   },
-  "long_description": "= DESCRIPTION:\nA collection of utilities that don't fit into any better defined buckets.\n\n= REQUIREMENTS:\n\n== Platform:\nBuilt for, and tested against Ubuntu 10.10.  Many of the recipes also depend upon RightScale and Amazon EC2 and S3\n\n== Cookbooks:\nRequires the following cookbooks from my own repo:\n* aws[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/aws]\n* cron[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/cron]\n* web_apache[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/web_apache]\n* app_wordpress[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/app_wordpress]\n\n= ATTRIBUTES:\n\n= USAGE:\n\n== Defines:\n* rjg_utils_schedule_recipe: Schedules one or many recipes to be run through the RightScale management dashboard using rs_run_recipe\n\nTo schedule one recipe named \"my_app::backup\" to run daily:\n\n  rjg_utils_schedule_recipe \"my_app::backup\"\n\nTo schedule many recipes to run daily:\n\n  rjg_utils_schedule_recipe \"app1::backup,app2::backup,app3::backup\"\n\nTo schedule one recipe named \"my_app::logrotate\" to run weekly:\n\n  rjg_utils_schedule_recipe \"my_app::logrotate\" do\n    frequency \"weekly\"\n  end\n\nTo remove a recipe named \"my_app::backup\" from the daily schedule:\n\n  rjg_utils_schedule_recipe \"my_app::backup\" do\n    action \"delete\"\n  end"
+  "platforms": {
+    "ubuntu": ">= 0.0.0"
+  },
+  "maintainer": "Ryan J. Geyer",
+  "long_description": "= DESCRIPTION:\nA collection of utilities that don't fit into any better defined buckets.\n\n= REQUIREMENTS:\n\n== Platform:\nBuilt for, and tested against Ubuntu 10.10.  Many of the recipes also depend upon RightScale and Amazon EC2 and S3\n\n== Cookbooks:\nRequires the following cookbooks from my own repo:\n* aws[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/aws]\n* cron[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/cron]\n* web_apache[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/web_apache]\n* app_wordpress[https://github.com/rgeyer/cookbooks_public/tree/master/cookbooks/app_wordpress]\n\n= ATTRIBUTES:\n\n= USAGE:\n\n== Defines:\n* rjg_utils_schedule_recipe: Schedules one or many recipes to be run through the RightScale management dashboard using rs_run_recipe\n\nTo schedule one recipe named \"my_app::backup\" to run daily:\n\n  rjg_utils_schedule_recipe \"my_app::backup\"\n\nTo schedule many recipes to run daily:\n\n  rjg_utils_schedule_recipe \"app1::backup,app2::backup,app3::backup\"\n\nTo schedule one recipe named \"my_app::logrotate\" to run weekly:\n\n  rjg_utils_schedule_recipe \"my_app::logrotate\" do\n    frequency \"weekly\"\n  end\n\nTo remove a recipe named \"my_app::backup\" from the daily schedule:\n\n  rjg_utils_schedule_recipe \"my_app::backup\" do\n    action \"delete\"\n  end",
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "recipes": {
+    "rjg_utils::vhost_aio_backup_all_vhosts": "Does what it says it'll do",
+    "rjg_utils::aio_ebs_volume_enable_continuous_backup": "Schedules the rjg_utils::aio_ebs_volume_snapshot recipe to run daily",
+    "rjg_utils::aio_ebs_volume_delete": "Detaches and deletes the single EBS volume.",
+    "rjg_utils::vhost_aio_boot": "Does all sorts of wonderful things to configure a web/email/wordpress vhost AIO server",
+    "rjg_utils::default": "Misc hacky stuff.",
+    "rjg_utils::rs_chef_solo": "Sets up the ability to run recipes from the RS sandbox using chef-solo when SSH'd in to the instance.",
+    "rjg_utils::aio_ebs_volume_disable_continuous_backup": "Stops the scheduled daily run of the rjg_utils::aio_ebs_volume_snapshot recipe",
+    "rjg_utils::rs_enable_local_monitoring": "Adds local rrd file writing to a RightScale configured collectd instance",
+    "rjg_utils::aio_ebs_volume": "Creates a single EBS volume (XFS fstype) with the specified size at the specified mountpoint.  The EBS volume is intended to be persistent storage for an AIO server.",
+    "rjg_utils::aio_ebs_volume_snapshot": "Creates a snapshot of the EBS volume used for persistent storage on an AIO server."
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs/Configures rjg_utils",
+  "providing": {
+    "rjg_utils_schedule_recipe(name, json_file, frequency, action)": ">= 0.0.0"
+  }
 }

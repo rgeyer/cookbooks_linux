@@ -1,34 +1,32 @@
 {
-  "conflicting": {
+  "dependencies": {
+  },
+  "name": "vsftpd",
+  "maintainer_email": "me@ryangeyer.com",
+  "attributes": {
   },
   "license": "All rights reserved",
-  "providing": {
+  "suggestions": {
+  },
+  "platforms": {
+    "ubuntu": ">= 0.0.0"
+  },
+  "maintainer": "Ryan J. Geyer",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "version": "0.0.1",
+  "recommendations": {
   },
   "recipes": {
     "vsftpd::default": "Runs vsftpd::install",
     "vsftpd::install": "Installs and configures vsftpd"
   },
-  "maintainer": "Ryan J. Geyer",
-  "replacing": {
-  },
-  "maintainer_email": "me@ryangeyer.com",
-  "description": "Installs/Configures vsftpd",
-  "version": "0.0.1",
   "groupings": {
   },
-  "attributes": {
+  "conflicting": {
   },
-  "recommendations": {
+  "replacing": {
   },
-  "dependencies": {
-  },
-  "platforms": {
-    "ubuntu": [
-
-    ]
-  },
-  "name": "vsftpd",
-  "suggestions": {
-  },
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n"
+  "description": "Installs/Configures vsftpd",
+  "providing": {
+  }
 }

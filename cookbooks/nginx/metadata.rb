@@ -16,7 +16,7 @@ recipe "nginx::setup_vhost","Sets up a basic vhost directory and configuration"
   supports os
 end
 
-%w{ build-essential runit rs_utils skeme utils }.each do |cb|
+%w{ build-essential runit rightscale skeme utils }.each do |cb|
   depends cb
 end
 

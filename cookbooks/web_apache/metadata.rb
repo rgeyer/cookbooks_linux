@@ -15,7 +15,7 @@ supports "ubuntu"
 
 depends "apache2"
 depends "aws"
-depends "rs_utils"
+depends "rightscale"
 depends "utils"
 depends "skeme"
 
@@ -36,7 +36,7 @@ attribute "aws/secret_access_key",
   :recipes => ["web_apache::configure_ssl_reverse_proxy"],
   :required => "required"
 
-attribute "rs_utils/process_list",
+attribute "rightscale/process_list",
   :display_name => "Process List",
   :description => "A optional list of additional processes to monitor in the RightScale Dashboard.  Ex: sshd crond",
   :required => "optional",

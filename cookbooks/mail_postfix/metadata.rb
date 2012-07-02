@@ -5,7 +5,7 @@ description      "Installs/Configures postfix"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.2"
 
-%w{rjg_aws rs_utils db_mysql mysql}.each do |d|
+%w{rjg_aws rightscale db_mysql mysql}.each do |d|
   depends d
 end
 

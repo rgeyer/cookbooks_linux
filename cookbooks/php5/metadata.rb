@@ -14,7 +14,7 @@ recipe "php5::setup_fpmstats_nginx", "Enables collectd monitoring where PHP FPM 
   supports s
 end
 
-depends "rs_utils"
+depends "rightscale"
 
 attribute "php5",
   :display_name => "php5 hash",

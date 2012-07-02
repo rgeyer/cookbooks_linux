@@ -9,7 +9,7 @@ version          "0.0.1"
   supports os
 end
 
-%w{rjg_aws scheduler rs_utils}.each do |dep|
+%w{rjg_aws scheduler rightscale}.each do |dep|
   depends dep
 end
 

@@ -23,7 +23,7 @@ Upload that zip file to one of the above supported ROS sources, then specify tha
 with these recipes.
 
 These recipes are intended to be used as part of a RightScale ServerTemplate.  The default recipe requires that it
-is run as part of a boot runlist that includes rs_utils::default, otherwise the collectd monitoring bits will fail.
+is run as part of a boot runlist that includes rightscale::default, otherwise the collectd monitoring bits will fail.
 
 = ATTRIBUTES:
 

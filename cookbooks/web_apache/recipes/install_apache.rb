@@ -120,12 +120,12 @@ service "collectd" do
 end
 
 # Load the apache plugin in the main config file
-rs_utils_enable_collectd_plugin "apache"
-#node[:rs_utils][:plugin_list] += " apache" unless node[:rs_utils][:plugin_list] =~ /apache/
-rs_utils_monitor_process "apache2"
-#node[:rs_utils][:process_list] += " apache2" unless node[:rs_utils][:process_list] =~ /apache2/
+rightscale_enable_collectd_plugin "apache"
+#node[:rightscale][:plugin_list] += " apache" unless node[:rightscale][:plugin_list] =~ /apache/
+rightscale_monitor_process "apache2"
+#node[:rightscale][:process_list] += " apache2" unless node[:rightscale][:process_list] =~ /apache2/
 
-include_recipe "rs_utils::setup_monitoring"
+include_recipe "rightscale::setup_monitoring"
 
 # Enable monitoring
 file "#{node[:apache][:dir]}/conf.d/status.conf" do
@@ -141,7 +141,7 @@ ExtendedStatus On
   notifies :reload, resources(:service => "apache2"), :immediately
 end
 
-file ::File.join(node.rs_utils.collectd_plugin_dir, "apache.conf") do
+file ::File.join(node.rightscale.collectd_plugin_dir, "apache.conf") do
   content <<-EOF
 #LoadPlugin apache
 <Plugin apache>

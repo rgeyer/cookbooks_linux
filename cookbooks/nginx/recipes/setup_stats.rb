@@ -21,15 +21,15 @@ rightscale_marker :begin
 include_recipe "nginx::setup_server"
 
 # Load the nginx plugin in the main config file
-rs_utils_enable_collectd_plugin "nginx"
-#node[:rs_utils][:plugin_list] += " nginx" unless node[:rs_utils][:plugin_list] =~ /nginx/
-rs_utils_monitor_process "nginx"
-#node[:rs_utils][:process_list] += " nginx" unless node[:rs_utils][:process_list] =~ /nginx/
+rightscale_enable_collectd_plugin "nginx"
+#node[:rightscale][:plugin_list] += " nginx" unless node[:rightscale][:plugin_list] =~ /nginx/
+rightscale_monitor_process "nginx"
+#node[:rightscale][:process_list] += " nginx" unless node[:rightscale][:process_list] =~ /nginx/
 
-include_recipe "rs_utils::setup_monitoring"
+include_recipe "rightscale::setup_monitoring"
 
 nginx_conf    = ::File.join(node[:nginx][:dir], "sites-available", "#{node[:hostname]}.d", "nginx_stats.conf")
-nginx_collectd_conf = ::File.join(node[:rs_utils][:collectd_plugin_dir], "nginx.conf")
+nginx_collectd_conf = ::File.join(node[:rightscale][:collectd_plugin_dir], "nginx.conf")
 
 if node[:platform] == "centos"
   ruby_block "Install collectd-nginx plugin" do

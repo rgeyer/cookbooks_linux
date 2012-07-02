@@ -18,7 +18,7 @@
 
 rightscale_marker :begin
 
-include_recipe "rs_utils::setup_logging"
+include_recipe "rightscale::setup_logging"
 
 ruby_block "Append OpenLDAP logging to RightScale syslog" do
   block do

@@ -22,11 +22,11 @@ include_recipe "php5::install_fpm"
 include_recipe "php5::setup_fpm_nginx"
 
 # Load the nginx plugin in the main config file
-rs_utils_enable_collectd_plugin "curl_json"
-rs_utils_monitor_process node[:php5_fpm][:service_name]
+rightscale_enable_collectd_plugin "curl_json"
+rightscale_monitor_process node[:php5_fpm][:service_name]
 
 nginx_conf = ::File.join(node[:nginx][:dir], "sites-available", "#{node[:hostname]}.d", "php5-fpm-stats.conf")
-nginx_collectd_conf = ::File.join(node[:rs_utils][:collectd_plugin_dir], "php5-fpm.conf")
+nginx_collectd_conf = ::File.join(node[:rightscale][:collectd_plugin_dir], "php5-fpm.conf")
 
 listen_str = node[:php5_fpm][:listen] == "socket" ? "unix:#{node[:php5_fpm][:listen_socket]}" : "#{node[:php5_fpm][:listen_ip]}:#{node[:php5_fpm][:listen_port]}"
 

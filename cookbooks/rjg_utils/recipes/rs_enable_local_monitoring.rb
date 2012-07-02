@@ -1,8 +1,8 @@
 # Load the rrdtool plugin in the main config file
-rs_utils_enable_collectd_plugin "rrdtool"
-#node[:rs_utils][:plugin_list] += " rrdtool" unless node[:rs_utils][:plugin_list] =~ /rrdtool/
+rightscale_enable_collectd_plugin "rrdtool"
+#node[:rightscale][:plugin_list] += " rrdtool" unless node[:rightscale][:plugin_list] =~ /rrdtool/
 
-include_recipe "rs_utils::setup_monitoring"
+include_recipe "rightscale::setup_monitoring"
 
 # Nuke & recreate the rrd directory
 directory "/var/lib/collectd/rrd" do
@@ -13,7 +13,7 @@ directory "/var/lib/collectd/rrd" do
   action [:delete, :create]
 end
 
-file ::File.join(node[:rs_utils][:collectd_plugin_dir], "rrdtool.conf") do
+file ::File.join(node[:rightscale][:collectd_plugin_dir], "rrdtool.conf") do
   content <<-EOF
 #LoadPlugin rrdtool
 <Target "write">

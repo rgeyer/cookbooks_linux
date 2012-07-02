@@ -5,7 +5,7 @@ description      "Installs/Configures openldap"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-%w{rs_utils rs_sandbox sys_dns block_device}.each do |d|
+%w{rightscale rs_sandbox sys_dns block_device}.each do |d|
   depends d
 end
 

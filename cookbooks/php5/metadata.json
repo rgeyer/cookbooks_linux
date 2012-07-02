@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "rs_utils": ">= 0.0.0"
+    "rightscale": ">= 0.0.0"
   },
   "name": "php5",
   "maintainer_email": "me@ryangeyer.com",
@@ -16,8 +16,8 @@
       "recipes": [
         "php5::install_php"
       ],
-      "display_name": "PHP5 Module List",
-      "description": "A list of PHP5 modules to install, separated by spaces. Only supply the module name appearing after php5-.  For instance if you wanted php5-mysql and php5-imap installed, this list should be set to \"mysql imap\".  To view a full list of available php5 modules see the Ubuntu package page http://packages.ubuntu.com/search?searchon=names&keywords=php5- "
+      "description": "A list of PHP5 modules to install, separated by spaces. Only supply the module name appearing after php5-.  For instance if you wanted php5-mysql and php5-imap installed, this list should be set to \"mysql imap\".  To view a full list of available php5 modules see the Ubuntu package page http://packages.ubuntu.com/search?searchon=names&keywords=php5- ",
+      "display_name": "PHP5 Module List"
     },
     "php5/listen_socket": {
       "required": "optional",
@@ -30,8 +30,8 @@
       "recipes": [
         "php5::install_fpm"
       ],
-      "display_name": "PHP5 FPM Listen Socket",
-      "description": "The full path and filename of the unix socket to listen on"
+      "description": "The full path and filename of the unix socket to listen on",
+      "display_name": "PHP5 FPM Listen Socket"
     },
     "php5/listen": {
       "required": "optional",
@@ -45,8 +45,8 @@
       "recipes": [
         "php5::install_fpm"
       ],
-      "display_name": "PHP5 FPM Listen Method",
-      "description": "The listening method, one of [socket, tcp].  If socket is selected, php5/listen_socket can optionally be supplied.  If tcp is selected, php5/listen_ip and php5/listen_port can optionally be supplied"
+      "description": "The listening method, one of [socket, tcp].  If socket is selected, php5/listen_socket can optionally be supplied.  If tcp is selected, php5/listen_ip and php5/listen_port can optionally be supplied",
+      "display_name": "PHP5 FPM Listen Method"
     },
     "php5/listen_ip": {
       "required": "optional",
@@ -59,8 +59,8 @@
       "recipes": [
         "php5::install_fpm"
       ],
-      "display_name": "PHP5 FPM Listen IP",
-      "description": "The TCP/IP address for PHP-FPM to listen on"
+      "description": "The TCP/IP address for PHP-FPM to listen on",
+      "display_name": "PHP5 FPM Listen IP"
     },
     "php5/listen_port": {
       "required": "optional",
@@ -73,8 +73,8 @@
       "recipes": [
         "php5::install_fpm"
       ],
-      "display_name": "PHP5 FPM Listen",
-      "description": "The TCP/IP address for PHP-FPM to listen on"
+      "description": "The TCP/IP address for PHP-FPM to listen on",
+      "display_name": "PHP5 FPM Listen"
     },
     "php5/server_usage": {
       "required": "optional",
@@ -88,8 +88,8 @@
       "recipes": [
         "php5::install_fpm"
       ],
-      "display_name": "Server Usage",
-      "description": "* dedicated (where the php-fpm config file allocates all existing resources of the machine)\n* shared (where the php-fpm config file is configured to use less resources so that it can be run concurrently with other apps like MySQL for example)"
+      "description": "* dedicated (where the php-fpm config file allocates all existing resources of the machine)\n* shared (where the php-fpm config file is configured to use less resources so that it can be run concurrently with other apps like MySQL for example)",
+      "display_name": "Server Usage"
     },
     "php5": {
       "required": "optional",
@@ -101,8 +101,8 @@
       "recipes": [
 
       ],
-      "display_name": "php5 hash",
-      "description": "php5"
+      "description": "php5",
+      "display_name": "php5 hash"
     }
   },
   "license": "All rights reserved",

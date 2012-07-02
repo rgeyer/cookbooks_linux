@@ -3,7 +3,7 @@
     "db_mysql": ">= 0.0.0",
     "mysql": ">= 0.0.0",
     "rjg_aws": ">= 0.0.0",
-    "rs_utils": ">= 0.0.0"
+    "rightscale": ">= 0.0.0"
   },
   "name": "mail_postfix",
   "maintainer_email": "me@ryangeyer.com  ",
@@ -19,8 +19,8 @@
       "recipes": [
         "mail_postfix::setup_postfix"
       ],
-      "display_name": "Postfix MySQL Database Host",
-      "description": "The hostname of the postfix configuration MySQL database server"
+      "description": "The hostname of the postfix configuration MySQL database server",
+      "display_name": "Postfix MySQL Database Host"
     },
     "mail_postfix/s3_bucket": {
       "required": "required",
@@ -33,8 +33,8 @@
         "mail_postfix::s3_backup",
         "mail_postfix::s3_restore"
       ],
-      "display_name": "Postfix Backup S3 Bucket",
-      "description": "The namne of the S3 bucket for backups."
+      "description": "The namne of the S3 bucket for backups.",
+      "display_name": "Postfix Backup S3 Bucket"
     },
     "mail_postfix/backup_prefix": {
       "required": "required",
@@ -47,8 +47,8 @@
         "mail_postfix::s3_backup",
         "mail_postfix::s3_restore"
       ],
-      "display_name": "Postfix Backup Prefix",
-      "description": "The prefix of the filename stored in S3 for backups."
+      "description": "The prefix of the filename stored in S3 for backups.",
+      "display_name": "Postfix Backup Prefix"
     },
     "mail_postfix/db_name": {
       "required": "optional",
@@ -63,8 +63,8 @@
         "mail_postfix::s3_backup",
         "mail_postfix::s3_restore"
       ],
-      "display_name": "Postfix MySQL Database Name",
-      "description": "The name of the postfix configuration database in MySQL"
+      "description": "The name of the postfix configuration database in MySQL",
+      "display_name": "Postfix MySQL Database Name"
     },
     "mail_postfix/backup_history_to_keep": {
       "required": "optional",
@@ -77,8 +77,8 @@
       "recipes": [
         "mail_postfix::s3_backup"
       ],
-      "display_name": "Postfix Backups to keep",
-      "description": "The number of S3 backups to keep as history."
+      "description": "The number of S3 backups to keep as history.",
+      "display_name": "Postfix Backups to keep"
     },
     "aws/secret_access_key": {
       "required": "required",
@@ -91,8 +91,8 @@
         "mail_postfix::s3_backup",
         "mail_postfix::s3_restore"
       ],
-      "display_name": "Secret Access Key",
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws"
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve your access identifiers. Ex: XVdxPgOM4auGcMlPz61IZGotpr9LzzI07tT8s2Ws",
+      "display_name": "Secret Access Key"
     },
     "aws/access_key_id": {
       "required": "required",
@@ -105,8 +105,8 @@
         "mail_postfix::s3_backup",
         "mail_postfix::s3_restore"
       ],
-      "display_name": "Access Key Id",
-      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02"
+      "description": "This is an Amazon credential. Log in to your AWS account at aws.amazon.com to retrieve you access identifiers. Ex: 1JHQQ4KVEVM02KVEVM02",
+      "display_name": "Access Key Id"
     },
     "mail_postfix": {
       "required": "optional",
@@ -118,8 +118,8 @@
       "recipes": [
 
       ],
-      "display_name": "Mail Postfix",
-      "description": "Hash of Mail Postfix attributes"
+      "description": "Hash of Mail Postfix attributes",
+      "display_name": "Mail Postfix"
     },
     "mail_postfix/db_pass": {
       "required": "required",
@@ -131,8 +131,8 @@
       "recipes": [
         "mail_postfix::setup_postfix"
       ],
-      "display_name": "Postfix MySQL Database Password",
-      "description": "The password to access the postfix configuration database in MySQL"
+      "description": "The password to access the postfix configuration database in MySQL",
+      "display_name": "Postfix MySQL Database Password"
     },
     "mail_postfix/db_user": {
       "required": "optional",
@@ -145,8 +145,8 @@
       "recipes": [
         "mail_postfix::setup_postfix"
       ],
-      "display_name": "Postfix MySQL Database Username",
-      "description": "The username to access the postfix configuration database in MySQL"
+      "description": "The username to access the postfix configuration database in MySQL",
+      "display_name": "Postfix MySQL Database Username"
     }
   },
   "license": "All rights reserved",
