@@ -15,7 +15,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 %w{/etc/unicorn /var/run/unicorn}.each do |dir|
   directory dir do
@@ -33,4 +33,4 @@ template "/etc/logrotate.d/unicorn" do
   source "logrotate.d.erb"
 end
 
-rs_utils_marker :end
+rightscale_marker :end

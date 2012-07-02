@@ -15,7 +15,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 unless node[:php5][:packages]
   raise "The operating system #{node[:platform]} #{node[:platform_version]} is not supported."
@@ -70,4 +70,4 @@ template ::File.join(node[:php5][:conf_d_path], "upload_max_filesize.ini") do
   backup false
 end
 
-rs_utils_marker :end
+rightscale_marker :end

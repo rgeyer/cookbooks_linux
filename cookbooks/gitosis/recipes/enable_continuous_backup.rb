@@ -16,8 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 scheduler_rs_run_recipe "gitosis::s3_backup"
 
-rs_utils_marker :end
+rightscale_marker :end

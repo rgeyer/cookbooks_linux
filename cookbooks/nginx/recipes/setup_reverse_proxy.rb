@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "skeme::default"
 
@@ -89,4 +89,4 @@ node[:nginx][:aliases].each do |a|
   end if do_http
 end if node[:nginx][:aliases]
 
-rs_utils_marker :end
+rightscale_marker :end

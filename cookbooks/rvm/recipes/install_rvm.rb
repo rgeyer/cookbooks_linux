@@ -19,7 +19,7 @@
 # This will effectively "erase" any ruby presence, and make the currently selected RVM environment
 # the "system" ruby
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 bindir=::File.join(node[:rvm][:install_path], 'bin')
 node[:rvm][:bin_path] = ::File.join(node[:rvm][:install_path], "bin", "rvm")
@@ -76,4 +76,4 @@ bash "Symlink RVM binaries to /usr/bin" do
   action :run
 end
 
-rs_utils_marker :end
+rightscale_marker :end

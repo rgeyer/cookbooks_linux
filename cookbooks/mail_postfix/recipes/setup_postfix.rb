@@ -15,7 +15,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 # Load the tail plugin in the main config file
 rs_utils_enable_collectd_plugin "tail"
@@ -116,4 +116,4 @@ end
 #  home "/home/vmail"
 #end
 
-rs_utils_marker :end
+rightscale_marker :end

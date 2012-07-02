@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "rs_sandbox::default"
 
@@ -33,4 +33,4 @@ g.run_action(:install)
 Gem.clear_paths
 require "net-ldap"
 
-rs_utils_marker :end
+rightscale_marker :end

@@ -15,7 +15,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "php5::install_php"
 
@@ -58,4 +58,4 @@ end
 
 # TODO: Stats http://forum.nginx.org/read.php?3,56426
 
-rs_utils_marker :end
+rightscale_marker :end

@@ -22,8 +22,8 @@
 # http://www.php.net/manual/en/function.apc-sma-info.php
 # /usr/share/doc/php-apc/apc.php.gz
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 package "php-apc"
 
-rs_utils_marker :end
+rightscale_marker :end

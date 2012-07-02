@@ -15,7 +15,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 cloudstack_tarfile = ::File.join(ENV['TMPDIR'] || '/tmp', 'cloudstack.tar.gz')
 
@@ -40,4 +40,4 @@ unless ::File.exists?(::File.join("#{node[:cloudstack][:install_dir]}", "install
   end
 end
 
-rs_utils_marker :end
+rightscale_marker :end

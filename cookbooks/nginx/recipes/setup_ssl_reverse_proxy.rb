@@ -22,7 +22,7 @@ underscored_accept_fqdn=accept_fqdn.gsub(".","_")
 rsa_cert="#{node[:nginx][:dir]}/ssl/#{node[:nginx][:accept_fqdn]}.crt"
 rsa_key="#{node[:nginx][:dir]}/ssl/#{node[:nginx][:accept_fqdn]}.key"
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "nginx::setup_server"
 
@@ -78,4 +78,4 @@ node[:nginx][:aliases].each do |a|
   end if node[:nginx][:proxy_http] == "true"
 end if node[:nginx][:aliases]
 
-rs_utils_marker :end
+rightscale_marker :end

@@ -20,7 +20,7 @@
 # limitations under the License.
 #
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "build-essential"
 
@@ -50,6 +50,6 @@ end
 
 include_recipe "nginx::setup_server"
 
-rs_utils_marker :end
+rightscale_marker :end
 
 

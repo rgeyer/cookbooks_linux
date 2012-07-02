@@ -15,7 +15,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 gem_package "unicorn" do
   version node[:unicorn][:version] if node[:unicorn][:version]
@@ -23,4 +23,4 @@ end
 
 include_recipe "unicorn::setup_unicorn"
 
-rs_utils_marker :end
+rightscale_marker :end

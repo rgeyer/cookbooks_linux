@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 tarfile = "/tmp/gitosis.tar"
 gzipfile = "#{tarfile}.gz"
@@ -45,4 +45,4 @@ file gzipfile do
   action :delete
 end
 
-rs_utils_marker :end
+rightscale_marker :end

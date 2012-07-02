@@ -20,7 +20,7 @@ package_dir = ::File.join(working_dir, 'packages.cloud-supp')
 tarfile = ::File.join(ENV['TMPDIR'] || '/tmp', 'xenserver-cloud-supp.tgz')
 post_install = ::File.join(working_dir, 'post-install.sh')
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 # This seems counterintuitive, but if this fails to find the package it'll return 1, which equates to true
 if `yum list installed | grep kernel-csp-xen`
@@ -65,4 +65,4 @@ if `yum list installed | grep kernel-csp-xen`
 end
 # reboot
 
-rs_utils_marker :end
+rightscale_marker :end

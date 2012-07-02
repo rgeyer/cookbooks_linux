@@ -20,7 +20,7 @@ prefix       = node[:uox3][:shard][:prefix]
 container    = node[:uox3][:shard][:container]
 cloud        = node[:uox3][:shard][:storage_account_provider]
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 uox_shard_backup "Backup the shard" do
   prefix prefix
@@ -28,4 +28,4 @@ uox_shard_backup "Backup the shard" do
   cloud cloud
 end
 
-rs_utils_marker :end
+rightscale_marker :end

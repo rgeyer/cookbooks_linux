@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 openldap_database node[:openldap][:base_dn] do
   base_dn node[:openldap][:base_dn]
@@ -31,4 +31,4 @@ openldap_database node[:openldap][:base_dn] do
   action :create
 end
 
-rs_utils_marker :end
+rightscale_marker :end

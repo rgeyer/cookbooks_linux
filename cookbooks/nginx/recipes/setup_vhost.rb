@@ -16,11 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 nginx_enable_vhost "Vhost" do
   fqdn node[:nginx][:vhost_fqdn]
   aliases node[:nginx][:aliases]
 end
 
-rs_utils_marker :end
+rightscale_marker :end

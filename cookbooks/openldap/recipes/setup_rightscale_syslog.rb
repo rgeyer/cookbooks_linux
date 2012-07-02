@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "rs_utils::setup_logging"
 
@@ -41,4 +41,4 @@ log { source(s_sys); filter(f_ldap); destination(d_ldap); };
   notifies :restart, resources(:service => "syslog-ng")
 end
 
-rs_utils_marker :end
+rightscale_marker :end

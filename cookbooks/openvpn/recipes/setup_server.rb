@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 routes = node['openvpn']['routes']
 routes << node['openvpn'] if node['openvpn'].attribute?('push')
@@ -136,4 +136,4 @@ service "openvpn" do
   action [:enable, :start]
 end
 
-rs_utils_marker :end
+rightscale_marker :end

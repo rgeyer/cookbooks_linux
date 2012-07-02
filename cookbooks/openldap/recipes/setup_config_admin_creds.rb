@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 ruby_block "Hash the config admin password" do
   block do
@@ -48,4 +48,4 @@ openldap_execute_ldif do
   config_admin_password node[:openldap][:config_admin_password]
 end
 
-rs_utils_marker :end
+rightscale_marker :end

@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "apache2::mod_dav"
 include_recipe "apache2::mod_dav_svn"
@@ -48,4 +48,4 @@ web_app node[:svn][:fqdn] do
   notifies :restart, resources(:service => "apache2")
 end
 
-rs_utils_marker :end
+rightscale_marker :end

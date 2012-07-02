@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 if !Chef::Config.solo
   search("users", "*:*") do |u|
@@ -29,4 +29,4 @@ else
   end
 end
 
-rs_utils_marker :end
+rightscale_marker :end

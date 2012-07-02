@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "openldap::setup_openldap"
 
@@ -76,4 +76,4 @@ directory node[:openldap][:db_dir] do
   action :create
 end
 
-rs_utils_marker :end
+rightscale_marker :end

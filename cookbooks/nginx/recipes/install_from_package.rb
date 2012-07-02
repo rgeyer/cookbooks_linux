@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 node[:nginx][:install_path] = "/usr"
 
@@ -52,4 +52,4 @@ package value_for_platform("ubuntu" => {"default" => "nginx-full"}, "centos" => 
 
 include_recipe "nginx::setup_server"
 
-rs_utils_marker :end
+rightscale_marker :end

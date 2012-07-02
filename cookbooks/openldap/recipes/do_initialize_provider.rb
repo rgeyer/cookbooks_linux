@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 service "slapd" do
   action :nothing
@@ -34,4 +34,4 @@ include_recipe "sys_dns::do_set_private"
 
 rs_tag "openldap:role=provider"
 
-rs_utils_marker :end
+rightscale_marker :end

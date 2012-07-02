@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 # TODO: This assumes that we're going to successfully find, download, and unpack a backup
 # not really an assumption I'm comfortable making.  Needs some more thought..
@@ -59,4 +59,4 @@ link "#{node[:gitosis][:gitosis_home]}/.gitosis.conf" do
   to "#{node[:gitosis][:gitosis_home]}/repositories/gitosis-admin.git/gitosis.conf"
 end
 
-rs_utils_marker :end
+rightscale_marker :end

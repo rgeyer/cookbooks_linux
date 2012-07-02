@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "runit"
 
@@ -120,4 +120,4 @@ nginx_enable_vhost node.hostname do
   create_doc_root false
 end
 
-rs_utils_marker :end
+rightscale_marker :end

@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 client_dir = ::File.join(node[:uox3][:install_dir], 'client')
 shard_dir = ::File.join(node[:uox3][:install_dir], 'shard')
@@ -260,4 +260,4 @@ end
 
 # HTML hosting of appropriate stuff
 
-rs_utils_marker :end
+rightscale_marker :end

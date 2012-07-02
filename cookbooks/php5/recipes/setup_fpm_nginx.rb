@@ -15,7 +15,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 include_recipe "nginx::install_from_package"
 include_recipe "php5::install_fpm"
@@ -38,4 +38,4 @@ file config_file do
   notifies :restart, resources(:service => "nginx"), :immediately
 end
 
-rs_utils_marker :end
+rightscale_marker :end
