@@ -9,7 +9,6 @@ depends "rjg_aws"
 depends "db_mysql"
 depends "mysql"
 depends "rjg_utils"
-depends "skeme"
 
 recommends "web_apache"
 recommends "nginx"

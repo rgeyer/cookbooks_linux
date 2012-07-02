@@ -1,5 +1,3 @@
-include_recipe "skeme::default"
-
 accept_fqdn=node[:web_apache][:accept_fqdn]
 underscored_accept_fqdn=accept_fqdn.gsub(".","_")
 

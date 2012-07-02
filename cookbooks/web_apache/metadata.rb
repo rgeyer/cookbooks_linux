@@ -17,7 +17,6 @@ depends "apache2"
 depends "aws"
 depends "rightscale"
 depends "utils"
-depends "skeme"
 
 attribute "web_apache",
   :display_name => "apache hash",

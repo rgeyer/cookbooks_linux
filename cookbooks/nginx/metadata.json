@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "runit": ">= 0.0.0",
-    "skeme": ">= 0.0.0",
     "rightscale": ">= 0.0.0",
     "utils": ">= 0.0.0",
     "build-essential": ">= 0.0.0"

@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "skeme": ">= 0.0.0",
     "rightscale": ">= 0.0.0",
     "aws": ">= 0.0.0",
     "utils": ">= 0.0.0",

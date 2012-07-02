@@ -3,8 +3,7 @@
     "db_mysql": ">= 0.0.0",
     "mysql": ">= 0.0.0",
     "rjg_utils": ">= 0.0.0",
-    "rjg_aws": ">= 0.0.0",
-    "skeme": ">= 0.0.0"
+    "rjg_aws": ">= 0.0.0"
   },
   "name": "app_wordpress",
   "maintainer_email": "me@ryangeyer.com  ",
