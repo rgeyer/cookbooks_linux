@@ -16,6 +16,9 @@ end
 
 depends "rightscale"
 
+recommends "nginx"
+recommends "web_apache"
+
 attribute "php5",
   :display_name => "php5 hash",
   :description => "php5",

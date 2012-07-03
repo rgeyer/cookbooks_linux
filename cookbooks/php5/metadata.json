@@ -116,6 +116,8 @@
   "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\nUbuntu\n\n= ATTRIBUTES:\n\n= USAGE:\n\n= TODO:\nIncrease max upload size, possibly allowing that to be an input?",
   "version": "0.0.2",
   "recommendations": {
+    "nginx": ">= 0.0.0",
+    "web_apache": ">= 0.0.0"
   },
   "recipes": {
     "php5::install_php": "Performs the installation of php5, pear, and the smarty template library.  Additional modules can be specified at runtime",
