@@ -45,7 +45,7 @@ case node[:platform]
     end
 
     t.run_action(:create)
-    e.run_action(:run)
+    #e.run_action(:run)
 end
 
 package value_for_platform("ubuntu" => {"default" => "nginx-full"}, "centos" => {"default" => "nginx"})
