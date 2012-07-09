@@ -34,7 +34,7 @@ nginx_collectd_conf = ::File.join(node[:rightscale][:collectd_plugin_dir], "ngin
 if node[:platform] == "centos"
   ruby_block "Install collectd-nginx plugin" do
     block do
-      arch = (node[:kernel][:machine] == "x86_64") ? "64" : "i386"
+      arch = (node[:kernel][:machine] == "x86_64") ? "x86_64" : "i386"
       installed_ver = `rpm -q --queryformat %{VERSION}-%{RELEASE} collectd`.strip
       rpmfile = "collectd-nginx-#{installed_ver}.#{arch}.rpm"
 
