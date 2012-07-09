@@ -22,7 +22,7 @@ include_recipe "php5::install_fpm"
 include_recipe "php5::setup_fpm_nginx"
 
 # Load the nginx plugin in the main config file
-rightscale_enable_collectd_plugin "curl_json"
+rightscale_enable_collectd_plugin "exec"
 rightscale_monitor_process node[:php5_fpm][:service_name]
 
 nginx_conf = ::File.join(node[:nginx][:dir], "sites-available", "#{node[:hostname]}.d", "php5-fpm-stats.conf")
@@ -30,20 +30,27 @@ nginx_collectd_conf = ::File.join(node[:rightscale][:collectd_plugin_dir], "php5
 
 listen_str = node[:php5_fpm][:listen] == "socket" ? "unix:#{node[:php5_fpm][:listen_socket]}" : "#{node[:php5_fpm][:listen_ip]}:#{node[:php5_fpm][:listen_port]}"
 
-if node[:platform] == "ubuntu"
-  # This is necessary for collectd's curl_json plugin, but apparently not installed already *shrug*
-  package "libyajl1"
-end
-
 file nginx_conf do
   content <<-EOF
 location /fpm_status {
   access_log off;
   fastcgi_pass #{listen_str};
+  include /etc/nginx/fastcgi_params;
+  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  fastcgi_param SERVER_PROTOCOL  $server_protocol;
 }
   EOF
   notifies :restart, resources(:service => "nginx"), :immediately
   action :create
+end
+
+# Add the php-fpm executable to node[:rightscale][:collectd_lib] /plugins/php-fpm
+directory ::File.join(node[:rightscale][:collectd_lib], 'plugins')
+
+cookbook_file ::File.join(node[:rightscale][:collectd_lib], 'plugins', 'php-fpm') do
+  backup false
+  source "php-fpm.rb"
+  mode 00755
 end
 
 template nginx_collectd_conf do
