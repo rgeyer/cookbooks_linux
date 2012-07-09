@@ -11,11 +11,23 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-default[:app_wordpress][:version_store_path] = "/mnt/wordpress-home/versions"
+default[:app_wordpress][:version_store_path] = "/mnt/storage/wordpress-home/versions"
 
 case node[:app_wordpress][:webserver]
   when "nginx"
     default[:app_wordpress][:content_dir] = node[:nginx][:content_dir]
   when "apache2"
     default[:app_wordpress][:content_dir] = node[:web_apache][:content_dir]
+end
+
+case node[:platform]
+  when "centos", "rhel"
+    case node[:app_wordpress][:webserver]
+      when "nginx"
+        default[:app_wordpress][:content][:username] = "nginx"
+      when "apache"
+        default[:app_wordpress][:content][:username] = "apache"
+    end
+  when "ubuntu", "debian"
+    default[:app_wordpress][:content][:username] = "www-data"
 end

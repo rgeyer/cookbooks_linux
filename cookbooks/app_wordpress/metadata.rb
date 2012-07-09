@@ -22,7 +22,9 @@ recipe "app_wordpress::s3_backup","Backs up the content of the wp-content direct
 recipe "app_wordpress::s3_restore","Installs (if necessary) and restores wordpress for the specified vhost"
 recipe "app_wordpress::enable_continuous_backup","Creates a cron job which will run app_wordpress::s3_backup daily"
 
-supports "ubuntu"
+%w{ubuntu debian centos rhel}.each do |supp|
+  supports supp
+end
 
 attribute "app_wordpress",
   :display_name => "app_wordpress",

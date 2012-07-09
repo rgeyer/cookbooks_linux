@@ -142,6 +142,9 @@
   "suggestions": {
   },
   "platforms": {
+    "rhel": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "centos": ">= 0.0.0",
     "ubuntu": ">= 0.0.0"
   },
   "maintainer": "Ryan J. Geyer",
