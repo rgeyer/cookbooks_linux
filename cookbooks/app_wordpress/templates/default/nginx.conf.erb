@@ -46,6 +46,9 @@ server {
 <% else %>
     fastcgi_pass   <%= node[:php5_fpm][:listen_ip] %>:<%= node[:php5_fpm][:listen_port] %>;
 <% end -%>
+    include /etc/nginx/fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param SERVER_PROTOCOL  $server_protocol;
   }
 
   location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
