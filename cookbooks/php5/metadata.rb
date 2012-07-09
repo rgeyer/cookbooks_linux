@@ -18,6 +18,7 @@ depends "rightscale"
 
 recommends "nginx"
 recommends "web_apache"
+recommends "runit"
 
 attribute "php5",
   :display_name => "php5 hash",

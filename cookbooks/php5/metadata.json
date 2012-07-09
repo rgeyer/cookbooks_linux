@@ -116,6 +116,7 @@
   "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\nUbuntu\n\n= ATTRIBUTES:\n\n= USAGE:\n\n= TODO:\nIncrease max upload size, possibly allowing that to be an input?",
   "version": "0.0.2",
   "recommendations": {
+    "runit": ">= 0.0.0",
     "nginx": ">= 0.0.0",
     "web_apache": ">= 0.0.0"
   },
