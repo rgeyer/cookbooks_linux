@@ -151,7 +151,9 @@ wget -q -O nginx-compatibility.zip http://downloads.wordpress.org/plugin/nginx-c
 unzip nginx-compatibility.zip
 rm -rf nginx-compatibility.zip
       EOF
-      not_if ::File.directory? "#{install_dir}/wp-content/plugins/nginx-compatibility"
+      not_if do
+        ::File.directory? "#{install_dir}/wp-content/plugins/nginx-compatibility"
+      end
     end
   end
 
