@@ -9,7 +9,7 @@ version          "0.0.2"
   supports sup
 end
 
-%w{rightscale rvm}.each do |d|
+%w{rightscale rvm logrotate}.each do |d|
   depends d
 end
 
