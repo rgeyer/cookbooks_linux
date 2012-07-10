@@ -35,12 +35,10 @@ service "postfix" do
   action :enable
 end
 
-# Create the mysql database
-mysql_database "Create postfix configuration database" do
-  host "localhost"
-  username "root"
-  database node[:mail_postfix][:db_name]
-  action :create_db
+execute "Create postfix configuration database" do
+  command "mysqladmin create #{node[:mail_postfix][:db_name]}"
+  action :run
+  only_if "mysql -e \"show database\" | grep #{node[:mail_postfix][:db_name]}"
 end
 
 file tmp_sqlfile do

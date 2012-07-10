@@ -95,11 +95,10 @@ action :install do
     end
   end
 
-  mysql_database "Create database for this wordpress instance" do
-    host "localhost"
-    username "root"
-    database underscored_fqdn
-    action :create_db
+  execute "Create database for this wordpress instance" do
+    command "mysqladmin create #{underscored_fqdn}"
+    action :run
+    only_if "mysql -e \"show database\" | grep #{underscored_fqdn}"
   end
 
   # Grant permissions to the mysql database for this wordpress instance
