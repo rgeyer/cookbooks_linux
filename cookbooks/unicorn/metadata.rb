@@ -5,13 +5,14 @@ description      "Installs/Configures unicorn"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.2"
 
-supports "ubuntu"
+%w{centos rhel ubuntu debian}.each do |sup|
+  supports sup
+end
 
-%w{rightscale}.each do |d|
+%w{rightscale rvm}.each do |d|
   depends d
 end
 
-#recipe "unicorn::enterprise","Installs the unicorn gem for Ruby Enterprise 1.8"
 recipe "unicorn::install_unicorn", "Installs the unicorn gem for the system ruby"
 recipe "unicorn::setup_unicorn", "Configures unicorn"
 

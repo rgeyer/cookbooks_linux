@@ -2,7 +2,7 @@
 # Cookbook Name:: unicorn
 # Recipe:: setup_unicorn
 #
-#  Copyright 2011 Ryan J. Geyer
+#  Copyright 2011-2012 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at

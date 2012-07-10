@@ -2,7 +2,7 @@
 # Cookbook Name:: unicorn
 # Recipe:: setup_unicorn
 #
-#  Copyright 2011 Ryan J. Geyer
+#  Copyright 2011-2012 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
@@ -29,8 +29,13 @@ directory node[:unicorn][:log_path] do
   action :create
 end
 
-template "/etc/logrotate.d/unicorn" do
-  source "logrotate.d.erb"
+# All of the inputs to this are redundant since I'm specifying my own template
+rightscale_logrotate_app "unicorn" do
+  cookbook "unicorn"
+  template "logrotate.d.erb"
+  path ["#{node[:unicorn][:log_path]}/*.log" ]
+  frequency "daily"
+  rotate 52
 end
 
 rightscale_marker :end

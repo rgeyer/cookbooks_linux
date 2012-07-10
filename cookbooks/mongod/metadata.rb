@@ -5,6 +5,8 @@ description      "Installs/Configures mongodb"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
+depends "rightscale"
+
 supports "ubuntu"
 
 recipe "mongod::apt", "Installs mongodb from the net10 official packages"
