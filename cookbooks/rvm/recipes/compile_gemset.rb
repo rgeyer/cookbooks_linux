@@ -18,7 +18,7 @@
 gemset_file = "/tmp/gemset.gems"
 gemset_dir = ::File.join(node[:rvm][:install_path], "gems", "#{node[:rvm][:compile_gemset][:ruby]}")
 
-include_recipe "rvm::default"
+include_recipe "rvm::install_rvm"
 
 rjg_aws_s3 "Download gemset file" do
   access_key_id node[:aws][:access_key_id]
