@@ -26,7 +26,7 @@ TIMEOUT=${TIMEOUT-60}
 APP_ROOT=<%= @app_path %>
 PID=/var/run/unicorn/<%= @app_name %>.pid
 <% if(node[:rvm][:bin_path]) -%>
-CMD="rvm exec unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
+CMD="<%= node[:rvm][:bin_path] %> exec unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
 <% else -%>
 CMD="unicorn_rails -c /etc/unicorn/<%= @app_name %>.rb -D"
 <% end -%>
