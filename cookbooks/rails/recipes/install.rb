@@ -21,10 +21,10 @@ rightscale_marker :begin
 
 gem_package "rails" do
   version node[:rails][:version] if node[:rails][:version]
-  gem_binary "/usr/local/bin/gem" if ::File.exists?("/usr/local/bin/ree-version")
 end
 
 template "/etc/profile.d/rails.sh" do
+  backup false
   source "rails-profile.d.sh.erb"
 end
 
