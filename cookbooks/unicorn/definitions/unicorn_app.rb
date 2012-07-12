@@ -11,7 +11,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-define :unicorn_app, :app_name => nil, :app_path => nil, :worker_timeout => 60 do
+define :unicorn_app, :app_name => nil, :app_path => nil, :worker_timeout => 60, :unicorn_rails_bin => 'unicorn_rails' do
   template "/etc/unicorn/#{params[:app_name]}.rb" do
     source params[:template] || "unicorn.rb.erb"
     cookbook params[:cookbook] || "unicorn"
