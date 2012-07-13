@@ -2,7 +2,7 @@
 # Cookbook Name:: mongod
 # Recipe:: apt
 #
-#  Copyright 2011 Ryan J. Geyer
+#  Copyright 2011-2012 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
@@ -14,6 +14,8 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+
+rightscale_marker :begin
 
 # If mongo is not yet installed, but the data dir exists, and there is a lock file, delete it.
 # These conditions will occur only if restoring data from a snapshot, and probably needs some more thought and a more elegant solution
@@ -80,3 +82,4 @@ template "/etc/logrotate.d/mongod" do
   variables(:logfile => node[:mongod][:logfile])
 end
 
+rightscale_marker :end

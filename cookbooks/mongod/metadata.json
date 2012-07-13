@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "rightscale": ">= 0.0.0"
   },
   "name": "mongod",
   "maintainer_email": "me@ryangeyer.com",

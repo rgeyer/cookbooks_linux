@@ -1,4 +1,4 @@
-#  Copyright 2011 Ryan J. Geyer
+#  Copyright 2011-2012 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
@@ -11,7 +11,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-define :unicorn_app, :app_name => nil, :app_path => nil, :worker_timeout => 60 do
+define :unicorn_app, :app_name => nil, :app_path => nil, :worker_timeout => 60, :unicorn_rails_bin => 'unicorn_rails' do
   template "/etc/unicorn/#{params[:app_name]}.rb" do
     source params[:template] || "unicorn.rb.erb"
     cookbook params[:cookbook] || "unicorn"

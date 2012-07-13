@@ -5,7 +5,11 @@ description      "Installs/Configures rails"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-supports "ubuntu"
+%w{centos rhel ubuntu debian}.each do |sup|
+  supports sup
+end
+
+depends "rightscale"
 
 recipe "rails::install","Installs the specified version of rails"
 

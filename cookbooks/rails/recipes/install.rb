@@ -2,7 +2,7 @@
 # Cookbook Name:: rails
 # Recipe:: default
 #
-#  Copyright 2011 Ryan J. Geyer
+#  Copyright 2011-2012 Ryan J. Geyer
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
@@ -15,13 +15,17 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-include_recipe "rubygems::default"
+rightscale_marker :begin
+
+# include_recipe "rubygems::default"
 
 gem_package "rails" do
   version node[:rails][:version] if node[:rails][:version]
-  gem_binary "/usr/local/bin/gem" if ::File.exists?("/usr/local/bin/ree-version")
 end
 
 template "/etc/profile.d/rails.sh" do
+  backup false
   source "rails-profile.d.sh.erb"
 end
+
+rightscale_marker :end

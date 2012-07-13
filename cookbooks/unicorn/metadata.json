@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "rightscale": ">= 0.0.0"
+    "logrotate": ">= 0.0.0",
+    "rightscale": ">= 0.0.0",
+    "rvm": ">= 0.0.0"
   },
   "name": "unicorn",
   "maintainer_email": "me@ryangeyer.com",
@@ -37,6 +39,9 @@
   "suggestions": {
   },
   "platforms": {
+    "rhel": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "centos": ">= 0.0.0",
     "ubuntu": ">= 0.0.0"
   },
   "maintainer": "Ryan J. Geyer",
