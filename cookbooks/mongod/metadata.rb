@@ -5,10 +5,15 @@ description      "Installs/Configures mongodb"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-depends "rightscale"
+%{rightscale block_device}.each do |dep|
+  depends dep
+end
 
-supports "ubuntu"
+%{ubuntu debian rhel centos}.each do |sup|
+  supports sup
+end
 
+recipe "mongod::default", "Sets up defaults for the mongod cookbook, and stores a resource to use for locking/unlocking while backing up with block_device"
 recipe "mongod::apt", "Installs mongodb from the net10 official packages"
 recipe "mongod::lock_for_backup", "Locks the mongo server from writes so that a consistent backup can be made"
 recipe "mongod::unlock_for_backup", "Unlocks the mongo server for writes after a backup has been completed"

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "rightscale": ">= 0.0.0"
+    "rightscale block_device": ">= 0.0.0"
   },
   "name": "mongod",
   "maintainer_email": "me@ryangeyer.com",
@@ -66,7 +66,7 @@
   "suggestions": {
   },
   "platforms": {
-    "ubuntu": ">= 0.0.0"
+    "ubuntu debian rhel centos": ">= 0.0.0"
   },
   "maintainer": "Ryan J. Geyer",
   "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
@@ -76,6 +76,7 @@
   "recipes": {
     "mongod::apt": "Installs mongodb from the net10 official packages",
     "mongod::lock_for_backup": "Locks the mongo server from writes so that a consistent backup can be made",
+    "mongod::default": "Sets up defaults for the mongod cookbook, and stores a resource to use for locking/unlocking while backing up with block_device",
     "mongod::unlock_for_backup": "Unlocks the mongo server for writes after a backup has been completed"
   },
   "groupings": {

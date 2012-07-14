@@ -21,3 +21,10 @@ end
 
 default[:mongod][:port] = "27017"
 default[:mongod][:bind_ip] = "0.0.0.0"
+
+case node[:platform]
+  when "centos","rhel"
+    default[:mongod][:packages] = ["mongodb-10gen", "mongodb-10gen-server"]
+  else
+    default[:mongod][:packages] = ["mongodb-10gen"]
+end

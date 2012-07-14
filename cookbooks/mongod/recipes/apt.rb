@@ -29,24 +29,34 @@ service "mongodb" do
   action :nothing
 end
 
-execute "apt-get update" do
-  action :nothing
+case node[:platform]
+  when "ubuntu","debian"
+    execute "apt-get update" do
+      action :nothing
+    end
+
+    execute "add 10gen apt key" do
+      command "apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10"
+      action :nothing
+    end
+
+    template "/etc/apt/sources.list.d/mongodb.list" do
+      owner "root"
+      mode "0644"
+      source "mongodb.list.erb"
+      notifies :run, resources(:execute => "add 10gen apt key"), :immediately
+      notifies :run, resources(:execute => "apt-get update"), :immediately
+    end
+  when "centos","rhel"
+    template "/etc/yum.repos.d/10gen.repo" do
+      backup false
+      source "10gen.repo.erb"
+    end
 end
 
-execute "add 10gen apt key" do
-  command "apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10"
-  action :nothing
+node[:mongod][:packages].each do |pkg|
+  package pkg
 end
-
-template "/etc/apt/sources.list.d/mongodb.list" do
-  owner "root"
-  mode "0644"
-  source "mongodb.list.erb"
-  notifies :run, resources(:execute => "add 10gen apt key"), :immediately
-  notifies :run, resources(:execute => "apt-get update"), :immediately
-end
-
-package "mongodb-stable"
 
 # All installed, and we could leave it at that, but lets do some configuration
 directory node[:mongod][:datadir] do
