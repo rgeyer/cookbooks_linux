@@ -5,11 +5,11 @@ description      "Installs/Configures mongodb"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-%{rightscale block_device}.each do |dep|
+%w{rightscale block_device}.each do |dep|
   depends dep
 end
 
-%{ubuntu debian rhel centos}.each do |sup|
+%w{ubuntu debian rhel centos}.each do |sup|
   supports sup
 end
 
