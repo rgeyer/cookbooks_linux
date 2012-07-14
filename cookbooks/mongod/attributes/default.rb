@@ -24,7 +24,11 @@ default[:mongod][:bind_ip] = "0.0.0.0"
 
 case node[:platform]
   when "centos","rhel"
-    default[:mongod][:packages] = ["mongodb-10gen", "mongodb-10gen-server"]
+    default[:mongod][:packages] = ["mongo-10gen", "mongo-10gen-server"]
+    default[:mongod][:username] = "mongod"
+    default[:mongod][:group]    = "mongod"
   else
     default[:mongod][:packages] = ["mongodb-10gen"]
+    default[:mongod][:username] = "mongodb"
+    default[:mongod][:group]    = "mongodb"
 end

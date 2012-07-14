@@ -20,16 +20,16 @@ m = mongod "mongod" do
   action :nothing
 end
 
-node['block_device']['devices']['device1']['backup']['before']['mongod'] = Hash.new
-node['block_device']['devices']['device1']['backup']['before']['mongod']['resource'] = Hash.new
-node['block_device']['devices']['device1']['backup']['before']['mongod']['resource']['type'] = 'mongod'
-node['block_device']['devices']['device1']['backup']['before']['mongod']['resource']['name'] = 'mongod'
-node['block_device']['devices']['device1']['backup']['before']['mongod']['resource']['action'] = 'lock_for_backup'
-node['block_device']['devices']['device1']['backup']['before']['mongod']['resource']['object'] = m
+node[:block_device][:devices][:device1][:backup][:before]['mongod'] = Hash.new
+node[:block_device][:devices][:device1][:backup][:before]['mongod']['resource'] = Hash.new
+node[:block_device][:devices][:device1][:backup][:before]['mongod']['resource']['type'] = 'mongod'
+node[:block_device][:devices][:device1][:backup][:before]['mongod']['resource']['name'] = 'mongod'
+node[:block_device][:devices][:device1][:backup][:before]['mongod']['resource']['action'] = 'lock_for_backup'
+node[:block_device][:devices][:device1][:backup][:before]['mongod']['resource']['object'] = m
 
-node['block_device']['devices']['device1']['backup']['after']['mongod'] = Hash.new
-node['block_device']['devices']['device1']['backup']['after']['mongod']['resource'] = Hash.new
-node['block_device']['devices']['device1']['backup']['after']['mongod']['resource']['type'] = 'mongod'
-node['block_device']['devices']['device1']['backup']['after']['mongod']['resource']['name'] = 'mongod'
-node['block_device']['devices']['device1']['backup']['after']['mongod']['resource']['action'] = 'unlock_for_backup'
-node['block_device']['devices']['device1']['backup']['after']['mongod']['resource']['object'] = m
+node[:block_device][:devices][:device1][:backup][:after]['mongod'] = Hash.new
+node[:block_device][:devices][:device1][:backup][:after]['mongod']['resource'] = Hash.new
+node[:block_device][:devices][:device1][:backup][:after]['mongod']['resource']['type'] = 'mongod'
+node[:block_device][:devices][:device1][:backup][:after]['mongod']['resource']['name'] = 'mongod'
+node[:block_device][:devices][:device1][:backup][:after]['mongod']['resource']['action'] = 'unlock_for_backup'
+node[:block_device][:devices][:device1][:backup][:after]['mongod']['resource']['object'] = m
