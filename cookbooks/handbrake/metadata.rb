@@ -5,7 +5,9 @@ description      "Installs/Configures handbrake"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"
 
-supports 'ubuntu'
+%w{ubuntu debian centos rhel}.each do |sup|
+  supports sup
+end
 
 %w{rightscale apt}.each do |dep|
   depends dep

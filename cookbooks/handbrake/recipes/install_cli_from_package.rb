@@ -33,10 +33,16 @@ case node[:platform]
       ignore_failure true
       action :run
     end
+
+    package 'handbrake-cli'
+
+  when "centos", "rhel"
+    package "handbrake-cli" do
+      source ::File.join(::File.dirname(__FILE__), "..", "files", "default", 'handbrake-cli-0.9.4-1mud2010.1.x86_64.rpm')
+      action :install
+    end
   else
     raise "handbrake::install_cli_from_package does not support your operating system #{node[:platform]}"
 end
-
-package 'handbrake-cli'
 
 rightscale_marker :end

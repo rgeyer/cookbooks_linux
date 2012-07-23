@@ -1,33 +1,36 @@
 {
-  "dependencies": {
-    "apt": ">= 0.0.0",
-    "rightscale": ">= 0.0.0"
-  },
   "name": "handbrake",
+  "description": "Installs/Configures handbrake",
+  "long_description": "= DESCRIPTION:\n\nInstalls and configures the commandline HandBrake tools for video transcoding\n\nhttp://handbrake.fr/\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "maintainer": "Ryan J. Geyer",
   "maintainer_email": "me@ryangeyer.com",
-  "attributes": {
-  },
   "license": "All rights reserved",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "rhel": ">= 0.0.0"
+  },
+  "dependencies": {
+    "rightscale": ">= 0.0.0",
+    "apt": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
   "suggestions": {
   },
-  "platforms": {
-    "ubuntu": ">= 0.0.0"
+  "conflicting": {
   },
-  "maintainer": "Ryan J. Geyer",
-  "long_description": "= DESCRIPTION:\n\nInstalls and configures the commandline HandBrake tools for video transcoding\n\nhttp://handbrake.fr/\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "version": "0.0.1",
-  "recommendations": {
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
   },
   "recipes": {
     "handbrake::install_cli_from_package": "Installs the HandBrakeCLI from packages"
   },
-  "groupings": {
-  },
-  "conflicting": {
-  },
-  "replacing": {
-  },
-  "description": "Installs/Configures handbrake",
-  "providing": {
-  }
+  "version": "0.0.1"
 }
