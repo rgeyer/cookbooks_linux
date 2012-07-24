@@ -102,6 +102,8 @@ template File.join(node.rightscale.collectd_plugin_dir, 'postfix.conf') do
   notifies :restart, resources(:service => "collectd"), :immediately
 end
 
+sys_firewall 25 # SMTP
+
 # For when we support local delivery, currently targeting dovecot
 # Add the virtual mail group & user
 #group "vmail" do
