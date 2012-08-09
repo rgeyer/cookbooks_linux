@@ -22,7 +22,7 @@ hypervisor_hash = {
   "2.2.x" => {
     "vmware"    => "systemvm.ova",
     "kvm"       => "systemvm.qcow2.bz2",
-    "xenserver" => "systevm.vhd.bz2"
+    "xenserver" => "systemvm.vhd.bz2"
   },
   "3.0.x" => {
     "vmware"    => "acton-systemvm-02062012.ova",
