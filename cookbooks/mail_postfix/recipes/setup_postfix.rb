@@ -28,7 +28,11 @@ include_recipe "rightscale::setup_monitoring"
 tmp_sqlfile = "/tmp/postfix.sql"
 
 node[:mail_postfix][:packages].each do |pkg|
-  package pkg
+  package pkg do
+    if node[:platform] == 'centos'
+      options "--enablerepo=centosplus"
+    end
+  end
 end
 
 service "postfix" do
