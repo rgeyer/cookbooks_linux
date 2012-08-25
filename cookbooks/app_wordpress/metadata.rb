@@ -5,13 +5,9 @@ description      "Installs/Configures app_wordpress"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.2"
 
-depends "rjg_aws"
-depends "db_mysql"
-depends "mysql"
-depends "rjg_utils"
-
-recommends "web_apache"
-recommends "nginx"
+%w{rjg_aws db_mysql mysql rjg_utils web_apache nginx}.each do |dep|
+  depends dep
+end
 
 provides "app_wordpress[site]"
 
