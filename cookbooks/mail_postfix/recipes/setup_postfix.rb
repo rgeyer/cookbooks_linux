@@ -28,11 +28,9 @@ include_recipe "rightscale::setup_monitoring"
 tmp_sqlfile = "/tmp/postfix.sql"
 
 if node['platform'] == 'centos'
-  # This is a blatant hack.  Depending on the chef version yum_package doesn't account for
-  # repos enabled by --enablerepo when looking at the list of available packages, thus it
-  # fails to install properly.
-  bash "Enable CentOSPlus yum repo" do
-    code "sed -i s/enabled=0/enabled=1/g /etc/yum.repos.d/CentOS-centosplus.repo"
+  package "postfix" do
+    version "2.3.3-2.3.0.1.el5.centos.mysql_pgsql"
+    options "--enablerepo=centosplus"
   end
 end
 
