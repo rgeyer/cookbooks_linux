@@ -8,4 +8,5 @@ Ubuntu
 = USAGE:
 
 = TODO:
-Increase max upload size, possibly allowing that to be an input?
+* Increase max upload size, possibly allowing that to be an input?
+* The inputs/attributes are broken.. I have a mix of php5 and php5-fpm node attributes, need to standardize

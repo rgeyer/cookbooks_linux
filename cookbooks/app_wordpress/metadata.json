@@ -17,7 +17,8 @@
     "mysql": ">= 0.0.0",
     "rjg_utils": ">= 0.0.0",
     "web_apache": ">= 0.0.0",
-    "nginx": ">= 0.0.0"
+    "nginx": ">= 0.0.0",
+    "php5": ">= 0.0.0"
   },
   "recommendations": {
   },
