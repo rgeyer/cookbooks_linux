@@ -29,9 +29,7 @@ tmp_sqlfile = "/tmp/postfix.sql"
 
 node[:mail_postfix][:packages].each do |pkg|
   package pkg do
-    if node[:platform] == 'centos'
-      options "--enablerepo=centosplus"
-    end
+    options "--enablerepo=centosplus" if node[:platform] == "centos"
   end
 end
 
