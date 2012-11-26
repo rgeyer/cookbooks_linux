@@ -29,8 +29,14 @@ tmp_sqlfile = "/tmp/postfix.sql"
 
 if node['platform'] == 'centos'
   package "postfix" do
-    version "2.3.3-2.3.0.1.el5.centos.mysql_pgsql"
+    version "2.3.3-2.3.0.1.el5.centos.mysql_pgsql" if node['platform_version'] == '5.8'
     options "--enablerepo=centosplus"
+  end
+
+  if node['platform_version'].to_f >= 6.0
+    template '/etc/ssmtp/ssmtp.conf' do
+      source 'ssmtp.conf.erb'
+    end
   end
 end
 
