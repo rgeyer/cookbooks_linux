@@ -20,21 +20,6 @@ recipe "cloudstack::setup_single_node_management_server", "Sets up a single node
 recipe "cloudstack::do_prepare_system_vm_template","Mounts the secondary storage volume using NFS and downloads the system VM for the specified hypervisors"
 recipe "cloudstack::setup_xenserver","Installs CloudStack xenserver support on a xenserver hypervisor node"
 
-attribute "cloudstack/csmanage/version",
-  :display_name => "CloudStack Management Version",
-  :description => "The versin of CloudStack to install",
-  :required => "required",
-  :category => "CloudStack Management Server",
-  :choice => ["2.2.x", "3.0.x"],
-  :recipes => ["cloudstack::setup_management_server","cloudstack::setup_single_node_management_server"]
-
-attribute "cloudstack/csmanage/package_url",
-  :display_name => "CloudStack Management Install Package URL",
-  :description => "The full URL from which to download the CloudStack Management Server Installer",
-  :required => "required",
-  :category => "CloudStack Management Server",
-  :recipes => ["cloudstack::setup_management_server","cloudstack::setup_single_node_management_server", "cloudstack::install_cloudstack"]
-
 attribute "cloudstack/csmanage/dbuser",
   :display_name => "CloudStack Management Database Username",
   :description => "The database username for the CloudStack Management Server DB connection",

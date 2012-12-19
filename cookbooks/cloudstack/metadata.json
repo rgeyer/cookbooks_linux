@@ -1,245 +1,213 @@
 {
+  "name": "cloudstack",
+  "description": "Installs/Configures cloudstack",
+  "long_description": "= DESCRIPTION:\n\nDownloads and unzips the CloudStack installation files, and provides tools for setting up a Single Node Management Server or installing the CloudStack agent on an infrastructure node.\n\nCurrently this cookbook is geared toward installing a single node (all in one) Management Server.  Later enhancements should include installation of the CloudStack agent and other Management Server configurations.\n\n= REQUIREMENTS:\n\nCurrently assumes that MySQL is already installed and configured.  This is intended to be used as additional recipes on a cloned version of the RightScale MySQL Database Manager - (http://www.rightscale.com/library/server_templates/Database-Manager-for-MySQL-5-1/31819) ServerTemplate.\n\n= ATTRIBUTES:\n\n* `node[:cloudstack][:package_url]` - The Download URL for the CloudStack package, defaults to \"http://sourceforge.net/projects/cloudstack/files/Cloudstack%202.2/2.2.13/CloudStack-2.2.13-1-rhel5.tar.gz\".\n* `node[:cloudstack][:install_dir]` - The directory where the CloudStack package will be uzipped\n\n= RECIPES:\n\n= USAGE:\n\n* Place cloudstack::install_cloudstack into your runlist to download and unzip the CloudStack installation files\n* Place cloudstack::setup_management_server into your runlist to configure the CloudStack Management Server in a single node configuration (Requires MySQL preinstalled per REQUIREMENTS above).\n\n== Single-Node Management Server\n* Include the following recipes in your runlist (or RightScale \"boot\" phase in ServerTemplate)\n  * db::default\n  * db_mysql::default\n  * db::install_client\n  * db::install_server\n  * db::setup_privileges_admin\n  * db::setup_privileges_application\n  * db::setup_monitoring\n  * openvpn::default\n  * cloudstack::setup_single_node_management_server\n* Make sure to set the following attributes\n  * cloudstack/csmanage/vpn/local = env:PRIVATE_IP\n* Fetch the OpenVPN Client configuration and keys thusly\n  * scp root@<ip of management server>:/etc/openvpn/keys/remote.tar.gz .\n* Connect your network to the management server OpenVPN server using the client config downloaded in the previous step\n* Complete configuration of your CloudStack managed private cloud by going to `http://<ip or hostname of instance>:8080/client`\n\n\n= TODO:\n\n* Create a recipe for setting up a management server in a multi node configuration\n* Create a recipe for installing the CloudStack agent\n* Self sign an SSL cert and protect the endpoint in single-node configuration\n\n= LICENSE AND AUTHOR:\n\nAuthor:: Ryan J. Geyer <me@ryangeyer.com>\n\nCopyright 2012 Ryan J. Geyer\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+  "maintainer": "Ryan J. Geyer",
+  "maintainer_email": "me@ryangeyer.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "centos": ">= 0.0.0"
+  },
   "dependencies": {
     "rightscale": ">= 0.0.0",
     "sys_firewall": ">= 0.0.0"
   },
-  "name": "cloudstack",
-  "maintainer_email": "me@ryangeyer.com",
-  "attributes": {
-    "cloudstack/csmanage/system_vm/hypervisors": {
-      "required": "required",
-      "category": "CloudStack Management Server System VM",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "array",
-      "recipes": [
-        "cloudstack::do_prepare_system_vm_template"
-      ],
-      "description": "A list of hypervisors to fetch a system vm template for. Possible values are (kvm, vmware, xenserver)",
-      "display_name": "CloudStack Management System VM Hypervisors"
-    },
-    "cloudstack/csmanage/vpn/server/netmask": {
-      "required": "optional",
-      "category": "CloudStack Management Server VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "255.255.255.0",
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The ip netmask for OpenVPN to use",
-      "display_name": "CloudStack Management VPN Netmask"
-    },
-    "cloudstack/csmanage/dbuser": {
-      "required": "required",
-      "category": "CloudStack Management Server",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_management_server",
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The database username for the CloudStack Management Server DB connection",
-      "display_name": "CloudStack Management Database Username"
-    },
-    "cloudstack/csmanage/package_url": {
-      "required": "required",
-      "category": "CloudStack Management Server",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_management_server",
-        "cloudstack::setup_single_node_management_server",
-        "cloudstack::install_cloudstack"
-      ],
-      "description": "The full URL from which to download the CloudStack Management Server Installer",
-      "display_name": "CloudStack Management Install Package URL"
-    },
-    "cloudstack/csmanage/dbhost": {
-      "required": "required",
-      "category": "CloudStack Management Server",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_management_server",
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The database hostname for the CloudStack Management Server DB connection",
-      "display_name": "CloudStack Management Database Hostname"
-    },
-    "cloudstack/csmanage/dbpass": {
-      "required": "required",
-      "category": "CloudStack Management Server",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_management_server",
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The database password for the CloudStack Management Server DB connection",
-      "display_name": "CloudStack Management Database Password"
-    },
-    "cloudstack/csmanage/vpn/server/subnet": {
-      "required": "optional",
-      "category": "CloudStack Management Server VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "172.16.1.0",
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The ip subnet for OpenVPN to use",
-      "display_name": "CloudStack Management VPN Subnet"
-    },
-    "cloudstack/csmanage/system_vm/nfs_path": {
-      "required": "required",
-      "category": "CloudStack Management Server System VM",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::do_prepare_system_vm_template"
-      ],
-      "description": "The filesystem path to secondary storage on the remote NFS server containing secondary storage",
-      "display_name": "CloudStack Management System VM NFS Path"
-    },
-    "cloudstack/csmanage/vpn/client/netmask": {
-      "required": "required",
-      "category": "CloudStack Management Server VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "Used to create the client OpenVPN config files, this should be set to the netmask of the local network which will connect to this server.  Example: 255.255.255.0",
-      "display_name": "CloudStack Management VPN Client Netmask"
-    },
-    "cloudstack/csmanage/vpn/client/subnet": {
-      "required": "required",
-      "category": "CloudStack Management Server VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "Used to create the client OpenVPN config files, this should be set to the subnet of the local network which will connect to this server.  Example: 172.16.0.0",
-      "display_name": "CloudStack Management VPN Client Subnet"
-    },
-    "cloudstack/csmanage/system_vm/nfs_hostname": {
-      "required": "required",
-      "category": "CloudStack Management Server System VM",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::do_prepare_system_vm_template"
-      ],
-      "description": "The hostname of the remote NFS server containing secondary storage",
-      "display_name": "CloudStack Management System VM NFS Hostname"
-    },
-    "cloudstack/csmanage/vpn/server/hostname": {
-      "required": "required",
-      "category": "CloudStack Management Server VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "Used to create the client OpenVPN config files, this should be set to the remotely accessible hostname or ip address of the server",
-      "display_name": "CloudStack Management VPN Server Hostname"
-    },
-    "cloudstack/csmanage/vpn/listen_ip": {
-      "required": "required",
-      "category": "CloudStack Management Server VPN",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The ip address for OpenVPN to listen on",
-      "display_name": "CloudStack Management VPN ListenIP"
-    },
-    "cloudstack/csmanage/version": {
-      "required": "required",
-      "category": "CloudStack Management Server",
-      "calculated": false,
-      "choice": [
-        "2.2.x",
-        "3.0.x"
-      ],
-      "type": "string",
-      "recipes": [
-        "cloudstack::setup_management_server",
-        "cloudstack::setup_single_node_management_server"
-      ],
-      "description": "The versin of CloudStack to install",
-      "display_name": "CloudStack Management Version"
-    }
-  },
-  "license": "Apache 2.0",
-  "suggestions": {
-  },
-  "platforms": {
-    "centos": ">= 0.0.0"
-  },
-  "maintainer": "Ryan J. Geyer",
-  "long_description": "= DESCRIPTION:\n\nDownloads and unzips the CloudStack installation files, and provides tools for setting up a Single Node Management Server or installing the CloudStack agent on an infrastructure node.\n\nCurrently this cookbook is geared toward installing a single node (all in one) Management Server.  Later enhancements should include installation of the CloudStack agent and other Management Server configurations.\n\n= REQUIREMENTS:\n\nCurrently assumes that MySQL is already installed and configured.  This is intended to be used as additional recipes on a cloned version of the RightScale MySQL Database Manager - (http://www.rightscale.com/library/server_templates/Database-Manager-for-MySQL-5-1/31819) ServerTemplate.\n\n= ATTRIBUTES:\n\n* `node[:cloudstack][:package_url]` - The Download URL for the CloudStack package, defaults to \"http://sourceforge.net/projects/cloudstack/files/Cloudstack%202.2/2.2.13/CloudStack-2.2.13-1-rhel5.tar.gz\".\n* `node[:cloudstack][:install_dir]` - The directory where the CloudStack package will be uzipped\n\n= RECIPES:\n\n= USAGE:\n\n* Place cloudstack::install_cloudstack into your runlist to download and unzip the CloudStack installation files\n* Place cloudstack::setup_management_server into your runlist to configure the CloudStack Management Server in a single node configuration (Requires MySQL preinstalled per REQUIREMENTS above).\n\n== Single-Node Management Server\n* Include the following recipes in your runlist (or RightScale \"boot\" phase in ServerTemplate)\n  * db::default\n  * db_mysql::default\n  * db::install_client\n  * db::install_server\n  * db::setup_privileges_admin\n  * db::setup_privileges_application\n  * db::setup_monitoring\n  * openvpn::default\n  * cloudstack::setup_single_node_management_server\n* Make sure to set the following attributes\n  * cloudstack/csmanage/vpn/local = env:PRIVATE_IP\n* Fetch the OpenVPN Client configuration and keys thusly\n  * scp root@<ip of management server>:/etc/openvpn/keys/remote.tar.gz .\n* Connect your network to the management server OpenVPN server using the client config downloaded in the previous step\n* Complete configuration of your CloudStack managed private cloud by going to `http://<ip or hostname of instance>:8080/client`\n\n\n= TODO:\n\n* Create a recipe for setting up a management server in a multi node configuration\n* Create a recipe for installing the CloudStack agent\n* Self sign an SSL cert and protect the endpoint in single-node configuration\n\n= LICENSE AND AUTHOR:\n\nAuthor:: Ryan J. Geyer <me@ryangeyer.com>\n\nCopyright 2012 Ryan J. Geyer\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
-  "version": "0.0.1",
   "recommendations": {
-    "openvpn": ">= 0.0.0",
+    "db": ">= 0.0.0",
     "db_mysql": ">= 0.0.0",
-    "db": ">= 0.0.0"
+    "openvpn": ">= 0.0.0"
   },
-  "recipes": {
-    "cloudstack::install_cloudstack": "Installs the CloudStack binary files used for setting up the CloudStack agent and management server",
-    "cloudstack::do_prepare_system_vm_template": "Mounts the secondary storage volume using NFS and downloads the system VM for the specified hypervisors",
-    "cloudstack::setup_single_node_management_server": "Sets up a single node CloudStack management server",
-    "cloudstack::setup_xenserver": "Installs CloudStack xenserver support on a xenserver hypervisor node",
-    "cloudstack::setup_management_server": "Sets up the CloudStack management server software"
-  },
-  "groupings": {
+  "suggestions": {
   },
   "conflicting": {
   },
+  "providing": {
+  },
   "replacing": {
   },
-  "description": "Installs/Configures cloudstack",
-  "providing": {
-  }
+  "attributes": {
+    "cloudstack/csmanage/dbuser": {
+      "display_name": "CloudStack Management Database Username",
+      "description": "The database username for the CloudStack Management Server DB connection",
+      "required": "required",
+      "category": "CloudStack Management Server",
+      "recipes": [
+        "cloudstack::setup_management_server",
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/dbpass": {
+      "display_name": "CloudStack Management Database Password",
+      "description": "The database password for the CloudStack Management Server DB connection",
+      "required": "required",
+      "category": "CloudStack Management Server",
+      "recipes": [
+        "cloudstack::setup_management_server",
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/dbhost": {
+      "display_name": "CloudStack Management Database Hostname",
+      "description": "The database hostname for the CloudStack Management Server DB connection",
+      "required": "required",
+      "category": "CloudStack Management Server",
+      "recipes": [
+        "cloudstack::setup_management_server",
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/vpn/listen_ip": {
+      "display_name": "CloudStack Management VPN ListenIP",
+      "description": "The ip address for OpenVPN to listen on",
+      "required": "required",
+      "category": "CloudStack Management Server VPN",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/vpn/server/subnet": {
+      "display_name": "CloudStack Management VPN Subnet",
+      "description": "The ip subnet for OpenVPN to use",
+      "required": "optional",
+      "default": "172.16.1.0",
+      "category": "CloudStack Management Server VPN",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/vpn/server/netmask": {
+      "display_name": "CloudStack Management VPN Netmask",
+      "description": "The ip netmask for OpenVPN to use",
+      "required": "optional",
+      "default": "255.255.255.0",
+      "category": "CloudStack Management Server VPN",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/vpn/server/hostname": {
+      "display_name": "CloudStack Management VPN Server Hostname",
+      "description": "Used to create the client OpenVPN config files, this should be set to the remotely accessible hostname or ip address of the server",
+      "required": "required",
+      "category": "CloudStack Management Server VPN",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/vpn/client/subnet": {
+      "display_name": "CloudStack Management VPN Client Subnet",
+      "description": "Used to create the client OpenVPN config files, this should be set to the subnet of the local network which will connect to this server.  Example: 172.16.0.0",
+      "required": "required",
+      "category": "CloudStack Management Server VPN",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/vpn/client/netmask": {
+      "display_name": "CloudStack Management VPN Client Netmask",
+      "description": "Used to create the client OpenVPN config files, this should be set to the netmask of the local network which will connect to this server.  Example: 255.255.255.0",
+      "required": "required",
+      "category": "CloudStack Management Server VPN",
+      "recipes": [
+        "cloudstack::setup_single_node_management_server"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/system_vm/nfs_hostname": {
+      "display_name": "CloudStack Management System VM NFS Hostname",
+      "description": "The hostname of the remote NFS server containing secondary storage",
+      "required": "required",
+      "category": "CloudStack Management Server System VM",
+      "recipes": [
+        "cloudstack::do_prepare_system_vm_template"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/system_vm/nfs_path": {
+      "display_name": "CloudStack Management System VM NFS Path",
+      "description": "The filesystem path to secondary storage on the remote NFS server containing secondary storage",
+      "required": "required",
+      "category": "CloudStack Management Server System VM",
+      "recipes": [
+        "cloudstack::do_prepare_system_vm_template"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "cloudstack/csmanage/system_vm/hypervisors": {
+      "display_name": "CloudStack Management System VM Hypervisors",
+      "description": "A list of hypervisors to fetch a system vm template for. Possible values are (kvm, vmware, xenserver)",
+      "type": "array",
+      "required": "required",
+      "category": "CloudStack Management Server System VM",
+      "recipes": [
+        "cloudstack::do_prepare_system_vm_template"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "cloudstack::install_cloudstack": "Installs the CloudStack binary files used for setting up the CloudStack agent and management server",
+    "cloudstack::setup_management_server": "Sets up the CloudStack management server software",
+    "cloudstack::setup_single_node_management_server": "Sets up a single node CloudStack management server",
+    "cloudstack::do_prepare_system_vm_template": "Mounts the secondary storage volume using NFS and downloads the system VM for the specified hypervisors",
+    "cloudstack::setup_xenserver": "Installs CloudStack xenserver support on a xenserver hypervisor node"
+  },
+  "version": "0.0.1"
 }
