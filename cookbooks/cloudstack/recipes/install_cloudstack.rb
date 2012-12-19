@@ -17,27 +17,16 @@
 
 rightscale_marker :begin
 
-cloudstack_tarfile = ::File.join(ENV['TMPDIR'] || '/tmp', 'cloudstack.tar.gz')
-
-file cloudstack_tarfile do
+t = template "/etc/yum.repos.d/cloudstack.repo" do
   backup false
+  source "cloudstack.repo.erb"
   action :nothing
 end
 
-directory node[:cloudstack][:install_dir] do
-  action :create
-end
+t.run_action(:create)
 
-unless ::File.exists?(::File.join("#{node[:cloudstack][:install_dir]}", "install.sh"))
-  # Download/unzip CloudStack file
-  remote_file cloudstack_tarfile do
-    source node[:cloudstack][:csmanage][:package_url]
-  end
+`rpm --import http://cloudstack.apt-get.eu/release.asc`
 
-  bash "Unzip CloudStack File" do
-    code "tar -zxf #{cloudstack_tarfile} -C #{node[:cloudstack][:install_dir]} --strip-components=1"
-    notifies :delete, "file[#{cloudstack_tarfile}]", :immediately
-  end
-end
+package 'cloud-client'
 
 rightscale_marker :end

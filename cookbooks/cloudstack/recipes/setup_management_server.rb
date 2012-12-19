@@ -31,49 +31,21 @@ if !::File.exists?("/etc/selinux/config")
     owner "root"
     group "root"
     action :create
-  end  
-  
+  end
+
   # Should probably use the opscode selinux cookbook. Maybe later
   cookbook_file "/etc/selinux/config" do
-    source "config"    
-  end
-end
-
-unless ::File.directory?("/etc/cloud/management")
-  csmanager_answers = ::File.join(ENV['TMPDIR'] || '/tmp', 'answers')
-
-  file csmanager_answers do
-    backup false
-    action :nothing
-  end
-
-  cookbook_file csmanager_answers do
-    source "csmanager_install_answers"
-  end
-
-  execute "CS Manager Install Script" do
-    cwd node[:cloudstack][:install_dir]
-    command "#{::File.join(node[:cloudstack][:install_dir], "install.sh")} < #{csmanager_answers}"
-    action :run
-    notifies :delete, "file[#{csmanager_answers}]", :immediately
+    source "config"
   end
 end
 
 execute "CS Manager Setup DB" do
-  command "cloud-setup-databases #{node[:cloudstack][:csmanage][:dbuser]}:#{node[:cloudstack][:csmanage][:dbpass]} --deploy-as=root"
+  command "cloud-setup-databases #{node[:cloudstack][:csmanage][:dbuser]}:#{node[:cloudstack][:csmanage][:dbpass]}@localhost --deploy-as=root"
   not_if 'echo "show databases" | mysql | grep cloud'
 end
 
 execute "CS Manager db.properties Hack for Single-Node operation" do
   command "sed -i 's/=localhost/=#{node[:cloudstack][:csmanage][:dbhost]}/g' /etc/cloud/management/db.properties"
-end
-
-execute "Set MySQL BinLog format to ROW" do
-  command "echo \"set global binlog_format = 'ROW'\" | mysql"
-end
-
-cookbook_file "/etc/mysql/conf.d/binlogformat.cnf" do
-  source "binlogformat.cnf"
 end
 
 execute "Install/Setup CS Manager" do
