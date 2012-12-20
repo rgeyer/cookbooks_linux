@@ -27,6 +27,8 @@ t.run_action(:create)
 
 `rpm --import http://cloudstack.apt-get.eu/release.asc`
 
-package 'cloud-client'
+%w{selinux policycoreutils settroubleshoot cloud-client}.each do |p|
+  package p
+end
 
 rightscale_marker :end
