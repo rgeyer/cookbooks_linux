@@ -88,11 +88,12 @@
       "recipes": [
         "mongod::apt"
       ],
+      "choice": [
+        "true",
+        "false"
+      ],
       "required": "optional",
       "default": "false",
-      "choice": [
-
-      ],
       "calculated": false,
       "type": "string"
     }
