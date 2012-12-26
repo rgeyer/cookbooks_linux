@@ -1,65 +1,66 @@
 {
-  "dependencies": {
-    "logrotate": ">= 0.0.0",
-    "rightscale": ">= 0.0.0",
-    "rvm": ">= 0.0.0"
-  },
   "name": "unicorn",
-  "maintainer_email": "me@ryangeyer.com",
-  "attributes": {
-    "unicorn/version": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "type": "string",
-      "recipes": [
-        "unicorn::install_unicorn"
-      ],
-      "description": "The version of the unicorn gem to install.  If not supplied, the latest available version of unicorn will be installed",
-      "display_name": "Unicorn Version"
-    },
-    "rvm/install_path": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "/opt/rvm",
-      "type": "string",
-      "recipes": [
-
-      ],
-      "description": "The full path where RVM will be installed. I.E. /opt/rvm",
-      "display_name": "RVM Installation Path"
-    }
-  },
-  "license": "Apache 2.0",
-  "suggestions": {
-  },
-  "platforms": {
-    "rhel": ">= 0.0.0",
-    "debian": ">= 0.0.0",
-    "centos": ">= 0.0.0",
-    "ubuntu": ">= 0.0.0"
-  },
-  "maintainer": "Ryan J. Geyer",
+  "description": "Installs/Configures unicorn",
   "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "version": "0.0.2",
+  "maintainer": "Ryan J. Geyer",
+  "maintainer_email": "me@ryangeyer.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "rhel": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0"
+  },
+  "dependencies": {
+    "rightscale": ">= 0.0.0",
+    "rvm": ">= 0.0.0",
+    "logrotate": ">= 0.0.0"
+  },
   "recommendations": {
   },
-  "recipes": {
-    "unicorn::setup_unicorn": "Configures unicorn",
-    "unicorn::install_unicorn": "Installs the unicorn gem for the system ruby"
-  },
-  "groupings": {
+  "suggestions": {
   },
   "conflicting": {
   },
+  "providing": {
+  },
   "replacing": {
   },
-  "description": "Installs/Configures unicorn",
-  "providing": {
-  }
+  "attributes": {
+    "unicorn/version": {
+      "display_name": "Unicorn Version",
+      "description": "The version of the unicorn gem to install.  If not supplied, the latest available version of unicorn will be installed",
+      "required": "optional",
+      "recipes": [
+        "unicorn::install_unicorn"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "rvm/install_path": {
+      "display_name": "RVM Installation Path",
+      "description": "The full path where RVM will be installed. I.E. /opt/rvm",
+      "required": "optional",
+      "default": "/opt/rvm",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "recipes": [
+
+      ]
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "unicorn::install_unicorn": "Installs the unicorn gem for the system ruby",
+    "unicorn::setup_unicorn": "Configures unicorn",
+    "unicorn::setup_monitoring": "Enables collectd monitoring for all configured unicorns processes"
+  },
+  "version": "0.0.2"
 }

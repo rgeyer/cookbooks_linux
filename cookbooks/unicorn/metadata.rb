@@ -15,6 +15,7 @@ end
 
 recipe "unicorn::install_unicorn", "Installs the unicorn gem for the system ruby"
 recipe "unicorn::setup_unicorn", "Configures unicorn"
+recipe "unicorn::setup_monitoring", "Enables collectd monitoring for all configured unicorns processes"
 
 attribute "unicorn/version",
   :display_name => "Unicorn Version",
