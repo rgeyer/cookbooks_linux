@@ -45,3 +45,10 @@ attribute "mongod/bind_ip",
   :recipes => ["mongod::apt"],
   :required => "optional",
   :default => "0.0.0.0"
+
+attribute "mongod/small_journal_files",
+  :display_name => "MongoDB Small Journal Files",
+  :description => "Sets the \"smallfiles\" configuration option.  When set to false (the default) an additional 3379MB (or more) disk space will be consumed for journal files.  Journaling is enabled by default for 64bit platforms",
+  :recipes => ["mongod::apt"],
+  :required => "optional",
+  :default => "false"

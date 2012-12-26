@@ -21,6 +21,7 @@ end
 
 default[:mongod][:port] = "27017"
 default[:mongod][:bind_ip] = "0.0.0.0"
+defaultp:mongod[:small_journal_files] = "false"
 
 case node[:platform]
   when "centos","rhel"

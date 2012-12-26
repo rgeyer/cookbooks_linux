@@ -66,6 +66,10 @@ directory node[:mongod][:datadir] do
   recursive true
 end
 
+execute "Recursively (re)set the permissions of the MongoDB data files" do
+  command "chown -R #{node[:mongod][:username]}:#{node[:mongod][:group]} #{node[:mongod][:datadir]}"
+end
+
 file node[:mongod][:logfile] do
   owner node[:mongod][:username]
   group node[:mongod][:group]
@@ -73,6 +77,9 @@ file node[:mongod][:logfile] do
   action :create_if_missing
   backup false
 end
+
+# TODO: Move/symlink the data and log directories.  Maybe clear the log dir cause it's confusing to have
+# the old /var/log files still in place
 
 template "/etc/mongodb.conf" do
   source "mongodb.conf.erb"

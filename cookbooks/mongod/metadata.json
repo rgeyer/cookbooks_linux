@@ -1,95 +1,109 @@
 {
+  "name": "mongod",
+  "description": "Installs/Configures mongodb",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "maintainer": "Ryan J. Geyer",
+  "maintainer_email": "me@ryangeyer.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "rhel": ">= 0.0.0",
+    "centos": ">= 0.0.0"
+  },
   "dependencies": {
     "rightscale": ">= 0.0.0",
     "block_device": ">= 0.0.0"
   },
-  "name": "mongod",
-  "maintainer_email": "me@ryangeyer.com",
-  "attributes": {
-    "mongod/bind_ip": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "0.0.0.0",
-      "type": "string",
-      "recipes": [
-        "mongod::apt"
-      ],
-      "description": "Accept connections on the interface with the given IP, or 0.0.0.0 for all",
-      "display_name": "MongoDB Bind IP"
-    },
-    "mongod/port": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "27017",
-      "type": "string",
-      "recipes": [
-        "mongod::apt"
-      ],
-      "description": "Accept connections on the specified port",
-      "display_name": "MongoDB Listen Port"
-    },
-    "mongod/logfile": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "/var/log/mongodb.log",
-      "type": "string",
-      "recipes": [
-        "mongod::apt"
-      ],
-      "description": "The full path to a file where MongoDB will write logs",
-      "display_name": "MongoDB Log File"
-    },
-    "mongod/datadir": {
-      "required": "optional",
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "/var/db/mongodb",
-      "type": "string",
-      "recipes": [
-        "mongod::apt"
-      ],
-      "description": "The full path to the directory where mongodb should store it's data files",
-      "display_name": "MongoDB Data Directory"
-    }
-  },
-  "license": "Apache 2.0",
-  "suggestions": {
-  },
-  "platforms": {
-    "rhel": ">= 0.0.0",
-    "debian": ">= 0.0.0",
-    "centos": ">= 0.0.0",
-    "ubuntu": ">= 0.0.0"
-  },
-  "maintainer": "Ryan J. Geyer",
-  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
-  "version": "0.0.1",
   "recommendations": {
   },
-  "recipes": {
-    "mongod::apt": "Installs mongodb from the net10 official packages",
-    "mongod::lock_for_backup": "Locks the mongo server from writes so that a consistent backup can be made",
-    "mongod::default": "Sets up defaults for the mongod cookbook, and stores a resource to use for locking/unlocking while backing up with block_device",
-    "mongod::unlock_for_backup": "Unlocks the mongo server for writes after a backup has been completed"
-  },
-  "groupings": {
+  "suggestions": {
   },
   "conflicting": {
   },
+  "providing": {
+  },
   "replacing": {
   },
-  "description": "Installs/Configures mongodb",
-  "providing": {
-  }
+  "attributes": {
+    "mongod/datadir": {
+      "display_name": "MongoDB Data Directory",
+      "description": "The full path to the directory where mongodb should store it's data files",
+      "recipes": [
+        "mongod::apt"
+      ],
+      "required": "optional",
+      "default": "/var/db/mongodb",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "mongod/logfile": {
+      "display_name": "MongoDB Log File",
+      "description": "The full path to a file where MongoDB will write logs",
+      "recipes": [
+        "mongod::apt"
+      ],
+      "required": "optional",
+      "default": "/var/log/mongodb.log",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "mongod/port": {
+      "display_name": "MongoDB Listen Port",
+      "description": "Accept connections on the specified port",
+      "recipes": [
+        "mongod::apt"
+      ],
+      "required": "optional",
+      "default": "27017",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "mongod/bind_ip": {
+      "display_name": "MongoDB Bind IP",
+      "description": "Accept connections on the interface with the given IP, or 0.0.0.0 for all",
+      "recipes": [
+        "mongod::apt"
+      ],
+      "required": "optional",
+      "default": "0.0.0.0",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "mongod/small_journal_files": {
+      "display_name": "MongoDB Small Journal Files",
+      "description": "Sets the \"smallfiles\" configuration option.  When set to false (the default) an additional 3379MB (or more) disk space will be consumed for journal files.  Journaling is enabled by default for 64bit platforms",
+      "recipes": [
+        "mongod::apt"
+      ],
+      "required": "optional",
+      "default": "false",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "mongod::default": "Sets up defaults for the mongod cookbook, and stores a resource to use for locking/unlocking while backing up with block_device",
+    "mongod::apt": "Installs mongodb from the net10 official packages",
+    "mongod::lock_for_backup": "Locks the mongo server from writes so that a consistent backup can be made",
+    "mongod::unlock_for_backup": "Unlocks the mongo server for writes after a backup has been completed"
+  },
+  "version": "0.0.1"
 }
