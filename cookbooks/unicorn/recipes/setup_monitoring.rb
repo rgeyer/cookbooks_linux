@@ -16,9 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rs_utils_enable_collectd_plugin "exec"
+rightscale_enable_collectd_plugin "exec"
 
-rs_utils_marker :begin
+rightscale_marker :begin
 
 # Add the rabbitmq executable to node[:rightscale][:collectd_lib] /plugins/unicorns
 directory ::File.join(node[:rightscale][:collectd_lib], 'plugins')
@@ -36,4 +36,4 @@ template ::File.join(node[:rightscale][:collectd_plugin_dir], 'unicorns.conf') d
   notifies :restart, resources(:service => "collectd") # This will probably only work on RightScale when this is run in the boot runlist with rightscale::setup_monitoring
 end
 
-rs_utils_marker :end
+rightscale_marker :end
