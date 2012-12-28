@@ -1,4 +1,4 @@
-# Copyright 2011, Ryan J. Geyer
+# Copyright 2011-2012, Ryan J. Geyer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,5 +14,11 @@
 
 # TODO: Maybe implement disable?
 actions :enable
+
+default_action :enable
+
+attribute :base_dn, :kind_of => [ String ], :default => "cn=config"
+attribute :user_cn, :kind_of => [ String ], :default => "cn=#{node[:openldap][:config_admin_cn]},cn=config"
+attribute :user_password, :kind_of => [ String ], :default => node[:openldap][:config_admin_password]
 
 attribute :name, :kind_of => [ String ], :name_attribute => true, :required => true

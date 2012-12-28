@@ -1,4 +1,4 @@
-# Copyright 2011, Ryan J. Geyer
+# Copyright 2011-2012, Ryan J. Geyer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+include Rgeyer::Chef::NetLdap
 
 action :add_syncprov_to_all_dbs do
   if is_consumer
@@ -37,4 +39,35 @@ action :add_syncprov_to_all_dbs do
       ])
     end
   end
+
+  new_resource.updated_by_last_action(true)
+end
+
+action :set_admin_creds do
+  hashed_pass = `slappasswd -s #{new_resource.admin_pass}`
+  if `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b "cn=config" "(olcRootPw=*)"` =~ /numEntries/
+    openldap_execute_ldif do
+      executable "ldapadd"
+      source "deleteConfigAdminPassword.ldif"
+      source_type :cookbook_file
+    end
+  end
+
+  if `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b "cn=config" "(olcRootDn=*)"` =~ /numEntries/
+    openldap_execute_ldif do
+      executable "ldapadd"
+      source "deleteConfigAdminDn.ldif"
+      source_type :cookbook_file
+    end
+  end
+
+  openldap_execute_ldif do
+    executable "ldapadd"
+    source "setConfigAdminCreds.ldif.erb"
+    source_type :template
+    config_admin_cn node[:openldap][:config_admin_cn]
+    config_admin_password hashed_pass
+  end
+
+  new_resource.updated_by_last_action(true)
 end

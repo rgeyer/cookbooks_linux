@@ -1,4 +1,4 @@
-# Copyright 2011, Ryan J. Geyer
+# Copyright 2011-2012, Ryan J. Geyer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,11 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include Rgeyer::Chef::NetLdap
+
 action :enable do
   module_name = new_resource.name
-  unless `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=config "(&(objectClass=olcModuleList)(olcModuleLoad=#{module_name}))"` =~ /numEntries/
-    idx = `ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=config "(objectClass=olcModuleList)" | grep numEntries | cut -d' ' -f3`
-    idx = 0 if idx == ""
+  class_filter = Net::LDAP::Filter.eq("objectClass", "olcModuleList")
+  module_filter = Net::LDAP::Filter.eq("olcModuleLoad", module_name)
+  filter = class_filter & module_filter
+  module_search = net_ldap.search(:base => new_resource.base_dn, :filter => filter, :attributes => "dn")
+  unless module_search && module_search.length > 0
+    filter = Net::LDAP::Filter.eq("objectClass", "olcModuleList")
+    all_modules = net_ldap.search(:base => new_resource.base_dn, :filter => filter, :attributes => "dn")
+    idx = all_modules ? all_modules.length : 0
 
     idx = idx.to_i
 
@@ -30,4 +37,6 @@ action :enable do
       module_name module_name
     end
   end
+
+  new_resource.updated_by_last_action(true)
 end

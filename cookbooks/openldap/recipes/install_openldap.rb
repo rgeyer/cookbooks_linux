@@ -2,7 +2,7 @@
 # Cookbook Name:: openldap
 # Recipe:: install_openldap
 #
-# Copyright 2011, Ryan J. Geyer
+# Copyright 2011-2012, Ryan J. Geyer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@
 
 rightscale_marker :begin
 
+Chef::Log.info("RIGHT UP AT THE TOP HERE LET'S ACCESS AN OHAI PROPERTY -- #{node["platform"]} #{node["platform_family"]}")
+
 include_recipe "openldap::setup_openldap"
 
 listen_host = ""
@@ -25,22 +27,12 @@ listen_host = "127.0.0.1" unless node[:openldap][:allow_remote] == "true"
 
 listen_port = node[:openldap][:listen_port]
 
-%w{slapd ldap-utils}.each do |p|
+node[:openldap][:packages].each do |p|
   package p
 end
 
-package "Berkley DB Utils" do
-  case node[:platform_version]
-    when "9.10"
-      package_name "db4.2-util"
-    when "10.04"
-      package_name "db4.7-util"
-  end
-  action :install
-end
-
 service "slapd" do
-  action :nothing
+  action [:enable,:start]
 end
 
 template "/etc/default/slapd" do
@@ -55,11 +47,17 @@ end
 if node[:platform] == "ubuntu" && node[:platform_version] == "9.10"
   openldap_execute_ldif do
     source "ubuntu-karmic-9.10-fixRootDSE.ldif"
-    source_type :remote_file
+    source_type :cookbook_file
   end
 end
 
-include_recipe "openldap::setup_config_admin_creds"
+# TODO: Actually need to bootstrap with a standard openldap_execute_ldif
+
+openldap_config "Set Config Admin Credentials" do
+  admin_cn node[:openldap][:config_admin_cn]
+  admin_pass node[:openldap][:config_admin_password]
+  action :set_admin_creds
+end
 
 %w{back_bdb back_hdb}.each do |mod|
   openldap_module mod do
@@ -67,12 +65,15 @@ include_recipe "openldap::setup_config_admin_creds"
   end
 end
 
-include_recipe "openldap::do_enable_schemas"
+openldap_schema "Enable schema list" do
+  schemas node[:openldap][:schemas]
+  action :enable
+end
 
 directory node[:openldap][:db_dir] do
   recursive true
-  owner "openldap"
-  group "openldap"
+  owner node[:openldap][:username]
+  group node[:openldap][:group]
   action :create
 end
 

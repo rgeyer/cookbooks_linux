@@ -13,11 +13,18 @@
 # limitations under the License.
 
 actions :add_syncprov_to_all_dbs
+actions :set_admin_creds
+
+default_action :set_admin_creds
 
 attribute :base_dn, :kind_of => [ String ], :default => "cn=config"
-attribute :user_cn, :kind_of => [ String ], :default => node[:openldap][:config_admin_cn]
+attribute :user_cn, :kind_of => [ String ], :default => "cn=#{node[:openldap][:config_admin_cn]},cn=config"
 attribute :user_password, :kind_of => [ String ], :default => node[:openldap][:config_admin_password]
 
 # Required for :add_syncprov_to_all_dbs
 attribute :provider_checkpoint_updates, :kind_of => [ Integer ], :default => 100
-attribute :provider_checkpoint_minutes, :kind_of => [ Integet ], :default => 10
+attribute :provider_checkpoint_minutes, :kind_of => [ Integer ], :default => 10
+
+# Required for :set_admin_creds
+attribute :admin_cn, :kind_of => [ String ]
+attribute :admin_pass, :kind_of => [ String ]

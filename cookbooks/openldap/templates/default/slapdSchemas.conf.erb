@@ -1,3 +1,3 @@
 <% @schemas.each do |schema| -%>
-include /etc/ldap/schema/<%= schema %>.schema
+include <%= ::File.join(node[:openldap][:config_dir], "schema") %>/<%= schema %>.schema
 <% end -%>

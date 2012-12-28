@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: openldap
 #
-# Copyright 2011, Ryan J. Geyer
+# Copyright 2011-2012, Ryan J. Geyer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ define :openldap_execute_ldif, :source => nil, :source_type => nil, :executable 
         source params[:source]
         variables params
       end
-    when :remote_file
-      remote_file dest_file do
+    when :cookbook_file
+      cookbook_file dest_file do
         source params[:source]
         backup false
       end
