@@ -1,9 +1,0 @@
-dn: olcDatabase={0}config,cn=config
-changetype: modify
-add: olcRootDN
-olcRootDN: cn=<%= @config_admin_cn %>,cn=config
-
-dn: olcDatabase={0}config,cn=config
-changetype: modify
-add: olcRootPw
-olcRootPw: <%= @config_admin_password %>
