@@ -1,7 +1,0 @@
-user            = <%= node[:mail_postfix][:db_user] %>
-password        = <%= node[:mail_postfix][:db_pass] %>
-dbname          = <%= node[:mail_postfix][:db_name] %>
-table           = relocated
-select_field    = destination
-where_field     = email
-hosts           = <%= node[:mail_postfix][:db_host] %>
